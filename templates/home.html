@@ -1,0 +1,50 @@
+<section class="hero">
+    <div class="hero__texto">
+      <h1 class="hero__nombre">{{site.nombre}}</h1>
+      <p class="hero__rol">{{hero.rol}}</p>
+      <p class="hero__bio">{{site.bio}}</p>
+  
+      <p class="hero__terminal">
+        <span id="terminal-stack"></span><span class="hero__cursor">|</span>
+      </p>
+  
+      <div class="hero__cta">
+        <a href="/{{idioma}}/proyectos/" class="btn btn--primario">{{i18n.ver_proyectos}}</a>
+        <a href="{{site.cv_pdf}}" class="btn btn--secundario" download>{{i18n.descargar_cv}}</a>
+      </div>
+  
+      <div class="hero__social">
+        <a href="{{site.contacto.github}}" target="_blank" rel="noopener">GitHub</a>
+        <a href="{{site.contacto.linkedin}}" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:{{site.contacto.email}}">Email</a>
+      </div>
+    </div>
+  </section>
+  
+  <section class="home-proyectos">
+    <div class="home-proyectos__header">
+      <h2>{{i18n.proyectos_destacados}}</h2>
+      <a href="/{{idioma}}/proyectos/" class="ver-todos">{{i18n.ver_todos}} →</a>
+    </div>
+  
+    <div class="home-proyectos__grid">
+      {{lista_proyectos_destacados}}
+    </div>
+  </section>
+  
+  <section class="home-charla">
+    <div class="home-charla__header">
+      <h2>{{i18n.ultima_charla}}</h2>
+      <a href="/{{idioma}}/charlas/" class="ver-todos">{{i18n.ver_todas}} →</a>
+    </div>
+  
+    {{ultima_charla_card}}
+  </section>
+  
+  <section class="home-cta-final">
+    <p>{{i18n.cta_final_texto}}</p>
+    <div class="home-cta-final__botones">
+      <a href="/{{idioma}}/sobre-mi/" class="btn btn--secundario">{{i18n.sobre_mi}}</a>
+      <a href="/{{idioma}}/contacto/" class="btn btn--primario">{{i18n.contacto}}</a>
+    </div>
+  </section>

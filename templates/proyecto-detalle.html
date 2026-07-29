@@ -1,0 +1,41 @@
+<article class="proyecto-detalle">
+
+    <nav class="proyecto-detalle__breadcrumb">
+      <a href="/{{idioma}}/proyectos/">← {{i18n.volver_proyectos}}</a>
+    </nav>
+  
+    <header class="proyecto-detalle__header">
+      <h1>{{proyecto.titulo}}</h1>
+      <p class="proyecto-detalle__resumen">{{proyecto.resumen}}</p>
+  
+      <div class="proyecto-detalle__meta">
+        <span>{{proyecto.periodo}}</span>
+        <span>{{proyecto.estado}}</span>
+        {{nota_academica_si_existe}}
+      </div>
+  
+      <ul class="proyecto-detalle__tech">
+        {{lista_tecnologias}}
+      </ul>
+    </header>
+  
+    <div class="proyecto-detalle__imagen">
+      <img src="{{proyecto.imagen}}" alt="{{proyecto.titulo}}">
+    </div>
+  
+    <div class="proyecto-detalle__cuerpo">
+      <p>{{proyecto.descripcion}}</p>
+    </div>
+  
+    <div class="proyecto-detalle__enlaces">
+      {{lista_enlaces}}
+    </div>
+  
+    <section class="proyecto-detalle__relacionado">
+      <h2>{{i18n.tambien_te_puede_interesar}}</h2>
+      <div class="proyecto-detalle__relacionado-grid">
+        {{lista_proyectos_relacionados}}
+      </div>
+    </section>
+  
+  </article>

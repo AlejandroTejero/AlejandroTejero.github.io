@@ -1,0 +1,36 @@
+<section class="sobre-mi-header">
+    <div class="sobre-mi-header__foto">
+      <img src="{{site.foto}}" alt="{{site.nombre}}">
+    </div>
+  
+    <div class="sobre-mi-header__texto">
+      <h1>{{i18n.sobre_mi_titulo}}</h1>
+      <p class="sobre-mi-header__ubicacion">{{site.ubicacion}}</p>
+      <p class="sobre-mi-header__bio">{{site.bio}}</p>
+    </div>
+  </section>
+  
+  <section class="sobre-mi-skills">
+    <h2>{{i18n.skills_titulo}}</h2>
+  
+    <div class="sobre-mi-skills__grid">
+      {{lista_skill_groups}}
+    </div>
+  </section>
+  
+  <section class="sobre-mi-timeline">
+    <h2>{{i18n.timeline_titulo}}</h2>
+  
+    <div class="sobre-mi-timeline__linea">
+      {{lista_timeline_items}}
+    </div>
+  </section>
+  
+  <section class="sobre-mi-setup">
+    <h2>{{i18n.setup_titulo}}</h2>
+    <ul class="sobre-mi-setup__lista">
+      <li><strong>{{i18n.setup_so}}:</strong> {{site.setup.so}}</li>
+      <li><strong>{{i18n.setup_editor}}:</strong> {{site.setup.editor}}</li>
+      <li><strong>{{i18n.setup_terminal}}:</strong> {{site.setup.terminal}}</li>
+    </ul>
+  </section>

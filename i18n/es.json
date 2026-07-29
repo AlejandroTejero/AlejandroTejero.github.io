@@ -1,0 +1,45 @@
+{
+    "nav_home": "Inicio",
+    "nav_proyectos": "Proyectos",
+    "nav_charlas": "Charlas",
+    "nav_sobre_mi": "Sobre mi",
+    "nav_contacto": "Contacto",
+  
+    "ver_proyectos": "Ver proyectos",
+    "descargar_cv": "Descargar CV",
+    "proyectos_destacados": "Proyectos destacados",
+    "ver_todos": "Ver todos",
+    "ultima_charla": "Ultima charla",
+    "ver_todas": "Ver todas",
+    "cta_final_texto": "Siempre abierto a nuevas oportunidades y colaboraciones",
+    "sobre_mi": "Sobre mi",
+    "contacto": "Contacto",
+  
+    "proyectos_titulo": "Proyectos",
+    "proyectos_intro": "Una seleccion de proyectos academicos y personales, desde backend con IA hasta sistemas cliente-servidor",
+    "filtrar_por_categoria": "Filtrar por categoria",
+    "filtro_todos": "Todos",
+    "otros_repositorios": "Otros repositorios",
+    "otros_repositorios_nota": "Repositorios de practicas de asignatura de la carrera, no proyectos completos",
+    "ver_en_github": "Ver en GitHub",
+  
+    "volver_proyectos": "Volver a proyectos",
+    "tambien_te_puede_interesar": "Tambien te puede interesar",
+  
+    "charlas_titulo": "Charlas",
+    "charlas_intro": "Ponencias y presentaciones en eventos tecnicos",
+    "volver_charlas": "Volver a charlas",
+  
+    "sobre_mi_titulo": "Sobre mi",
+    "skills_titulo": "Habilidades tecnicas",
+    "timeline_titulo": "Trayectoria",
+    "setup_titulo": "Mi setup",
+    "setup_so": "Sistema operativo",
+    "setup_editor": "Editor",
+    "setup_terminal": "Terminal",
+
+    "contacto_titulo": "Contacto",
+    "contacto_intro": "Hablemos de tu proyecto o cualquier oportunidad",
+    "telefono": "Telefono",
+    "ver_perfil": "Ver perfil"
+  }

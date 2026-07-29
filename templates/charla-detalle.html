@@ -1,0 +1,23 @@
+<article class="charla-detalle">
+
+    <nav class="charla-detalle__breadcrumb">
+      <a href="/{{idioma}}/charlas/">← {{i18n.volver_charlas}}</a>
+    </nav>
+  
+    <header class="charla-detalle__header">
+      <span class="charla-detalle__fecha">{{charla.fecha_formateada}}</span>
+      <h1>{{charla.titulo}}</h1>
+      <p class="charla-detalle__meta">{{charla.rol}} · {{charla.lugar}}</p>
+    </header>
+  
+    <div class="charla-detalle__cuerpo">
+      <p>{{charla.resumen}}</p>
+    </div>
+  
+    <div class="charla-detalle__enlaces">
+      {{lista_enlaces_charla}}
+    </div>
+  
+    {{proyecto_relacionado_si_existe}}
+  
+  </article>

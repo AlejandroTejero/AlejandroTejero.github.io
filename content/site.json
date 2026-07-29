@@ -1,16 +1,34 @@
 {
-    "nombre": "Alejandro Tejero de la Morena",
-    "titulo": { "es": "Ingeniero de Telecomunicaciones - Telematica", "en": "Telecommunications Engineer - Telematics" },
-    "ubicacion": "Madrid, Espana",
-    "bio": {
-      "es": "Graduado en Ingenieria Telematica por la URJC. Actualmente en practicas de ingenieria en Bosch, trabajando con analisis de datos, Power BI y SAP. Me interesa el desarrollo backend, la automatizacion con IA y la ciberseguridad, siempre cuidando escribir codigo limpio y bien documentado.",
-      "en": "Telematics Engineering graduate from URJC. Currently an engineering intern at Bosch, working with data analysis, Power BI and SAP. Interested in backend development, AI-driven automation and cybersecurity, with a strong focus on writing clean, well-documented code."
-    },
-    "contacto": {
-      "email": "atejerodelamorena@gmail.com",
-      "telefono": "+34 620 62 13 84",
-      "linkedin": "https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/",
-      "github": "https://github.com/AlejandroTejero"
-    },
-    "foto": "/img/perfil.jpg"
+  "nombre": "Alejandro Tejero de la Morena",
+  "nombre_corto": "Alejandro Tejero",
+  "titulo": {
+    "es": "Ingeniero de Telecomunicaciones - Telematica",
+    "en": "Telecommunications Engineer - Telematics"
+  },
+  "ubicacion": "Madrid, Espana",
+  "bio": {
+    "es": "Graduado en Ingenieria Telematica por la URJC. Actualmente en practicas de ingenieria en Bosch, trabajando con analisis de datos, Power BI y SAP. Me interesa el desarrollo backend, la automatizacion con IA y la ciberseguridad, siempre cuidando escribir codigo limpio y bien documentado.",
+    "en": "Telematics Engineering graduate from URJC. Currently an engineering intern at Bosch, working with data analysis, Power BI and SAP. Interested in backend development, AI-driven automation and cybersecurity, with a strong focus on writing clean, well-documented code."
+  },
+  "hero_rol": {
+    "es": "Ingeniero Telematico - Practicas en Bosch",
+    "en": "Telematics Engineer - Intern at Bosch"
+  },
+  "contacto": {
+    "email": "atejerodelamorena@gmail.com",
+    "telefono": "+34 620 62 13 84",
+    "telefono_href": "+34620621384",
+    "linkedin": "https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/",
+    "github": "https://github.com/AlejandroTejero"
+  },
+  "foto": "/img/perfil.jpg",
+  "cv_pdf": {
+    "es": "/cv/CV_Alejandro_Tejero_ES.pdf",
+    "en": "/cv/CV_Alejandro_Tejero_EN.pdf"
+  },
+  "setup": {
+    "so": "PENDIENTE (ej: Windows 11 / Ubuntu 24.04)",
+    "editor": "PENDIENTE (ej: VSCode / PyCharm)",
+    "terminal": "PENDIENTE (ej: Windows Terminal / Zsh)"
   }
+}
