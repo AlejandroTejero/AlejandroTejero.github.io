@@ -1,0 +1,92 @@
+[
+  {
+    "id": "webbuilder",
+    "destacado": true,
+    "categorias": ["backend", "ia", "automatizacion"],
+    "titulo": "WebBuilder",
+    "resumen": {
+      "es": "Convierte cualquier API publica en un proyecto Django desplegable usando IA",
+      "en": "Turns any public API into a deployable Django project using AI"
+    },
+    "descripcion": {
+      "es": "Plataforma que convierte cualquier API publica (JSON/XML/CSV) en un proyecto Django completo y desplegable. Un LLM analiza el dataset, propone el esquema de datos y genera el codigo. Incluye autenticacion OAuth (Google/GitHub), editor con refinamiento asistido por IA, versionado de sitios generados y despliegue automatizado con n8n y Docker.",
+      "en": "Platform that turns any public API (JSON/XML/CSV) into a complete, deployable Django project. An LLM analyzes the dataset, proposes the data schema and generates the code. Includes OAuth authentication (Google/GitHub), an AI-assisted refinement editor, versioning of generated sites and automated deployment with n8n and Docker."
+    },
+    "tecnologias": ["Django", "PostgreSQL", "Docker", "n8n", "LLMs", "OAuth"],
+    "periodo": "2025 - 2026",
+    "estado": "Finalizado",
+    "nota_academica": "9,9 - Propuesto para Matricula de Honor",
+    "imagen": "/img/proyectos/webbuilder-cover.png",
+    "enlaces": {
+      "github": "https://github.com/AlejandroTejero/WebBuilder-TFG",
+      "landing": "https://alejandrotejero.github.io/WebBuilder-landing/",
+      "memoria": "https://github.com/AlejandroTejero/MemoriaTFG-WebBuilder"
+    }
+  },
+  {
+    "id": "gamerank",
+    "destacado": true,
+    "categorias": ["backend", "web"],
+    "titulo": "GameRank",
+    "resumen": {
+      "es": "Catalogo y ranking social de videojuegos con integracion de APIs externas",
+      "en": "Social videogame catalog and ranking with external API integration"
+    },
+    "descripcion": {
+      "es": "Aplicacion web integrada con la API de RAWG para descubrir, valorar y comparar videojuegos agregados desde distintas fuentes (XML + APIs REST). Incluye sistema de reviews, likes/dislikes, rankings dinamicos, busqueda avanzada y carga dinamica de comentarios con HTMX.",
+      "en": "Web application integrated with the RAWG API to discover, rate and compare videogames aggregated from different sources (XML + REST APIs). Includes a review system, likes/dislikes, dynamic rankings, advanced search and HTMX-powered dynamic comment loading."
+    },
+    "tecnologias": ["Django", "HTMX", "REST API", "XML/JSON"],
+    "periodo": "2025",
+    "estado": "Finalizado",
+    "nota_academica": "9,9 - Matricula de Honor",
+    "imagen": "/img/proyectos/gamerank-cover.png",
+    "enlaces": {
+      "github": "https://github.com/AlejandroTejero/GameRank"
+    }
+  },
+  {
+    "id": "invernadero",
+    "destacado": true,
+    "categorias": ["iot", "backend"],
+    "titulo": "Invernadero IoT",
+    "resumen": {
+      "es": "Simulador de invernadero automatizado con sensores y actuadores",
+      "en": "Automated greenhouse simulator with sensors and actuators"
+    },
+    "descripcion": {
+      "es": "Sistema orientado a objetos que simula un invernadero automatizado: sensores de temperatura, humedad y luz, actuadores, sistema de usuarios con login y persistencia de datos en ficheros. Interfaz por terminal, proyecto documentado con Doxygen.",
+      "en": "Object-oriented system simulating an automated greenhouse: temperature, humidity and light sensors, actuators, a user login system and file-based data persistence. Terminal interface, documented with Doxygen."
+    },
+    "tecnologias": ["C++", "POO", "Doxygen"],
+    "periodo": "2024",
+    "estado": "Finalizado",
+    "nota_academica": null,
+    "imagen": "/img/proyectos/invernadero-cover.png",
+    "enlaces": {
+      "github": "https://github.com/AlejandroTejero/Invernadero"
+    }
+  },
+  {
+    "id": "tactical-battle",
+    "destacado": true,
+    "categorias": ["backend", "sistemas"],
+    "titulo": "Tactical Battle",
+    "resumen": {
+      "es": "Simulador de combate tactico por turnos, cliente-servidor",
+      "en": "Turn-based tactical combat simulator, client-server"
+    },
+    "descripcion": {
+      "es": "Juego de estrategia por turnos en C++ con arquitectura cliente-servidor sobre sockets TCP. El servidor gestiona el lobby de emparejamiento, multiples partidas simultaneas, varios oponentes multihilo y el ranking de jugadores.",
+      "en": "Turn-based strategy game in C++ with a client-server architecture over TCP sockets. The server manages the matchmaking lobby, several simultaneous matches, multithreaded opponents and the player ranking."
+    },
+    "tecnologias": ["C++", "Sockets TCP", "Cliente-Servidor"],
+    "periodo": "2025",
+    "estado": "Finalizado",
+    "nota_academica": null,
+    "imagen": "/img/proyectos/tactical-battle-cover.png",
+    "enlaces": {
+      "github": "https://github.com/AlejandroTejero/TacticalBattle"
+    }
+  }
+]

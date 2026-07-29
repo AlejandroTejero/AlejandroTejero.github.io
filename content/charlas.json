@@ -1,0 +1,20 @@
+[
+    {
+      "id": "selia-2026",
+      "titulo": { "es": "I Jornada sobre Software Libre e IA Abierta (seLIA)", "en": "1st Conference on Free Software and Open AI (seLIA)" },
+      "fecha": "2026-07-06",
+      "lugar": "PENDIENTE - URJC, Madrid (confirmar campus/edificio)",
+      "rol": { "es": "Ponente", "en": "Speaker" },
+      "resumen": {
+        "es": "Presentacion de la arquitectura de WebBuilder y funcionamiento de la IA Generativa aplicada",
+        "en": "Presentation of WebBuilder's architecture and applied Generative AI functioning"
+      },
+      "enlaces": {
+        "linkedin": "PENDIENTE",
+        "cartel": "PENDIENTE",
+        "slides": "PENDIENTE",
+        "video": null
+      },
+      "proyecto_relacionado": "webbuilder"
+    }
+  ]

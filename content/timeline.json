@@ -1,0 +1,53 @@
+[
+    {
+      "anio": "2021",
+      "mes": "09",
+      "tipo": "educacion",
+      "titulo": { "es": "Inicio Ingenieria Telematica", "en": "Started Telematics Engineering" },
+      "institucion": "Universidad Rey Juan Carlos"
+    },
+    {
+      "anio": "2024",
+      "mes": "PENDIENTE",
+      "tipo": "proyecto",
+      "titulo": { "es": "Invernadero IoT", "en": "IoT Greenhouse" },
+      "descripcion": { "es": "Simulador de invernadero automatizado en C++", "en": "Automated greenhouse simulator in C++" }
+    },
+    {
+      "anio": "2025",
+      "mes": "PENDIENTE",
+      "tipo": "proyecto",
+      "titulo": { "es": "GameRank", "en": "GameRank" },
+      "descripcion": { "es": "Matricula de Honor - catalogo de videojuegos", "en": "Highest honors - videogame catalog" }
+    },
+    {
+      "anio": "2025",
+      "mes": "PENDIENTE",
+      "tipo": "proyecto",
+      "titulo": { "es": "WebBuilder (TFG)", "en": "WebBuilder (Thesis)" },
+      "descripcion": { "es": "Nota 9,9 - propuesto a Matricula de Honor", "en": "Grade 9.9 - proposed for highest honors" }
+    },
+    {
+      "anio": "2026",
+      "mes": "05",
+      "tipo": "educacion",
+      "titulo": { "es": "Graduacion", "en": "Graduation" },
+      "institucion": "Universidad Rey Juan Carlos"
+    },
+    {
+      "anio": "2026",
+      "mes": "05",
+      "tipo": "experiencia",
+      "titulo": { "es": "Practicas de Ingenieria", "en": "Engineering Internship" },
+      "institucion": "Robert Bosch Espana S.L.U.",
+      "descripcion": { "es": "Analisis de datos, Power BI, SAP", "en": "Data analysis, Power BI, SAP" }
+    },
+    {
+      "anio": "2026",
+      "mes": "07",
+      "tipo": "logro",
+      "titulo": { "es": "Ponente en I Jornada seLIA", "en": "Speaker at I Jornada seLIA" },
+      "institucion": "URJC",
+      "descripcion": { "es": "Presentacion de WebBuilder", "en": "WebBuilder presentation" }
+    }
+  ]
