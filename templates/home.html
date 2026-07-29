@@ -1,50 +1,50 @@
-<section class="hero">
-    <div class="hero__texto">
-      <h1 class="hero__nombre">{{site.nombre}}</h1>
-      <p class="hero__rol">{{hero.rol}}</p>
-      <p class="hero__bio">{{site.bio}}</p>
-  
-      <p class="hero__terminal">
-        <span id="terminal-stack"></span><span class="hero__cursor">|</span>
-      </p>
-  
-      <div class="hero__cta">
-        <a href="/{{idioma}}/proyectos/" class="btn btn--primario">{{i18n.ver_proyectos}}</a>
-        <a href="{{site.cv_pdf}}" class="btn btn--secundario" download>{{i18n.descargar_cv}}</a>
-      </div>
-  
-      <div class="hero__social">
-        <a href="{{site.contacto.github}}" target="_blank" rel="noopener">GitHub</a>
-        <a href="{{site.contacto.linkedin}}" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="mailto:{{site.contacto.email}}">Email</a>
+<section class="home-hero">
+  <span class="eyebrow">{{i18n.home_eyebrow}}</span>
+
+  <div class="home-hero__top">
+    <div class="home-hero__foto">
+      <img src="{{site.foto}}" alt="{{site.nombre}}">
+    </div>
+
+    <div class="home-hero__texto">
+      <h1 class="home-hero__nombre">{{site.nombre}}</h1>
+      <p class="home-hero__rol">{{hero.rol}}</p>
+
+      <div class="home-hero__badges">
+        {{lista_badges}}
       </div>
     </div>
-  </section>
-  
-  <section class="home-proyectos">
-    <div class="home-proyectos__header">
-      <h2>{{i18n.proyectos_destacados}}</h2>
-      <a href="/{{idioma}}/proyectos/" class="ver-todos">{{i18n.ver_todos}} →</a>
+  </div>
+
+  <div class="home-hero__bio">
+    {{lista_bio_parrafos}}
+  </div>
+
+  <div class="home-hero__cta">
+    <a href="{{site.cv_pdf}}" class="btn btn--primario" download>{{i18n.descargar_cv}}</a>
+    <a href="/{{idioma}}/proyectos/" class="btn btn--secundario">{{i18n.ver_proyectos}}</a>
+
+    <div class="home-hero__social">
+      <a href="{{site.contacto.github}}" target="_blank" rel="noopener" aria-label="GitHub">{ }</a>
+      <a href="{{site.contacto.linkedin}}" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+      <a href="mailto:{{site.contacto.email}}" aria-label="Email">✉</a>
     </div>
-  
-    <div class="home-proyectos__grid">
-      {{lista_proyectos_destacados}}
-    </div>
-  </section>
-  
-  <section class="home-charla">
-    <div class="home-charla__header">
-      <h2>{{i18n.ultima_charla}}</h2>
-      <a href="/{{idioma}}/charlas/" class="ver-todos">{{i18n.ver_todas}} →</a>
-    </div>
-  
-    {{ultima_charla_card}}
-  </section>
-  
-  <section class="home-cta-final">
-    <p>{{i18n.cta_final_texto}}</p>
-    <div class="home-cta-final__botones">
-      <a href="/{{idioma}}/sobre-mi/" class="btn btn--secundario">{{i18n.sobre_mi}}</a>
-      <a href="/{{idioma}}/contacto/" class="btn btn--primario">{{i18n.contacto}}</a>
-    </div>
-  </section>
+  </div>
+</section>
+
+<section class="home-valores">
+  <h2>{{i18n.valores_titulo}}</h2>
+
+  <div class="home-valores__grid">
+    {{lista_valores}}
+  </div>
+</section>
+
+<section class="home-setup">
+  <h2>{{i18n.setup_titulo}}</h2>
+  <ul class="sobre-mi-setup__lista">
+    <li><strong>{{i18n.setup_so}}:</strong> {{site.setup.so}}</li>
+    <li><strong>{{i18n.setup_editor}}:</strong> {{site.setup.editor}}</li>
+    <li><strong>{{i18n.setup_terminal}}:</strong> {{site.setup.terminal}}</li>
+  </ul>
+</section>

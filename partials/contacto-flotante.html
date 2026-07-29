@@ -1,0 +1,26 @@
+<div class="contacto-flotante" id="contacto-flotante">
+
+    <button class="contacto-flotante__boton" id="contacto-flotante-toggle" aria-label="{{i18n.contacto_abrir}}" aria-expanded="false">
+      <span class="contacto-flotante__icono">👤</span>
+    </button>
+  
+    <div class="contacto-flotante__menu" id="contacto-flotante-menu" role="menu">
+      <span class="contacto-flotante__titulo">{{i18n.contacto_titulo_flotante}}</span>
+  
+      <a href="mailto:{{site.contacto.email}}" class="contacto-flotante__item" role="menuitem">
+        <span class="contacto-flotante__item-icono">✉</span>
+        <span>Gmail</span>
+      </a>
+  
+      <a href="{{site.contacto.linkedin}}" target="_blank" rel="noopener" class="contacto-flotante__item" role="menuitem">
+        <span class="contacto-flotante__item-icono">in</span>
+        <span>LinkedIn</span>
+      </a>
+  
+      <a href="tel:{{site.contacto.telefono_href}}" class="contacto-flotante__item" role="menuitem">
+        <span class="contacto-flotante__item-icono">☎</span>
+        <span>{{site.contacto.telefono}}</span>
+      </a>
+    </div>
+  
+  </div>

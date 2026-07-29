@@ -1,45 +1,36 @@
 {
-    "nav_home": "Home",
-    "nav_proyectos": "Projects",
-    "nav_charlas": "Talks",
-    "nav_sobre_mi": "About",
-    "nav_contacto": "Contact",
-  
-    "ver_proyectos": "View projects",
-    "descargar_cv": "Download CV",
-    "proyectos_destacados": "Featured projects",
-    "ver_todos": "View all",
-    "ultima_charla": "Latest talk",
-    "ver_todas": "View all",
-    "cta_final_texto": "Always open to new opportunities and collaborations",
-    "sobre_mi": "About me",
-    "contacto": "Contact",
-  
-    "proyectos_titulo": "Projects",
-    "proyectos_intro": "A selection of academic and personal projects, from AI-driven backend work to client-server systems",
-    "filtrar_por_categoria": "Filter by category",
-    "filtro_todos": "All",
-    "otros_repositorios": "Other repositories",
-    "otros_repositorios_nota": "Coursework repositories from my degree, not complete standalone projects",
-    "ver_en_github": "View on GitHub",
-  
-    "volver_proyectos": "Back to projects",
-    "tambien_te_puede_interesar": "You might also like",
-  
-    "charlas_titulo": "Talks",
-    "charlas_intro": "Talks and presentations at technical events",
-    "volver_charlas": "Back to talks",
-  
-    "sobre_mi_titulo": "About me",
-    "skills_titulo": "Technical skills",
-    "timeline_titulo": "Journey",
-    "setup_titulo": "My setup",
-    "setup_so": "Operating system",
-    "setup_editor": "Editor",
-    "setup_terminal": "Terminal",
+  "nav_home": "Home",
+  "nav_proyectos": "Projects",
+  "nav_trayectoria": "Journey",
 
-    "contacto_titulo": "Contact",
-    "contacto_intro": "Let's talk about your project or any opportunity",
-    "telefono": "Phone",
-    "ver_perfil": "View profile"
-  }
+  "home_eyebrow": "PORTFOLIO",
+  "ver_proyectos": "View projects",
+  "descargar_cv": "Download CV",
+  "valores_titulo": "How I work",
+
+  "setup_titulo": "My setup",
+  "setup_so": "Operating system",
+  "setup_editor": "Editor",
+  "setup_terminal": "Terminal",
+
+  "proyectos_titulo": "Projects",
+  "proyectos_intro": "A selection of academic and personal projects, from AI-driven backend work to client-server systems",
+  "filtrar_por_categoria": "Filter by category",
+  "filtro_todos": "All",
+  "otros_repositorios": "Other repositories",
+  "otros_repositorios_nota": "Coursework repositories from my degree, not complete standalone projects",
+  "ver_en_github": "View on GitHub",
+  "skills_titulo": "Technical skills",
+
+  "volver_proyectos": "Back to projects",
+  "tambien_te_puede_interesar": "You might also like",
+
+  "trayectoria_titulo": "Journey",
+  "trayectoria_intro": "Education, professional experience and talks",
+  "timeline_titulo": "Timeline",
+  "charlas_titulo": "Talks",
+  "volver_charlas": "Back to journey",
+
+  "contacto_titulo_flotante": "Contact",
+  "contacto_abrir": "Open contact options"
+}

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0a0a0a">
+  <meta name="theme-color" content="#0a0a0f">
 
   <title>WebBuilder · Alejandro Tejero de la Morena</title>
   <meta name="description" content="Convierte cualquier API publica en un proyecto Django desplegable usando IA">
@@ -31,9 +31,7 @@
   <ul class="nav__links">
     <li><a href="/es/" data-nav="home">Inicio</a></li>
     <li><a href="/es/proyectos/" data-nav="proyectos">Proyectos</a></li>
-    <li><a href="/es/charlas/" data-nav="charlas">Charlas</a></li>
-    <li><a href="/es/sobre-mi/" data-nav="sobre-mi">Sobre mi</a></li>
-    <li><a href="/es/contacto/" data-nav="contacto">Contacto</a></li>
+    <li><a href="/es/trayectoria/" data-nav="trayectoria">Trayectoria</a></li>
   </ul>
 
   <div class="nav__controles">
@@ -135,6 +133,33 @@
   
     <p class="footer__copy">© 2026 Alejandro Tejero de la Morena</p>
   </footer>
+
+  <div class="contacto-flotante" id="contacto-flotante">
+
+    <button class="contacto-flotante__boton" id="contacto-flotante-toggle" aria-label="Abrir opciones de contacto" aria-expanded="false">
+      <span class="contacto-flotante__icono">👤</span>
+    </button>
+  
+    <div class="contacto-flotante__menu" id="contacto-flotante-menu" role="menu">
+      <span class="contacto-flotante__titulo">Contacto</span>
+  
+      <a href="mailto:atejerodelamorena@gmail.com" class="contacto-flotante__item" role="menuitem">
+        <span class="contacto-flotante__item-icono">✉</span>
+        <span>Gmail</span>
+      </a>
+  
+      <a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener" class="contacto-flotante__item" role="menuitem">
+        <span class="contacto-flotante__item-icono">in</span>
+        <span>LinkedIn</span>
+      </a>
+  
+      <a href="tel:+34620621384" class="contacto-flotante__item" role="menuitem">
+        <span class="contacto-flotante__item-icono">☎</span>
+        <span>+34 620 62 13 84</span>
+      </a>
+    </div>
+  
+  </div>
 
   <script src="/js/main.js" defer></script>
 </body>

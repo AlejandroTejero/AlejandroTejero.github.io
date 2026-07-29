@@ -129,3 +129,28 @@
       });
     });
   })();
+
+
+  // ============================================
+// 5. CONTACTO FLOTANTE (abrir/cerrar desplegable)
+// ============================================
+(function contactoFlotante() {
+  const boton = document.getElementById('contacto-flotante-toggle');
+  const menu = document.getElementById('contacto-flotante-menu');
+  if (!boton || !menu) return;
+
+  boton.addEventListener('click', (evento) => {
+    evento.stopPropagation(); // evita que el clic "se escape" y cierre el menu inmediatamente
+    const estaAbierto = menu.classList.toggle('abierto');
+    boton.setAttribute('aria-expanded', estaAbierto ? 'true' : 'false');
+  });
+
+  // Cierra el menu si el usuario hace clic en cualquier otro sitio de la pagina
+  document.addEventListener('click', (evento) => {
+    const clicFuera = !menu.contains(evento.target) && evento.target !== boton;
+    if (clicFuera) {
+      menu.classList.remove('abierto');
+      boton.setAttribute('aria-expanded', 'false');
+    }
+  });
+})();

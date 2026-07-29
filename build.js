@@ -4,7 +4,7 @@ const path = require('path');
 // ============================================
 // CONFIGURACION GENERAL
 // ============================================
-const BASE_URL = 'https://tudominio.com'; // Cambia esto por tu dominio real
+const BASE_URL = 'https://tudominio.com';
 const IDIOMAS = ['es', 'en'];
 const RAIZ = __dirname;
 const DIST = path.join(RAIZ, 'dist');
@@ -27,7 +27,6 @@ function escribirArchivo(rutaRelativaDist, contenido) {
   fs.writeFileSync(rutaCompleta, contenido, 'utf-8');
 }
 
-// NUEVO: concatena los 5 CSS separados en un unico style.css dentro de dist/css/
 function concatenarCSS() {
   const orden = ['variables.css', 'base.css', 'layout.css', 'componentes.css', 'paginas.css'];
   const contenido = orden
@@ -37,8 +36,6 @@ function concatenarCSS() {
   escribirArchivo('css/style.css', contenido);
 }
 
-// Sustituye {{a.b.c}} por el valor correspondiente dentro de "datos"
-// Si la clave no existe, lo deja vacio en vez de romper el build
 function reemplazar(plantilla, datos) {
   return plantilla.replace(/{{\s*([\w.]+)\s*}}/g, (coincidenciaCompleta, ruta) => {
     const valor = ruta.split('.').reduce((obj, clave) => (obj ? obj[clave] : undefined), datos);
@@ -66,10 +63,8 @@ const plantillas = {
   home: leerHTML('templates/home.html'),
   proyectosLista: leerHTML('templates/proyectos-lista.html'),
   proyectoDetalle: leerHTML('templates/proyecto-detalle.html'),
-  charlasLista: leerHTML('templates/charlas-lista.html'),
+  trayectoria: leerHTML('templates/trayectoria.html'),
   charlaDetalle: leerHTML('templates/charla-detalle.html'),
-  sobreMi: leerHTML('templates/sobre-mi.html'),
-  contacto: leerHTML('templates/contacto.html'),
 };
 
 const partials = {
@@ -81,6 +76,8 @@ const partials = {
   timelineItem: leerHTML('partials/timeline-item.html'),
   filtroCategorias: leerHTML('partials/filtro-categorias.html'),
   charlaCard: leerHTML('partials/charla-card.html'),
+  contactoFlotante: leerHTML('partials/contacto-flotante.html'),
+  valorCard: leerHTML('partials/valor-card.html'), // CAMBIO: nuevo partial cargado
 };
 
 // ============================================
@@ -91,7 +88,7 @@ async function obtenerLenguajes(nombreRepo) {
   const respuesta = await fetch(url);
   if (!respuesta.ok) return [];
 
-  const datos = await respuesta.json(); // ej: { "Python": 4200, "SQL": 1800 }
+  const datos = await respuesta.json();
   const total = Object.values(datos).reduce((suma, bytes) => suma + bytes, 0);
 
   return Object.entries(datos).map(([nombre, bytes]) => ({
@@ -210,8 +207,36 @@ function renderizarFiltroCategorias(ctx) {
   return reemplazar(partials.filtroCategorias, { ...ctx, lista_botones_categoria: botones });
 }
 
+function renderizarContactoFlotante(ctx) {
+  return reemplazar(partials.contactoFlotante, { ...ctx });
+}
+
+// CAMBIO: nuevas funciones de renderizado para el home ampliado
+function renderizarBadges(badges, ctx) {
+  return badges
+    .map((b) => `<span class="badge">${b[ctx.idioma]}</span>`)
+    .join('');
+}
+
+function renderizarBioParrafos(parrafos, ctx) {
+  return parrafos[ctx.idioma]
+    .map((p) => `<p>${p}</p>`)
+    .join('');
+}
+
+function renderizarValorCard(valor, ctx) {
+  return reemplazar(partials.valorCard, {
+    ...ctx,
+    valor: {
+      icono: valor.icono,
+      titulo: valor.titulo[ctx.idioma],
+      descripcion: valor.descripcion[ctx.idioma],
+    },
+  });
+}
+
 // ============================================
-// NAV Y FOOTER (se generan una vez por idioma)
+// NAV Y FOOTER
 // ============================================
 function renderizarNav(ctx) {
   const idiomaAlterno = ctx.idioma === 'es' ? 'en' : 'es';
@@ -230,13 +255,12 @@ function renderizarFooter(ctx) {
 // ENVOLTORIO FINAL: layout.html
 // ============================================
 function envolverEnLayout(contenidoHtml, meta, ctx) {
-  const idiomaAlterno = ctx.idioma === 'es' ? 'en' : 'es';
-
   return reemplazar(plantillas.layout, {
     ...ctx,
     contenido: contenidoHtml,
     nav: renderizarNav({ ...ctx, rutaSinIdioma: meta.rutaSinIdioma }),
     footer: renderizarFooter(ctx),
+    contacto_flotante: renderizarContactoFlotante(ctx),
     titulo_pagina: meta.titulo,
     meta_descripcion: meta.descripcion,
     url_canonica: `${BASE_URL}/${ctx.idioma}${meta.rutaSinIdioma}`,
@@ -250,23 +274,26 @@ function envolverEnLayout(contenidoHtml, meta, ctx) {
 // GENERACION DE CADA PAGINA
 // ============================================
 function generarHome(ctx) {
-  const destacados = proyectos.filter((p) => p.destacado).slice(0, 3);
-  const cardsDestacados = destacados.map((p) => renderizarProjectCard(p, ctx)).join('');
-
-  const ultimaCharla = [...charlas].sort((a, b) => new Date(b.fecha) - new Date(a.fecha))[0];
-  const charlaHtml = ultimaCharla ? renderizarCharlaCard(ultimaCharla, ctx) : '';
+  // CAMBIO: se generan los 3 huecos nuevos del home ampliado
+  const badgesHtml = renderizarBadges(site.badges, ctx);
+  const bioHtml = renderizarBioParrafos(site.bio_parrafos, ctx);
+  const valoresHtml = site.valores.map((v) => renderizarValorCard(v, ctx)).join('');
 
   const contenido = reemplazar(plantillas.home, {
     ...ctx,
-    site: { ...site, bio: site.bio[ctx.idioma], hero_rol: site.hero_rol[ctx.idioma] },
+    site: {
+      ...site,
+      cv_pdf: site.cv_pdf[ctx.idioma],
+    },
     hero: { rol: site.hero_rol[ctx.idioma] },
-    lista_proyectos_destacados: cardsDestacados,
-    ultima_charla_card: charlaHtml,
+    lista_badges: badgesHtml,
+    lista_bio_parrafos: bioHtml,
+    lista_valores: valoresHtml,
   });
 
   return envolverEnLayout(contenido, {
     titulo: site.nombre,
-    descripcion: site.bio[ctx.idioma],
+    descripcion: site.bio_parrafos[ctx.idioma][0], // CAMBIO: usa el primer parrafo como meta description
     rutaSinIdioma: '/',
   }, ctx);
 }
@@ -275,12 +302,14 @@ function generarProyectosLista(ctx) {
   const filtro = renderizarFiltroCategorias(ctx);
   const cardsProyectos = proyectos.map((p) => renderizarProjectCard(p, ctx)).join('');
   const cardsRepos = repositorios.map((r) => renderizarRepoCard(r, ctx)).join('');
+  const gruposSkills = skills.categorias.map((c) => renderizarSkillGroup(c, ctx)).join('');
 
   const contenido = reemplazar(plantillas.proyectosLista, {
     ...ctx,
     filtro_categorias: filtro,
     lista_todos_los_proyectos: cardsProyectos,
     lista_repos_academicos: cardsRepos,
+    lista_skill_groups: gruposSkills,
   });
 
   return envolverEnLayout(contenido, {
@@ -326,25 +355,32 @@ function generarProyectoDetalle(proyecto, ctx) {
   }, ctx);
 }
 
-function generarCharlasLista(ctx) {
-  const ordenadas = [...charlas].sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
-  const cards = ordenadas.map((c) => renderizarCharlaCard(c, ctx)).join('');
+function generarTrayectoria(ctx) {
+  // CAMBIO: orden invertido, de mas reciente (2026) a mas antiguo (2021)
+  const timelineOrdenado = [...timeline].sort((a, b) => {
+    return `${b.anio}${b.mes || '00'}`.localeCompare(`${a.anio}${a.mes || '00'}`);
+  });
+  const itemsTimeline = timelineOrdenado.map((h) => renderizarTimelineItem(h, ctx)).join('');
 
-  const contenido = reemplazar(plantillas.charlasLista, {
+  const charlasOrdenadas = [...charlas].sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+  const cardsCharlas = charlasOrdenadas.map((c) => renderizarCharlaCard(c, ctx)).join('');
+
+  const contenido = reemplazar(plantillas.trayectoria, {
     ...ctx,
-    lista_charlas: cards,
+    lista_timeline_items: itemsTimeline,
+    lista_charlas: cardsCharlas,
   });
 
   return envolverEnLayout(contenido, {
-    titulo: ctx.i18n.charlas_titulo,
-    descripcion: ctx.i18n.charlas_intro,
-    rutaSinIdioma: '/charlas/',
+    titulo: ctx.i18n.trayectoria_titulo,
+    descripcion: ctx.i18n.trayectoria_intro,
+    rutaSinIdioma: '/trayectoria/',
   }, ctx);
 }
 
 function generarCharlaDetalle(charla, ctx) {
   const enlaces = Object.entries(charla.enlaces || {})
-    .filter(([, url]) => url) // quita las que son null (ej: video aun no publicado)
+    .filter(([, url]) => url)
     .map(([tipo, url]) => `<a href="${url}" target="_blank" rel="noopener" class="btn btn--secundario">${tipo}</a>`)
     .join('');
 
@@ -370,39 +406,7 @@ function generarCharlaDetalle(charla, ctx) {
   return envolverEnLayout(contenido, {
     titulo: charla.titulo[ctx.idioma],
     descripcion: charla.resumen[ctx.idioma],
-    rutaSinIdioma: `/charlas/${charla.id}/`,
-  }, ctx);
-}
-
-function generarSobreMi(ctx) {
-  const gruposSkills = skills.categorias.map((c) => renderizarSkillGroup(c, ctx)).join('');
-
-  const timelineOrdenado = [...timeline].sort((a, b) => {
-    return `${a.anio}${a.mes || '00'}`.localeCompare(`${b.anio}${b.mes || '00'}`);
-  });
-  const itemsTimeline = timelineOrdenado.map((h) => renderizarTimelineItem(h, ctx)).join('');
-
-  const contenido = reemplazar(plantillas.sobreMi, {
-    ...ctx,
-    site: { ...site, bio: site.bio[ctx.idioma] },
-    lista_skill_groups: gruposSkills,
-    lista_timeline_items: itemsTimeline,
-  });
-
-  return envolverEnLayout(contenido, {
-    titulo: ctx.i18n.sobre_mi_titulo,
-    descripcion: site.bio[ctx.idioma],
-    rutaSinIdioma: '/sobre-mi/',
-  }, ctx);
-}
-
-function generarContacto(ctx) {
-  const contenido = reemplazar(plantillas.contacto, { ...ctx });
-
-  return envolverEnLayout(contenido, {
-    titulo: ctx.i18n.contacto_titulo,
-    descripcion: ctx.i18n.contacto_intro,
-    rutaSinIdioma: '/contacto/',
+    rutaSinIdioma: `/trayectoria/charlas/${charla.id}/`,
   }, ctx);
 }
 
@@ -412,40 +416,31 @@ function generarContacto(ctx) {
 async function build() {
   console.log('Iniciando build...\n');
 
-  // 1. Limpia dist/
   fs.rmSync(DIST, { recursive: true, force: true });
 
-  // 2. Rellena lenguajes desde la API de GitHub
   await enriquecerRepositorios();
 
-  // 3. Genera las paginas para cada idioma
   for (const idioma of IDIOMAS) {
     const ctx = { idioma, site, i18n: i18n[idioma] };
 
     escribirArchivo(`${idioma}/index.html`, generarHome(ctx));
     escribirArchivo(`${idioma}/proyectos/index.html`, generarProyectosLista(ctx));
-    escribirArchivo(`${idioma}/charlas/index.html`, generarCharlasLista(ctx));
-    escribirArchivo(`${idioma}/sobre-mi/index.html`, generarSobreMi(ctx));
-    escribirArchivo(`${idioma}/contacto/index.html`, generarContacto(ctx));
+    escribirArchivo(`${idioma}/trayectoria/index.html`, generarTrayectoria(ctx));
 
     for (const proyecto of proyectos) {
       escribirArchivo(`${idioma}/proyectos/${proyecto.id}/index.html`, generarProyectoDetalle(proyecto, ctx));
     }
 
     for (const charla of charlas) {
-      escribirArchivo(`${idioma}/charlas/${charla.id}/index.html`, generarCharlaDetalle(charla, ctx));
+      escribirArchivo(`${idioma}/trayectoria/charlas/${charla.id}/index.html`, generarCharlaDetalle(charla, ctx));
     }
 
     console.log(`Paginas generadas para: ${idioma}`);
   }
 
-  // 4. Copia los assets estaticos (css, js, imagenes, cv, favicon)
   fs.cpSync(path.join(RAIZ, 'public'), DIST, { recursive: true });
-
-  // 4b. NUEVO: concatena los CSS separados en un unico style.css
   concatenarCSS();
 
-  // 5. Redirige la raiz "/" a "/es/" por defecto
   escribirArchivo('index.html', `<meta http-equiv="refresh" content="0; url=/es/">`);
 
   console.log('\nBuild completado. Revisa la carpeta dist/');

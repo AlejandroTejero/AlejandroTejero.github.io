@@ -1,19 +1,27 @@
 <section class="pagina-header">
-    <h1>{{i18n.proyectos_titulo}}</h1>
-    <p>{{i18n.proyectos_intro}}</p>
-  </section>
-  
-  {{filtro_categorias}}
-  
-  <section class="proyectos-grid">
-    {{lista_todos_los_proyectos}}
-  </section>
-  
-  <section class="repos-academicos">
-    <h2>{{i18n.otros_repositorios}}</h2>
-    <p class="repos-academicos__nota">{{i18n.otros_repositorios_nota}}</p>
-  
-    <div class="repos-academicos__grid">
-      {{lista_repos_academicos}}
-    </div>
-  </section>
+  <h1>{{i18n.proyectos_titulo}}</h1>
+  <p>{{i18n.proyectos_intro}}</p>
+</section>
+
+{{filtro_categorias}}
+
+<section class="proyectos-grid">
+  {{lista_todos_los_proyectos}}
+</section>
+
+<section class="repos-academicos">
+  <h2>{{i18n.otros_repositorios}}</h2>
+  <p class="repos-academicos__nota">{{i18n.otros_repositorios_nota}}</p>
+
+  <div class="repos-academicos__grid">
+    {{lista_repos_academicos}}
+  </div>
+</section>
+
+<section class="proyectos-skills">
+  <h2>{{i18n.skills_titulo}}</h2>
+
+  <div class="sobre-mi-skills__grid">
+    {{lista_skill_groups}}
+  </div>
+</section>

@@ -264,3 +264,144 @@
     color: var(--color-texto-secundario);
     font-size: 0.9rem;
   }
+
+  /* ===== EYEBROW (etiqueta pequeña tipo "PORTFOLIO") ===== */
+.eyebrow {
+  display: inline-block;
+  font-family: var(--fuente-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--color-acento);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.eyebrow::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 1rem;
+  height: 1px;
+  background-color: var(--color-acento);
+}
+
+/* ===== BADGES (pills del hero) ===== */
+.home-hero__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.badge {
+  font-size: 0.8rem;
+  color: var(--color-texto-secundario);
+  background-color: var(--color-fondo-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+}
+
+/* ===== VALOR CARD (bloque "Como trabajo") ===== */
+.valor-card {
+  background-color: var(--color-fondo-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  padding: 1.5rem;
+  text-align: center;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.valor-card:hover {
+  border-color: var(--color-acento);
+  transform: translateY(-3px);
+}
+
+.valor-card__icono {
+  font-size: 1.75rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.valor-card__titulo {
+  margin-bottom: 0.5rem;
+}
+
+.valor-card__descripcion {
+  font-size: 0.9rem;
+}
+
+/* ===== CONTACTO FLOTANTE ===== */
+.contacto-flotante {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  z-index: 100;
+}
+
+.contacto-flotante__boton {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radio-borde);
+  background-color: var(--color-fondo-superficie);
+  border: 1px solid var(--color-borde);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.contacto-flotante__boton:hover {
+  border-color: var(--color-acento);
+  background-color: var(--color-fondo-superficie-hover);
+}
+
+.contacto-flotante__menu {
+  display: none;
+  position: absolute;
+  bottom: 62px;
+  left: 0;
+  background-color: var(--color-fondo-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  padding: 0.75rem;
+  min-width: 180px;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.contacto-flotante__menu.abierto {
+  display: flex;
+}
+
+.contacto-flotante__titulo {
+  font-size: 0.75rem;
+  color: var(--color-texto-secundario);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.5rem 0.5rem;
+}
+
+.contacto-flotante__item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem;
+  border-radius: var(--radio-borde-pequeno);
+  font-size: 0.9rem;
+  transition: background-color 0.15s ease;
+}
+
+.contacto-flotante__item:hover {
+  background-color: var(--color-fondo-superficie-hover);
+}
+
+.contacto-flotante__item-icono {
+  color: var(--color-acento);
+  width: 1.2rem;
+  text-align: center;
+}
