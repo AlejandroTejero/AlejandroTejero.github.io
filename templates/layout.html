@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="{{idioma}}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0a0a">
+
+  <title>{{titulo_pagina}} · {{site.nombre}}</title>
+  <meta name="description" content="{{meta_descripcion}}">
+
+  <link rel="canonical" href="{{url_canonica}}">
+  <link rel="alternate" hreflang="es" href="{{url_alternativa_es}}">
+  <link rel="alternate" hreflang="en" href="{{url_alternativa_en}}">
+  <link rel="alternate" hreflang="x-default" href="{{url_alternativa_es}}">
+
+  <meta property="og:title" content="{{titulo_pagina}}">
+  <meta property="og:description" content="{{meta_descripcion}}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{url_canonica}}">
+  <meta property="og:image" content="{{og_imagen}}">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  {{nav}}
+
+  <main id="main-content">
+    {{contenido}}
+  </main>
+
+  {{footer}}
+
+  <script src="/js/main.js" defer></script>
+</body>
+</html>
