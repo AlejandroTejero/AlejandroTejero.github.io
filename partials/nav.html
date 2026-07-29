@@ -1,13 +1,16 @@
 <nav class="nav">
-    <a href="/{{idioma}}/" class="nav__logo">{{site.nombre_corto}}</a>
-  
-    <ul class="nav__links">
-      <li><a href="/{{idioma}}/" data-nav="home">{{i18n.nav_home}}</a></li>
-      <li><a href="/{{idioma}}/proyectos/" data-nav="proyectos">{{i18n.nav_proyectos}}</a></li>
-      <li><a href="/{{idioma}}/charlas/" data-nav="charlas">{{i18n.nav_charlas}}</a></li>
-      <li><a href="/{{idioma}}/sobre-mi/" data-nav="sobre-mi">{{i18n.nav_sobre_mi}}</a></li>
-      <li><a href="/{{idioma}}/contacto/" data-nav="contacto">{{i18n.nav_contacto}}</a></li>
-    </ul>
-  
+  <a href="/{{idioma}}/" class="nav__logo">{{site.nombre_corto}}</a>
+
+  <ul class="nav__links">
+    <li><a href="/{{idioma}}/" data-nav="home">{{i18n.nav_home}}</a></li>
+    <li><a href="/{{idioma}}/proyectos/" data-nav="proyectos">{{i18n.nav_proyectos}}</a></li>
+    <li><a href="/{{idioma}}/charlas/" data-nav="charlas">{{i18n.nav_charlas}}</a></li>
+    <li><a href="/{{idioma}}/sobre-mi/" data-nav="sobre-mi">{{i18n.nav_sobre_mi}}</a></li>
+    <li><a href="/{{idioma}}/contacto/" data-nav="contacto">{{i18n.nav_contacto}}</a></li>
+  </ul>
+
+  <div class="nav__controles">
+    <button class="nav__tema" id="toggle-tema" aria-label="Cambiar tema">🌙</button>
     <a href="{{url_idioma_alterno}}" class="nav__lang">{{idioma_alterno_label}}</a>
-  </nav>
+  </div>
+</nav>

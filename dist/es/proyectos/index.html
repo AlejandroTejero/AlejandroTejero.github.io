@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0a0a">
+
+  <title>Proyectos · Alejandro Tejero de la Morena</title>
+  <meta name="description" content="Una seleccion de proyectos academicos y personales, desde backend con IA hasta sistemas cliente-servidor">
+
+  <link rel="canonical" href="https://tudominio.com/es/proyectos/">
+  <link rel="alternate" hreflang="es" href="https://tudominio.com/es/proyectos/">
+  <link rel="alternate" hreflang="en" href="https://tudominio.com/en/proyectos/">
+  <link rel="alternate" hreflang="x-default" href="https://tudominio.com/es/proyectos/">
+
+  <meta property="og:title" content="Proyectos">
+  <meta property="og:description" content="Una seleccion de proyectos academicos y personales, desde backend con IA hasta sistemas cliente-servidor">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tudominio.com/es/proyectos/">
+  <meta property="og:image" content="https://tudominio.com/img/og-default.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <nav class="nav">
+  <a href="/es/" class="nav__logo">Alejandro Tejero</a>
+
+  <ul class="nav__links">
+    <li><a href="/es/" data-nav="home">Inicio</a></li>
+    <li><a href="/es/proyectos/" data-nav="proyectos">Proyectos</a></li>
+    <li><a href="/es/charlas/" data-nav="charlas">Charlas</a></li>
+    <li><a href="/es/sobre-mi/" data-nav="sobre-mi">Sobre mi</a></li>
+    <li><a href="/es/contacto/" data-nav="contacto">Contacto</a></li>
+  </ul>
+
+  <div class="nav__controles">
+    <button class="nav__tema" id="toggle-tema" aria-label="Cambiar tema">🌙</button>
+    <a href="/en/proyectos/" class="nav__lang">EN</a>
+  </div>
+</nav>
+
+  <main id="main-content">
+    <section class="pagina-header">
+    <h1>Proyectos</h1>
+    <p>Una seleccion de proyectos academicos y personales, desde backend con IA hasta sistemas cliente-servidor</p>
+  </section>
+  
+  <div class="filtro-categorias" role="group" aria-label="Filtrar por categoria">
+
+    <button class="filtro-categorias__btn filtro-categorias__btn--activo" data-filtro="todos">
+      Todos
+    </button>
+  
+    <button class="filtro-categorias__btn" data-filtro="backend">backend</button><button class="filtro-categorias__btn" data-filtro="ia">ia</button><button class="filtro-categorias__btn" data-filtro="automatizacion">automatizacion</button><button class="filtro-categorias__btn" data-filtro="web">web</button><button class="filtro-categorias__btn" data-filtro="iot">iot</button><button class="filtro-categorias__btn" data-filtro="sistemas">sistemas</button>
+  
+  </div>
+  
+  <section class="proyectos-grid">
+    <article class="project-card">
+    <a href="/es/proyectos/webbuilder/" class="project-card__link">
+  
+      <div class="project-card__imagen">
+        <img src="/img/proyectos/webbuilder-cover.png" alt="WebBuilder" loading="lazy">
+      </div>
+  
+      <div class="project-card__body">
+        <h3 class="project-card__titulo">WebBuilder</h3>
+        <p class="project-card__resumen">Convierte cualquier API publica en un proyecto Django desplegable usando IA</p>
+  
+        <ul class="project-card__tech">
+          <li>Django</li><li>PostgreSQL</li><li>Docker</li><li>n8n</li><li>LLMs</li><li>OAuth</li>
+        </ul>
+  
+        <span class="project-card__estado">Finalizado</span>
+      </div>
+  
+    </a>
+  </article><article class="project-card">
+    <a href="/es/proyectos/gamerank/" class="project-card__link">
+  
+      <div class="project-card__imagen">
+        <img src="/img/proyectos/gamerank-cover.png" alt="GameRank" loading="lazy">
+      </div>
+  
+      <div class="project-card__body">
+        <h3 class="project-card__titulo">GameRank</h3>
+        <p class="project-card__resumen">Catalogo y ranking social de videojuegos con integracion de APIs externas</p>
+  
+        <ul class="project-card__tech">
+          <li>Django</li><li>HTMX</li><li>REST API</li><li>XML/JSON</li>
+        </ul>
+  
+        <span class="project-card__estado">Finalizado</span>
+      </div>
+  
+    </a>
+  </article><article class="project-card">
+    <a href="/es/proyectos/invernadero/" class="project-card__link">
+  
+      <div class="project-card__imagen">
+        <img src="/img/proyectos/invernadero-cover.png" alt="Invernadero IoT" loading="lazy">
+      </div>
+  
+      <div class="project-card__body">
+        <h3 class="project-card__titulo">Invernadero IoT</h3>
+        <p class="project-card__resumen">Simulador de invernadero automatizado con sensores y actuadores</p>
+  
+        <ul class="project-card__tech">
+          <li>C++</li><li>POO</li><li>Doxygen</li>
+        </ul>
+  
+        <span class="project-card__estado">Finalizado</span>
+      </div>
+  
+    </a>
+  </article><article class="project-card">
+    <a href="/es/proyectos/tactical-battle/" class="project-card__link">
+  
+      <div class="project-card__imagen">
+        <img src="/img/proyectos/tactical-battle-cover.png" alt="Tactical Battle" loading="lazy">
+      </div>
+  
+      <div class="project-card__body">
+        <h3 class="project-card__titulo">Tactical Battle</h3>
+        <p class="project-card__resumen">Simulador de combate tactico por turnos, cliente-servidor</p>
+  
+        <ul class="project-card__tech">
+          <li>C++</li><li>Sockets TCP</li><li>Cliente-Servidor</li>
+        </ul>
+  
+        <span class="project-card__estado">Finalizado</span>
+      </div>
+  
+    </a>
+  </article>
+  </section>
+  
+  <section class="repos-academicos">
+    <h2>Otros repositorios</h2>
+    <p class="repos-academicos__nota">Repositorios de practicas de asignatura de la carrera, no proyectos completos</p>
+  
+    <div class="repos-academicos__grid">
+      <article class="repo-card">
+    <div class="repo-card__header">
+      <h4 class="repo-card__nombre">BasesDatos</h4>
+      <span class="repo-card__asignatura">Bases de Datos</span>
+    </div>
+  
+    <p class="repo-card__descripcion">Ejercicios de diseno de tablas, relaciones y consultas SQL</p>
+  
+    <div class="repo-card__barra-lenguajes">
+      
+    </div>
+  
+    <a href="https://github.com/AlejandroTejero/BasesDatos" target="_blank" rel="noopener" class="repo-card__github">
+      Ver en GitHub
+    </a>
+  </article><article class="repo-card">
+    <div class="repo-card__header">
+      <h4 class="repo-card__nombre">SistemasDistribuidos</h4>
+      <span class="repo-card__asignatura">Sistemas Distribuidos</span>
+    </div>
+  
+    <p class="repo-card__descripcion">Practicas de la asignatura</p>
+  
+    <div class="repo-card__barra-lenguajes">
+      
+    </div>
+  
+    <a href="https://github.com/AlejandroTejero/SistemasDistribuidos" target="_blank" rel="noopener" class="repo-card__github">
+      Ver en GitHub
+    </a>
+  </article><article class="repo-card">
+    <div class="repo-card__header">
+      <h4 class="repo-card__nombre">ArquitecturaRedes</h4>
+      <span class="repo-card__asignatura">Arquitectura de Redes</span>
+    </div>
+  
+    <p class="repo-card__descripcion">PENDIENTE</p>
+  
+    <div class="repo-card__barra-lenguajes">
+      
+    </div>
+  
+    <a href="https://github.com/AlejandroTejero/ArquitecturaRedes" target="_blank" rel="noopener" class="repo-card__github">
+      Ver en GitHub
+    </a>
+  </article><article class="repo-card">
+    <div class="repo-card__header">
+      <h4 class="repo-card__nombre">SistemasOperativos</h4>
+      <span class="repo-card__asignatura">Sistemas Operativos</span>
+    </div>
+  
+    <p class="repo-card__descripcion">PENDIENTE</p>
+  
+    <div class="repo-card__barra-lenguajes">
+      
+    </div>
+  
+    <a href="https://github.com/AlejandroTejero/SistemasOperativos" target="_blank" rel="noopener" class="repo-card__github">
+      Ver en GitHub
+    </a>
+  </article><article class="repo-card">
+    <div class="repo-card__header">
+      <h4 class="repo-card__nombre">Ensamblador</h4>
+      <span class="repo-card__asignatura">Ensamblador</span>
+    </div>
+  
+    <p class="repo-card__descripcion">PENDIENTE</p>
+  
+    <div class="repo-card__barra-lenguajes">
+      
+    </div>
+  
+    <a href="https://github.com/AlejandroTejero/Ensamblador" target="_blank" rel="noopener" class="repo-card__github">
+      Ver en GitHub
+    </a>
+  </article><article class="repo-card">
+    <div class="repo-card__header">
+      <h4 class="repo-card__nombre">GestionRedesSistemas</h4>
+      <span class="repo-card__asignatura">Gestion de Redes y Sistemas</span>
+    </div>
+  
+    <p class="repo-card__descripcion">PENDIENTE</p>
+  
+    <div class="repo-card__barra-lenguajes">
+      
+    </div>
+  
+    <a href="https://github.com/AlejandroTejero/GestionRedesSistemas" target="_blank" rel="noopener" class="repo-card__github">
+      Ver en GitHub
+    </a>
+  </article><article class="repo-card">
+    <div class="repo-card__header">
+      <h4 class="repo-card__nombre">AplicacionesTelematicas</h4>
+      <span class="repo-card__asignatura">Aplicaciones Telematicas</span>
+    </div>
+  
+    <p class="repo-card__descripcion">PENDIENTE</p>
+  
+    <div class="repo-card__barra-lenguajes">
+      
+    </div>
+  
+    <a href="https://github.com/AlejandroTejero/AplicacionesTelematicas" target="_blank" rel="noopener" class="repo-card__github">
+      Ver en GitHub
+    </a>
+  </article><article class="repo-card">
+    <div class="repo-card__header">
+      <h4 class="repo-card__nombre">Python</h4>
+      <span class="repo-card__asignatura">Practicas generales</span>
+    </div>
+  
+    <p class="repo-card__descripcion">PENDIENTE</p>
+  
+    <div class="repo-card__barra-lenguajes">
+      
+    </div>
+  
+    <a href="https://github.com/AlejandroTejero/Python" target="_blank" rel="noopener" class="repo-card__github">
+      Ver en GitHub
+    </a>
+  </article><article class="repo-card">
+    <div class="repo-card__header">
+      <h4 class="repo-card__nombre">Pascal</h4>
+      <span class="repo-card__asignatura">Practicas generales</span>
+    </div>
+  
+    <p class="repo-card__descripcion">PENDIENTE</p>
+  
+    <div class="repo-card__barra-lenguajes">
+      
+    </div>
+  
+    <a href="https://github.com/AlejandroTejero/Pascal" target="_blank" rel="noopener" class="repo-card__github">
+      Ver en GitHub
+    </a>
+  </article>
+    </div>
+  </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__nombre">Alejandro Tejero de la Morena</p>
+  
+    <ul class="footer__social">
+      <li><a href="https://github.com/AlejandroTejero" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="mailto:atejerodelamorena@gmail.com">Email</a></li>
+    </ul>
+  
+    <p class="footer__copy">© 2026 Alejandro Tejero de la Morena</p>
+  </footer>
+
+  <script src="/js/main.js" defer></script>
+</body>
+</html>

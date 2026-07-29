@@ -1,0 +1,32 @@
+:root {
+    /* Modo oscuro (por defecto) */
+    --color-fondo: #0a0a0f;
+    --color-fondo-superficie: #14141c;
+    --color-fondo-superficie-hover: #1c1c26;
+    --color-texto: #e8e8ec;
+    --color-texto-secundario: #9a9aa8;
+    --color-borde: #24242e;
+  
+    --color-acento: #5b8def;
+    --color-acento-hover: #7ba3f2;
+    --color-acento-texto: #0a0a0f;
+  
+    --radio-borde: 10px;
+    --radio-borde-pequeno: 6px;
+  
+    --fuente-texto: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --fuente-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+  }
+  
+  [data-tema="claro"] {
+    --color-fondo: #fafafa;
+    --color-fondo-superficie: #ffffff;
+    --color-fondo-superficie-hover: #f0f0f2;
+    --color-texto: #16161d;
+    --color-texto-secundario: #55555f;
+    --color-borde: #e4e4e8;
+  
+    --color-acento: #3a6fd8;
+    --color-acento-hover: #2e5bb8;
+    --color-acento-texto: #ffffff;
+  }
