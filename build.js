@@ -4,24 +4,10 @@ const path = require('path');
 // ============================================
 // CONFIGURACION GENERAL
 // ============================================
-// IMPORTANTE: como el sitio se sirve en https://alejandrotejero.github.io/Portfolio/
-// (no en la raiz del dominio), BASE_URL debe incluir la subcarpeta del repo.
-// Si en el futuro usas un dominio propio (custom domain) o el repo
-// "alejandrotejero.github.io", cambia esto a 'https://alejandrotejero.github.io'
-// (sin subcarpeta) y BASE_PATH se ajustara solo.
-const BASE_URL = 'https://alejandrotejero.github.io/Portfolio';
-const BASE_PATH = new URL(BASE_URL).pathname.replace(/\/$/, ''); // -> '/Portfolio'
+const BASE_URL = 'https://tudominio.com';
 const IDIOMAS = ['es', 'en'];
 const RAIZ = __dirname;
 const DIST = path.join(RAIZ, 'dist');
-
-// Antepone BASE_PATH a cualquier ruta que empiece por "/" (pero no a "//" de
-// protocolo relativo, ni a URLs completas que ya llevan http/https).
-function conBase(ruta) {
-  if (!ruta) return ruta;
-  if (/^https?:\/\//.test(ruta) || ruta.startsWith('//')) return ruta;
-  return ruta.startsWith('/') ? BASE_PATH + ruta : ruta;
-}
 
 // Si es true, el build intenta consultar la API de GitHub para los lenguajes
 // de cada repositorio. Si no hay red, el build sigue adelante sin romperse.
@@ -36,11 +22,7 @@ function leerJSON(rutaRelativa) {
 }
 
 function leerHTML(rutaRelativa) {
-  const contenido = fs.readFileSync(path.join(RAIZ, rutaRelativa), 'utf-8');
-  // Las plantillas usan rutas absolutas del tipo href="/..." o src="/...".
-  // Se les antepone BASE_PATH aqui, en un unico sitio, en vez de tocar cada
-  // archivo .html a mano.
-  return contenido.replace(/(href|src)="\/(?!\/)/g, `$1="${BASE_PATH}/`);
+  return fs.readFileSync(path.join(RAIZ, rutaRelativa), 'utf-8');
 }
 
 function escribirArchivo(rutaRelativaDist, contenido) {
@@ -227,7 +209,7 @@ function colorLenguaje(nombre) {
 // ============================================
 function renderizarPortada(titulo, rutaImagen, indice) {
   if (existeEnPublic(rutaImagen)) {
-    return `<img src="${conBase(rutaImagen)}" alt="${escaparHtml(titulo)}" loading="lazy">`;
+    return `<img src="${rutaImagen}" alt="${escaparHtml(titulo)}" loading="lazy">`;
   }
 
   // Sin imagen todavia: monograma tipografico en vez de un hueco roto.
@@ -236,7 +218,7 @@ function renderizarPortada(titulo, rutaImagen, indice) {
 
 function renderizarFotoPerfil() {
   if (existeEnPublic(site.foto)) {
-    return `<img src="${conBase(site.foto)}" alt="${escaparHtml(site.nombre)}">`;
+    return `<img src="${site.foto}" alt="${escaparHtml(site.nombre)}">`;
   }
   return `<span class="retrato__monograma" aria-hidden="true">${escaparHtml(iniciales(site.nombre))}</span>`;
 }
@@ -381,7 +363,7 @@ function renderizarNav(ctx, rutaSinIdioma) {
 
   return reemplazar(partials.nav, {
     ...ctx,
-    url_idioma_alterno: conBase(`/${idiomaAlterno}${rutaSinIdioma || '/'}`),
+    url_idioma_alterno: `/${idiomaAlterno}${rutaSinIdioma || '/'}`,
     idioma_alterno_label: idiomaAlterno.toUpperCase(),
   });
 }
@@ -440,7 +422,7 @@ function generarHome(ctx) {
 
   const contenido = reemplazar(plantillas.home, {
     ...ctx,
-    site: { ...site, cv_pdf: conBase(site.cv_pdf[ctx.idioma]) },
+    site: { ...site, cv_pdf: site.cv_pdf[ctx.idioma] },
     hero: { rol: site.hero_rol[ctx.idioma], titulo: site.titulo[ctx.idioma] },
     retrato: renderizarFotoPerfil(),
     lista_badges: renderizarBadges(site.badges, ctx),
@@ -518,7 +500,7 @@ function generarProyectoDetalle(proyecto, ctx, indice) {
   return envolverEnLayout(contenido, {
     titulo: proyecto.titulo,
     descripcion: proyecto.resumen[ctx.idioma],
-    imagen: conBase(proyecto.imagen) ? `${BASE_URL.replace(BASE_PATH, '')}${conBase(proyecto.imagen)}` : undefined,
+    imagen: `${BASE_URL}${proyecto.imagen}`,
     rutaSinIdioma: `/proyectos/${proyecto.id}/`,
   }, ctx);
 }
@@ -643,13 +625,12 @@ async function build() {
   <meta charset="UTF-8">
   <title>${site.nombre}</title>
   <script>
-    var base = '${BASE_PATH}';
     var idioma = (navigator.language || 'es').toLowerCase().startsWith('en') ? 'en' : 'es';
-    window.location.replace(base + '/' + idioma + '/');
+    window.location.replace('/' + idioma + '/');
   </script>
-  <meta http-equiv="refresh" content="0; url=${BASE_PATH}/es/">
+  <meta http-equiv="refresh" content="0; url=/es/">
 </head>
-<body><a href="${BASE_PATH}/es/">Portfolio</a></body>
+<body><a href="/es/">Portfolio</a></body>
 </html>`);
 
   escribirArchivo('sitemap.xml', generarSitemap());
