@@ -1,7 +1,7 @@
 <section class="home-hero">
   <span class="eyebrow">{{i18n.home_eyebrow}}</span>
 
-  <div class="home-hero__top">
+  <div class="home-hero__top reveal">
     <div class="home-hero__foto">
       <img src="{{site.foto}}" alt="{{site.nombre}}">
     </div>
@@ -16,11 +16,11 @@
     </div>
   </div>
 
-  <div class="home-hero__bio">
+  <div class="home-hero__bio reveal" style="--reveal-delay: 0.1s">
     {{lista_bio_parrafos}}
   </div>
 
-  <div class="home-hero__cta">
+  <div class="home-hero__cta reveal" style="--reveal-delay: 0.2s">
     <a href="{{site.cv_pdf}}" class="btn btn--primario" download>{{i18n.descargar_cv}}</a>
     <a href="/{{idioma}}/proyectos/" class="btn btn--secundario">{{i18n.ver_proyectos}}</a>
 
@@ -32,7 +32,7 @@
   </div>
 </section>
 
-<section class="home-valores">
+<section class="home-valores reveal">
   <h2>{{i18n.valores_titulo}}</h2>
 
   <div class="home-valores__grid">
@@ -40,7 +40,7 @@
   </div>
 </section>
 
-<section class="home-setup">
+<section class="home-setup reveal">
   <h2>{{i18n.setup_titulo}}</h2>
   <ul class="sobre-mi-setup__lista">
     <li><strong>{{i18n.setup_so}}:</strong> {{site.setup.so}}</li>
