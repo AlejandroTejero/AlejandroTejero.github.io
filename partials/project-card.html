@@ -1,20 +1,25 @@
-<article class="project-card">
-    <a href="/{{idioma}}/proyectos/{{proyecto.id}}/" class="project-card__link">
-  
-      <div class="project-card__imagen">
-        <img src="{{proyecto.imagen}}" alt="{{proyecto.titulo}}" loading="lazy">
-      </div>
-  
-      <div class="project-card__body">
-        <h3 class="project-card__titulo">{{proyecto.titulo}}</h3>
-        <p class="project-card__resumen">{{proyecto.resumen}}</p>
-  
-        <ul class="project-card__tech">
-          {{lista_tecnologias}}
-        </ul>
-  
+<article class="project-card reveal" data-categorias="{{proyecto.categorias_espacio}}">
+  <a href="/{{idioma}}/proyectos/{{proyecto.id}}/" class="project-card__link">
+
+    <div class="project-card__portada">
+      {{portada}}
+    </div>
+
+    <div class="project-card__cuerpo">
+      <div class="project-card__fila">
+        <span class="project-card__indice">{{proyecto.indice_formateado}}</span>
         <span class="project-card__estado">{{proyecto.estado}}</span>
       </div>
-  
-    </a>
-  </article>
+
+      <h3 class="project-card__titulo">{{proyecto.titulo}}</h3>
+      <p class="project-card__resumen">{{proyecto.resumen}}</p>
+
+      <ul class="tags tags--compactas">
+        {{lista_tecnologias}}
+      </ul>
+
+      {{nota_academica_si_existe}}
+    </div>
+
+  </a>
+</article>

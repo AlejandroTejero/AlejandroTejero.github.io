@@ -1,0 +1,6 @@
+Coloca aqui los PDF del CV con estos nombres exactos:
+
+- CV_Alejandro_Tejero_ES.pdf
+- CV_Alejandro_Tejero_EN.pdf
+
+Las rutas se configuran en content/site.json (campo cv_pdf).

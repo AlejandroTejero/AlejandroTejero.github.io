@@ -1,16 +1,17 @@
-<article class="repo-card">
-    <div class="repo-card__header">
-      <h4 class="repo-card__nombre">{{repo.nombre}}</h4>
-      <span class="repo-card__asignatura">{{repo.asignatura}}</span>
-    </div>
-  
-    <p class="repo-card__descripcion">{{repo.descripcion}}</p>
-  
-    <div class="repo-card__barra-lenguajes">
-      {{barra_lenguajes}}
-    </div>
-  
-    <a href="{{repo.github}}" target="_blank" rel="noopener" class="repo-card__github">
-      {{i18n.ver_en_github}}
-    </a>
-  </article>
+<article class="repo-card reveal">
+  <div class="repo-card__cabecera">
+    <h3 class="repo-card__nombre">{{repo.nombre}}</h3>
+    <span class="repo-card__asignatura">{{repo.asignatura}}</span>
+  </div>
+
+  {{descripcion_si_existe}}
+  {{barra_si_existe}}
+
+  <ul class="repo-card__lenguajes">
+    {{lista_lenguajes}}
+  </ul>
+
+  <a href="{{repo.github}}" target="_blank" rel="noopener" class="repo-card__enlace">
+    {{i18n.ver_en_github}}<span aria-hidden="true">↗</span>
+  </a>
+</article>

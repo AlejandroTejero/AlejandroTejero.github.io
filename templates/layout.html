@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0a0a0f">
+  <meta name="theme-color" content="#0A192F" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#EDE7D9" media="(prefers-color-scheme: light)">
 
-  <title>{{titulo_pagina}} · {{site.nombre}}</title>
+  <title>{{titulo_pagina}} · {{site.nombre_corto}}</title>
   <meta name="description" content="{{meta_descripcion}}">
 
   <link rel="canonical" href="{{url_canonica}}">
@@ -18,21 +19,45 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{url_canonica}}">
   <meta property="og:image" content="{{og_imagen}}">
+  <meta property="og:locale" content="{{idioma}}">
   <meta name="twitter:card" content="summary_large_image">
 
-  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="/css/style.css">
+
+  <script>
+    // Se aplica el tema antes de pintar para que no haya un flash de color equivocado.
+    (function () {
+      // Marca que hay JS: sin esta clase, el contenido con .reveal se ve siempre.
+      document.documentElement.classList.add('js');
+      try {
+        var guardado = localStorage.getItem('portfolio-tema');
+        var prefiereClaro = window.matchMedia('(prefers-color-scheme: light)').matches;
+        var tema = guardado || (prefiereClaro ? 'claro' : 'oscuro');
+        document.documentElement.setAttribute('data-tema', tema);
+      } catch (e) {
+        document.documentElement.setAttribute('data-tema', 'oscuro');
+      }
+    })();
+  </script>
 </head>
-<body>
+<body class="{{clase_body}}">
+
+  <a href="#main-content" class="salto-contenido">{{i18n.saltar_contenido}}</a>
 
   {{nav}}
+  {{menu_overlay}}
 
   <main id="main-content">
     {{contenido}}
   </main>
 
   {{footer}}
-
   {{contacto_flotante}}
 
   <script src="/js/main.js" defer></script>

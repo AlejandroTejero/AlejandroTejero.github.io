@@ -1,260 +1,204 @@
-/* ===== HOME ===== */
-.home-proyectos__header,
-.home-charla__header {
+/* ============================================
+   HOME · SOBRE MI
+   ============================================ */
+.sobre-mi {
+  display: grid;
+  grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: start;
+}
+
+.sobre-mi__aside {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sobre-mi__texto {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  max-width: var(--ancho-lectura);
+  font-size: var(--t-cuerpo-grande);
+  color: var(--c-texto-suave);
+}
+
+/* El primer parrafo entra mas fuerte: hace de resumen */
+.sobre-mi__texto p:first-child {
+  color: var(--c-texto);
+  font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+  line-height: 1.5;
+  letter-spacing: -0.015em;
+}
+
+/* ============================================
+   HOME · SETUP
+   ============================================ */
+.setup__lista {
+  display: grid;
+  gap: 1px;
+  background: var(--c-borde);
+  border: 1px solid var(--c-borde);
+  border-radius: var(--radio-card);
+  overflow: hidden;
+  max-width: 620px;
+}
+
+.setup__fila {
+  background: var(--c-fondo);
+  padding: 1rem 1.25rem;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 2rem;
-}
-
-.ver-todos {
-  font-size: 0.85rem;
-  color: var(--color-acento);
-}
-
-.home-proyectos__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
-.home-cta-final {
-  text-align: center;
-  border-top: 1px solid var(--color-borde);
-  padding-top: 4rem;
+.setup__fila dt {
+  font-family: var(--f-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-texto-tenue);
 }
 
-.home-cta-final__botones {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1.5rem;
+.setup__fila dd {
+  font-size: 0.9375rem;
+  text-align: right;
 }
 
-/* ===== PROYECTOS LISTA ===== */
-.proyectos-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 4rem;
-}
-
-.repos-academicos__nota {
-  font-size: 0.85rem;
+.seccion--setup .etiqueta-seccion {
   margin-bottom: 1.5rem;
 }
 
-.repos-academicos__grid {
+/* ============================================
+   HOME · LLAMADA A LA ACCION
+   ============================================ */
+.cta-contacto {
+  border: 1px solid var(--c-borde);
+  border-radius: var(--radio-card);
+  background: var(--c-superficie);
+  padding: clamp(2rem, 5vw, 3.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  flex-wrap: wrap;
+}
+
+.cta-contacto__texto {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.6rem;
+  max-width: 46ch;
 }
 
-/* ===== PROYECTO / CHARLA DETALLE ===== */
-.proyecto-detalle__breadcrumb,
-.charla-detalle__breadcrumb {
-  display: block;
-  font-size: 0.85rem;
-  color: var(--color-texto-secundario);
-  margin: 2rem 0 1.5rem;
+.cta-contacto__texto p {
+  color: var(--c-texto-suave);
 }
 
-.proyecto-detalle__resumen {
-  font-size: 1.1rem;
-  max-width: 600px;
-  margin: 1rem 0 1.5rem;
+/* ============================================
+   PAGINAS DE DETALLE
+   ============================================ */
+.detalle__portada {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radio-card);
+  overflow: hidden;
+  border: 1px solid var(--c-borde);
+  background: var(--c-superficie);
+  margin-bottom: clamp(2.5rem, 6vw, 4rem);
 }
 
-.proyecto-detalle__meta {
-  display: flex;
-  gap: 1rem;
-  font-size: 0.85rem;
-  color: var(--color-texto-secundario);
-  margin-bottom: 1rem;
-}
-
-.proyecto-detalle__tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
-}
-
-.proyecto-detalle__tech li {
-  font-family: var(--fuente-mono);
-  font-size: 0.8rem;
-  border: 1px solid var(--color-borde);
-  border-radius: var(--radio-borde-pequeno);
-  padding: 0.25rem 0.7rem;
-}
-
-.proyecto-detalle__imagen img {
-  border-radius: var(--radio-borde);
-  margin-bottom: 2rem;
-}
-
-.proyecto-detalle__cuerpo {
-  max-width: 700px;
-  margin-bottom: 2rem;
-}
-
-.proyecto-detalle__cuerpo p {
-  color: var(--color-texto);
-}
-
-.proyecto-detalle__enlaces {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 4rem;
-}
-
-.proyecto-detalle__relacionado-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-}
-
-/* ===== SOBRE MI ===== */
-.sobre-mi-header {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  padding-top: 4rem;
-}
-
-.sobre-mi-header__foto img {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
+.detalle__portada img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border: 2px solid var(--color-borde);
 }
 
-.sobre-mi-header__ubicacion {
-  font-size: 0.85rem;
-  margin-bottom: 0.75rem;
-}
-
-.sobre-mi-skills__grid {
+.detalle__cuerpo {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 320px);
+  gap: clamp(2rem, 6vw, 4.5rem);
+  align-items: start;
+}
+
+.detalle__principal {
+  display: flex;
+  flex-direction: column;
   gap: 1.25rem;
 }
 
-.sobre-mi-setup__lista li {
-  color: var(--color-texto-secundario);
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
+.detalle__parrafo {
+  font-size: var(--t-cuerpo-grande);
+  color: var(--c-texto-suave);
+  max-width: var(--ancho-lectura);
 }
 
-/* ===== RESPONSIVE GENERAL ===== */
-@media (max-width: 900px) {
-  .home-proyectos__grid,
-  .proyectos-grid,
-  .sobre-mi-skills__grid,
-  .proyecto-detalle__relacionado-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.detalle__enlaces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
 }
 
-@media (max-width: 640px) {
-  .home-proyectos__grid,
-  .proyectos-grid,
-  .sobre-mi-skills__grid,
-  .proyecto-detalle__relacionado-grid {
+.detalle__ficha {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  position: sticky;
+  top: calc(var(--alto-barra) + 1.5rem);
+}
+
+.detalle__tech {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 860px) {
+  .sobre-mi {
     grid-template-columns: 1fr;
   }
 
-  .sobre-mi-header {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .hero__cta {
-    flex-direction: column;
-  }
-
-  .contacto-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.contacto-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem;
-}
-
-@media (max-width: 900px) {
-  .contacto-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.home-hero__top {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.home-hero__foto img {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--color-borde);
-}
-
-.home-hero__bio {
-  max-width: 720px;
-  margin-bottom: 2rem;
-}
-
-.home-hero__bio p {
-  margin-bottom: 1rem;
-  color: var(--color-texto);
-}
-
-.home-hero__social {
-  display: flex;
-  gap: 0.5rem;
-  margin-left: 0.5rem;
-}
-
-.home-hero__social a {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radio-borde);
-  border: 1px solid var(--color-borde);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
-  transition: border-color 0.2s ease;
-}
-
-.home-hero__social a:hover {
-  border-color: var(--color-acento);
-  color: var(--color-acento);
-}
-
-.home-valores__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-
-@media (max-width: 640px) {
-  .home-hero__top {
-    flex-direction: column;
-    text-align: center;
-  }
-  .home-hero__cta {
+  .sobre-mi__aside {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
     flex-wrap: wrap;
   }
-  .home-valores__grid {
+
+  .retrato {
+    max-width: 150px;
+  }
+
+  .detalle__cuerpo {
     grid-template-columns: 1fr;
+  }
+
+  .detalle__ficha {
+    position: static;
+  }
+}
+
+@media (max-width: 620px) {
+  .cta-contacto {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cta-contacto .btn {
+    justify-content: center;
+  }
+
+  .setup__fila {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .setup__fila dd {
+    text-align: left;
   }
 }

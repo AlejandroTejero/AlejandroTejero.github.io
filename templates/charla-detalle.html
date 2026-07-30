@@ -1,23 +1,39 @@
-<article class="charla-detalle">
+<article class="detalle">
 
-    <nav class="charla-detalle__breadcrumb">
-      <a href="/{{idioma}}/charlas/">← {{i18n.volver_charlas}}</a>
-    </nav>
-  
-    <header class="charla-detalle__header">
-      <span class="charla-detalle__fecha">{{charla.fecha_formateada}}</span>
-      <h1>{{charla.titulo}}</h1>
-      <p class="charla-detalle__meta">{{charla.rol}} · {{charla.lugar}}</p>
-    </header>
-  
-    <div class="charla-detalle__cuerpo">
-      <p>{{charla.resumen}}</p>
+  <div class="contenedor">
+    <a href="/{{idioma}}/trayectoria/" class="enlace-volver linea" style="--i: 0">
+      <span class="linea__interior"><span aria-hidden="true">←</span> {{i18n.volver_charlas}}</span>
+    </a>
+  </div>
+
+  <header class="cabecera-pagina cabecera-pagina--detalle">
+    <div class="contenedor">
+      <p class="etiqueta-seccion linea" style="--i: 1"><span class="linea__interior">{{charla.fecha_formateada}}</span></p>
+      <h1 class="titular-pagina">
+        <span class="linea" style="--i: 2"><span class="linea__interior">{{charla.titulo}}</span></span>
+      </h1>
     </div>
-  
-    <div class="charla-detalle__enlaces">
-      {{lista_enlaces_charla}}
+  </header>
+
+  <div class="contenedor">
+    <div class="detalle__cuerpo">
+
+      <div class="detalle__principal reveal">
+        <p class="detalle__parrafo">{{charla.resumen}}</p>
+        {{bloque_enlaces}}
+      </div>
+
+      <aside class="detalle__ficha reveal" style="--reveal-delay: 90ms">
+        <dl class="datos">
+          <div class="dato"><dt>{{i18n.charla_rol}}</dt><dd>{{charla.rol}}</dd></div>
+          <div class="dato"><dt>{{i18n.charla_fecha}}</dt><dd>{{charla.fecha_formateada}}</dd></div>
+          {{lugar_si_existe}}
+        </dl>
+      </aside>
+
     </div>
-  
-    {{proyecto_relacionado_si_existe}}
-  
-  </article>
+  </div>
+
+  {{bloque_relacionado}}
+
+</article>

@@ -1,14 +1,36 @@
-<nav class="nav">
-  <a href="/{{idioma}}/" class="nav__logo">{{site.nombre_corto}}</a>
+<header class="barra" id="barra">
+  <div class="barra__interior">
 
-  <ul class="nav__links">
-    <li><a href="/{{idioma}}/" data-nav="home">{{i18n.nav_home}}</a></li>
-    <li><a href="/{{idioma}}/proyectos/" data-nav="proyectos">{{i18n.nav_proyectos}}</a></li>
-    <li><a href="/{{idioma}}/trayectoria/" data-nav="trayectoria">{{i18n.nav_trayectoria}}</a></li>
-  </ul>
+    <a href="/{{idioma}}/" class="barra__marca">
+      <span class="barra__marca-nombre">{{site.nombre_corto}}</span>
+    </a>
 
-  <div class="nav__controles">
-    <button class="nav__tema" id="toggle-tema" aria-label="Cambiar tema">🌙</button>
-    <a href="{{url_idioma_alterno}}" class="nav__lang">{{idioma_alterno_label}}</a>
+    <div class="barra__acciones">
+      <a href="{{url_idioma_alterno}}" class="barra__idioma" aria-label="{{i18n.cambiar_idioma}}">
+        <span>{{idioma_alterno_label}}</span>
+      </a>
+
+      <button type="button" class="barra__tema" id="toggle-tema" aria-label="{{i18n.cambiar_tema}}">
+        <svg class="icono icono--luna" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/>
+        </svg>
+        <svg class="icono icono--sol" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="4.2"/>
+          <path d="M12 2v2.6M12 19.4V22M2 12h2.6M19.4 12H22M4.9 4.9l1.9 1.9M17.2 17.2l1.9 1.9M19.1 4.9l-1.9 1.9M6.8 17.2l-1.9 1.9"/>
+        </svg>
+      </button>
+
+      <button type="button" class="boton-menu" id="boton-menu" aria-expanded="false" aria-controls="menu-overlay">
+        <span class="boton-menu__texto">
+          <span class="boton-menu__abrir">{{i18n.menu_abrir}}</span>
+          <span class="boton-menu__cerrar">{{i18n.menu_cerrar}}</span>
+        </span>
+        <span class="boton-menu__lineas" aria-hidden="true">
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+
   </div>
-</nav>
+</header>

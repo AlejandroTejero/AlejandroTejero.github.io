@@ -1,50 +1,106 @@
-<section class="home-hero">
-  <span class="eyebrow">{{i18n.home_eyebrow}}</span>
+<section class="hero" id="hero">
+  <div class="contenedor hero__interior">
 
-  <div class="home-hero__top reveal">
-    <div class="home-hero__foto">
-      <img src="{{site.foto}}" alt="{{site.nombre}}">
+    <p class="hero__kicker linea" style="--i: 0">
+      <span class="linea__interior">
+        <span class="hero__kicker-punto" aria-hidden="true"></span>{{i18n.hero_kicker}}
+      </span>
+    </p>
+
+    <h1 class="hero__titular">
+      <span class="linea" style="--i: 1"><span class="linea__interior">{{i18n.hero_saludo}}</span></span>
+      <span class="linea" style="--i: 2"><span class="linea__interior"><em>Alejandro</em>.</span></span>
+    </h1>
+
+    <p class="hero__rol linea" style="--i: 3">
+      <span class="linea__interior">{{hero.rol}}</span>
+    </p>
+
+    <div class="hero__acciones linea" style="--i: 4">
+      <span class="linea__interior">
+        <a href="/{{idioma}}/proyectos/" class="btn btn--solido">{{i18n.ver_proyectos}}<span aria-hidden="true">→</span></a>
+        <a href="{{site.cv_pdf}}" class="btn btn--linea" download>{{i18n.descargar_cv}}<span aria-hidden="true">↓</span></a>
+      </span>
     </div>
 
-    <div class="home-hero__texto">
-      <h1 class="home-hero__nombre">{{site.nombre}}</h1>
-      <p class="home-hero__rol">{{hero.rol}}</p>
+  </div>
 
-      <div class="home-hero__badges">
-        {{lista_badges}}
+  <a href="#sobre-mi" class="hero__scroll" aria-label="{{i18n.scroll}}">
+    <span class="hero__scroll-texto" aria-hidden="true">
+      <span>S</span><span>c</span><span>r</span><span>o</span><span>l</span><span>l</span>
+    </span>
+    <span class="hero__scroll-linea" aria-hidden="true"></span>
+  </a>
+</section>
+
+<section class="seccion seccion--sobre-mi" id="sobre-mi">
+  <div class="contenedor">
+
+    <div class="seccion__cabecera reveal">
+      <p class="etiqueta-seccion">{{i18n.sobre_mi_titulo}}</p>
+      <h2 class="titular-seccion">{{i18n.sobre_mi_intro}}</h2>
+    </div>
+
+    <div class="sobre-mi">
+      <div class="sobre-mi__aside reveal">
+        <div class="retrato">{{retrato}}</div>
+        <ul class="badges">
+          {{lista_badges}}
+        </ul>
+      </div>
+
+      <div class="sobre-mi__texto reveal" style="--reveal-delay: 90ms">
+        {{lista_bio_parrafos}}
       </div>
     </div>
+
   </div>
+</section>
 
-  <div class="home-hero__bio reveal" style="--reveal-delay: 0.1s">
-    {{lista_bio_parrafos}}
+<section class="seccion seccion--valores">
+  <div class="contenedor">
+
+    <div class="seccion__cabecera reveal">
+      <p class="etiqueta-seccion">{{i18n.valores_titulo}}</p>
+    </div>
+
+    <div class="rejilla-valores">
+      {{lista_valores}}
+    </div>
+
   </div>
+</section>
 
-  <div class="home-hero__cta reveal" style="--reveal-delay: 0.2s">
-    <a href="{{site.cv_pdf}}" class="btn btn--primario" download>{{i18n.descargar_cv}}</a>
-    <a href="/{{idioma}}/proyectos/" class="btn btn--secundario">{{i18n.ver_proyectos}}</a>
+<section class="seccion seccion--destacados">
+  <div class="contenedor">
 
-    <div class="home-hero__social">
-      <a href="{{site.contacto.github}}" target="_blank" rel="noopener" aria-label="GitHub">{ }</a>
-      <a href="{{site.contacto.linkedin}}" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
-      <a href="mailto:{{site.contacto.email}}" aria-label="Email">✉</a>
+    <div class="seccion__cabecera seccion__cabecera--fila reveal">
+      <div>
+        <p class="etiqueta-seccion">{{i18n.destacados_titulo}}</p>
+        <h2 class="titular-seccion">{{i18n.destacados_intro}}</h2>
+      </div>
+      <a href="/{{idioma}}/proyectos/" class="enlace-flecha">{{i18n.ver_todos_proyectos}}<span aria-hidden="true">→</span></a>
+    </div>
+
+    <div class="rejilla-proyectos">
+      {{lista_proyectos_destacados}}
+    </div>
+
+  </div>
+</section>
+
+{{seccion_setup}}
+
+<section class="seccion seccion--cta">
+  <div class="contenedor">
+    <div class="cta-contacto reveal">
+      <div class="cta-contacto__texto">
+        <h2 class="titular-seccion">{{i18n.contacto_cta_titulo}}</h2>
+        <p>{{i18n.contacto_cta_texto}}</p>
+      </div>
+      <a href="mailto:{{site.contacto.email}}?subject={{i18n.hablemos_asunto}}" class="btn btn--solido btn--grande">
+        {{i18n.escribeme}}<span aria-hidden="true">→</span>
+      </a>
     </div>
   </div>
-</section>
-
-<section class="home-valores reveal">
-  <h2>{{i18n.valores_titulo}}</h2>
-
-  <div class="home-valores__grid">
-    {{lista_valores}}
-  </div>
-</section>
-
-<section class="home-setup reveal">
-  <h2>{{i18n.setup_titulo}}</h2>
-  <ul class="sobre-mi-setup__lista">
-    <li><strong>{{i18n.setup_so}}:</strong> {{site.setup.so}}</li>
-    <li><strong>{{i18n.setup_editor}}:</strong> {{site.setup.editor}}</li>
-    <li><strong>{{i18n.setup_terminal}}:</strong> {{site.setup.terminal}}</li>
-  </ul>
 </section>

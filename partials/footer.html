@@ -1,11 +1,18 @@
-<footer class="footer">
-    <p class="footer__nombre">{{site.nombre}}</p>
-  
-    <ul class="footer__social">
+<footer class="pie">
+  <div class="contenedor pie__interior">
+
+    <div class="pie__bloque">
+      <p class="pie__nombre">{{site.nombre}}</p>
+      <p class="pie__rol">{{site.ubicacion}}</p>
+    </div>
+
+    <ul class="pie__social">
       <li><a href="{{site.contacto.github}}" target="_blank" rel="noopener">GitHub</a></li>
       <li><a href="{{site.contacto.linkedin}}" target="_blank" rel="noopener">LinkedIn</a></li>
       <li><a href="mailto:{{site.contacto.email}}">Email</a></li>
     </ul>
-  
-    <p class="footer__copy">© {{anio_actual}} {{site.nombre}}</p>
-  </footer>
+
+    <p class="pie__copy">© {{anio_actual}} · {{i18n.footer_hecho}}</p>
+
+  </div>
+</footer>

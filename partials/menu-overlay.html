@@ -1,0 +1,60 @@
+<div class="menu" id="menu-overlay" aria-hidden="true" aria-label="{{i18n.menu_navegacion}}">
+  <div class="menu__panel">
+    <div class="menu__interior">
+
+      <nav class="menu__nav">
+        <ul class="menu__lista">
+          <li class="menu__item" style="--i: 0">
+            <a href="/{{idioma}}/" class="menu__enlace" data-nav="home">
+              <span class="menu__indice">01</span>
+              <span class="menu__texto">
+                <span class="menu__titulo">{{i18n.nav_home}}</span>
+                <span class="menu__desc">{{i18n.nav_home_desc}}</span>
+              </span>
+              <span class="menu__flecha" aria-hidden="true">→</span>
+            </a>
+          </li>
+
+          <li class="menu__item" style="--i: 1">
+            <a href="/{{idioma}}/proyectos/" class="menu__enlace" data-nav="proyectos">
+              <span class="menu__indice">02</span>
+              <span class="menu__texto">
+                <span class="menu__titulo">{{i18n.nav_proyectos}}</span>
+                <span class="menu__desc">{{i18n.nav_proyectos_desc}}</span>
+              </span>
+              <span class="menu__flecha" aria-hidden="true">→</span>
+            </a>
+          </li>
+
+          <li class="menu__item" style="--i: 2">
+            <a href="/{{idioma}}/trayectoria/" class="menu__enlace" data-nav="trayectoria">
+              <span class="menu__indice">03</span>
+              <span class="menu__texto">
+                <span class="menu__titulo">{{i18n.nav_trayectoria}}</span>
+                <span class="menu__desc">{{i18n.nav_trayectoria_desc}}</span>
+              </span>
+              <span class="menu__flecha" aria-hidden="true">→</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="menu__pie" style="--i: 3">
+        <div class="menu__bloque">
+          <p class="etiqueta-seccion">{{i18n.menu_encuentrame}}</p>
+          <ul class="menu__social">
+            <li><a href="{{site.contacto.github}}" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="{{site.contacto.linkedin}}" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="mailto:{{site.contacto.email}}">Email</a></li>
+            <li><a href="tel:{{site.contacto.telefono_href}}">{{site.contacto.telefono}}</a></li>
+          </ul>
+        </div>
+
+        <a href="mailto:{{site.contacto.email}}?subject={{i18n.hablemos_asunto}}" class="btn btn--solido menu__cta">
+          {{i18n.hablemos}}<span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0a0a0f">
+  <meta name="theme-color" content="#0A192F" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#EDE7D9" media="(prefers-color-scheme: light)">
 
-  <title>Invernadero IoT · Alejandro Tejero de la Morena</title>
+  <title>Invernadero IoT · Alejandro Tejero</title>
   <meta name="description" content="Automated greenhouse simulator with sensors and actuators">
 
   <link rel="canonical" href="https://tudominio.com/en/proyectos/invernadero/">
@@ -18,148 +19,293 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tudominio.com/en/proyectos/invernadero/">
   <meta property="og:image" content="https://tudominio.com/img/proyectos/invernadero-cover.png">
+  <meta property="og:locale" content="en">
   <meta name="twitter:card" content="summary_large_image">
 
-  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="/css/style.css">
+
+  <script>
+    // Se aplica el tema antes de pintar para que no haya un flash de color equivocado.
+    (function () {
+      // Marca que hay JS: sin esta clase, el contenido con .reveal se ve siempre.
+      document.documentElement.classList.add('js');
+      try {
+        var guardado = localStorage.getItem('portfolio-tema');
+        var prefiereClaro = window.matchMedia('(prefers-color-scheme: light)').matches;
+        var tema = guardado || (prefiereClaro ? 'claro' : 'oscuro');
+        document.documentElement.setAttribute('data-tema', tema);
+      } catch (e) {
+        document.documentElement.setAttribute('data-tema', 'oscuro');
+      }
+    })();
+  </script>
 </head>
-<body>
+<body class="">
 
-  <nav class="nav">
-  <a href="/en/" class="nav__logo">Alejandro Tejero</a>
+  <a href="#main-content" class="salto-contenido">Skip to content</a>
 
-  <ul class="nav__links">
-    <li><a href="/en/" data-nav="home">Home</a></li>
-    <li><a href="/en/proyectos/" data-nav="proyectos">Projects</a></li>
-    <li><a href="/en/trayectoria/" data-nav="trayectoria">Journey</a></li>
-  </ul>
+  <header class="barra" id="barra">
+  <div class="barra__interior">
 
-  <div class="nav__controles">
-    <button class="nav__tema" id="toggle-tema" aria-label="Cambiar tema">🌙</button>
-    <a href="/es/proyectos/invernadero/" class="nav__lang">ES</a>
+    <a href="/en/" class="barra__marca">
+      <span class="barra__marca-nombre">Alejandro Tejero</span>
+    </a>
+
+    <div class="barra__acciones">
+      <a href="/es/proyectos/invernadero/" class="barra__idioma" aria-label="Switch language">
+        <span>ES</span>
+      </a>
+
+      <button type="button" class="barra__tema" id="toggle-tema" aria-label="Switch theme">
+        <svg class="icono icono--luna" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/>
+        </svg>
+        <svg class="icono icono--sol" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="4.2"/>
+          <path d="M12 2v2.6M12 19.4V22M2 12h2.6M19.4 12H22M4.9 4.9l1.9 1.9M17.2 17.2l1.9 1.9M19.1 4.9l-1.9 1.9M6.8 17.2l-1.9 1.9"/>
+        </svg>
+      </button>
+
+      <button type="button" class="boton-menu" id="boton-menu" aria-expanded="false" aria-controls="menu-overlay">
+        <span class="boton-menu__texto">
+          <span class="boton-menu__abrir">Menu</span>
+          <span class="boton-menu__cerrar">Close</span>
+        </span>
+        <span class="boton-menu__lineas" aria-hidden="true">
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+
   </div>
-</nav>
+</header>
+
+  <div class="menu" id="menu-overlay" aria-hidden="true" aria-label="Main navigation">
+  <div class="menu__panel">
+    <div class="menu__interior">
+
+      <nav class="menu__nav">
+        <ul class="menu__lista">
+          <li class="menu__item" style="--i: 0">
+            <a href="/en/" class="menu__enlace" data-nav="home">
+              <span class="menu__indice">01</span>
+              <span class="menu__texto">
+                <span class="menu__titulo">Home</span>
+                <span class="menu__desc">Who I am and how I work</span>
+              </span>
+              <span class="menu__flecha" aria-hidden="true">→</span>
+            </a>
+          </li>
+
+          <li class="menu__item" style="--i: 1">
+            <a href="/en/proyectos/" class="menu__enlace" data-nav="proyectos">
+              <span class="menu__indice">02</span>
+              <span class="menu__texto">
+                <span class="menu__titulo">Projects</span>
+                <span class="menu__desc">Backend, AI and client-server systems</span>
+              </span>
+              <span class="menu__flecha" aria-hidden="true">→</span>
+            </a>
+          </li>
+
+          <li class="menu__item" style="--i: 2">
+            <a href="/en/trayectoria/" class="menu__enlace" data-nav="trayectoria">
+              <span class="menu__indice">03</span>
+              <span class="menu__texto">
+                <span class="menu__titulo">Journey</span>
+                <span class="menu__desc">Education, experience and talks</span>
+              </span>
+              <span class="menu__flecha" aria-hidden="true">→</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="menu__pie" style="--i: 3">
+        <div class="menu__bloque">
+          <p class="etiqueta-seccion">Where to find me</p>
+          <ul class="menu__social">
+            <li><a href="https://github.com/AlejandroTejero" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="mailto:atejerodelamorena@gmail.com">Email</a></li>
+            <li><a href="tel:+34620621384">+34 620 62 13 84</a></li>
+          </ul>
+        </div>
+
+        <a href="mailto:atejerodelamorena@gmail.com?subject=Hi Alejandro, I'm writing from your portfolio" class="btn btn--solido menu__cta">
+          Let's talk<span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 
   <main id="main-content">
-    <article class="proyecto-detalle">
+    <article class="detalle">
 
-    <nav class="proyecto-detalle__breadcrumb">
-      <a href="/en/proyectos/">← Back to projects</a>
-    </nav>
-  
-    <header class="proyecto-detalle__header">
-      <h1>Invernadero IoT</h1>
-      <p class="proyecto-detalle__resumen">Automated greenhouse simulator with sensors and actuators</p>
-  
-      <div class="proyecto-detalle__meta">
-        <span>2024</span>
-        <span>Finalizado</span>
-        
+  <div class="contenedor">
+    <a href="/en/proyectos/" class="enlace-volver linea" style="--i: 0">
+      <span class="linea__interior"><span aria-hidden="true">←</span> Back to projects</span>
+    </a>
+  </div>
+
+  <header class="cabecera-pagina cabecera-pagina--detalle">
+    <div class="contenedor">
+      <h1 class="titular-pagina">
+        <span class="linea" style="--i: 1"><span class="linea__interior">Invernadero IoT</span></span>
+      </h1>
+      <p class="cabecera-pagina__intro linea" style="--i: 2"><span class="linea__interior">Automated greenhouse simulator with sensors and actuators</span></p>
+    </div>
+  </header>
+
+  <div class="contenedor">
+    <div class="detalle__portada reveal"><span class="portada-monograma" data-tono="2" aria-hidden="true">II</span></div>
+  </div>
+
+  <div class="contenedor">
+    <div class="detalle__cuerpo">
+
+      <div class="detalle__principal reveal">
+        <p class="etiqueta-seccion">About the project</p>
+        <p class="detalle__parrafo">Object-oriented system simulating an automated greenhouse: temperature, humidity and light sensors, actuators, a user login system and file-based data persistence. Terminal interface, documented with Doxygen.</p>
+
+        <div class="detalle__enlaces">
+          <a href="https://github.com/AlejandroTejero/Invernadero" target="_blank" rel="noopener" class="btn btn--linea">GitHub<span aria-hidden="true">↗</span></a>
+        </div>
       </div>
-  
-      <ul class="proyecto-detalle__tech">
-        <li>C++</li><li>POO</li><li>Doxygen</li>
+
+      <aside class="detalle__ficha reveal" style="--reveal-delay: 90ms">
+        <dl class="datos">
+          <div class="dato"><dt>Period</dt><dd>2024</dd></div>
+          <div class="dato"><dt>Status</dt><dd>Finalizado</dd></div>
+          
+        </dl>
+
+        <div class="detalle__tech">
+          <p class="etiqueta-seccion">Technologies</p>
+          <ul class="tags">
+            <li>C++</li><li>POO</li><li>Doxygen</li>
+          </ul>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <section class="seccion reveal"><div class="contenedor"><p class="etiqueta-seccion">You might also like</p><div class="rejilla-proyectos rejilla-proyectos--duo"><article class="project-card reveal" data-categorias="backend ia automatizacion">
+  <a href="/en/proyectos/webbuilder/" class="project-card__link">
+
+    <div class="project-card__portada">
+      <span class="portada-monograma" data-tono="0" aria-hidden="true">W</span>
+    </div>
+
+    <div class="project-card__cuerpo">
+      <div class="project-card__fila">
+        <span class="project-card__indice">01</span>
+        <span class="project-card__estado">Finalizado</span>
+      </div>
+
+      <h3 class="project-card__titulo">WebBuilder</h3>
+      <p class="project-card__resumen">Turns any public API into a deployable Django project using AI</p>
+
+      <ul class="tags tags--compactas">
+        <li>Django</li><li>PostgreSQL</li><li>Docker</li><li>n8n</li><li>LLMs</li><li>OAuth</li>
       </ul>
-    </header>
-  
-    <div class="proyecto-detalle__imagen">
-      <img src="/img/proyectos/invernadero-cover.png" alt="Invernadero IoT">
+
+      <span class="project-card__nota">9,9 - Propuesto para Matricula de Honor</span>
     </div>
-  
-    <div class="proyecto-detalle__cuerpo">
-      <p>Object-oriented system simulating an automated greenhouse: temperature, humidity and light sensors, actuators, a user login system and file-based data persistence. Terminal interface, documented with Doxygen.</p>
+
+  </a>
+</article>
+<article class="project-card reveal" data-categorias="backend web">
+  <a href="/en/proyectos/gamerank/" class="project-card__link">
+
+    <div class="project-card__portada">
+      <span class="portada-monograma" data-tono="1" aria-hidden="true">G</span>
     </div>
-  
-    <div class="proyecto-detalle__enlaces">
-      <a href="https://github.com/AlejandroTejero/Invernadero" target="_blank" rel="noopener" class="btn btn--secundario">github</a>
-    </div>
-  
-    <section class="proyecto-detalle__relacionado">
-      <h2>You might also like</h2>
-      <div class="proyecto-detalle__relacionado-grid">
-        <article class="project-card">
-    <a href="/en/proyectos/webbuilder/" class="project-card__link">
-  
-      <div class="project-card__imagen">
-        <img src="/img/proyectos/webbuilder-cover.png" alt="WebBuilder" loading="lazy">
-      </div>
-  
-      <div class="project-card__body">
-        <h3 class="project-card__titulo">WebBuilder</h3>
-        <p class="project-card__resumen">Turns any public API into a deployable Django project using AI</p>
-  
-        <ul class="project-card__tech">
-          <li>Django</li><li>PostgreSQL</li><li>Docker</li><li>n8n</li><li>LLMs</li><li>OAuth</li>
-        </ul>
-  
+
+    <div class="project-card__cuerpo">
+      <div class="project-card__fila">
+        <span class="project-card__indice">02</span>
         <span class="project-card__estado">Finalizado</span>
       </div>
-  
-    </a>
-  </article><article class="project-card">
-    <a href="/en/proyectos/gamerank/" class="project-card__link">
-  
-      <div class="project-card__imagen">
-        <img src="/img/proyectos/gamerank-cover.png" alt="GameRank" loading="lazy">
-      </div>
-  
-      <div class="project-card__body">
-        <h3 class="project-card__titulo">GameRank</h3>
-        <p class="project-card__resumen">Social videogame catalog and ranking with external API integration</p>
-  
-        <ul class="project-card__tech">
-          <li>Django</li><li>HTMX</li><li>REST API</li><li>XML/JSON</li>
-        </ul>
-  
-        <span class="project-card__estado">Finalizado</span>
-      </div>
-  
-    </a>
-  </article>
-      </div>
-    </section>
-  
-  </article>
+
+      <h3 class="project-card__titulo">GameRank</h3>
+      <p class="project-card__resumen">Social videogame catalog and ranking with external API integration</p>
+
+      <ul class="tags tags--compactas">
+        <li>Django</li><li>HTMX</li><li>REST API</li><li>XML/JSON</li>
+      </ul>
+
+      <span class="project-card__nota">9,9 - Matricula de Honor</span>
+    </div>
+
+  </a>
+</article>
+</div></div></section>
+
+</article>
+
   </main>
 
-  <footer class="footer">
-    <p class="footer__nombre">Alejandro Tejero de la Morena</p>
-  
-    <ul class="footer__social">
+  <footer class="pie">
+  <div class="contenedor pie__interior">
+
+    <div class="pie__bloque">
+      <p class="pie__nombre">Alejandro Tejero de la Morena</p>
+      <p class="pie__rol">Madrid, Espana</p>
+    </div>
+
+    <ul class="pie__social">
       <li><a href="https://github.com/AlejandroTejero" target="_blank" rel="noopener">GitHub</a></li>
       <li><a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener">LinkedIn</a></li>
       <li><a href="mailto:atejerodelamorena@gmail.com">Email</a></li>
     </ul>
-  
-    <p class="footer__copy">© 2026 Alejandro Tejero de la Morena</p>
-  </footer>
 
-  <div class="contacto-flotante" id="contacto-flotante">
+    <p class="pie__copy">© 2026 · Designed and coded in Madrid</p>
 
-    <button class="contacto-flotante__boton" id="contacto-flotante-toggle" aria-label="Open contact options" aria-expanded="false">
-      <span class="contacto-flotante__icono">👤</span>
-    </button>
-  
-    <div class="contacto-flotante__menu" id="contacto-flotante-menu" role="menu">
-      <span class="contacto-flotante__titulo">Contact</span>
-  
-      <a href="mailto:atejerodelamorena@gmail.com" class="contacto-flotante__item" role="menuitem">
-        <span class="contacto-flotante__item-icono">✉</span>
-        <span>Gmail</span>
-      </a>
-  
-      <a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener" class="contacto-flotante__item" role="menuitem">
-        <span class="contacto-flotante__item-icono">in</span>
-        <span>LinkedIn</span>
-      </a>
-  
-      <a href="tel:+34620621384" class="contacto-flotante__item" role="menuitem">
-        <span class="contacto-flotante__item-icono">☎</span>
-        <span>+34 620 62 13 84</span>
-      </a>
-    </div>
-  
   </div>
+</footer>
+
+  <div class="flotante" id="contacto-flotante">
+
+  <div class="flotante__menu" id="contacto-flotante-menu" role="menu">
+    <p class="flotante__titulo">Contact</p>
+
+    <a href="mailto:atejerodelamorena@gmail.com" class="flotante__item" role="menuitem" style="--i: 0">
+      <span class="flotante__item-etiqueta">Email</span>
+      <span class="flotante__item-valor">atejerodelamorena@gmail.com</span>
+    </a>
+
+    <a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener" class="flotante__item" role="menuitem" style="--i: 1">
+      <span class="flotante__item-etiqueta">LinkedIn</span>
+      <span class="flotante__item-valor">Alejandro Tejero</span>
+    </a>
+
+    <a href="tel:+34620621384" class="flotante__item" role="menuitem" style="--i: 2">
+      <span class="flotante__item-etiqueta">Contact</span>
+      <span class="flotante__item-valor">+34 620 62 13 84</span>
+    </a>
+  </div>
+
+  <button type="button" class="flotante__boton" id="contacto-flotante-toggle" aria-label="Open contact options" aria-expanded="false">
+    <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M4 6h16v12H4z"/>
+      <path d="M4 7l8 6 8-6"/>
+    </svg>
+  </button>
+
+</div>
+
 
   <script src="/js/main.js" defer></script>
 </body>

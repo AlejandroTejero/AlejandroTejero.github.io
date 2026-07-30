@@ -1,0 +1,92 @@
+{
+  "BasesDatos": [
+    {
+      "nombre": "Python",
+      "porcentaje": 91
+    },
+    {
+      "nombre": "PLpgSQL",
+      "porcentaje": 9
+    }
+  ],
+  "SistemasDistribuidos": [
+    {
+      "nombre": "Go",
+      "porcentaje": 100
+    }
+  ],
+  "ArquitecturaRedes": [
+    {
+      "nombre": "Shell",
+      "porcentaje": 100
+    }
+  ],
+  "SistemasOperativos": [
+    {
+      "nombre": "C",
+      "porcentaje": 60
+    },
+    {
+      "nombre": "Shell",
+      "porcentaje": 40
+    }
+  ],
+  "Ensamblador": [
+    {
+      "nombre": "Assembly",
+      "porcentaje": 100
+    }
+  ],
+  "GestionRedesSistemas": [
+    {
+      "nombre": "HTML",
+      "porcentaje": 76
+    },
+    {
+      "nombre": "Python",
+      "porcentaje": 13
+    },
+    {
+      "nombre": "CSS",
+      "porcentaje": 8
+    },
+    {
+      "nombre": "Shell",
+      "porcentaje": 1
+    },
+    {
+      "nombre": "Dockerfile",
+      "porcentaje": 1
+    },
+    {
+      "nombre": "Ruby",
+      "porcentaje": 0
+    }
+  ],
+  "AplicacionesTelematicas": [
+    {
+      "nombre": "CSS",
+      "porcentaje": 70
+    },
+    {
+      "nombre": "HTML",
+      "porcentaje": 19
+    },
+    {
+      "nombre": "JavaScript",
+      "porcentaje": 11
+    }
+  ],
+  "Python": [
+    {
+      "nombre": "Python",
+      "porcentaje": 100
+    }
+  ],
+  "Pascal": [
+    {
+      "nombre": "Pascal",
+      "porcentaje": 100
+    }
+  ]
+}

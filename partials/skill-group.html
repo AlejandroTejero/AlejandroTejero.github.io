@@ -1,10 +1,11 @@
-<div class="skill-group">
-    <div class="skill-group__header">
-      <h3 class="skill-group__nombre">{{categoria.nombre}}</h3>
-      <span class="skill-group__nivel skill-group__nivel--{{categoria.nivel_clase}}">{{categoria.nivel}}</span>
-    </div>
-  
-    <ul class="skill-group__items">
-      {{lista_items}}
-    </ul>
+<div class="skill-group reveal">
+  <div class="skill-group__cabecera">
+    <span class="skill-group__indice">{{categoria.indice_formateado}}</span>
+    <h3 class="skill-group__nombre">{{categoria.nombre}}</h3>
+    {{nivel_si_existe}}
   </div>
+
+  <ul class="tags">
+    {{lista_items}}
+  </ul>
+</div>

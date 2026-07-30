@@ -1,41 +1,54 @@
-<article class="proyecto-detalle">
+<article class="detalle">
 
-    <nav class="proyecto-detalle__breadcrumb">
-      <a href="/{{idioma}}/proyectos/">← {{i18n.volver_proyectos}}</a>
-    </nav>
-  
-    <header class="proyecto-detalle__header">
-      <h1>{{proyecto.titulo}}</h1>
-      <p class="proyecto-detalle__resumen">{{proyecto.resumen}}</p>
-  
-      <div class="proyecto-detalle__meta">
-        <span>{{proyecto.periodo}}</span>
-        <span>{{proyecto.estado}}</span>
-        {{nota_academica_si_existe}}
+  <div class="contenedor">
+    <a href="/{{idioma}}/proyectos/" class="enlace-volver linea" style="--i: 0">
+      <span class="linea__interior"><span aria-hidden="true">←</span> {{i18n.volver_proyectos}}</span>
+    </a>
+  </div>
+
+  <header class="cabecera-pagina cabecera-pagina--detalle">
+    <div class="contenedor">
+      <h1 class="titular-pagina">
+        <span class="linea" style="--i: 1"><span class="linea__interior">{{proyecto.titulo}}</span></span>
+      </h1>
+      <p class="cabecera-pagina__intro linea" style="--i: 2"><span class="linea__interior">{{proyecto.resumen}}</span></p>
+    </div>
+  </header>
+
+  <div class="contenedor">
+    <div class="detalle__portada reveal">{{portada}}</div>
+  </div>
+
+  <div class="contenedor">
+    <div class="detalle__cuerpo">
+
+      <div class="detalle__principal reveal">
+        <p class="etiqueta-seccion">{{i18n.sobre_el_proyecto}}</p>
+        <p class="detalle__parrafo">{{proyecto.descripcion}}</p>
+
+        <div class="detalle__enlaces">
+          {{lista_enlaces}}
+        </div>
       </div>
-  
-      <ul class="proyecto-detalle__tech">
-        {{lista_tecnologias}}
-      </ul>
-    </header>
-  
-    <div class="proyecto-detalle__imagen">
-      <img src="{{proyecto.imagen}}" alt="{{proyecto.titulo}}">
+
+      <aside class="detalle__ficha reveal" style="--reveal-delay: 90ms">
+        <dl class="datos">
+          <div class="dato"><dt>{{i18n.ficha_periodo}}</dt><dd>{{proyecto.periodo}}</dd></div>
+          <div class="dato"><dt>{{i18n.ficha_estado}}</dt><dd>{{proyecto.estado}}</dd></div>
+          {{nota_academica_si_existe}}
+        </dl>
+
+        <div class="detalle__tech">
+          <p class="etiqueta-seccion">{{i18n.tecnologias}}</p>
+          <ul class="tags">
+            {{lista_tecnologias}}
+          </ul>
+        </div>
+      </aside>
+
     </div>
-  
-    <div class="proyecto-detalle__cuerpo">
-      <p>{{proyecto.descripcion}}</p>
-    </div>
-  
-    <div class="proyecto-detalle__enlaces">
-      {{lista_enlaces}}
-    </div>
-  
-    <section class="proyecto-detalle__relacionado">
-      <h2>{{i18n.tambien_te_puede_interesar}}</h2>
-      <div class="proyecto-detalle__relacionado-grid">
-        {{lista_proyectos_relacionados}}
-      </div>
-    </section>
-  
-  </article>
+  </div>
+
+  {{bloque_relacionados}}
+
+</article>

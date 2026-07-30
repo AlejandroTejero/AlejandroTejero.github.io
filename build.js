@@ -9,6 +9,10 @@ const IDIOMAS = ['es', 'en'];
 const RAIZ = __dirname;
 const DIST = path.join(RAIZ, 'dist');
 
+// Si es true, el build intenta consultar la API de GitHub para los lenguajes
+// de cada repositorio. Si no hay red, el build sigue adelante sin romperse.
+const CONSULTAR_GITHUB = process.env.SIN_GITHUB !== '1';
+
 // ============================================
 // UTILIDADES BASICAS
 // ============================================
@@ -28,9 +32,17 @@ function escribirArchivo(rutaRelativaDist, contenido) {
 }
 
 function concatenarCSS() {
-  const orden = ['variables.css', 'base.css', 'layout.css', 'componentes.css', 'paginas.css'];
+  const orden = [
+    'variables.css',
+    'base.css',
+    'animaciones.css',
+    'layout.css',
+    'componentes.css',
+    'paginas.css',
+  ];
+
   const contenido = orden
-    .map((archivo) => fs.readFileSync(path.join(RAIZ, 'public/css', archivo), 'utf-8'))
+    .map((archivo) => `/* ===== ${archivo} ===== */\n` + fs.readFileSync(path.join(RAIZ, 'public/css', archivo), 'utf-8'))
     .join('\n\n');
 
   escribirArchivo('css/style.css', contenido);
@@ -41,6 +53,36 @@ function reemplazar(plantilla, datos) {
     const valor = ruta.split('.').reduce((obj, clave) => (obj ? obj[clave] : undefined), datos);
     return valor !== undefined && valor !== null ? valor : '';
   });
+}
+
+// Los JSON de contenido tienen campos a medio rellenar marcados como
+// "PENDIENTE" / "PENDING". En vez de imprimirlos en la web, se tratan como vacios
+// y la plantilla decide si oculta ese bloque.
+function limpiar(valor) {
+  if (typeof valor !== 'string') return '';
+  const normalizado = valor.trim().toUpperCase();
+  if (!normalizado) return '';
+  if (normalizado.startsWith('PENDIENTE') || normalizado.startsWith('PENDING')) return '';
+  return valor.trim();
+}
+
+function existeEnPublic(rutaAbsolutaWeb) {
+  if (!rutaAbsolutaWeb) return false;
+  const relativa = rutaAbsolutaWeb.replace(/^\//, '');
+  return fs.existsSync(path.join(RAIZ, 'public', relativa));
+}
+
+function iniciales(texto) {
+  return texto
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((palabra) => palabra[0].toUpperCase())
+    .join('');
+}
+
+function escaparHtml(texto) {
+  return String(texto).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
 // ============================================
@@ -69,6 +111,7 @@ const plantillas = {
 
 const partials = {
   nav: leerHTML('partials/nav.html'),
+  menuOverlay: leerHTML('partials/menu-overlay.html'),
   footer: leerHTML('partials/footer.html'),
   projectCard: leerHTML('partials/project-card.html'),
   repoCard: leerHTML('partials/repo-card.html'),
@@ -77,30 +120,71 @@ const partials = {
   filtroCategorias: leerHTML('partials/filtro-categorias.html'),
   charlaCard: leerHTML('partials/charla-card.html'),
   contactoFlotante: leerHTML('partials/contacto-flotante.html'),
-  valorCard: leerHTML('partials/valor-card.html'), // CAMBIO: nuevo partial cargado
+  valorCard: leerHTML('partials/valor-card.html'),
 };
 
 // ============================================
 // GITHUB API: RELLENAR LENGUAJES DE REPOSITORIOS
 // ============================================
-async function obtenerLenguajes(nombreRepo) {
-  const url = `https://api.github.com/repos/AlejandroTejero/${nombreRepo}/languages`;
-  const respuesta = await fetch(url);
-  if (!respuesta.ok) return [];
+const RUTA_CACHE = path.join(RAIZ, 'content/lenguajes-cache.json');
 
-  const datos = await respuesta.json();
-  const total = Object.values(datos).reduce((suma, bytes) => suma + bytes, 0);
-
-  return Object.entries(datos).map(([nombre, bytes]) => ({
-    nombre,
-    porcentaje: Math.round((bytes / total) * 100),
-  }));
+function leerCacheLenguajes() {
+  try {
+    return JSON.parse(fs.readFileSync(RUTA_CACHE, 'utf-8'));
+  } catch (error) {
+    return {};
+  }
 }
 
+async function obtenerLenguajes(nombreRepo) {
+  const url = `https://api.github.com/repos/AlejandroTejero/${nombreRepo}/languages`;
+
+  try {
+    const respuesta = await fetch(url, {
+      headers: { 'Accept': 'application/vnd.github+json', 'User-Agent': 'portfolio-build' },
+    });
+    if (!respuesta.ok) return null;
+
+    const datos = await respuesta.json();
+    const total = Object.values(datos).reduce((suma, bytes) => suma + bytes, 0);
+    if (!total) return null;
+
+    return Object.entries(datos)
+      .map(([nombre, bytes]) => ({ nombre, porcentaje: Math.round((bytes / total) * 100) }))
+      .sort((a, b) => b.porcentaje - a.porcentaje);
+  } catch (error) {
+    return null;
+  }
+}
+
+// Si la API responde, se usa y se refresca el cache. Si falla (sin red o
+// limite de peticiones alcanzado), se usa el ultimo dato guardado.
 async function enriquecerRepositorios() {
+  const cache = leerCacheLenguajes();
+  let huboCambios = false;
+
   for (const repo of repositorios) {
-    console.log(`Consultando lenguajes de ${repo.nombre}...`);
-    repo.lenguajes = await obtenerLenguajes(repo.nombre);
+    let lenguajes = null;
+
+    if (CONSULTAR_GITHUB) {
+      lenguajes = await obtenerLenguajes(repo.nombre);
+    }
+
+    if (lenguajes) {
+      cache[repo.nombre] = lenguajes;
+      huboCambios = true;
+      console.log(`  ${repo.nombre}: ${lenguajes.length} lenguajes (GitHub)`);
+    } else {
+      lenguajes = cache[repo.nombre] || [];
+      const origen = lenguajes.length ? 'cache' : 'sin datos';
+      console.log(`  ${repo.nombre}: ${lenguajes.length} lenguajes (${origen})`);
+    }
+
+    repo.lenguajes = lenguajes;
+  }
+
+  if (huboCambios) {
+    fs.writeFileSync(RUTA_CACHE, JSON.stringify(cache, null, 2) + '\n', 'utf-8');
   }
 }
 
@@ -110,85 +194,110 @@ async function enriquecerRepositorios() {
 const COLORES_LENGUAJE = {
   Python: '#3776AB', JavaScript: '#f1e05a', TypeScript: '#3178c6',
   'C++': '#f34b7d', C: '#555555', SQL: '#e38c00', HTML: '#e34c26',
-  CSS: '#563d7c', Pascal: '#E3F171', Shell: '#89e051',
+  CSS: '#563d7c', Pascal: '#E3F171', Shell: '#89e051', Makefile: '#427819',
+  Java: '#b07219', Go: '#00ADD8', Dockerfile: '#384d54',
+  Assembly: '#6E4C13', PLpgSQL: '#336790', PLSQL: '#dad8d8', Ruby: '#701516',
+  'Jupyter Notebook': '#DA5B0B', TeX: '#3D6117', Batchfile: '#C1F12E',
+  PowerShell: '#012456', Vue: '#41b883', PHP: '#4F5D95', Rust: '#dea584',
 };
 function colorLenguaje(nombre) {
-  return COLORES_LENGUAJE[nombre] || 'var(--color-borde)';
+  return COLORES_LENGUAJE[nombre] || 'var(--c-acento)';
+}
+
+// ============================================
+// PORTADAS: imagen real si existe, monograma si no
+// ============================================
+function renderizarPortada(titulo, rutaImagen, indice) {
+  if (existeEnPublic(rutaImagen)) {
+    return `<img src="${rutaImagen}" alt="${escaparHtml(titulo)}" loading="lazy">`;
+  }
+
+  // Sin imagen todavia: monograma tipografico en vez de un hueco roto.
+  return `<span class="portada-monograma" data-tono="${indice % 4}" aria-hidden="true">${escaparHtml(iniciales(titulo))}</span>`;
+}
+
+function renderizarFotoPerfil() {
+  if (existeEnPublic(site.foto)) {
+    return `<img src="${site.foto}" alt="${escaparHtml(site.nombre)}">`;
+  }
+  return `<span class="retrato__monograma" aria-hidden="true">${escaparHtml(iniciales(site.nombre))}</span>`;
 }
 
 // ============================================
 // RENDERIZADO DE PIEZAS REPETIBLES (partials)
 // ============================================
-function renderizarProjectCard(proyecto, ctx) {
+function renderizarProjectCard(proyecto, ctx, indice = 0) {
   const tech = proyecto.tecnologias.map((t) => `<li>${t}</li>`).join('');
+  const nota = limpiar(proyecto.nota_academica);
+
   return reemplazar(partials.projectCard, {
     ...ctx,
     proyecto: {
       ...proyecto,
-      titulo: proyecto.titulo,
       resumen: proyecto.resumen[ctx.idioma],
       categorias_espacio: proyecto.categorias.join(' '),
+      indice_formateado: String(indice + 1).padStart(2, '0'),
     },
+    portada: renderizarPortada(proyecto.titulo, proyecto.imagen, indice),
     lista_tecnologias: tech,
+    nota_academica_si_existe: nota ? `<span class="project-card__nota">${escaparHtml(nota)}</span>` : '',
   });
 }
 
 function renderizarRepoCard(repo, ctx) {
   const barra = (repo.lenguajes || [])
-    .map((l) => `<div style="width:${l.porcentaje}%; background:${colorLenguaje(l.nombre)}" title="${l.nombre} ${l.porcentaje}%"></div>`)
+    .map((l) => `<span style="width:${l.porcentaje}%; background:${colorLenguaje(l.nombre)}" title="${l.nombre} ${l.porcentaje}%"></span>`)
     .join('');
+
+  const etiquetas = (repo.lenguajes || [])
+    .slice(0, 3)
+    .map((l) => `<li>${l.nombre}</li>`)
+    .join('');
+
+  const descripcion = limpiar(repo.descripcion[ctx.idioma]);
 
   return reemplazar(partials.repoCard, {
     ...ctx,
     repo: {
       ...repo,
       asignatura: repo.asignatura[ctx.idioma],
-      descripcion: repo.descripcion[ctx.idioma],
     },
-    barra_lenguajes: barra,
+    descripcion_si_existe: descripcion ? `<p class="repo-card__descripcion">${escaparHtml(descripcion)}</p>` : '',
+    barra_si_existe: barra ? `<div class="repo-card__barra">${barra}</div>` : '',
+    lista_lenguajes: etiquetas,
   });
 }
 
-function renderizarSkillGroup(categoria, ctx) {
+function renderizarSkillGroup(categoria, ctx, indice = 0) {
   const items = categoria.items.map((i) => `<li>${i}</li>`).join('');
-  const nivelClase = (categoria.nivel || '').toLowerCase();
+  const nivel = limpiar(categoria.nivel);
 
   return reemplazar(partials.skillGroup, {
     ...ctx,
     categoria: {
       nombre: categoria.nombre[ctx.idioma],
-      nivel: categoria.nivel || '',
-      nivel_clase: nivelClase,
+      nivel_clase: nivel.toLowerCase(),
+      indice_formateado: String(indice + 1).padStart(2, '0'),
     },
+    nivel_si_existe: nivel ? `<span class="skill-group__nivel skill-group__nivel--${nivel.toLowerCase()}">${escaparHtml(nivel)}</span>` : '',
     lista_items: items,
   });
 }
 
 function renderizarTimelineItem(hito, ctx) {
-  const institucion = hito.institucion ? `<p class="timeline-item__institucion">${hito.institucion}</p>` : '';
-  const descripcion = hito.descripcion ? `<p class="timeline-item__descripcion">${hito.descripcion[ctx.idioma]}</p>` : '';
+  const institucion = limpiar(hito.institucion);
+  const descripcion = hito.descripcion ? limpiar(hito.descripcion[ctx.idioma]) : '';
+  const etiquetaTipo = ctx.i18n[`tipo_${hito.tipo}`] || hito.tipo;
 
   return reemplazar(partials.timelineItem, {
     ...ctx,
     hito: {
       ...hito,
       titulo: hito.titulo[ctx.idioma],
+      tipo_etiqueta: etiquetaTipo,
     },
-    institucion_si_existe: institucion,
-    descripcion_si_existe: descripcion,
-  });
-}
-
-function renderizarCharlaCard(charla, ctx) {
-  return reemplazar(partials.charlaCard, {
-    ...ctx,
-    charla: {
-      ...charla,
-      titulo: charla.titulo[ctx.idioma],
-      rol: charla.rol[ctx.idioma],
-      resumen: charla.resumen[ctx.idioma],
-      fecha_formateada: formatearFecha(charla.fecha, ctx.idioma),
-    },
+    institucion_si_existe: institucion ? `<p class="timeline-item__institucion">${escaparHtml(institucion)}</p>` : '',
+    descripcion_si_existe: descripcion ? `<p class="timeline-item__descripcion">${escaparHtml(descripcion)}</p>` : '',
   });
 }
 
@@ -198,10 +307,26 @@ function formatearFecha(fechaISO, idioma) {
   return fecha.toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
+function renderizarCharlaCard(charla, ctx) {
+  const lugar = limpiar(charla.lugar);
+
+  return reemplazar(partials.charlaCard, {
+    ...ctx,
+    charla: {
+      ...charla,
+      titulo: charla.titulo[ctx.idioma],
+      rol: charla.rol[ctx.idioma],
+      resumen: charla.resumen[ctx.idioma],
+      fecha_formateada: formatearFecha(charla.fecha, ctx.idioma),
+    },
+    lugar_si_existe: lugar ? `<span class="charla-card__lugar">${escaparHtml(lugar)}</span>` : '',
+  });
+}
+
 function renderizarFiltroCategorias(ctx) {
   const categoriasUnicas = [...new Set(proyectos.flatMap((p) => p.categorias))];
   const botones = categoriasUnicas
-    .map((cat) => `<button class="filtro-categorias__btn" data-filtro="${cat}">${cat}</button>`)
+    .map((cat) => `<button class="filtro__btn" data-filtro="${cat}">${cat}</button>`)
     .join('');
 
   return reemplazar(partials.filtroCategorias, { ...ctx, lista_botones_categoria: botones });
@@ -211,40 +336,40 @@ function renderizarContactoFlotante(ctx) {
   return reemplazar(partials.contactoFlotante, { ...ctx });
 }
 
-// CAMBIO: nuevas funciones de renderizado para el home ampliado
 function renderizarBadges(badges, ctx) {
-  return badges
-    .map((b) => `<span class="badge">${b[ctx.idioma]}</span>`)
-    .join('');
+  return badges.map((b) => `<li class="badge">${b[ctx.idioma]}</li>`).join('');
 }
 
 function renderizarBioParrafos(parrafos, ctx) {
-  return parrafos[ctx.idioma]
-    .map((p) => `<p>${p}</p>`)
-    .join('');
+  return parrafos[ctx.idioma].map((p) => `<p>${p}</p>`).join('');
 }
 
-function renderizarValorCard(valor, ctx) {
+function renderizarValorCard(valor, ctx, indice = 0) {
   return reemplazar(partials.valorCard, {
     ...ctx,
     valor: {
-      icono: valor.icono,
       titulo: valor.titulo[ctx.idioma],
       descripcion: valor.descripcion[ctx.idioma],
+      indice_formateado: String(indice + 1).padStart(2, '0'),
     },
   });
 }
 
 // ============================================
-// NAV Y FOOTER
+// NAV, MENU OVERLAY Y FOOTER
 // ============================================
-function renderizarNav(ctx) {
+function renderizarNav(ctx, rutaSinIdioma) {
   const idiomaAlterno = ctx.idioma === 'es' ? 'en' : 'es';
+
   return reemplazar(partials.nav, {
     ...ctx,
-    url_idioma_alterno: `/${idiomaAlterno}${ctx.rutaSinIdioma || '/'}`,
+    url_idioma_alterno: `/${idiomaAlterno}${rutaSinIdioma || '/'}`,
     idioma_alterno_label: idiomaAlterno.toUpperCase(),
   });
+}
+
+function renderizarMenuOverlay(ctx) {
+  return reemplazar(partials.menuOverlay, { ...ctx });
 }
 
 function renderizarFooter(ctx) {
@@ -258,7 +383,8 @@ function envolverEnLayout(contenidoHtml, meta, ctx) {
   return reemplazar(plantillas.layout, {
     ...ctx,
     contenido: contenidoHtml,
-    nav: renderizarNav({ ...ctx, rutaSinIdioma: meta.rutaSinIdioma }),
+    nav: renderizarNav(ctx, meta.rutaSinIdioma),
+    menu_overlay: renderizarMenuOverlay(ctx),
     footer: renderizarFooter(ctx),
     contacto_flotante: renderizarContactoFlotante(ctx),
     titulo_pagina: meta.titulo,
@@ -267,6 +393,7 @@ function envolverEnLayout(contenidoHtml, meta, ctx) {
     url_alternativa_es: `${BASE_URL}/es${meta.rutaSinIdioma}`,
     url_alternativa_en: `${BASE_URL}/en${meta.rutaSinIdioma}`,
     og_imagen: meta.imagen || `${BASE_URL}/img/og-default.png`,
+    clase_body: meta.claseBody || '',
   });
 }
 
@@ -274,42 +401,54 @@ function envolverEnLayout(contenidoHtml, meta, ctx) {
 // GENERACION DE CADA PAGINA
 // ============================================
 function generarHome(ctx) {
-  // CAMBIO: se generan los 3 huecos nuevos del home ampliado
-  const badgesHtml = renderizarBadges(site.badges, ctx);
-  const bioHtml = renderizarBioParrafos(site.bio_parrafos, ctx);
-  const valoresHtml = site.valores.map((v) => renderizarValorCard(v, ctx)).join('');
+  const destacados = proyectos.filter((p) => p.destacado).slice(0, 4);
+
+  const setupEntradas = [
+    { etiqueta: ctx.i18n.setup_so, valor: limpiar(site.setup.so) },
+    { etiqueta: ctx.i18n.setup_editor, valor: limpiar(site.setup.editor) },
+    { etiqueta: ctx.i18n.setup_terminal, valor: limpiar(site.setup.terminal) },
+  ].filter((entrada) => entrada.valor);
+
+  const setupHtml = setupEntradas.length
+    ? `<section class="seccion seccion--setup reveal">
+         <div class="contenedor">
+           <p class="etiqueta-seccion">${ctx.i18n.setup_titulo}</p>
+           <dl class="setup__lista">
+             ${setupEntradas.map((e) => `<div class="setup__fila"><dt>${e.etiqueta}</dt><dd>${escaparHtml(e.valor)}</dd></div>`).join('')}
+           </dl>
+         </div>
+       </section>`
+    : '';
 
   const contenido = reemplazar(plantillas.home, {
     ...ctx,
-    site: {
-      ...site,
-      cv_pdf: site.cv_pdf[ctx.idioma],
-    },
-    hero: { rol: site.hero_rol[ctx.idioma] },
-    lista_badges: badgesHtml,
-    lista_bio_parrafos: bioHtml,
-    lista_valores: valoresHtml,
+    site: { ...site, cv_pdf: site.cv_pdf[ctx.idioma] },
+    hero: { rol: site.hero_rol[ctx.idioma], titulo: site.titulo[ctx.idioma] },
+    retrato: renderizarFotoPerfil(),
+    lista_badges: renderizarBadges(site.badges, ctx),
+    lista_bio_parrafos: renderizarBioParrafos(site.bio_parrafos, ctx),
+    lista_valores: site.valores.map((v, i) => renderizarValorCard(v, ctx, i)).join(''),
+    lista_proyectos_destacados: destacados.map((p, i) => renderizarProjectCard(p, ctx, i)).join(''),
+    seccion_setup: setupHtml,
   });
 
   return envolverEnLayout(contenido, {
     titulo: site.nombre,
-    descripcion: site.bio_parrafos[ctx.idioma][0], // CAMBIO: usa el primer parrafo como meta description
+    descripcion: site.bio[ctx.idioma],
     rutaSinIdioma: '/',
+    claseBody: 'es-home',
   }, ctx);
 }
 
 function generarProyectosLista(ctx) {
-  const filtro = renderizarFiltroCategorias(ctx);
-  const cardsProyectos = proyectos.map((p) => renderizarProjectCard(p, ctx)).join('');
-  const cardsRepos = repositorios.map((r) => renderizarRepoCard(r, ctx)).join('');
-  const gruposSkills = skills.categorias.map((c) => renderizarSkillGroup(c, ctx)).join('');
-
   const contenido = reemplazar(plantillas.proyectosLista, {
     ...ctx,
-    filtro_categorias: filtro,
-    lista_todos_los_proyectos: cardsProyectos,
-    lista_repos_academicos: cardsRepos,
-    lista_skill_groups: gruposSkills,
+    filtro_categorias: renderizarFiltroCategorias(ctx),
+    lista_todos_los_proyectos: proyectos.map((p, i) => renderizarProjectCard(p, ctx, i)).join(''),
+    lista_repos_academicos: repositorios.map((r) => renderizarRepoCard(r, ctx)).join(''),
+    lista_skill_groups: skills.categorias.map((c, i) => renderizarSkillGroup(c, ctx, i)).join(''),
+    total_proyectos: proyectos.length,
+    total_repos: repositorios.length,
   });
 
   return envolverEnLayout(contenido, {
@@ -319,20 +458,27 @@ function generarProyectosLista(ctx) {
   }, ctx);
 }
 
-function generarProyectoDetalle(proyecto, ctx) {
+function generarProyectoDetalle(proyecto, ctx, indice) {
   const tech = proyecto.tecnologias.map((t) => `<li>${t}</li>`).join('');
 
+  const etiquetasEnlace = {
+    github: 'GitHub', landing: ctx.i18n.enlace_landing,
+    memoria: ctx.i18n.enlace_memoria, slides: ctx.i18n.enlace_slides,
+    linkedin: 'LinkedIn', cartel: ctx.i18n.enlace_cartel, video: ctx.i18n.enlace_video,
+  };
+
   const enlaces = Object.entries(proyecto.enlaces || {})
-    .map(([tipo, url]) => `<a href="${url}" target="_blank" rel="noopener" class="btn btn--secundario">${tipo}</a>`)
+    .filter(([, url]) => limpiar(url))
+    .map(([tipo, url]) => `<a href="${url}" target="_blank" rel="noopener" class="btn btn--linea">${etiquetasEnlace[tipo] || tipo}<span aria-hidden="true">↗</span></a>`)
     .join('');
 
   const relacionados = proyectos
     .filter((p) => p.id !== proyecto.id && p.categorias.some((c) => proyecto.categorias.includes(c)))
     .slice(0, 2)
-    .map((p) => renderizarProjectCard(p, ctx))
+    .map((p, i) => renderizarProjectCard(p, ctx, i))
     .join('');
 
-  const notaAcademica = proyecto.nota_academica ? `<span>${proyecto.nota_academica}</span>` : '';
+  const nota = limpiar(proyecto.nota_academica);
 
   const contenido = reemplazar(plantillas.proyectoDetalle, {
     ...ctx,
@@ -341,10 +487,14 @@ function generarProyectoDetalle(proyecto, ctx) {
       resumen: proyecto.resumen[ctx.idioma],
       descripcion: proyecto.descripcion[ctx.idioma],
     },
+    portada: renderizarPortada(proyecto.titulo, proyecto.imagen, indice),
     lista_tecnologias: tech,
     lista_enlaces: enlaces,
     lista_proyectos_relacionados: relacionados,
-    nota_academica_si_existe: notaAcademica,
+    nota_academica_si_existe: nota ? `<div class="dato"><dt>${ctx.i18n.nota_academica}</dt><dd>${escaparHtml(nota)}</dd></div>` : '',
+    bloque_relacionados: relacionados
+      ? `<section class="seccion reveal"><div class="contenedor"><p class="etiqueta-seccion">${ctx.i18n.tambien_te_puede_interesar}</p><div class="rejilla-proyectos rejilla-proyectos--duo">${relacionados}</div></div></section>`
+      : '',
   });
 
   return envolverEnLayout(contenido, {
@@ -356,19 +506,18 @@ function generarProyectoDetalle(proyecto, ctx) {
 }
 
 function generarTrayectoria(ctx) {
-  // CAMBIO: orden invertido, de mas reciente (2026) a mas antiguo (2021)
   const timelineOrdenado = [...timeline].sort((a, b) => {
-    return `${b.anio}${b.mes || '00'}`.localeCompare(`${a.anio}${a.mes || '00'}`);
+    const mesA = /^\d+$/.test(String(a.mes)) ? a.mes : '00';
+    const mesB = /^\d+$/.test(String(b.mes)) ? b.mes : '00';
+    return `${b.anio}${mesB}`.localeCompare(`${a.anio}${mesA}`);
   });
-  const itemsTimeline = timelineOrdenado.map((h) => renderizarTimelineItem(h, ctx)).join('');
 
   const charlasOrdenadas = [...charlas].sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
-  const cardsCharlas = charlasOrdenadas.map((c) => renderizarCharlaCard(c, ctx)).join('');
 
   const contenido = reemplazar(plantillas.trayectoria, {
     ...ctx,
-    lista_timeline_items: itemsTimeline,
-    lista_charlas: cardsCharlas,
+    lista_timeline_items: timelineOrdenado.map((h) => renderizarTimelineItem(h, ctx)).join(''),
+    lista_charlas: charlasOrdenadas.map((c) => renderizarCharlaCard(c, ctx)).join(''),
   });
 
   return envolverEnLayout(contenido, {
@@ -379,16 +528,25 @@ function generarTrayectoria(ctx) {
 }
 
 function generarCharlaDetalle(charla, ctx) {
+  const etiquetasEnlace = {
+    github: 'GitHub', linkedin: 'LinkedIn', cartel: ctx.i18n.enlace_cartel,
+    slides: ctx.i18n.enlace_slides, video: ctx.i18n.enlace_video,
+  };
+
   const enlaces = Object.entries(charla.enlaces || {})
-    .filter(([, url]) => url)
-    .map(([tipo, url]) => `<a href="${url}" target="_blank" rel="noopener" class="btn btn--secundario">${tipo}</a>`)
+    .filter(([, url]) => limpiar(url))
+    .map(([tipo, url]) => `<a href="${url}" target="_blank" rel="noopener" class="btn btn--linea">${etiquetasEnlace[tipo] || tipo}<span aria-hidden="true">↗</span></a>`)
     .join('');
 
-  let proyectoRelacionadoHtml = '';
+  let relacionadoHtml = '';
   if (charla.proyecto_relacionado) {
     const proyecto = proyectos.find((p) => p.id === charla.proyecto_relacionado);
-    if (proyecto) proyectoRelacionadoHtml = renderizarProjectCard(proyecto, ctx);
+    if (proyecto) {
+      relacionadoHtml = `<section class="seccion reveal"><div class="contenedor"><p class="etiqueta-seccion">${ctx.i18n.proyecto_relacionado}</p><div class="rejilla-proyectos rejilla-proyectos--duo">${renderizarProjectCard(proyecto, ctx, 0)}</div></div></section>`;
+    }
   }
+
+  const lugar = limpiar(charla.lugar);
 
   const contenido = reemplazar(plantillas.charlaDetalle, {
     ...ctx,
@@ -399,8 +557,9 @@ function generarCharlaDetalle(charla, ctx) {
       resumen: charla.resumen[ctx.idioma],
       fecha_formateada: formatearFecha(charla.fecha, ctx.idioma),
     },
-    lista_enlaces_charla: enlaces,
-    proyecto_relacionado_si_existe: proyectoRelacionadoHtml,
+    lugar_si_existe: lugar ? `<div class="dato"><dt>${ctx.i18n.charla_lugar}</dt><dd>${escaparHtml(lugar)}</dd></div>` : '',
+    bloque_enlaces: enlaces ? `<div class="detalle__enlaces">${enlaces}</div>` : '',
+    bloque_relacionado: relacionadoHtml,
   });
 
   return envolverEnLayout(contenido, {
@@ -411,6 +570,23 @@ function generarCharlaDetalle(charla, ctx) {
 }
 
 // ============================================
+// SITEMAP
+// ============================================
+function generarSitemap() {
+  const rutas = ['/'];
+  rutas.push('/proyectos/');
+  rutas.push('/trayectoria/');
+  proyectos.forEach((p) => rutas.push(`/proyectos/${p.id}/`));
+  charlas.forEach((c) => rutas.push(`/trayectoria/charlas/${c.id}/`));
+
+  const urls = IDIOMAS.flatMap((idioma) =>
+    rutas.map((ruta) => `  <url><loc>${BASE_URL}/${idioma}${ruta}</loc></url>`)
+  ).join('\n');
+
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
+}
+
+// ============================================
 // FUNCION PRINCIPAL
 // ============================================
 async function build() {
@@ -418,7 +594,9 @@ async function build() {
 
   fs.rmSync(DIST, { recursive: true, force: true });
 
+  console.log('Consultando lenguajes en GitHub:');
   await enriquecerRepositorios();
+  console.log('');
 
   for (const idioma of IDIOMAS) {
     const ctx = { idioma, site, i18n: i18n[idioma] };
@@ -427,9 +605,9 @@ async function build() {
     escribirArchivo(`${idioma}/proyectos/index.html`, generarProyectosLista(ctx));
     escribirArchivo(`${idioma}/trayectoria/index.html`, generarTrayectoria(ctx));
 
-    for (const proyecto of proyectos) {
-      escribirArchivo(`${idioma}/proyectos/${proyecto.id}/index.html`, generarProyectoDetalle(proyecto, ctx));
-    }
+    proyectos.forEach((proyecto, indice) => {
+      escribirArchivo(`${idioma}/proyectos/${proyecto.id}/index.html`, generarProyectoDetalle(proyecto, ctx, indice));
+    });
 
     for (const charla of charlas) {
       escribirArchivo(`${idioma}/trayectoria/charlas/${charla.id}/index.html`, generarCharlaDetalle(charla, ctx));
@@ -441,7 +619,22 @@ async function build() {
   fs.cpSync(path.join(RAIZ, 'public'), DIST, { recursive: true });
   concatenarCSS();
 
-  escribirArchivo('index.html', `<meta http-equiv="refresh" content="0; url=/es/">`);
+  escribirArchivo('index.html', `<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>${site.nombre}</title>
+  <script>
+    var idioma = (navigator.language || 'es').toLowerCase().startsWith('en') ? 'en' : 'es';
+    window.location.replace('/' + idioma + '/');
+  </script>
+  <meta http-equiv="refresh" content="0; url=/es/">
+</head>
+<body><a href="/es/">Portfolio</a></body>
+</html>`);
+
+  escribirArchivo('sitemap.xml', generarSitemap());
+  escribirArchivo('robots.txt', `User-agent: *\nAllow: /\nSitemap: ${BASE_URL}/sitemap.xml\n`);
 
   console.log('\nBuild completado. Revisa la carpeta dist/');
 }

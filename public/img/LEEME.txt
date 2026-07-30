@@ -1,0 +1,12 @@
+Coloca aqui las imagenes del portfolio.
+
+- perfil.jpg                        -> foto de perfil (formato vertical, ideal 4:5)
+- proyectos/webbuilder-cover.png    -> portada de WebBuilder
+- proyectos/gamerank-cover.png      -> portada de GameRank
+- proyectos/invernadero-cover.png   -> portada de Invernadero IoT
+- proyectos/tactical-battle-cover.png -> portada de Tactical Battle
+- og-default.png                    -> imagen para compartir en redes (1200x630)
+
+Mientras no existan, el build muestra automaticamente un monograma
+tipografico en su lugar. Las rutas se configuran en content/site.json
+y content/proyectos.json.

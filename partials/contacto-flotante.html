@@ -1,26 +1,29 @@
-<div class="contacto-flotante" id="contacto-flotante">
+<div class="flotante" id="contacto-flotante">
 
-    <button class="contacto-flotante__boton" id="contacto-flotante-toggle" aria-label="{{i18n.contacto_abrir}}" aria-expanded="false">
-      <span class="contacto-flotante__icono">👤</span>
-    </button>
-  
-    <div class="contacto-flotante__menu" id="contacto-flotante-menu" role="menu">
-      <span class="contacto-flotante__titulo">{{i18n.contacto_titulo_flotante}}</span>
-  
-      <a href="mailto:{{site.contacto.email}}" class="contacto-flotante__item" role="menuitem">
-        <span class="contacto-flotante__item-icono">✉</span>
-        <span>Gmail</span>
-      </a>
-  
-      <a href="{{site.contacto.linkedin}}" target="_blank" rel="noopener" class="contacto-flotante__item" role="menuitem">
-        <span class="contacto-flotante__item-icono">in</span>
-        <span>LinkedIn</span>
-      </a>
-  
-      <a href="tel:{{site.contacto.telefono_href}}" class="contacto-flotante__item" role="menuitem">
-        <span class="contacto-flotante__item-icono">☎</span>
-        <span>{{site.contacto.telefono}}</span>
-      </a>
-    </div>
-  
+  <div class="flotante__menu" id="contacto-flotante-menu" role="menu">
+    <p class="flotante__titulo">{{i18n.contacto_titulo_flotante}}</p>
+
+    <a href="mailto:{{site.contacto.email}}" class="flotante__item" role="menuitem" style="--i: 0">
+      <span class="flotante__item-etiqueta">Email</span>
+      <span class="flotante__item-valor">{{site.contacto.email}}</span>
+    </a>
+
+    <a href="{{site.contacto.linkedin}}" target="_blank" rel="noopener" class="flotante__item" role="menuitem" style="--i: 1">
+      <span class="flotante__item-etiqueta">LinkedIn</span>
+      <span class="flotante__item-valor">{{site.nombre_corto}}</span>
+    </a>
+
+    <a href="tel:{{site.contacto.telefono_href}}" class="flotante__item" role="menuitem" style="--i: 2">
+      <span class="flotante__item-etiqueta">{{i18n.contacto_titulo_flotante}}</span>
+      <span class="flotante__item-valor">{{site.contacto.telefono}}</span>
+    </a>
   </div>
+
+  <button type="button" class="flotante__boton" id="contacto-flotante-toggle" aria-label="{{i18n.contacto_abrir}}" aria-expanded="false">
+    <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M4 6h16v12H4z"/>
+      <path d="M4 7l8 6 8-6"/>
+    </svg>
+  </button>
+
+</div>

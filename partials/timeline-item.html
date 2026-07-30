@@ -1,9 +1,14 @@
-<div class="timeline-item timeline-item--{{hito.tipo}}">
-    <span class="timeline-item__fecha">{{hito.anio}}</span>
-  
-    <div class="timeline-item__contenido">
-      <h4 class="timeline-item__titulo">{{hito.titulo}}</h4>
-      {{institucion_si_existe}}
-      {{descripcion_si_existe}}
-    </div>
+<div class="timeline-item timeline-item--{{hito.tipo}} reveal">
+  <div class="timeline-item__marca" aria-hidden="true"></div>
+
+  <div class="timeline-item__meta">
+    <span class="timeline-item__anio">{{hito.anio}}</span>
+    <span class="timeline-item__tipo">{{hito.tipo_etiqueta}}</span>
   </div>
+
+  <div class="timeline-item__contenido">
+    <h3 class="timeline-item__titulo">{{hito.titulo}}</h3>
+    {{institucion_si_existe}}
+    {{descripcion_si_existe}}
+  </div>
+</div>
