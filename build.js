@@ -128,6 +128,7 @@ const partials = {
   repoCard: leerHTML('partials/repo-card.html'),
   skillGroup: leerHTML('partials/skill-group.html'),
   timelineItem: leerHTML('partials/timeline-item.html'),
+  hitoMini: leerHTML('partials/hito-mini.html'),
   filtroCategorias: leerHTML('partials/filtro-categorias.html'),
   charlaCard: leerHTML('partials/charla-card.html'),
   contactoFlotante: leerHTML('partials/contacto-flotante.html'),
@@ -246,6 +247,7 @@ function renderizarProjectCard(proyecto, ctx, indice = 0) {
     proyecto: {
       ...proyecto,
       resumen: proyecto.resumen[ctx.idioma],
+      estado: proyecto.estado[ctx.idioma],
       categorias_espacio: proyecto.categorias.join(' '),
       indice_formateado: String(indice + 1).padStart(2, '0'),
     },
@@ -280,18 +282,32 @@ function renderizarRepoCard(repo, ctx) {
 }
 
 function renderizarSkillGroup(categoria, ctx, indice = 0) {
-  const items = categoria.items.map((i) => `<li>${i}</li>`).join('');
-  const nivel = limpiar(categoria.nivel);
+  const items = categoria.items
+    .map((item) => (typeof item === 'object' ? item[ctx.idioma] : item))
+    .map((i) => `<li>${escaparHtml(i)}</li>`)
+    .join('');
+  const nivelClave = categoria.nivel_clave || '';
+  const nivelTexto = categoria.nivel ? limpiar(categoria.nivel[ctx.idioma]) : '';
 
   return reemplazar(partials.skillGroup, {
     ...ctx,
     categoria: {
       nombre: categoria.nombre[ctx.idioma],
-      nivel_clase: nivel.toLowerCase(),
+      nivel_clase: nivelClave,
       indice_formateado: String(indice + 1).padStart(2, '0'),
     },
-    nivel_si_existe: nivel ? `<span class="skill-group__nivel skill-group__nivel--${nivel.toLowerCase()}">${escaparHtml(nivel)}</span>` : '',
+    nivel_si_existe: nivelTexto ? `<span class="skill-group__nivel skill-group__nivel--${nivelClave}">${escaparHtml(nivelTexto)}</span>` : '',
     lista_items: items,
+  });
+}
+
+function renderizarHitoMini(hito, ctx) {
+  return reemplazar(partials.hitoMini, {
+    ...ctx,
+    hito: {
+      anio: hito.anio,
+      titulo: hito.titulo[ctx.idioma],
+    },
   });
 }
 
@@ -414,6 +430,15 @@ function envolverEnLayout(contenidoHtml, meta, ctx) {
 function generarHome(ctx) {
   const destacados = proyectos.filter((p) => p.destacado).slice(0, 4);
 
+  const hitosTeaser = [...timeline]
+    .filter((h) => h.tipo !== 'proyecto')
+    .sort((a, b) => {
+      const mesA = /^\d+$/.test(String(a.mes)) ? a.mes : '00';
+      const mesB = /^\d+$/.test(String(b.mes)) ? b.mes : '00';
+      return `${a.anio}${mesA}`.localeCompare(`${b.anio}${mesB}`);
+    })
+    .slice(-4);
+
   const setupEntradas = [
     { etiqueta: ctx.i18n.setup_so, valor: limpiar(site.setup.so) },
     { etiqueta: ctx.i18n.setup_editor, valor: limpiar(site.setup.editor) },
@@ -440,6 +465,7 @@ function generarHome(ctx) {
     lista_bio_parrafos: renderizarBioParrafos(site.bio_parrafos, ctx),
     lista_valores: site.valores.map((v, i) => renderizarValorCard(v, ctx, i)).join(''),
     lista_proyectos_destacados: destacados.map((p, i) => renderizarProjectCard(p, ctx, i)).join(''),
+    lista_hitos_mini: hitosTeaser.map((h) => renderizarHitoMini(h, ctx)).join(''),
     seccion_setup: setupHtml,
   });
 
@@ -497,6 +523,7 @@ function generarProyectoDetalle(proyecto, ctx, indice) {
       ...proyecto,
       resumen: proyecto.resumen[ctx.idioma],
       descripcion: proyecto.descripcion[ctx.idioma],
+      estado: proyecto.estado[ctx.idioma],
     },
     portada: renderizarPortada(proyecto.titulo, proyecto.imagen, indice),
     lista_tecnologias: tech,

@@ -110,45 +110,28 @@
   });
 })();
 
-
 /* ============================================
-   3. BARRA: se oculta al bajar, reaparece al subir
+   3. BARRA: siempre visible, con fondo al hacer scroll
    ============================================ */
-(function barraScroll() {
-  const barra = document.getElementById('barra');
-  if (!barra) return;
-
-  const UMBRAL = 8;
-  const ALTURA_ACTIVACION = 40;
-  let ultimoScroll = window.scrollY;
-  let pendiente = false;
-
-  function actualizar() {
-    const actual = window.scrollY;
-    const diferencia = actual - ultimoScroll;
-
-    if (actual <= ALTURA_ACTIVACION) {
-      barra.classList.remove('barra--oculta', 'barra--scrolled');
-    } else {
-      barra.classList.add('barra--scrolled');
-
-      if (Math.abs(diferencia) > UMBRAL && !document.body.classList.contains('menu-abierto')) {
-        barra.classList.toggle('barra--oculta', diferencia > 0);
-        ultimoScroll = actual;
+   (function barraScroll() {
+    const barra = document.getElementById('barra');
+    if (!barra) return;
+  
+    const ALTURA_ACTIVACION = 40;
+    let pendiente = false;
+  
+    function actualizar() {
+      barra.classList.toggle('barra--scrolled', window.scrollY > ALTURA_ACTIVACION);
+      pendiente = false;
+    }
+  
+    window.addEventListener('scroll', () => {
+      if (!pendiente) {
+        window.requestAnimationFrame(actualizar);
+        pendiente = true;
       }
-    }
-
-    if (actual <= ALTURA_ACTIVACION) ultimoScroll = actual;
-    pendiente = false;
-  }
-
-  window.addEventListener('scroll', () => {
-    if (!pendiente) {
-      window.requestAnimationFrame(actualizar);
-      pendiente = true;
-    }
-  }, { passive: true });
-})();
+    }, { passive: true });
+  })();
 
 
 /* ============================================

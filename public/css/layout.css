@@ -71,10 +71,6 @@
   border-bottom: 1px solid transparent;
 }
 
-.barra--oculta {
-  transform: translateY(-100%);
-}
-
 .barra--scrolled {
   background: color-mix(in srgb, var(--c-fondo) 88%, transparent);
   backdrop-filter: blur(14px);
@@ -169,19 +165,20 @@
   height: 38px;
   padding: 0 1rem 0 1.1rem;
   margin-left: 0.35rem;
-  border: 1px solid var(--c-borde-fuerte);
+  border: none;
   border-radius: 999px;
+  background: var(--c-acento);
+  color: var(--c-sobre-acento);
   font-family: var(--f-mono);
   font-size: var(--t-mono);
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  transition: border-color var(--dur-rapida), color var(--dur-rapida);
+  transition: background-color var(--dur-rapida), opacity var(--dur-rapida);
 }
 
 .boton-menu:hover {
-  border-color: var(--c-acento);
-  color: var(--c-acento);
+  opacity: 0.88;
 }
 
 /* ============================================

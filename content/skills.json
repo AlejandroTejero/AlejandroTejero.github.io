@@ -1,39 +1,49 @@
 {
-    "categorias": [
-      {
-        "nombre": { "es": "Lenguajes de programación", "en": "Programming languages" },
-        "nivel": "Intermedio",
-        "items": ["Python", "C", "C++", "SQL", "JavaScript", "Shell scripting", "Go", "Pascal"]
-      },
-      {
-        "nombre": { "es": "Backend", "en": "Backend" },
-        "nivel": "Intermedio",
-        "items": ["Django", "APIs REST"]
-      },
-      {
-        "nombre": { "es": "Bases de datos", "en": "Databases" },
-        "nivel": "Intermedio",
-        "items": ["PostgreSQL", "MySQL"]
-      },
-      {
-        "nombre": { "es": "Redes", "en": "Networking" },
-        "nivel": "Basico",
-        "items": ["TCP/IP", "IPv4/IPv6", "OSPF", "HTTP/HTTPS", "SSH", "Wireshark", "NetGUI"]
-      },
-      {
-        "nombre": { "es": "Sistemas", "en": "Systems" },
-        "nivel": "Intermedio",
-        "items": ["Windows", "Linux", "Virtualizacion"]
-      },
-      {
-        "nombre": { "es": "Herramientas", "en": "Tools" },
-        "nivel": "Intermedio",
-        "items": ["Git", "GitHub", "GitLab", "VSCode", "PyCharm", "Microsoft 365", "SAP", "Power BI"]
-      },
-      {
-        "nombre": { "es": "Idiomas", "en": "Languages" },
-        "nivel": null,
-        "items": ["Espanol (nativo)", "Ingles (B1, preparando B2)"]
-      }
-    ]
-  }
+  "categorias": [
+    {
+      "nombre": { "es": "Lenguajes de programación", "en": "Programming languages" },
+      "nivel_clave": "intermedio",
+      "nivel": { "es": "Intermedio", "en": "Intermediate" },
+      "items": ["Python", "C", "C++", "SQL", "JavaScript", "Shell scripting", "Go", "Pascal"]
+    },
+    {
+      "nombre": { "es": "Backend", "en": "Backend" },
+      "nivel_clave": "intermedio",
+      "nivel": { "es": "Intermedio", "en": "Intermediate" },
+      "items": ["Django", "APIs REST"]
+    },
+    {
+      "nombre": { "es": "Bases de datos", "en": "Databases" },
+      "nivel_clave": "intermedio",
+      "nivel": { "es": "Intermedio", "en": "Intermediate" },
+      "items": ["PostgreSQL", "MySQL"]
+    },
+    {
+      "nombre": { "es": "Redes", "en": "Networking" },
+      "nivel_clave": "basico",
+      "nivel": { "es": "Basico", "en": "Basic" },
+      "items": ["TCP/IP", "IPv4/IPv6", "OSPF", "HTTP/HTTPS", "SSH", "Wireshark", "NetGUI"]
+    },
+    {
+      "nombre": { "es": "Sistemas", "en": "Systems" },
+      "nivel_clave": "intermedio",
+      "nivel": { "es": "Intermedio", "en": "Intermediate" },
+      "items": ["Windows", "Linux", "Virtualizacion"]
+    },
+    {
+      "nombre": { "es": "Herramientas", "en": "Tools" },
+      "nivel_clave": "intermedio",
+      "nivel": { "es": "Intermedio", "en": "Intermediate" },
+      "items": ["Git", "GitHub", "GitLab", "VSCode", "PyCharm", "Microsoft 365", "SAP", "Power BI"]
+    },
+    {
+      "nombre": { "es": "Idiomas", "en": "Languages" },
+      "nivel_clave": null,
+      "nivel": null,
+      "items": [
+        { "es": "Espanol (nativo)", "en": "Spanish (native)" },
+        { "es": "Ingles (B1, preparando B2)", "en": "English (B1, working towards B2)" }
+      ]
+    }
+  ]
+}

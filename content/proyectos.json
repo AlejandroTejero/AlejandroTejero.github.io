@@ -14,7 +14,7 @@
     },
     "tecnologias": ["Django", "PostgreSQL", "Docker", "n8n", "LLMs", "OAuth"],
     "periodo": "2025 - 2026",
-    "estado": "Finalizado",
+    "estado": { "es": "Finalizado", "en": "Completed" },
     "nota_academica": "9,9 - Propuesto para Matricula de Honor",
     "imagen": "/img/proyectos/webbuilder-cover.png",
     "enlaces": {
@@ -38,7 +38,7 @@
     },
     "tecnologias": ["Django", "HTMX", "REST API", "XML/JSON"],
     "periodo": "2025",
-    "estado": "Finalizado",
+    "estado": { "es": "Finalizado", "en": "Completed" },
     "nota_academica": "9,9 - Matricula de Honor",
     "imagen": "/img/proyectos/gamerank-cover.png",
     "enlaces": {
@@ -60,7 +60,7 @@
     },
     "tecnologias": ["C++", "POO", "Doxygen"],
     "periodo": "2024",
-    "estado": "Finalizado",
+    "estado": { "es": "Finalizado", "en": "Completed" },
     "nota_academica": null,
     "imagen": "/img/proyectos/invernadero-cover.png",
     "enlaces": {
@@ -82,7 +82,7 @@
     },
     "tecnologias": ["C++", "Sockets TCP", "Cliente-Servidor"],
     "periodo": "2025",
-    "estado": "Finalizado",
+    "estado": { "es": "Finalizado", "en": "Completed" },
     "nota_academica": null,
     "imagen": "/img/proyectos/tactical-battle-cover.png",
     "enlaces": {

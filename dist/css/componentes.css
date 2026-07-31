@@ -64,6 +64,79 @@
   grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
 }
 
+.rejilla-proyectos--destacados {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 1100px) {
+  .rejilla-proyectos--destacados {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .rejilla-proyectos--destacados {
+    grid-template-columns: 1fr;
+  }
+}
+
+.trayectoria-mini {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+  position: relative;
+  padding-top: 1.5rem;
+}
+
+.trayectoria-mini::before {
+  content: "";
+  position: absolute;
+  top: calc(1.5rem + 4px);
+  left: 4%;
+  right: 4%;
+  height: var(--grosor-linea);
+  background: var(--c-borde);
+}
+
+.hito-mini {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.6rem;
+  position: relative;
+}
+
+.hito-mini__punto {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--c-acento);
+}
+
+.hito-mini__anio {
+  font-family: var(--f-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--c-texto-tenue);
+}
+
+.hito-mini__titulo {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+@media (max-width: 700px) {
+  .trayectoria-mini {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 1.5rem;
+  }
+
+  .trayectoria-mini::before {
+    display: none;
+  }
+}
+
 .rejilla-valores {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));

@@ -104,8 +104,26 @@
       <a href="{{prefijo_idioma}}/proyectos/" class="enlace-flecha">{{i18n.ver_todos_proyectos}}<span aria-hidden="true">→</span></a>
     </div>
 
-    <div class="rejilla-proyectos">
+    <div class="rejilla-proyectos rejilla-proyectos--destacados">
       {{lista_proyectos_destacados}}
+    </div>
+
+  </div>
+</section>
+
+<section class="seccion seccion--trayectoria-teaser">
+  <div class="contenedor">
+
+    <div class="seccion__cabecera seccion__cabecera--fila reveal">
+      <div>
+        <p class="etiqueta-seccion">{{i18n.trayectoria_titulo}}</p>
+        <h2 class="titular-seccion">{{i18n.trayectoria_teaser_intro}}</h2>
+      </div>
+      <a href="{{prefijo_idioma}}/trayectoria/" class="enlace-flecha">{{i18n.ver_toda_trayectoria}}<span aria-hidden="true">→</span></a>
+    </div>
+
+    <div class="trayectoria-mini reveal" style="--reveal-delay: 90ms">
+      {{lista_hitos_mini}}
     </div>
 
   </div>
