@@ -149,29 +149,51 @@
 
   <main id="main-content">
     <section class="hero" id="hero">
-  <div class="contenedor hero__interior">
+  <div class="contenedor hero__grid">
 
-    <p class="hero__kicker linea" style="--i: 0">
-      <span class="linea__interior">
-        <span class="hero__kicker-punto" aria-hidden="true"></span>Portfolio
-      </span>
-    </p>
+    <div class="hero__interior">
 
-    <h1 class="hero__titular">
-      <span class="linea" style="--i: 1"><span class="linea__interior">Hi, I'm</span></span>
-      <span class="linea" style="--i: 2"><span class="linea__interior"><em>Alejandro</em>.</span></span>
-    </h1>
+      <p class="hero__kicker linea" style="--i: 0">
+        <span class="linea__interior">
+          <span class="hero__kicker-punto" aria-hidden="true"></span>Portfolio
+        </span>
+      </p>
 
-    <p class="hero__rol linea" style="--i: 3">
-      <span class="linea__interior">Telematics Engineer - Intern at Bosch</span>
-    </p>
+      <h1 class="hero__titular">
+        <span class="linea" style="--i: 1"><span class="linea__interior">Hi, I'm</span></span>
+        <span class="linea" style="--i: 2"><span class="linea__interior"><em>Alejandro</em>.</span></span>
+      </h1>
 
-    <div class="hero__acciones linea" style="--i: 4">
-      <span class="linea__interior">
-        <a href="/proyectos/" class="btn btn--solido">View projects<span aria-hidden="true">→</span></a>
-        <a href="/cv/CV_Alejandro_Tejero_EN.pdf" class="btn btn--linea" download>Download CV<span aria-hidden="true">↓</span></a>
-      </span>
+      <p class="hero__rol linea" style="--i: 3">
+        <span class="linea__interior">Telematics Engineer - Intern at Bosch</span>
+      </p>
+
+      <div class="hero__acciones linea" style="--i: 4">
+        <span class="linea__interior">
+          <a href="/proyectos/" class="btn btn--solido">View projects<span aria-hidden="true">→</span></a>
+          <a href="/cv/CV_Alejandro_Tejero_EN.pdf" class="btn btn--linea" download>Download CV<span aria-hidden="true">↓</span></a>
+        </span>
+      </div>
+
     </div>
+
+    <aside class="hero__aside linea" style="--i: 5">
+      <div class="linea__interior hero__aside-interior">
+        <div class="hero__aside-avatar"><img src="/img/perfil.jpg" alt="Alejandro Tejero de la Morena"></div>
+
+        <p class="hero__aside-intro">Recently graduated in Telematics, focused on backend development, AI-driven automation and cybersecurity. Currently applying all of this at Bosch, working with data, Power BI and SAP.</p>
+
+        <div class="hero__aside-enlaces">
+          <p class="etiqueta-seccion">Quick links</p>
+          <ul class="hero__aside-lista">
+            <li><a href="https://github.com/AlejandroTejero" target="_blank" rel="noopener" class="enlace-flecha">GitHub<span aria-hidden="true">↗</span></a></li>
+            <li><a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener" class="enlace-flecha">LinkedIn<span aria-hidden="true">↗</span></a></li>
+            <li><a href="/cv/CV_Alejandro_Tejero_EN.pdf" download class="enlace-flecha">Download CV<span aria-hidden="true">↓</span></a></li>
+            <li><a href="mailto:atejerodelamorena@gmail.com" class="enlace-flecha">Email<span aria-hidden="true">↗</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </aside>
 
   </div>
 
@@ -193,7 +215,7 @@
 
     <div class="sobre-mi">
       <div class="sobre-mi__aside reveal">
-        <div class="retrato"><span class="retrato__monograma" aria-hidden="true">AT</span></div>
+        <div class="retrato"><img src="/img/perfil.jpg" alt="Alejandro Tejero de la Morena"></div>
         <ul class="badges">
           <li class="badge">Interning at Bosch</li><li class="badge">Madrid, Spain</li><li class="badge">English B1, working towards B2</li>
         </ul>

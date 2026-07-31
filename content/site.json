@@ -14,6 +14,10 @@
     "es": "Ingeniero Telematico - Practicas en Bosch",
     "en": "Telematics Engineer - Intern at Bosch"
   },
+  "hero_intro": {
+    "es": "Recien graduado en Telematica, con la cabeza puesta en backend, automatizacion con IA y ciberseguridad. Ahora mismo aplicando todo esto en Bosch, entre datos, Power BI y SAP.",
+    "en": "Recently graduated in Telematics, focused on backend development, AI-driven automation and cybersecurity. Currently applying all of this at Bosch, working with data, Power BI and SAP."
+  },
   "contacto": {
     "email": "atejerodelamorena@gmail.com",
     "telefono": "+34 620 62 13 84",

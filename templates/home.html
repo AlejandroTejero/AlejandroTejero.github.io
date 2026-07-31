@@ -1,27 +1,49 @@
 <section class="hero" id="hero">
-  <div class="contenedor hero__interior">
+  <div class="contenedor hero__grid">
 
-    <p class="hero__kicker linea" style="--i: 0">
-      <span class="linea__interior">
-        <span class="hero__kicker-punto" aria-hidden="true"></span>{{i18n.hero_kicker}}
-      </span>
-    </p>
+    <div class="hero__interior">
 
-    <h1 class="hero__titular">
-      <span class="linea" style="--i: 1"><span class="linea__interior">{{i18n.hero_saludo}}</span></span>
-      <span class="linea" style="--i: 2"><span class="linea__interior"><em>Alejandro</em>.</span></span>
-    </h1>
+      <p class="hero__kicker linea" style="--i: 0">
+        <span class="linea__interior">
+          <span class="hero__kicker-punto" aria-hidden="true"></span>{{i18n.hero_kicker}}
+        </span>
+      </p>
 
-    <p class="hero__rol linea" style="--i: 3">
-      <span class="linea__interior">{{hero.rol}}</span>
-    </p>
+      <h1 class="hero__titular">
+        <span class="linea" style="--i: 1"><span class="linea__interior">{{i18n.hero_saludo}}</span></span>
+        <span class="linea" style="--i: 2"><span class="linea__interior"><em>Alejandro</em>.</span></span>
+      </h1>
 
-    <div class="hero__acciones linea" style="--i: 4">
-      <span class="linea__interior">
-        <a href="{{prefijo_idioma}}/proyectos/" class="btn btn--solido">{{i18n.ver_proyectos}}<span aria-hidden="true">→</span></a>
-        <a href="{{site.cv_pdf}}" class="btn btn--linea" download>{{i18n.descargar_cv}}<span aria-hidden="true">↓</span></a>
-      </span>
+      <p class="hero__rol linea" style="--i: 3">
+        <span class="linea__interior">{{hero.rol}}</span>
+      </p>
+
+      <div class="hero__acciones linea" style="--i: 4">
+        <span class="linea__interior">
+          <a href="{{prefijo_idioma}}/proyectos/" class="btn btn--solido">{{i18n.ver_proyectos}}<span aria-hidden="true">→</span></a>
+          <a href="{{site.cv_pdf}}" class="btn btn--linea" download>{{i18n.descargar_cv}}<span aria-hidden="true">↓</span></a>
+        </span>
+      </div>
+
     </div>
+
+    <aside class="hero__aside linea" style="--i: 5">
+      <div class="linea__interior hero__aside-interior">
+        <div class="hero__aside-avatar">{{retrato}}</div>
+
+        <p class="hero__aside-intro">{{hero.intro}}</p>
+
+        <div class="hero__aside-enlaces">
+          <p class="etiqueta-seccion">{{i18n.hero_aside_titulo}}</p>
+          <ul class="hero__aside-lista">
+            <li><a href="{{site.contacto.github}}" target="_blank" rel="noopener" class="enlace-flecha">GitHub<span aria-hidden="true">↗</span></a></li>
+            <li><a href="{{site.contacto.linkedin}}" target="_blank" rel="noopener" class="enlace-flecha">LinkedIn<span aria-hidden="true">↗</span></a></li>
+            <li><a href="{{site.cv_pdf}}" download class="enlace-flecha">{{i18n.descargar_cv}}<span aria-hidden="true">↓</span></a></li>
+            <li><a href="mailto:{{site.contacto.email}}" class="enlace-flecha">Email<span aria-hidden="true">↗</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </aside>
 
   </div>
 

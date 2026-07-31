@@ -434,7 +434,7 @@ function generarHome(ctx) {
   const contenido = reemplazar(plantillas.home, {
     ...ctx,
     site: { ...site, cv_pdf: site.cv_pdf[ctx.idioma] },
-    hero: { rol: site.hero_rol[ctx.idioma], titulo: site.titulo[ctx.idioma] },
+    hero: { rol: site.hero_rol[ctx.idioma], titulo: site.titulo[ctx.idioma], intro: site.hero_intro[ctx.idioma] },
     retrato: renderizarFotoPerfil(),
     lista_badges: renderizarBadges(site.badges, ctx),
     lista_bio_parrafos: renderizarBioParrafos(site.bio_parrafos, ctx),
