@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0A192F" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#EDE7D9" media="(prefers-color-scheme: light)">
+
+  <title>Proyectos · Alejandro Tejero</title>
+  <meta name="description" content="Una seleccion de proyectos academicos y personales, desde backend con IA hasta sistemas cliente-servidor">
+
+  <link rel="canonical" href="https://alejandrotejero.github.io/es/proyectos/">
+  <link rel="alternate" hreflang="es" href="https://alejandrotejero.github.io/es/proyectos/">
+  <link rel="alternate" hreflang="en" href="https://alejandrotejero.github.io/proyectos/">
+  <link rel="alternate" hreflang="x-default" href="https://alejandrotejero.github.io/proyectos/">
+
+  <meta property="og:title" content="Proyectos">
+  <meta property="og:description" content="Una seleccion de proyectos academicos y personales, desde backend con IA hasta sistemas cliente-servidor">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alejandrotejero.github.io/es/proyectos/">
+  <meta property="og:image" content="https://alejandrotejero.github.io/img/og-default.png">
+  <meta property="og:locale" content="es">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script>
+    // Se aplica el tema antes de pintar para que no haya un flash de color equivocado.
+    (function () {
+      // Marca que hay JS: sin esta clase, el contenido con .reveal se ve siempre.
+      document.documentElement.classList.add('js');
+      try {
+        var guardado = localStorage.getItem('portfolio-tema');
+        var prefiereClaro = window.matchMedia('(prefers-color-scheme: light)').matches;
+        var tema = guardado || (prefiereClaro ? 'claro' : 'oscuro');
+        document.documentElement.setAttribute('data-tema', tema);
+      } catch (e) {
+        document.documentElement.setAttribute('data-tema', 'oscuro');
+      }
+    })();
+  </script>
+</head>
+<body class="">
+
+  <a href="#main-content" class="salto-contenido">Saltar al contenido</a>
+
+  <header class="barra" id="barra">
+  <div class="barra__interior">
+
+    <a href="/es/" class="barra__marca">
+      <span class="barra__marca-nombre">Alejandro Tejero</span>
+    </a>
+
+    <div class="barra__acciones">
+      <a href="/proyectos/" class="barra__idioma" aria-label="Cambiar idioma">
+        <span>EN</span>
+      </a>
+
+      <button type="button" class="barra__tema" id="toggle-tema" aria-label="Cambiar tema">
+        <svg class="icono icono--luna" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/>
+        </svg>
+        <svg class="icono icono--sol" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="4.2"/>
+          <path d="M12 2v2.6M12 19.4V22M2 12h2.6M19.4 12H22M4.9 4.9l1.9 1.9M17.2 17.2l1.9 1.9M19.1 4.9l-1.9 1.9M6.8 17.2l-1.9 1.9"/>
+        </svg>
+      </button>
+
+      <button type="button" class="boton-menu" id="boton-menu" aria-expanded="false" aria-controls="menu-overlay">
+        <span class="boton-menu__texto">
+          <span class="boton-menu__abrir">Menu</span>
+          <span class="boton-menu__cerrar">Cerrar</span>
+        </span>
+        <span class="boton-menu__lineas" aria-hidden="true">
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+
+  </div>
+</header>
+  <div class="menu" id="menu-overlay" aria-hidden="true" aria-label="Navegacion principal">
+  <div class="menu__panel">
+    <div class="menu__interior">
+
+      <nav class="menu__nav">
+        <ul class="menu__lista">
+          <li class="menu__item" style="--i: 0">
+            <a href="/es/" class="menu__enlace" data-nav="home">
+              <span class="menu__indice">01</span>
+              <span class="menu__texto">
+                <span class="menu__titulo">Inicio</span>
+                <span class="menu__desc">Quien soy y como trabajo</span>
+              </span>
+              <span class="menu__flecha" aria-hidden="true">→</span>
+            </a>
+          </li>
+
+          <li class="menu__item" style="--i: 1">
+            <a href="/es/proyectos/" class="menu__enlace" data-nav="proyectos">
+              <span class="menu__indice">02</span>
+              <span class="menu__texto">
+                <span class="menu__titulo">Proyectos</span>
+                <span class="menu__desc">Backend, IA y sistemas cliente-servidor</span>
+              </span>
+              <span class="menu__flecha" aria-hidden="true">→</span>
+            </a>
+          </li>
+
+          <li class="menu__item" style="--i: 2">
+            <a href="/es/trayectoria/" class="menu__enlace" data-nav="trayectoria">
+              <span class="menu__indice">03</span>
+              <span class="menu__texto">
+                <span class="menu__titulo">Trayectoria</span>
+                <span class="menu__desc">Formacion, experiencia y charlas</span>
+              </span>
+              <span class="menu__flecha" aria-hidden="true">→</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="menu__pie" style="--i: 3">
+        <div class="menu__bloque">
+          <p class="etiqueta-seccion">Donde encontrarme</p>
+          <ul class="menu__social">
+            <li><a href="https://github.com/AlejandroTejero" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="mailto:atejerodelamorena@gmail.com">Email</a></li>
+            <li><a href="tel:+34620621384">+34 620 62 13 84</a></li>
+          </ul>
+        </div>
+
+        <a href="mailto:atejerodelamorena@gmail.com?subject=Hola Alejandro, te escribo desde tu portfolio" class="btn btn--solido menu__cta">
+          Hablemos<span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <main id="main-content">
+    <section class="cabecera-pagina">
+  <div class="contenedor">
+    <p class="etiqueta-seccion linea" style="--i: 0"><span class="linea__interior">Proyectos</span></p>
+    <h1 class="titular-pagina">
+      <span class="linea" style="--i: 1"><span class="linea__interior">Proyectos</span></span>
+    </h1>
+    <p class="cabecera-pagina__intro linea" style="--i: 2"><span class="linea__interior">Una seleccion de proyectos academicos y personales, desde backend con IA hasta sistemas cliente-servidor</span></p>
+
+    <div class="contadores linea" style="--i: 3">
+      <span class="linea__interior">
+        <span class="contadores__item"><span class="contadores__cifra">4</span><span class="contadores__etiqueta">Proyectos</span></span>
+        <span class="contadores__item"><span class="contadores__cifra">9</span><span class="contadores__etiqueta">Otros repositorios</span></span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<section class="seccion seccion--primera">
+  <div class="contenedor">
+    <div class="filtro reveal" role="group" aria-label="Filtrar por categoria">
+  <button type="button" class="filtro__btn filtro__btn--activo" data-filtro="todos">Todos</button>
+  <button class="filtro__btn" data-filtro="backend">backend</button><button class="filtro__btn" data-filtro="ia">ia</button><button class="filtro__btn" data-filtro="automatizacion">automatizacion</button><button class="filtro__btn" data-filtro="web">web</button><button class="filtro__btn" data-filtro="iot">iot</button><button class="filtro__btn" data-filtro="sistemas">sistemas</button>
+</div>
+
+
+    <div class="rejilla-proyectos" id="rejilla-proyectos">
+      <article class="project-card reveal" data-categorias="backend ia automatizacion">
+  <a href="/es/proyectos/webbuilder/" class="project-card__link">
+
+    <div class="project-card__portada">
+      <span class="portada-monograma" data-tono="0" aria-hidden="true">W</span>
+    </div>
+
+    <div class="project-card__cuerpo">
+      <div class="project-card__fila">
+        <span class="project-card__indice">01</span>
+        <span class="project-card__estado">Finalizado</span>
+      </div>
+
+      <h3 class="project-card__titulo">WebBuilder</h3>
+      <p class="project-card__resumen">Convierte cualquier API publica en un proyecto Django desplegable usando IA</p>
+
+      <ul class="tags tags--compactas">
+        <li>Django</li><li>PostgreSQL</li><li>Docker</li><li>n8n</li><li>LLMs</li><li>OAuth</li>
+      </ul>
+
+      <span class="project-card__nota">9,9 - Propuesto para Matricula de Honor</span>
+    </div>
+
+  </a>
+</article><article class="project-card reveal" data-categorias="backend web">
+  <a href="/es/proyectos/gamerank/" class="project-card__link">
+
+    <div class="project-card__portada">
+      <span class="portada-monograma" data-tono="1" aria-hidden="true">G</span>
+    </div>
+
+    <div class="project-card__cuerpo">
+      <div class="project-card__fila">
+        <span class="project-card__indice">02</span>
+        <span class="project-card__estado">Finalizado</span>
+      </div>
+
+      <h3 class="project-card__titulo">GameRank</h3>
+      <p class="project-card__resumen">Catalogo y ranking social de videojuegos con integracion de APIs externas</p>
+
+      <ul class="tags tags--compactas">
+        <li>Django</li><li>HTMX</li><li>REST API</li><li>XML/JSON</li>
+      </ul>
+
+      <span class="project-card__nota">9,9 - Matricula de Honor</span>
+    </div>
+
+  </a>
+</article><article class="project-card reveal" data-categorias="iot backend">
+  <a href="/es/proyectos/invernadero/" class="project-card__link">
+
+    <div class="project-card__portada">
+      <span class="portada-monograma" data-tono="2" aria-hidden="true">II</span>
+    </div>
+
+    <div class="project-card__cuerpo">
+      <div class="project-card__fila">
+        <span class="project-card__indice">03</span>
+        <span class="project-card__estado">Finalizado</span>
+      </div>
+
+      <h3 class="project-card__titulo">Invernadero IoT</h3>
+      <p class="project-card__resumen">Simulador de invernadero automatizado con sensores y actuadores</p>
+
+      <ul class="tags tags--compactas">
+        <li>C++</li><li>POO</li><li>Doxygen</li>
+      </ul>
+
+      
+    </div>
+
+  </a>
+</article><article class="project-card reveal" data-categorias="backend sistemas">
+  <a href="/es/proyectos/tactical-battle/" class="project-card__link">
+
+    <div class="project-card__portada">
+      <span class="portada-monograma" data-tono="3" aria-hidden="true">TB</span>
+    </div>
+
+    <div class="project-card__cuerpo">
+      <div class="project-card__fila">
+        <span class="project-card__indice">04</span>
+        <span class="project-card__estado">Finalizado</span>
+      </div>
+
+      <h3 class="project-card__titulo">Tactical Battle</h3>
+      <p class="project-card__resumen">Simulador de combate tactico por turnos, cliente-servidor</p>
+
+      <ul class="tags tags--compactas">
+        <li>C++</li><li>Sockets TCP</li><li>Cliente-Servidor</li>
+      </ul>
+
+      
+    </div>
+
+  </a>
+</article>
+    </div>
+
+    <p class="sin-resultados" id="sin-resultados" hidden>No hay proyectos en esta categoria</p>
+  </div>
+</section>
+
+<section class="seccion">
+  <div class="contenedor">
+    <div class="seccion__cabecera reveal">
+      <p class="etiqueta-seccion">Otros repositorios</p>
+      <p class="seccion__nota">Repositorios de practicas de asignatura de la carrera, no proyectos completos</p>
+    </div>
+
+    <div class="rejilla-repos">
+      <article class="repo-card reveal">
+  <div class="repo-card__cabecera">
+    <h3 class="repo-card__nombre">BasesDatos</h3>
+    <span class="repo-card__asignatura">Bases de Datos</span>
+  </div>
+
+  <p class="repo-card__descripcion">Ejercicios de diseno de tablas, relaciones y consultas SQL</p>
+  <div class="repo-card__barra"><span style="width:91%; background:#3776AB" title="Python 91%"></span><span style="width:9%; background:#336790" title="PLpgSQL 9%"></span></div>
+
+  <ul class="repo-card__lenguajes">
+    <li>Python</li><li>PLpgSQL</li>
+  </ul>
+
+  <a href="https://github.com/AlejandroTejero/BasesDatos" target="_blank" rel="noopener" class="repo-card__enlace">
+    Ver en GitHub<span aria-hidden="true">↗</span>
+  </a>
+</article>
+<article class="repo-card reveal">
+  <div class="repo-card__cabecera">
+    <h3 class="repo-card__nombre">SistemasDistribuidos</h3>
+    <span class="repo-card__asignatura">Sistemas Distribuidos</span>
+  </div>
+
+  <p class="repo-card__descripcion">Practicas de la asignatura</p>
+  <div class="repo-card__barra"><span style="width:100%; background:#00ADD8" title="Go 100%"></span></div>
+
+  <ul class="repo-card__lenguajes">
+    <li>Go</li>
+  </ul>
+
+  <a href="https://github.com/AlejandroTejero/SistemasDistribuidos" target="_blank" rel="noopener" class="repo-card__enlace">
+    Ver en GitHub<span aria-hidden="true">↗</span>
+  </a>
+</article>
+<article class="repo-card reveal">
+  <div class="repo-card__cabecera">
+    <h3 class="repo-card__nombre">ArquitecturaRedes</h3>
+    <span class="repo-card__asignatura">Arquitectura de Redes</span>
+  </div>
+
+  
+  <div class="repo-card__barra"><span style="width:100%; background:#89e051" title="Shell 100%"></span></div>
+
+  <ul class="repo-card__lenguajes">
+    <li>Shell</li>
+  </ul>
+
+  <a href="https://github.com/AlejandroTejero/ArquitecturaRedes" target="_blank" rel="noopener" class="repo-card__enlace">
+    Ver en GitHub<span aria-hidden="true">↗</span>
+  </a>
+</article>
+<article class="repo-card reveal">
+  <div class="repo-card__cabecera">
+    <h3 class="repo-card__nombre">SistemasOperativos</h3>
+    <span class="repo-card__asignatura">Sistemas Operativos</span>
+  </div>
+
+  
+  <div class="repo-card__barra"><span style="width:60%; background:#555555" title="C 60%"></span><span style="width:40%; background:#89e051" title="Shell 40%"></span></div>
+
+  <ul class="repo-card__lenguajes">
+    <li>C</li><li>Shell</li>
+  </ul>
+
+  <a href="https://github.com/AlejandroTejero/SistemasOperativos" target="_blank" rel="noopener" class="repo-card__enlace">
+    Ver en GitHub<span aria-hidden="true">↗</span>
+  </a>
+</article>
+<article class="repo-card reveal">
+  <div class="repo-card__cabecera">
+    <h3 class="repo-card__nombre">Ensamblador</h3>
+    <span class="repo-card__asignatura">Ensamblador</span>
+  </div>
+
+  
+  <div class="repo-card__barra"><span style="width:100%; background:#6E4C13" title="Assembly 100%"></span></div>
+
+  <ul class="repo-card__lenguajes">
+    <li>Assembly</li>
+  </ul>
+
+  <a href="https://github.com/AlejandroTejero/Ensamblador" target="_blank" rel="noopener" class="repo-card__enlace">
+    Ver en GitHub<span aria-hidden="true">↗</span>
+  </a>
+</article>
+<article class="repo-card reveal">
+  <div class="repo-card__cabecera">
+    <h3 class="repo-card__nombre">GestionRedesSistemas</h3>
+    <span class="repo-card__asignatura">Gestion de Redes y Sistemas</span>
+  </div>
+
+  
+  <div class="repo-card__barra"><span style="width:76%; background:#e34c26" title="HTML 76%"></span><span style="width:13%; background:#3776AB" title="Python 13%"></span><span style="width:8%; background:#563d7c" title="CSS 8%"></span><span style="width:1%; background:#89e051" title="Shell 1%"></span><span style="width:1%; background:#384d54" title="Dockerfile 1%"></span><span style="width:0%; background:#701516" title="Ruby 0%"></span></div>
+
+  <ul class="repo-card__lenguajes">
+    <li>HTML</li><li>Python</li><li>CSS</li>
+  </ul>
+
+  <a href="https://github.com/AlejandroTejero/GestionRedesSistemas" target="_blank" rel="noopener" class="repo-card__enlace">
+    Ver en GitHub<span aria-hidden="true">↗</span>
+  </a>
+</article>
+<article class="repo-card reveal">
+  <div class="repo-card__cabecera">
+    <h3 class="repo-card__nombre">AplicacionesTelematicas</h3>
+    <span class="repo-card__asignatura">Aplicaciones Telematicas</span>
+  </div>
+
+  
+  <div class="repo-card__barra"><span style="width:70%; background:#563d7c" title="CSS 70%"></span><span style="width:19%; background:#e34c26" title="HTML 19%"></span><span style="width:11%; background:#f1e05a" title="JavaScript 11%"></span></div>
+
+  <ul class="repo-card__lenguajes">
+    <li>CSS</li><li>HTML</li><li>JavaScript</li>
+  </ul>
+
+  <a href="https://github.com/AlejandroTejero/AplicacionesTelematicas" target="_blank" rel="noopener" class="repo-card__enlace">
+    Ver en GitHub<span aria-hidden="true">↗</span>
+  </a>
+</article>
+<article class="repo-card reveal">
+  <div class="repo-card__cabecera">
+    <h3 class="repo-card__nombre">Python</h3>
+    <span class="repo-card__asignatura">Practicas generales</span>
+  </div>
+
+  
+  <div class="repo-card__barra"><span style="width:100%; background:#3776AB" title="Python 100%"></span></div>
+
+  <ul class="repo-card__lenguajes">
+    <li>Python</li>
+  </ul>
+
+  <a href="https://github.com/AlejandroTejero/Python" target="_blank" rel="noopener" class="repo-card__enlace">
+    Ver en GitHub<span aria-hidden="true">↗</span>
+  </a>
+</article>
+<article class="repo-card reveal">
+  <div class="repo-card__cabecera">
+    <h3 class="repo-card__nombre">Pascal</h3>
+    <span class="repo-card__asignatura">Practicas generales</span>
+  </div>
+
+  
+  <div class="repo-card__barra"><span style="width:100%; background:#E3F171" title="Pascal 100%"></span></div>
+
+  <ul class="repo-card__lenguajes">
+    <li>Pascal</li>
+  </ul>
+
+  <a href="https://github.com/AlejandroTejero/Pascal" target="_blank" rel="noopener" class="repo-card__enlace">
+    Ver en GitHub<span aria-hidden="true">↗</span>
+  </a>
+</article>
+
+    </div>
+  </div>
+</section>
+
+<section class="seccion">
+  <div class="contenedor">
+    <div class="seccion__cabecera reveal">
+      <p class="etiqueta-seccion">Competencias tecnicas</p>
+    </div>
+
+    <div class="rejilla-skills">
+      <div class="skill-group reveal">
+  <div class="skill-group__cabecera">
+    <span class="skill-group__indice">01</span>
+    <h3 class="skill-group__nombre">Lenguajes de programación</h3>
+    <span class="skill-group__nivel skill-group__nivel--intermedio">Intermedio</span>
+  </div>
+
+  <ul class="tags">
+    <li>Python</li><li>C</li><li>C++</li><li>SQL</li><li>JavaScript</li><li>Shell scripting</li><li>Go</li><li>Pascal</li>
+  </ul>
+</div>
+<div class="skill-group reveal">
+  <div class="skill-group__cabecera">
+    <span class="skill-group__indice">02</span>
+    <h3 class="skill-group__nombre">Backend</h3>
+    <span class="skill-group__nivel skill-group__nivel--intermedio">Intermedio</span>
+  </div>
+
+  <ul class="tags">
+    <li>Django</li><li>APIs REST</li>
+  </ul>
+</div>
+<div class="skill-group reveal">
+  <div class="skill-group__cabecera">
+    <span class="skill-group__indice">03</span>
+    <h3 class="skill-group__nombre">Bases de datos</h3>
+    <span class="skill-group__nivel skill-group__nivel--intermedio">Intermedio</span>
+  </div>
+
+  <ul class="tags">
+    <li>PostgreSQL</li><li>MySQL</li>
+  </ul>
+</div>
+<div class="skill-group reveal">
+  <div class="skill-group__cabecera">
+    <span class="skill-group__indice">04</span>
+    <h3 class="skill-group__nombre">Redes</h3>
+    <span class="skill-group__nivel skill-group__nivel--basico">Basico</span>
+  </div>
+
+  <ul class="tags">
+    <li>TCP/IP</li><li>IPv4/IPv6</li><li>OSPF</li><li>HTTP/HTTPS</li><li>SSH</li><li>Wireshark</li><li>NetGUI</li>
+  </ul>
+</div>
+<div class="skill-group reveal">
+  <div class="skill-group__cabecera">
+    <span class="skill-group__indice">05</span>
+    <h3 class="skill-group__nombre">Sistemas</h3>
+    <span class="skill-group__nivel skill-group__nivel--intermedio">Intermedio</span>
+  </div>
+
+  <ul class="tags">
+    <li>Windows</li><li>Linux</li><li>Virtualizacion</li>
+  </ul>
+</div>
+<div class="skill-group reveal">
+  <div class="skill-group__cabecera">
+    <span class="skill-group__indice">06</span>
+    <h3 class="skill-group__nombre">Herramientas</h3>
+    <span class="skill-group__nivel skill-group__nivel--intermedio">Intermedio</span>
+  </div>
+
+  <ul class="tags">
+    <li>Git</li><li>GitHub</li><li>GitLab</li><li>VSCode</li><li>PyCharm</li><li>Microsoft 365</li><li>SAP</li><li>Power BI</li>
+  </ul>
+</div>
+<div class="skill-group reveal">
+  <div class="skill-group__cabecera">
+    <span class="skill-group__indice">07</span>
+    <h3 class="skill-group__nombre">Idiomas</h3>
+    
+  </div>
+
+  <ul class="tags">
+    <li>Espanol (nativo)</li><li>Ingles (B1, preparando B2)</li>
+  </ul>
+</div>
+
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="pie">
+  <div class="contenedor pie__interior">
+
+    <div class="pie__bloque">
+      <p class="pie__nombre">Alejandro Tejero de la Morena</p>
+      <p class="pie__rol">Madrid, Espana</p>
+    </div>
+
+    <ul class="pie__social">
+      <li><a href="https://github.com/AlejandroTejero" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="mailto:atejerodelamorena@gmail.com">Email</a></li>
+    </ul>
+
+    <p class="pie__copy">© 2026 · Disenado y programado en Madrid</p>
+
+  </div>
+</footer>
+
+  <div class="flotante" id="contacto-flotante">
+
+  <div class="flotante__menu" id="contacto-flotante-menu" role="menu">
+    <p class="flotante__titulo">Contacto</p>
+
+    <a href="mailto:atejerodelamorena@gmail.com" class="flotante__item" role="menuitem" style="--i: 0">
+      <span class="flotante__item-etiqueta">Email</span>
+      <span class="flotante__item-valor">atejerodelamorena@gmail.com</span>
+    </a>
+
+    <a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener" class="flotante__item" role="menuitem" style="--i: 1">
+      <span class="flotante__item-etiqueta">LinkedIn</span>
+      <span class="flotante__item-valor">Alejandro Tejero</span>
+    </a>
+
+    <a href="tel:+34620621384" class="flotante__item" role="menuitem" style="--i: 2">
+      <span class="flotante__item-etiqueta">Contacto</span>
+      <span class="flotante__item-valor">+34 620 62 13 84</span>
+    </a>
+  </div>
+
+  <button type="button" class="flotante__boton" id="contacto-flotante-toggle" aria-label="Abrir opciones de contacto" aria-expanded="false">
+    <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M4 6h16v12H4z"/>
+      <path d="M4 7l8 6 8-6"/>
+    </svg>
+  </button>
+
+</div>
+
+
+  <script src="/js/main.js" defer></script>
+</body>
+</html>

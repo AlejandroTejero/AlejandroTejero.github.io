@@ -1,0 +1,642 @@
+/* ============================================
+   PORTADAS Y MONOGRAMAS
+   Si todavia no hay imagen en /public/img, se muestra un monograma
+   tipografico en vez de una imagen rota.
+   ============================================ */
+.portada-monograma {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--f-display);
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: var(--c-texto);
+  opacity: 0.22;
+  background: var(--c-superficie-alta);
+}
+
+.portada-monograma[data-tono="1"] { background: var(--c-superficie); }
+.portada-monograma[data-tono="2"] { background: var(--c-fondo-alt); }
+.portada-monograma[data-tono="3"] { background: var(--c-superficie-alta); opacity: 0.16; }
+
+.retrato {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  max-width: 260px;
+  border-radius: var(--radio-card);
+  overflow: hidden;
+  border: 1px solid var(--c-borde);
+  background: var(--c-superficie);
+}
+
+.retrato img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.retrato__monograma {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--f-display);
+  font-size: 4rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: var(--c-acento);
+  opacity: 0.55;
+}
+
+/* ============================================
+   REJILLAS
+   ============================================ */
+.rejilla-proyectos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.rejilla-proyectos--duo {
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+}
+
+.rejilla-valores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: 1px;
+  background: var(--c-borde);
+  border: 1px solid var(--c-borde);
+  border-radius: var(--radio-card);
+  overflow: hidden;
+}
+
+.rejilla-repos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.rejilla-skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.rejilla-charlas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+/* ============================================
+   TARJETA DE PROYECTO
+   ============================================ */
+.project-card {
+  border: 1px solid var(--c-borde);
+  border-radius: var(--radio-card);
+  overflow: hidden;
+  background: var(--c-fondo-alt);
+  transition:
+    border-color 420ms var(--ease-suave),
+    transform 420ms var(--ease-suave),
+    background-color 420ms var(--ease-suave);
+}
+
+.project-card:hover {
+  border-color: var(--c-borde-fuerte);
+  transform: translateY(-4px);
+  background: var(--c-superficie);
+}
+
+.project-card__link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.project-card__portada {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--c-superficie);
+  border-bottom: 1px solid var(--c-borde);
+}
+
+.project-card__portada img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 720ms var(--ease-suave);
+}
+
+.project-card:hover .project-card__portada img {
+  transform: scale(1.04);
+}
+
+.project-card__cuerpo {
+  padding: 1.25rem 1.35rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  flex: 1;
+}
+
+.project-card__fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.project-card__indice,
+.project-card__estado {
+  font-family: var(--f-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-texto-tenue);
+}
+
+.project-card__estado {
+  padding: 0.25rem 0.55rem;
+  border: 1px solid var(--c-borde);
+  border-radius: 999px;
+}
+
+.project-card__titulo {
+  font-size: var(--t-card);
+  transition: color var(--dur-rapida) var(--ease-suave);
+}
+
+.project-card:hover .project-card__titulo {
+  color: var(--c-acento);
+}
+
+.project-card__resumen {
+  font-size: 0.9375rem;
+  color: var(--c-texto-suave);
+  flex: 1;
+}
+
+.project-card__nota {
+  font-family: var(--f-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--c-acento);
+  padding-top: 0.35rem;
+  border-top: 1px solid var(--c-borde);
+  margin-top: 0.25rem;
+}
+
+/* ============================================
+   TARJETA DE VALOR (como trabajo)
+   ============================================ */
+.valor-card {
+  background: var(--c-fondo);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: background-color 420ms var(--ease-suave);
+}
+
+.valor-card:hover {
+  background: var(--c-superficie);
+}
+
+.valor-card__indice {
+  font-family: var(--f-mono);
+  font-size: var(--t-mono);
+  letter-spacing: 0.14em;
+  color: var(--c-acento);
+  margin-bottom: 0.5rem;
+}
+
+.valor-card__titulo {
+  font-size: 1.1875rem;
+}
+
+.valor-card__descripcion {
+  font-size: 0.9375rem;
+  color: var(--c-texto-suave);
+}
+
+/* ============================================
+   TARJETA DE REPOSITORIO
+   ============================================ */
+.repo-card {
+  border: 1px solid var(--c-borde);
+  border-radius: var(--radio-card);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: border-color 420ms var(--ease-suave), background-color 420ms var(--ease-suave);
+}
+
+.repo-card:hover {
+  border-color: var(--c-borde-fuerte);
+  background: var(--c-fondo-alt);
+}
+
+.repo-card__cabecera {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.repo-card__nombre {
+  font-family: var(--f-mono);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.repo-card__asignatura {
+  font-size: 0.8125rem;
+  color: var(--c-texto-tenue);
+}
+
+.repo-card__descripcion {
+  font-size: 0.875rem;
+  color: var(--c-texto-suave);
+  flex: 1;
+}
+
+.repo-card__barra {
+  display: flex;
+  height: 4px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--c-superficie);
+}
+
+.repo-card__barra span {
+  height: 100%;
+}
+
+.repo-card__lenguajes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.repo-card__lenguajes li {
+  font-family: var(--f-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.06em;
+  color: var(--c-texto-tenue);
+}
+
+.repo-card__enlace {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--c-acento);
+  margin-top: auto;
+}
+
+.repo-card__enlace span {
+  transition: transform var(--dur-rapida) var(--ease-suave);
+}
+
+.repo-card__enlace:hover span {
+  transform: translate(2px, -2px);
+}
+
+/* ============================================
+   GRUPO DE SKILLS
+   ============================================ */
+.skill-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--c-borde);
+}
+
+.skill-group__cabecera {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.skill-group__indice {
+  font-family: var(--f-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  color: var(--c-texto-tenue);
+}
+
+.skill-group__nombre {
+  font-size: 1.0625rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.skill-group__nivel {
+  font-family: var(--f-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--c-borde);
+  color: var(--c-texto-tenue);
+}
+
+.skill-group__nivel--intermedio {
+  color: var(--c-acento);
+  border-color: color-mix(in srgb, var(--c-acento) 45%, transparent);
+}
+
+/* ============================================
+   TIMELINE
+   ============================================ */
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Rail vertical continuo */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--c-borde);
+}
+
+.timeline-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem) 0 clamp(1.25rem, 2.5vw, 1.75rem) 2.25rem;
+}
+
+.timeline-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 2.25rem;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--c-borde);
+}
+
+.timeline-item__marca {
+  position: absolute;
+  left: 0;
+  top: calc(clamp(1.25rem, 2.5vw, 1.75rem) + 0.5em);
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1px solid var(--c-borde-fuerte);
+  background: var(--c-fondo);
+  transition: border-color 420ms var(--ease-suave), background-color 420ms var(--ease-suave);
+}
+
+.timeline-item--experiencia .timeline-item__marca,
+.timeline-item--logro .timeline-item__marca {
+  background: var(--c-acento);
+  border-color: var(--c-acento);
+}
+
+.timeline-item__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.timeline-item__anio {
+  font-family: var(--f-mono);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.timeline-item__tipo {
+  font-family: var(--f-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-texto-tenue);
+}
+
+.timeline-item__contenido {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.timeline-item__titulo {
+  font-size: 1.1875rem;
+}
+
+.timeline-item__institucion {
+  font-size: 0.9375rem;
+  color: var(--c-acento);
+}
+
+.timeline-item__descripcion {
+  font-size: 0.9375rem;
+  color: var(--c-texto-suave);
+  max-width: var(--ancho-lectura);
+}
+
+/* ============================================
+   TARJETA DE CHARLA
+   ============================================ */
+.charla-card {
+  border: 1px solid var(--c-borde);
+  border-radius: var(--radio-card);
+  transition: border-color 420ms var(--ease-suave), background-color 420ms var(--ease-suave), transform 420ms var(--ease-suave);
+}
+
+.charla-card:hover {
+  border-color: var(--c-borde-fuerte);
+  background: var(--c-fondo-alt);
+  transform: translateY(-3px);
+}
+
+.charla-card__link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1.5rem;
+  height: 100%;
+}
+
+.charla-card__fecha {
+  font-family: var(--f-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-texto-tenue);
+}
+
+.charla-card__titulo {
+  font-size: var(--t-card);
+  transition: color var(--dur-rapida) var(--ease-suave);
+}
+
+.charla-card:hover .charla-card__titulo {
+  color: var(--c-acento);
+}
+
+.charla-card__rol,
+.charla-card__lugar {
+  font-size: 0.875rem;
+  color: var(--c-acento);
+}
+
+.charla-card__lugar {
+  color: var(--c-texto-tenue);
+}
+
+.charla-card__resumen {
+  font-size: 0.9375rem;
+  color: var(--c-texto-suave);
+  flex: 1;
+}
+
+.charla-card__flecha {
+  font-size: 1.125rem;
+  color: var(--c-acento);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 380ms var(--ease-suave), transform 380ms var(--ease-suave);
+}
+
+.charla-card:hover .charla-card__flecha {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ============================================
+   FILTRO DE CATEGORIAS
+   ============================================ */
+.filtro {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.filtro__btn {
+  height: 36px;
+  padding: 0 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--c-borde);
+  font-family: var(--f-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-texto-suave);
+  transition: color var(--dur-rapida), border-color var(--dur-rapida), background-color var(--dur-rapida);
+}
+
+.filtro__btn:hover {
+  color: var(--c-texto);
+  border-color: var(--c-borde-fuerte);
+}
+
+.filtro__btn--activo {
+  background: var(--c-acento);
+  border-color: var(--c-acento);
+  color: var(--c-sobre-acento);
+}
+
+.sin-resultados {
+  padding: 3rem 0;
+  text-align: center;
+  color: var(--c-texto-tenue);
+  font-size: 0.9375rem;
+}
+
+/* ============================================
+   BADGES
+   ============================================ */
+.badges {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.badge {
+  font-family: var(--f-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--c-texto-suave);
+  padding-left: 0.9rem;
+  position: relative;
+}
+
+.badge::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--c-acento);
+}
+
+/* ============================================
+   CONTADORES
+   ============================================ */
+.contadores {
+  margin-top: 0.5rem;
+}
+
+.contadores__item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding-right: 1.5rem;
+}
+
+.contadores__item + .contadores__item {
+  border-left: 1px solid var(--c-borde);
+  padding-left: 1.5rem;
+}
+
+.contadores__etiqueta {
+  font-family: var(--f-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-texto-tenue);
+}
+
+.contadores__cifra {
+  font-family: var(--f-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+@media (max-width: 620px) {
+  .timeline-item {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .timeline-item__meta {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+}

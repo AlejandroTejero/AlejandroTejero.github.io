@@ -1,0 +1,204 @@
+/* ============================================
+   HOME · SOBRE MI
+   ============================================ */
+.sobre-mi {
+  display: grid;
+  grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: start;
+}
+
+.sobre-mi__aside {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sobre-mi__texto {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  max-width: var(--ancho-lectura);
+  font-size: var(--t-cuerpo-grande);
+  color: var(--c-texto-suave);
+}
+
+/* El primer parrafo entra mas fuerte: hace de resumen */
+.sobre-mi__texto p:first-child {
+  color: var(--c-texto);
+  font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+  line-height: 1.5;
+  letter-spacing: -0.015em;
+}
+
+/* ============================================
+   HOME · SETUP
+   ============================================ */
+.setup__lista {
+  display: grid;
+  gap: 1px;
+  background: var(--c-borde);
+  border: 1px solid var(--c-borde);
+  border-radius: var(--radio-card);
+  overflow: hidden;
+  max-width: 620px;
+}
+
+.setup__fila {
+  background: var(--c-fondo);
+  padding: 1rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1.5rem;
+}
+
+.setup__fila dt {
+  font-family: var(--f-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-texto-tenue);
+}
+
+.setup__fila dd {
+  font-size: 0.9375rem;
+  text-align: right;
+}
+
+.seccion--setup .etiqueta-seccion {
+  margin-bottom: 1.5rem;
+}
+
+/* ============================================
+   HOME · LLAMADA A LA ACCION
+   ============================================ */
+.cta-contacto {
+  border: 1px solid var(--c-borde);
+  border-radius: var(--radio-card);
+  background: var(--c-superficie);
+  padding: clamp(2rem, 5vw, 3.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  flex-wrap: wrap;
+}
+
+.cta-contacto__texto {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-width: 46ch;
+}
+
+.cta-contacto__texto p {
+  color: var(--c-texto-suave);
+}
+
+/* ============================================
+   PAGINAS DE DETALLE
+   ============================================ */
+.detalle__portada {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radio-card);
+  overflow: hidden;
+  border: 1px solid var(--c-borde);
+  background: var(--c-superficie);
+  margin-bottom: clamp(2.5rem, 6vw, 4rem);
+}
+
+.detalle__portada img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detalle__cuerpo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 320px);
+  gap: clamp(2rem, 6vw, 4.5rem);
+  align-items: start;
+}
+
+.detalle__principal {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.detalle__parrafo {
+  font-size: var(--t-cuerpo-grande);
+  color: var(--c-texto-suave);
+  max-width: var(--ancho-lectura);
+}
+
+.detalle__enlaces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+}
+
+.detalle__ficha {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  position: sticky;
+  top: calc(var(--alto-barra) + 1.5rem);
+}
+
+.detalle__tech {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 860px) {
+  .sobre-mi {
+    grid-template-columns: 1fr;
+  }
+
+  .sobre-mi__aside {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .retrato {
+    max-width: 150px;
+  }
+
+  .detalle__cuerpo {
+    grid-template-columns: 1fr;
+  }
+
+  .detalle__ficha {
+    position: static;
+  }
+}
+
+@media (max-width: 620px) {
+  .cta-contacto {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cta-contacto .btn {
+    justify-content: center;
+  }
+
+  .setup__fila {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .setup__fila dd {
+    text-align: left;
+  }
+}

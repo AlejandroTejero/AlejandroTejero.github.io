@@ -1,0 +1,83 @@
+:root {
+  /* ---------- Tipografia ---------- */
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-texto: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Escala tipografica fluida: se adapta al ancho sin media queries */
+  --t-hero: clamp(3.2rem, 11vw, 8.5rem);
+  --t-pagina: clamp(2.4rem, 7vw, 5rem);
+  --t-menu: clamp(2.2rem, 7vw, 4.4rem);
+  --t-seccion: clamp(1.5rem, 3.2vw, 2.4rem);
+  --t-card: clamp(1.15rem, 2vw, 1.45rem);
+  --t-cuerpo: 1.0625rem;
+  --t-cuerpo-grande: clamp(1.0625rem, 1.4vw, 1.25rem);
+  --t-mono: 0.75rem;
+
+  /* ---------- Ritmo y medidas ---------- */
+  --ancho-contenedor: 1180px;
+  --ancho-lectura: 62ch;
+  --lateral: clamp(1.25rem, 5vw, 4rem);
+  --hueco-seccion: clamp(5rem, 12vh, 9.5rem);
+  --radio: 4px;
+  --radio-card: 14px;
+  --grosor-linea: 1px;
+  --alto-barra: 72px;
+
+  /* ---------- Movimiento ---------- */
+  --ease-suave: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-menu: cubic-bezier(0.76, 0, 0.24, 1);
+  --dur-rapida: 220ms;
+  --dur-media: 520ms;
+  --dur-lenta: 900ms;
+  --dur-menu: 700ms;
+}
+
+/* ============================================
+   MODO OSCURO  (paleta elegida)
+   fondo #0A192F · tarjetas #112D4E · acento #5DA9E9 · texto #FFFFFF
+   ============================================ */
+:root,
+[data-tema="oscuro"] {
+  --c-fondo: #0A192F;
+  --c-fondo-alt: #0C1E38;
+  --c-superficie: #112D4E;
+  --c-superficie-alta: #163A62;
+  --c-texto: #FFFFFF;
+  --c-texto-suave: #AFC5DC;
+  --c-texto-tenue: #6E88A6;
+  --c-borde: rgba(255, 255, 255, 0.11);
+  --c-borde-fuerte: rgba(255, 255, 255, 0.24);
+
+  --c-acento: #5DA9E9;
+  --c-acento-claro: #8CC5F4;
+  --c-sobre-acento: #06182C;
+
+  --c-menu-fondo: #0A192F;
+  --c-velo: rgba(4, 12, 24, 0.6);
+  --sombra-card: 0 18px 44px -28px rgba(0, 0, 0, 0.85);
+}
+
+/* ============================================
+   MODO CLARO  (paleta elegida)
+   fondo #EDE7D9 · tarjetas #DDD5C1 · acento #2F4A6B · texto #0F0F0E
+   ============================================ */
+[data-tema="claro"] {
+  --c-fondo: #EDE7D9;
+  --c-fondo-alt: #E7E0CF;
+  --c-superficie: #DDD5C1;
+  --c-superficie-alta: #D3C9B0;
+  --c-texto: #0F0F0E;
+  --c-texto-suave: #514E45;
+  --c-texto-tenue: #5F5A4D;
+  --c-borde: rgba(15, 15, 14, 0.14);
+  --c-borde-fuerte: rgba(15, 15, 14, 0.32);
+
+  --c-acento: #2F4A6B;
+  --c-acento-claro: #1F3350;
+  --c-sobre-acento: #F4EFE3;
+
+  --c-menu-fondo: #EDE7D9;
+  --c-velo: rgba(15, 15, 14, 0.35);
+  --sombra-card: 0 18px 40px -30px rgba(31, 26, 12, 0.45);
+}

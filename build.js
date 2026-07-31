@@ -4,10 +4,21 @@ const path = require('path');
 // ============================================
 // CONFIGURACION GENERAL
 // ============================================
-const BASE_URL = 'https://tudominio.com';
+const BASE_URL = 'https://alejandrotejero.github.io';
 const IDIOMAS = ['es', 'en'];
+// El idioma principal se sirve directamente en la raiz (sin /en/).
+// El resto de idiomas van bajo su propio prefijo (/es/, etc.).
+const IDIOMA_PRINCIPAL = 'en';
 const RAIZ = __dirname;
 const DIST = path.join(RAIZ, 'dist');
+
+function prefijoIdioma(idioma) {
+  return idioma === IDIOMA_PRINCIPAL ? '' : `/${idioma}`;
+}
+
+function rutaArchivo(prefijo, sufijo) {
+  return `${prefijo}${sufijo}`.replace(/^\//, '');
+}
 
 // Si es true, el build intenta consultar la API de GitHub para los lenguajes
 // de cada repositorio. Si no hay red, el build sigue adelante sin romperse.
@@ -363,7 +374,7 @@ function renderizarNav(ctx, rutaSinIdioma) {
 
   return reemplazar(partials.nav, {
     ...ctx,
-    url_idioma_alterno: `/${idiomaAlterno}${rutaSinIdioma || '/'}`,
+    url_idioma_alterno: `${prefijoIdioma(idiomaAlterno)}${rutaSinIdioma || '/'}`,
     idioma_alterno_label: idiomaAlterno.toUpperCase(),
   });
 }
@@ -389,9 +400,9 @@ function envolverEnLayout(contenidoHtml, meta, ctx) {
     contacto_flotante: renderizarContactoFlotante(ctx),
     titulo_pagina: meta.titulo,
     meta_descripcion: meta.descripcion,
-    url_canonica: `${BASE_URL}/${ctx.idioma}${meta.rutaSinIdioma}`,
-    url_alternativa_es: `${BASE_URL}/es${meta.rutaSinIdioma}`,
-    url_alternativa_en: `${BASE_URL}/en${meta.rutaSinIdioma}`,
+    url_canonica: `${BASE_URL}${prefijoIdioma(ctx.idioma)}${meta.rutaSinIdioma}`,
+    url_alternativa_es: `${BASE_URL}${prefijoIdioma('es')}${meta.rutaSinIdioma}`,
+    url_alternativa_en: `${BASE_URL}${prefijoIdioma('en')}${meta.rutaSinIdioma}`,
     og_imagen: meta.imagen || `${BASE_URL}/img/og-default.png`,
     clase_body: meta.claseBody || '',
   });
@@ -580,7 +591,7 @@ function generarSitemap() {
   charlas.forEach((c) => rutas.push(`/trayectoria/charlas/${c.id}/`));
 
   const urls = IDIOMAS.flatMap((idioma) =>
-    rutas.map((ruta) => `  <url><loc>${BASE_URL}/${idioma}${ruta}</loc></url>`)
+    rutas.map((ruta) => `  <url><loc>${BASE_URL}${prefijoIdioma(idioma)}${ruta}</loc></url>`)
   ).join('\n');
 
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
@@ -599,18 +610,19 @@ async function build() {
   console.log('');
 
   for (const idioma of IDIOMAS) {
-    const ctx = { idioma, site, i18n: i18n[idioma] };
+    const prefijo = prefijoIdioma(idioma);
+    const ctx = { idioma, prefijo_idioma: prefijo, site, i18n: i18n[idioma] };
 
-    escribirArchivo(`${idioma}/index.html`, generarHome(ctx));
-    escribirArchivo(`${idioma}/proyectos/index.html`, generarProyectosLista(ctx));
-    escribirArchivo(`${idioma}/trayectoria/index.html`, generarTrayectoria(ctx));
+    escribirArchivo(rutaArchivo(prefijo, '/index.html'), generarHome(ctx));
+    escribirArchivo(rutaArchivo(prefijo, '/proyectos/index.html'), generarProyectosLista(ctx));
+    escribirArchivo(rutaArchivo(prefijo, '/trayectoria/index.html'), generarTrayectoria(ctx));
 
     proyectos.forEach((proyecto, indice) => {
-      escribirArchivo(`${idioma}/proyectos/${proyecto.id}/index.html`, generarProyectoDetalle(proyecto, ctx, indice));
+      escribirArchivo(rutaArchivo(prefijo, `/proyectos/${proyecto.id}/index.html`), generarProyectoDetalle(proyecto, ctx, indice));
     });
 
     for (const charla of charlas) {
-      escribirArchivo(`${idioma}/trayectoria/charlas/${charla.id}/index.html`, generarCharlaDetalle(charla, ctx));
+      escribirArchivo(rutaArchivo(prefijo, `/trayectoria/charlas/${charla.id}/index.html`), generarCharlaDetalle(charla, ctx));
     }
 
     console.log(`Paginas generadas para: ${idioma}`);
@@ -618,20 +630,6 @@ async function build() {
 
   fs.cpSync(path.join(RAIZ, 'public'), DIST, { recursive: true });
   concatenarCSS();
-
-  escribirArchivo('index.html', `<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>${site.nombre}</title>
-  <script>
-    var idioma = (navigator.language || 'es').toLowerCase().startsWith('en') ? 'en' : 'es';
-    window.location.replace('/' + idioma + '/');
-  </script>
-  <meta http-equiv="refresh" content="0; url=/es/">
-</head>
-<body><a href="/es/">Portfolio</a></body>
-</html>`);
 
   escribirArchivo('sitemap.xml', generarSitemap());
   escribirArchivo('robots.txt', `User-agent: *\nAllow: /\nSitemap: ${BASE_URL}/sitemap.xml\n`);
