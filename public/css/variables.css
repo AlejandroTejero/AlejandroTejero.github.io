@@ -34,29 +34,30 @@
 }
 
 /* ============================================
-   MODO OSCURO  (paleta elegida)
-   fondo #121316 (gris-negro tech) · tarjetas #1C1D22 · acento #38BDF8 · texto #F2F2F0
+   MODO OSCURO  (paleta Nord)
+   fondo #2E3440 · tarjetas #3B4252 · acento #88C0D0 · texto #ECEFF4
    ============================================ */
 :root,
 [data-tema="oscuro"] {
-  --c-fondo: #121316;
-  --c-fondo-alt: #16171B;
-  --c-superficie: #1C1D22;
-  --c-superficie-alta: #24262B;
-  --c-texto: #F2F2F0;
-  --c-texto-suave: #B8BAC0;
-  --c-texto-tenue: #7A7D85;
-  --c-borde: rgba(255, 255, 255, 0.10);
-  --c-borde-fuerte: rgba(255, 255, 255, 0.20);
+  --c-fondo: #242933;
+  --c-fondo-alt: #272C36;
+  --c-superficie: #3B4252;
+  --c-superficie-alta: #434C5E;
+  --c-texto: #ECEFF4;
+  --c-texto-suave: #D8DEE9;
+  --c-texto-tenue: #7C88A0;
+  --c-borde: rgba(216, 222, 233, 0.10);
+  --c-borde-fuerte: rgba(216, 222, 233, 0.22);
 
-  --c-acento: #38BDF8;
-  --c-acento-claro: #7DD3FC;
-  --c-sobre-acento: #052335;
+  --c-acento: #88C0D0;
+  --c-acento-claro: #A3D4E0;
+  --c-sobre-acento: #1B2733;
 
-  --c-menu-fondo: #121316;
-  --c-velo: rgba(8, 9, 11, 0.65);
+  --c-menu-fondo: #2E3440;
+  --c-velo: rgba(46, 52, 64, 0.65);
   --sombra-card: 0 18px 44px -28px rgba(0, 0, 0, 0.85);
 }
+
 
 /* ============================================
    MODO CLARO  (paleta elegida)

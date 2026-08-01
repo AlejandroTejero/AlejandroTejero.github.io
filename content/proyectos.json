@@ -16,7 +16,7 @@
     "periodo": "2025 - 2026",
     "estado": { "es": "Finalizado", "en": "Completed" },
     "nota_academica": "9,9 - Propuesto para Matricula de Honor",
-    "imagen": "/img/proyectos/webbuilder-cover.png",
+    "imagen": "/img/proyectos/WebBuilder/WebBuilder.png",
     "enlaces": {
       "github": "https://github.com/AlejandroTejero/WebBuilder-TFG",
       "landing": "https://alejandrotejero.github.io/WebBuilder-landing/",
@@ -40,7 +40,7 @@
     "periodo": "2025",
     "estado": { "es": "Finalizado", "en": "Completed" },
     "nota_academica": "9,9 - Matricula de Honor",
-    "imagen": "/img/proyectos/gamerank-cover.png",
+    "imagen": "/img/proyectos/GameRank/portada.png",
     "enlaces": {
       "github": "https://github.com/AlejandroTejero/GameRank"
     }
@@ -62,7 +62,7 @@
     "periodo": "2024",
     "estado": { "es": "Finalizado", "en": "Completed" },
     "nota_academica": null,
-    "imagen": "/img/proyectos/invernadero-cover.png",
+    "imagen": "/img/proyectos/Invernadero/portada.png",
     "enlaces": {
       "github": "https://github.com/AlejandroTejero/Invernadero"
     }
@@ -77,14 +77,14 @@
       "en": "Turn-based tactical combat simulator, client-server"
     },
     "descripcion": {
-      "es": "Juego de estrategia por turnos en C++ con arquitectura cliente-servidor sobre sockets TCP. El servidor gestiona el lobby de emparejamiento, multiples partidas simultaneas, varios oponentes multihilo y el ranking de jugadores.",
-      "en": "Turn-based strategy game in C++ with a client-server architecture over TCP sockets. The server manages the matchmaking lobby, several simultaneous matches, multithreaded opponents and the player ranking."
+      "es": "Juego de estrategia por turnos en Python con arquitectura cliente-servidor sobre sockets TCP. El servidor gestiona el lobby de emparejamiento, multiples partidas simultaneas, varios oponentes multihilo y el ranking de jugadores.",
+      "en": "Turn-based strategy game in Python with a client-server architecture over TCP sockets. The server manages the matchmaking lobby, several simultaneous matches, multithreaded opponents and the player ranking."
     },
-    "tecnologias": ["C++", "Sockets TCP", "Cliente-Servidor"],
+    "tecnologias": ["Python", "Sockets TCP", "Cliente-Servidor"],
     "periodo": "2025",
     "estado": { "es": "Finalizado", "en": "Completed" },
     "nota_academica": null,
-    "imagen": "/img/proyectos/tactical-battle-cover.png",
+    "imagen": "/img/proyectos/TacticalBattle/tacticalbattle.png",
     "enlaces": {
       "github": "https://github.com/AlejandroTejero/TacticalBattle"
     }
