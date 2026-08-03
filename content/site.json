@@ -7,16 +7,16 @@
   },
   "ubicacion": "Madrid, Espana",
   "bio": {
-    "es": "Graduado en Ingenieria Telematica por la URJC. Actualmente en practicas de ingenieria en Bosch, trabajando con analisis de datos, Power BI y SAP. Me interesa el desarrollo backend, la automatizacion con IA y la ciberseguridad, siempre cuidando escribir codigo limpio y bien documentado.",
-    "en": "Telematics Engineering graduate from URJC. Currently an engineering intern at Bosch, working with data analysis, Power BI and SAP. Interested in backend development, AI-driven automation and cybersecurity, with a strong focus on writing clean, well-documented code."
+    "es": "Ingeniero de Telecomunicaciones especializado en Telematica. Organizado, constante y con pasion por el software, la automatizacion y la ciberseguridad.",
+    "en": "Telecommunications Engineer specialized in Telematics. Organized, consistent and passionate about software, automation and cybersecurity."
   },
   "hero_rol": {
     "es": "Ingeniero Telematico - Practicas en Bosch",
     "en": "Telematics Engineer - Intern at Bosch"
   },
   "hero_intro": {
-    "es": "Recien graduado en Telematica, con la cabeza puesta en backend, automatizacion con IA y ciberseguridad. Ahora mismo aplicando todo esto en Bosch, entre datos, Power BI y SAP.",
-    "en": "Recently graduated in Telematics, focused on backend development, AI-driven automation and cybersecurity. Currently applying all of this at Bosch, working with data, Power BI and SAP."
+    "es": "Graduado en Ingenieria de Telecomunicaciones, especialidad en Telematica. Soy una persona organizada, responsable y constante, y me gusta cuidar los detalles en todo lo que hago. Busco desarrollarme en software, cloud, redes, automatizacion y ciberseguridad.",
+    "en": "Graduate in Telecommunications Engineering, specialized in Telematics. I'm an organized, reliable and consistent person, and I care about getting the details right in everything I do. Looking to grow in software, cloud, networking, automation and cybersecurity."
   },
   "contacto": {
     "email": "atejerodelamorena@gmail.com",
@@ -37,36 +37,39 @@
   },
   "bio_parrafos": {
     "es": [
-      "Soy Ingeniero de Telecomunicaciones especializado en Telematica por la Universidad Rey Juan Carlos. Desde el principio de la carrera me ha atraido la parte de sistemas y desarrollo backend, y con el tiempo eso ha ido derivando tambien hacia la automatizacion con IA y la ciberseguridad, dos campos que creo que van a marcar mucho como se construye software en los proximos anos.",
-      "Actualmente estoy en practicas de ingenieria en Bosch, donde trabajo analizando grandes volumenes de datos de produccion para detectar patrones y proponer mejoras de proceso, diseno bases de datos y consultas, y construyo dashboards en Power BI para el seguimiento de KPIs. Es la primera vez que aplico lo aprendido en la carrera a un entorno industrial real, y me ha ayudado a entender mejor como encajan el analisis de datos y la ingenieria de software en un contexto de produccion a gran escala.",
-      "Fuera de Bosch, mis proyectos personales y academicos van mas por el lado de desarrollo backend con Python y Django, sistemas cliente-servidor y automatizacion con IA generativa, como WebBuilder, mi TFG. Me gusta entender bien lo que hago antes de darlo por terminado, cuidar los detalles y dejar las cosas documentadas para quien tenga que retomarlas despues, incluido yo mismo en el futuro."
+      "Soy Alejandro, Ingeniero de Telecomunicaciones especializado en Telematica por la Universidad Rey Juan Carlos. Me defino como una persona organizada, responsable y constante: no doy nada por hecho, porque se que ningun objetivo se consigue sin esfuerzo. Prefiero entender bien lo que hago antes de darlo por terminado, y cuido los detalles porque creo que ahi es donde se nota si algo esta bien hecho.",
+      "Superar las exigencias tecnicas de la carrera me ha ensenado, sobre todo, a priorizar: a saber que frente atacar primero cuando tengo varias cosas encima de la mesa, sin perder de vista lo importante por ir con prisa. Es una forma de trabajar que aplico igual en un proyecto personal que en el dia a dia de una oficina, y que me ha permitido sacar adelante mis estudios mientras compatibilizaba trabajos como socorrista o promotor comercial.",
+      "Actualmente aplico esta misma forma de trabajar en mis practicas de ingenieria en Robert Bosch Espana, donde analizo datos de produccion, diseno bases de datos y construyo dashboards de seguimiento en Power BI y SAP - mi primera toma de contacto real con un entorno de trabajo grande y exigente. Fuera de Bosch, sigo aplicando lo aprendido en mis propios proyectos de backend y automatizacion, que puedes ver un poco mas abajo."
     ],
     "en": [
-      "I'm a Telecommunications Engineer specialized in Telematics from Universidad Rey Juan Carlos. Since early in my degree I've been drawn to systems and backend development, and over time that interest has grown into AI-driven automation and cybersecurity, two fields I think will shape how software gets built over the next few years.",
-      "I'm currently an engineering intern at Bosch, where I analyze large volumes of production data to spot patterns and propose process improvements, design databases and queries, and build Power BI dashboards to track KPIs. It's the first time I've applied what I learned during my degree to a real industrial setting, and it's helped me understand how data analysis and software engineering fit together at production scale.",
-      "Outside of Bosch, my personal and academic projects lean more towards backend development with Python and Django, client-server systems and generative AI automation, like WebBuilder, my final thesis project. I like to really understand what I'm doing before calling it done, pay attention to detail, and leave things well documented for whoever picks them up next, including future me."
+      "I'm Alejandro, a Telecommunications Engineer specialized in Telematics from Universidad Rey Juan Carlos. I see myself as an organized, reliable and consistent person: I don't take anything for granted, because I know nothing worthwhile comes without effort. I'd rather really understand what I'm doing before calling it done, and I care about the details because that's where you can tell if something's been done properly.",
+      "Getting through the technical demands of my degree taught me, above all, to prioritize: to know which front to tackle first when I have several things on my plate, without losing sight of what matters just because I'm in a hurry. It's a way of working I apply the same way to a personal project as I do in a day-to-day office job, and it's what let me get through my studies while juggling jobs like lifeguard or promotional staff.",
+      "I currently apply this same way of working during my engineering internship at Robert Bosch Espana, where I analyze production data, design databases and build tracking dashboards in Power BI and SAP - my first real taste of a large, demanding work environment. Outside of Bosch, I keep applying what I've learned to my own backend and automation projects, which you can check out a bit further down."
     ]
   },
   "badges": [
-    { "es": "Practicando en Bosch", "en": "Interning at Bosch" },
     { "es": "Madrid, Espana", "en": "Madrid, Spain" },
+    { "es": "Disponible para incorporacion", "en": "Available to start" },
+    { "es": "Graduado en 2026", "en": "Graduated in 2026" },
+    { "es": "Matricula de Honor x2", "en": "Highest honours x2" },
+    { "es": "Ponente en seLIA 2026", "en": "Speaker at seLIA 2026" },
     { "es": "Ingles B1, preparando B2", "en": "English B1, working towards B2" }
   ],
   "valores": [
     {
       "icono": "🔍",
       "titulo": { "es": "Atencion al detalle", "en": "Attention to detail" },
-      "descripcion": { "es": "Cuido cada linea de codigo y cada decision tecnica", "en": "I care about every line of code and every technical decision" }
+      "descripcion": { "es": "Reviso el resultado las veces que hagan falta antes de darlo por terminado", "en": "I review the result as many times as it takes before calling it done" }
     },
     {
       "icono": "📋",
       "titulo": { "es": "Organizacion", "en": "Organization" },
-      "descripcion": { "es": "Documento y estructuro mi trabajo pensando en quien lo lea despues", "en": "I document and structure my work with the next reader in mind" }
+      "descripcion": { "es": "Me apoyo en la planificacion y en prioridades claras para sacar adelante varias cosas a la vez", "en": "I rely on planning and clear priorities to keep several things moving at once" }
     },
     {
       "icono": "🎯",
-      "titulo": { "es": "Constancia", "en": "Consistency" },
-      "descripcion": { "es": "Termino lo que empiezo, cuidando la calidad hasta el final", "en": "I finish what I start, keeping quality high until the end" }
+      "titulo": { "es": "Esfuerzo constante", "en": "Steady effort" },
+      "descripcion": { "es": "Se que ningun objetivo se consigue sin esfuerzo, asi que insisto hasta conseguir el resultado que busco", "en": "I know nothing worthwhile comes without effort, so I keep going until I get the result I'm after" }
     }
   ]
 }
