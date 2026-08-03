@@ -5,7 +5,7 @@
     "es": "Ingeniero de Telecomunicaciones - Telematica",
     "en": "Telecommunications Engineer - Telematics"
   },
-  "ubicacion": "Madrid, Espana",
+  "ubicacion": "Madrid, España",
   "bio": {
     "es": "Ingeniero de Telecomunicaciones especializado en Telematica. Organizado, constante y con pasion por el software, la automatizacion y la ciberseguridad.",
     "en": "Telecommunications Engineer specialized in Telematics. Organized, consistent and passionate about software, automation and cybersecurity."
@@ -39,16 +39,16 @@
     "es": [
       "Soy Alejandro, Ingeniero de Telecomunicaciones especializado en Telematica por la Universidad Rey Juan Carlos. Me defino como una persona organizada, responsable y constante: no doy nada por hecho, porque se que ningun objetivo se consigue sin esfuerzo. Prefiero entender bien lo que hago antes de darlo por terminado, y cuido los detalles porque creo que ahi es donde se nota si algo esta bien hecho.",
       "Superar las exigencias tecnicas de la carrera me ha ensenado, sobre todo, a priorizar: a saber que frente atacar primero cuando tengo varias cosas encima de la mesa, sin perder de vista lo importante por ir con prisa. Es una forma de trabajar que aplico igual en un proyecto personal que en el dia a dia de una oficina, y que me ha permitido sacar adelante mis estudios mientras compatibilizaba trabajos como socorrista o promotor comercial.",
-      "Actualmente aplico esta misma forma de trabajar en mis practicas de ingenieria en Robert Bosch Espana, donde analizo datos de produccion, diseno bases de datos y construyo dashboards de seguimiento en Power BI y SAP - mi primera toma de contacto real con un entorno de trabajo grande y exigente. Fuera de Bosch, sigo aplicando lo aprendido en mis propios proyectos de backend y automatizacion, que puedes ver un poco mas abajo."
+      "Actualmente aplico esta misma forma de trabajar en mis practicas de ingenieria en Robert Bosch España, donde analizo datos de produccion, diseno bases de datos y construyo dashboards de seguimiento en Power BI y SAP - mi primera toma de contacto real con un entorno de trabajo grande y exigente. Fuera de Bosch, sigo aplicando lo aprendido en mis propios proyectos de backend y automatizacion, que puedes ver un poco mas abajo."
     ],
     "en": [
       "I'm Alejandro, a Telecommunications Engineer specialized in Telematics from Universidad Rey Juan Carlos. I see myself as an organized, reliable and consistent person: I don't take anything for granted, because I know nothing worthwhile comes without effort. I'd rather really understand what I'm doing before calling it done, and I care about the details because that's where you can tell if something's been done properly.",
       "Getting through the technical demands of my degree taught me, above all, to prioritize: to know which front to tackle first when I have several things on my plate, without losing sight of what matters just because I'm in a hurry. It's a way of working I apply the same way to a personal project as I do in a day-to-day office job, and it's what let me get through my studies while juggling jobs like lifeguard or promotional staff.",
-      "I currently apply this same way of working during my engineering internship at Robert Bosch Espana, where I analyze production data, design databases and build tracking dashboards in Power BI and SAP - my first real taste of a large, demanding work environment. Outside of Bosch, I keep applying what I've learned to my own backend and automation projects, which you can check out a bit further down."
+      "I currently apply this same way of working during my engineering internship at Robert Bosch España, where I analyze production data, design databases and build tracking dashboards in Power BI and SAP - my first real taste of a large, demanding work environment. Outside of Bosch, I keep applying what I've learned to my own backend and automation projects, which you can check out a bit further down."
     ]
   },
   "badges": [
-    { "es": "Madrid, Espana", "en": "Madrid, Spain" },
+    { "es": "Madrid, España", "en": "Madrid, Spain" },
     { "es": "Disponible para incorporacion", "en": "Available to start" },
     { "es": "Graduado en 2026", "en": "Graduated in 2026" },
     { "es": "Matricula de Honor x2", "en": "Highest honours x2" },
