@@ -80,10 +80,10 @@ invisible.
 
 | Rol       | Modo oscuro | Modo claro |
 | --------- | ----------- | ---------- |
-| Fondo     | `#0A192F`   | `#EDE7D9`  |
-| Tarjetas  | `#112D4E`   | `#DDD5C1`  |
-| Acento    | `#5DA9E9`   | `#2F4A6B`  |
-| Texto     | `#FFFFFF`   | `#0F0F0E`  |
+| Fondo     | `#242933`   | `#EDE7D9`  |
+| Tarjetas  | `#3B4252`   | `#DDD5C1`  |
+| Acento    | `#88C0D0`   | `#2F4A6B`  |
+| Texto     | `#ECEFF4`   | `#0F0F0E`  |
 
 Se cambian en `public/css/variables.css`. El tema se aplica en el `<head>` antes
 de pintar, asi que no hay parpadeo de color al cargar.

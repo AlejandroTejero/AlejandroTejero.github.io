@@ -45,7 +45,8 @@
   --c-superficie-alta: #434C5E;
   --c-texto: #ECEFF4;
   --c-texto-suave: #D8DEE9;
-  --c-texto-tenue: #7C88A0;
+  /* --c-texto-tenue: #7C88A0; */
+  --c-texto-tenue: #A8B4CB;
   --c-borde: rgba(216, 222, 233, 0.10);
   --c-borde-fuerte: rgba(216, 222, 233, 0.22);
 
