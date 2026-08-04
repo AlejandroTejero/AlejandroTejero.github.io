@@ -467,6 +467,7 @@ function generarHome(ctx) {
     lista_proyectos_destacados: destacados.map((p, i) => renderizarProjectCard(p, ctx, i)).join(''),
     lista_hitos_mini: hitosTeaser.map((h) => renderizarHitoMini(h, ctx)).join(''),
     seccion_setup: setupHtml,
+    lista_skill_groups: skills.categorias.map((c, i) => renderizarSkillGroup(c, ctx, i)).join(''),
   });
 
   return envolverEnLayout(contenido, {
@@ -483,7 +484,6 @@ function generarProyectosLista(ctx) {
     filtro_categorias: renderizarFiltroCategorias(ctx),
     lista_todos_los_proyectos: proyectos.map((p, i) => renderizarProjectCard(p, ctx, i)).join(''),
     lista_repos_academicos: repositorios.map((r) => renderizarRepoCard(r, ctx)).join(''),
-    lista_skill_groups: skills.categorias.map((c, i) => renderizarSkillGroup(c, ctx, i)).join(''),
     total_proyectos: proyectos.length,
     total_repos: repositorios.length,
   });
