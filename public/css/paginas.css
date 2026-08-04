@@ -31,44 +31,6 @@
   letter-spacing: -0.015em;
 }
 
-/* ============================================
-   HOME · SETUP
-   ============================================ */
-.setup__lista {
-  display: grid;
-  gap: 1px;
-  background: var(--c-borde);
-  border: 1px solid var(--c-borde);
-  border-radius: var(--radio-card);
-  overflow: hidden;
-  max-width: 620px;
-}
-
-.setup__fila {
-  background: var(--c-fondo);
-  padding: 1rem 1.25rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1.5rem;
-}
-
-.setup__fila dt {
-  font-family: var(--f-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--c-texto-tenue);
-}
-
-.setup__fila dd {
-  font-size: 0.9375rem;
-  text-align: right;
-}
-
-.seccion--setup .etiqueta-seccion {
-  margin-bottom: 1.5rem;
-}
 
 /* ============================================
    HOME · LLAMADA A LA ACCION
@@ -191,14 +153,5 @@
 
   .cta-contacto .btn {
     justify-content: center;
-  }
-
-  .setup__fila {
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .setup__fila dd {
-    text-align: left;
   }
 }

@@ -245,3 +245,49 @@
     if (evento.key === 'Escape') cerrar();
   });
 })();
+
+/* ============================================
+   8. CARRUSEL DE PROYECTO
+   ============================================ */
+   (function carruseles() {
+    const todosCarruseles = document.querySelectorAll('[data-carrusel]');
+    if (!todosCarruseles.length) return;
+  
+    todosCarruseles.forEach((carrusel) => {
+      const pista = carrusel.querySelector('[data-carrusel-pista]');
+      const items = Array.from(pista.children);
+      const botonPrev = carrusel.querySelector('[data-carrusel-prev]');
+      const botonNext = carrusel.querySelector('[data-carrusel-next]');
+      const puntos = Array.from(carrusel.querySelectorAll('[data-carrusel-puntos] button'));
+      let indice = 0;
+  
+      function irA(nuevoIndice) {
+        indice = (nuevoIndice + items.length) % items.length;
+        pista.style.transform = `translateX(-${indice * 100}%)`;
+        puntos.forEach((punto, i) => punto.classList.toggle('carrusel__punto--activo', i === indice));
+      }
+  
+      botonPrev.addEventListener('click', () => irA(indice - 1));
+      botonNext.addEventListener('click', () => irA(indice + 1));
+      puntos.forEach((punto, i) => punto.addEventListener('click', () => irA(i)));
+  
+      // Deslizar con el dedo en movil
+      let xInicio = null;
+      pista.addEventListener('touchstart', (evento) => {
+        xInicio = evento.touches[0].clientX;
+      }, { passive: true });
+  
+      pista.addEventListener('touchend', (evento) => {
+        if (xInicio === null) return;
+        const diferencia = xInicio - evento.changedTouches[0].clientX;
+        if (Math.abs(diferencia) > 40) irA(diferencia > 0 ? indice + 1 : indice - 1);
+        xInicio = null;
+      });
+  
+      // Flechas del teclado cuando el carrusel tiene el foco
+      carrusel.addEventListener('keydown', (evento) => {
+        if (evento.key === 'ArrowLeft') irA(indice - 1);
+        if (evento.key === 'ArrowRight') irA(indice + 1);
+      });
+    });
+  })();

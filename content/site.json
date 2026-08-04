@@ -30,11 +30,6 @@
     "es": "/cv/CVAlejandroT.pdf",
     "en": "/cv/CVAlejandroT_EN.pdf"
   },
-  "setup": {
-    "so": "PENDIENTE (ej: Windows 11 / Ubuntu 24.04)",
-    "editor": "PENDIENTE (ej: VSCode / PyCharm)",
-    "terminal": "PENDIENTE (ej: Windows Terminal / Zsh)"
-  },
   "bio_parrafos": {
     "es": [
       "Soy Alejandro, Ingeniero de Telecomunicaciones especializado en Telematica por la Universidad Rey Juan Carlos. Me defino como una persona organizada, responsable y constante: no doy nada por hecho, porque se que ningun objetivo se consigue sin esfuerzo. Prefiero entender bien lo que hago antes de darlo por terminado, y cuido los detalles porque creo que ahi es donde se nota si algo esta bien hecho.",

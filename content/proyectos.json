@@ -21,7 +21,8 @@
       "github": "https://github.com/AlejandroTejero/WebBuilder-TFG",
       "landing": "https://alejandrotejero.github.io/WebBuilder-landing/",
       "memoria": "https://github.com/AlejandroTejero/MemoriaTFG-WebBuilder"
-    }
+    },
+    "acento": { "oscuro": "#B79CED", "claro": "#5B3FA0" }
   },
   {
     "id": "gamerank",
@@ -41,9 +42,15 @@
     "estado": { "es": "Finalizado", "en": "Completed" },
     "nota_academica": "9,9 - Matricula de Honor",
     "imagen": "/img/proyectos/GameRank/portada.png",
+    "galeria": [
+      "/img/proyectos/GameRank/listajuegos.png",
+      "/img/proyectos/GameRank/ayuda.png",
+      "/img/proyectos/GameRank/login.png"
+    ],
     "enlaces": {
       "github": "https://github.com/AlejandroTejero/GameRank"
-    }
+    },
+    "acento": { "oscuro": "#F591AF", "claro": "#A83467" }
   },
   {
     "id": "invernadero",
@@ -63,9 +70,14 @@
     "estado": { "es": "Finalizado", "en": "Completed" },
     "nota_academica": null,
     "imagen": "/img/proyectos/Invernadero/portada.png",
+    "galeria": [
+      "/img/proyectos/Invernadero/inicio.png",
+      "/img/proyectos/Invernadero/inicio2.png"
+    ],
     "enlaces": {
       "github": "https://github.com/AlejandroTejero/Invernadero"
-    }
+    },
+    "acento": { "oscuro": "#8FCB7B", "claro": "#2F5E28" }
   },
   {
     "id": "tactical-battle",
@@ -87,6 +99,7 @@
     "imagen": "/img/proyectos/TacticalBattle/tacticalbattle.png",
     "enlaces": {
       "github": "https://github.com/AlejandroTejero/TacticalBattle"
-    }
+    },
+    "acento": { "oscuro": "#F2A65A", "claro": "#8C4413" }
   }
 ]

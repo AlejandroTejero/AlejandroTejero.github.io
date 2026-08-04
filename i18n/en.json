@@ -33,11 +33,6 @@
   "trayectoria_teaser_intro": "A quick look at how I got here",
   "ver_toda_trayectoria": "View full journey",
 
-  "setup_titulo": "My setup",
-  "setup_so": "Operating system",
-  "setup_editor": "Editor",
-  "setup_terminal": "Terminal",
-
   "proyectos_titulo": "Projects",
   "proyectos_intro": "A selection of academic and personal projects, from AI-driven backend work to client-server systems",
   "filtrar_por_categoria": "Filter by category",
@@ -49,7 +44,6 @@
   "sin_resultados": "No projects in this category",
 
   "volver_proyectos": "Back to projects",
-  "tambien_te_puede_interesar": "You might also like",
   "proyecto_relacionado": "Related project",
   "sobre_el_proyecto": "About the project",
   "ficha_periodo": "Period",
@@ -83,5 +77,10 @@
   "contacto_cta_texto": "If you're looking for someone in backend, data or automation, drop me a line.",
   "escribeme": "Email me",
 
-  "footer_hecho": "Designed and coded in Madrid"
+  "footer_hecho": "Designed and coded in Madrid",
+
+  "carrusel_anterior": "Previous image",
+  "carrusel_siguiente": "Next image",
+  "carrusel_captura": "screenshot",
+  "carrusel_ir_a": "Go to image"
 }

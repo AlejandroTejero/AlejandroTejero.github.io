@@ -33,11 +33,6 @@
   "trayectoria_teaser_intro": "Un recorrido rapido por como he llegado hasta aqui",
   "ver_toda_trayectoria": "Ver toda la trayectoria",
 
-  "setup_titulo": "Mi setup",
-  "setup_so": "Sistema operativo",
-  "setup_editor": "Editor",
-  "setup_terminal": "Terminal",
-
   "proyectos_titulo": "Proyectos",
   "proyectos_intro": "Una seleccion de proyectos academicos y personales, desde backend con IA hasta sistemas cliente-servidor",
   "filtrar_por_categoria": "Filtrar por categoria",
@@ -49,7 +44,6 @@
   "sin_resultados": "No hay proyectos en esta categoria",
 
   "volver_proyectos": "Volver a proyectos",
-  "tambien_te_puede_interesar": "Tambien te puede interesar",
   "proyecto_relacionado": "Proyecto relacionado",
   "sobre_el_proyecto": "Sobre el proyecto",
   "ficha_periodo": "Periodo",
@@ -83,5 +77,10 @@
   "contacto_cta_texto": "Si buscas alguien para backend, datos o automatizacion, escribeme y lo comentamos.",
   "escribeme": "Escribeme",
 
-  "footer_hecho": "Disenado y programado en Madrid"
+  "footer_hecho": "Disenado y programado en Madrid",
+
+  "carrusel_anterior": "Imagen anterior",
+  "carrusel_siguiente": "Imagen siguiente",
+  "carrusel_captura": "captura",
+  "carrusel_ir_a": "Ir a la imagen"
 }

@@ -83,6 +83,10 @@ function existeEnPublic(rutaAbsolutaWeb) {
   return fs.existsSync(path.join(RAIZ, 'public', relativa));
 }
 
+function existeArchivo(rutaRelativa) {
+  return fs.existsSync(path.join(RAIZ, rutaRelativa));
+}
+
 function iniciales(texto) {
   return texto
     .split(/\s+/)
@@ -219,13 +223,55 @@ function colorLenguaje(nombre) {
 // ============================================
 // PORTADAS: imagen real si existe, monograma si no
 // ============================================
-function renderizarPortada(titulo, rutaImagen, indice) {
+function renderizarPortada(titulo, rutaImagen, indice, prioritaria = false) {
   if (existeEnPublic(rutaImagen)) {
-    return `<img src="${rutaImagen}" alt="${escaparHtml(titulo)}" loading="lazy">`;
+    const atributoCarga = prioritaria
+      ? 'loading="eager" fetchpriority="high"'
+      : 'loading="lazy"';
+    return `<img src="${rutaImagen}" alt="${escaparHtml(titulo)}" ${atributoCarga}>`;
   }
 
   // Sin imagen todavia: monograma tipografico en vez de un hueco roto.
   return `<span class="portada-monograma" data-tono="${indice % 4}" aria-hidden="true">${escaparHtml(iniciales(titulo))}</span>`;
+}
+
+function renderizarCarrusel(proyecto, ctx) {
+  const imagenes = (proyecto.galeria || []).filter((ruta) => existeEnPublic(ruta));
+  if (imagenes.length < 2) return '';
+
+  const slides = imagenes
+    .map((ruta, i) => `
+      <div class="carrusel__item" role="group" aria-roledescription="slide" aria-label="${i + 1} / ${imagenes.length}">
+        <img src="${ruta}" alt="${escaparHtml(proyecto.titulo)} — ${ctx.i18n.carrusel_captura} ${i + 1}" loading="lazy">
+      </div>`)
+    .join('');
+
+  const puntos = imagenes
+    .map((_, i) => `<button type="button" class="carrusel__punto${i === 0 ? ' carrusel__punto--activo' : ''}" data-indice="${i}" aria-label="${ctx.i18n.carrusel_ir_a} ${i + 1}"></button>`)
+    .join('');
+
+  return `
+    <div class="carrusel reveal" data-carrusel tabindex="0" aria-roledescription="carousel" aria-label="${escaparHtml(proyecto.titulo)}">
+      <div class="carrusel__viewport">
+        <div class="carrusel__pista" data-carrusel-pista>${slides}</div>
+      </div>
+      <button type="button" class="carrusel__control carrusel__control--prev" data-carrusel-prev aria-label="${ctx.i18n.carrusel_anterior}">
+        <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+      <button type="button" class="carrusel__control carrusel__control--next" data-carrusel-next aria-label="${ctx.i18n.carrusel_siguiente}">
+        <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+      <div class="carrusel__puntos" data-carrusel-puntos>${puntos}</div>
+    </div>`;
+}
+
+function renderizarAcentoProyecto(proyecto) {
+  const acento = proyecto.acento;
+  if (!acento || !acento.oscuro || !acento.claro) return '';
+  return `<style>
+    [data-tema="oscuro"] .detalle-proyecto { --c-acento: ${acento.oscuro}; }
+    [data-tema="claro"] .detalle-proyecto { --c-acento: ${acento.claro}; }
+  </style>`;
 }
 
 function renderizarFotoPerfil() {
@@ -439,22 +485,6 @@ function generarHome(ctx) {
     })
     .slice(-4);
 
-  const setupEntradas = [
-    { etiqueta: ctx.i18n.setup_so, valor: limpiar(site.setup.so) },
-    { etiqueta: ctx.i18n.setup_editor, valor: limpiar(site.setup.editor) },
-    { etiqueta: ctx.i18n.setup_terminal, valor: limpiar(site.setup.terminal) },
-  ].filter((entrada) => entrada.valor);
-
-  const setupHtml = setupEntradas.length
-    ? `<section class="seccion seccion--setup reveal">
-         <div class="contenedor">
-           <p class="etiqueta-seccion">${ctx.i18n.setup_titulo}</p>
-           <dl class="setup__lista">
-             ${setupEntradas.map((e) => `<div class="setup__fila"><dt>${e.etiqueta}</dt><dd>${escaparHtml(e.valor)}</dd></div>`).join('')}
-           </dl>
-         </div>
-       </section>`
-    : '';
 
   const contenido = reemplazar(plantillas.home, {
     ...ctx,
@@ -466,7 +496,6 @@ function generarHome(ctx) {
     lista_valores: site.valores.map((v, i) => renderizarValorCard(v, ctx, i)).join(''),
     lista_proyectos_destacados: destacados.map((p, i) => renderizarProjectCard(p, ctx, i)).join(''),
     lista_hitos_mini: hitosTeaser.map((h) => renderizarHitoMini(h, ctx)).join(''),
-    seccion_setup: setupHtml,
     lista_skill_groups: skills.categorias.map((c, i) => renderizarSkillGroup(c, ctx, i)).join(''),
   });
 
@@ -495,6 +524,14 @@ function generarProyectosLista(ctx) {
   }, ctx);
 }
 
+// Si existe una plantilla propia para este proyecto (templates/proyectos/<id>.html),
+// se usa esa en vez de la generica. Permite que cada proyecto tenga su propia
+// estructura sin tocar el motor de generacion.
+function plantillaParaProyecto(idProyecto) {
+  const rutaPropia = `templates/proyectos/${idProyecto}.html`;
+  return existeArchivo(rutaPropia) ? leerHTML(rutaPropia) : plantillas.proyectoDetalle;
+}
+
 function generarProyectoDetalle(proyecto, ctx, indice) {
   const tech = proyecto.tecnologias.map((t) => `<li>${t}</li>`).join('');
 
@@ -509,15 +546,9 @@ function generarProyectoDetalle(proyecto, ctx, indice) {
     .map(([tipo, url]) => `<a href="${url}" target="_blank" rel="noopener" class="btn btn--linea">${etiquetasEnlace[tipo] || tipo}<span aria-hidden="true">↗</span></a>`)
     .join('');
 
-  const relacionados = proyectos
-    .filter((p) => p.id !== proyecto.id && p.categorias.some((c) => proyecto.categorias.includes(c)))
-    .slice(0, 2)
-    .map((p, i) => renderizarProjectCard(p, ctx, i))
-    .join('');
-
   const nota = limpiar(proyecto.nota_academica);
 
-  const contenido = reemplazar(plantillas.proyectoDetalle, {
+  const contenido = reemplazar(plantillaParaProyecto(proyecto.id), {
     ...ctx,
     proyecto: {
       ...proyecto,
@@ -525,14 +556,12 @@ function generarProyectoDetalle(proyecto, ctx, indice) {
       descripcion: proyecto.descripcion[ctx.idioma],
       estado: proyecto.estado[ctx.idioma],
     },
-    portada: renderizarPortada(proyecto.titulo, proyecto.imagen, indice),
+    portada: renderizarPortada(proyecto.titulo, proyecto.imagen, indice, true),
     lista_tecnologias: tech,
     lista_enlaces: enlaces,
-    lista_proyectos_relacionados: relacionados,
     nota_academica_si_existe: nota ? `<div class="dato"><dt>${ctx.i18n.nota_academica}</dt><dd>${escaparHtml(nota)}</dd></div>` : '',
-    bloque_relacionados: relacionados
-      ? `<section class="seccion reveal"><div class="contenedor"><p class="etiqueta-seccion">${ctx.i18n.tambien_te_puede_interesar}</p><div class="rejilla-proyectos rejilla-proyectos--duo">${relacionados}</div></div></section>`
-      : '',
+    carrusel: renderizarCarrusel(proyecto, ctx),
+    acento_proyecto: renderizarAcentoProyecto(proyecto),
   });
 
   return envolverEnLayout(contenido, {
