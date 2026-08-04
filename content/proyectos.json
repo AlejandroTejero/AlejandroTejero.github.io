@@ -22,7 +22,8 @@
       "landing": "https://alejandrotejero.github.io/WebBuilder-landing/",
       "memoria": "https://github.com/AlejandroTejero/MemoriaTFG-WebBuilder"
     },
-    "acento": { "oscuro": "#B79CED", "claro": "#5B3FA0" }
+    "acento": { "oscuro": "#B79CED", "claro": "#5B3FA0" },
+    "diagrama": "/img/diagramas/webbuilder_diagram.png"
   },
   {
     "id": "gamerank",
@@ -50,7 +51,8 @@
     "enlaces": {
       "github": "https://github.com/AlejandroTejero/GameRank"
     },
-    "acento": { "oscuro": "#F591AF", "claro": "#A83467" }
+    "acento": { "oscuro": "#F591AF", "claro": "#A83467" },
+    "diagrama": "/img/diagramas/gamerank_diagram.png"
   },
   {
     "id": "invernadero",
@@ -77,7 +79,8 @@
     "enlaces": {
       "github": "https://github.com/AlejandroTejero/Invernadero"
     },
-    "acento": { "oscuro": "#8FCB7B", "claro": "#2F5E28" }
+    "acento": { "oscuro": "#8FCB7B", "claro": "#2F5E28" },
+    "diagrama": "/img/diagramas/invernadero_diagram.png"
   },
   {
     "id": "tactical-battle",
@@ -100,6 +103,7 @@
     "enlaces": {
       "github": "https://github.com/AlejandroTejero/TacticalBattle"
     },
-    "acento": { "oscuro": "#F2A65A", "claro": "#8C4413" }
+    "acento": { "oscuro": "#F2A65A", "claro": "#8C4413" },
+    "diagrama": "/img/diagramas/tacticalbattle_diagram.png"
   }
 ]

@@ -291,3 +291,49 @@
       });
     });
   })();
+
+
+  /* ============================================
+   9. DIAGRAMA AMPLIABLE
+   ============================================ */
+(function diagramas() {
+  const disparadores = document.querySelectorAll('[data-diagrama-abrir]');
+  if (!disparadores.length) return;
+
+  disparadores.forEach((disparador) => {
+    const seccion = disparador.closest('.seccion-diagrama');
+    const overlay = seccion ? seccion.querySelector('[data-diagrama-overlay]') : null;
+    if (!overlay) return;
+
+    // Se mueve al final del <body> para que "position: fixed" cubra
+    // toda la pantalla, sin que el transform de .reveal lo encajone.
+    document.body.appendChild(overlay);
+
+    const botonCerrar = overlay.querySelector('[data-diagrama-cerrar]');
+
+    function abrir() {
+      overlay.classList.add('diagrama__overlay--visible');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      botonCerrar.focus();
+    }
+
+    function cerrar() {
+      overlay.classList.remove('diagrama__overlay--visible');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      disparador.focus();
+    }
+
+    disparador.addEventListener('click', abrir);
+    botonCerrar.addEventListener('click', cerrar);
+
+    overlay.addEventListener('click', (evento) => {
+      if (evento.target === overlay) cerrar();
+    });
+
+    document.addEventListener('keydown', (evento) => {
+      if (evento.key === 'Escape' && overlay.classList.contains('diagrama__overlay--visible')) cerrar();
+    });
+  });
+})();

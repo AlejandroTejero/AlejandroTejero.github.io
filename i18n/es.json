@@ -82,5 +82,9 @@
   "carrusel_anterior": "Imagen anterior",
   "carrusel_siguiente": "Imagen siguiente",
   "carrusel_captura": "captura",
-  "carrusel_ir_a": "Ir a la imagen"
+  "carrusel_ir_a": "Ir a la imagen",
+
+  "diagrama_titulo": "Arquitectura",
+  "diagrama_alt": "Diagrama de arquitectura",
+  "diagrama_ampliar": "Ampliar"
 }

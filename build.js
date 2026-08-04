@@ -235,14 +235,17 @@ function renderizarPortada(titulo, rutaImagen, indice, prioritaria = false) {
   return `<span class="portada-monograma" data-tono="${indice % 4}" aria-hidden="true">${escaparHtml(iniciales(titulo))}</span>`;
 }
 
-function renderizarCarrusel(proyecto, ctx) {
-  const imagenes = (proyecto.galeria || []).filter((ruta) => existeEnPublic(ruta));
-  if (imagenes.length < 2) return '';
+function renderizarHeroProyecto(proyecto, ctx) {
+  const imagenes = [proyecto.imagen, ...(proyecto.galeria || [])].filter((ruta) => existeEnPublic(ruta));
+
+  if (imagenes.length < 2) {
+    return renderizarPortada(proyecto.titulo, proyecto.imagen, 0, true);
+  }
 
   const slides = imagenes
     .map((ruta, i) => `
       <div class="carrusel__item" role="group" aria-roledescription="slide" aria-label="${i + 1} / ${imagenes.length}">
-        <img src="${ruta}" alt="${escaparHtml(proyecto.titulo)} — ${ctx.i18n.carrusel_captura} ${i + 1}" loading="lazy">
+        <img src="${ruta}" alt="${escaparHtml(proyecto.titulo)} — ${ctx.i18n.carrusel_captura} ${i + 1}" ${i === 0 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'}>
       </div>`)
     .join('');
 
@@ -250,19 +253,44 @@ function renderizarCarrusel(proyecto, ctx) {
     .map((_, i) => `<button type="button" class="carrusel__punto${i === 0 ? ' carrusel__punto--activo' : ''}" data-indice="${i}" aria-label="${ctx.i18n.carrusel_ir_a} ${i + 1}"></button>`)
     .join('');
 
+  return `<div class="carrusel" data-carrusel tabindex="0" aria-roledescription="carousel" aria-label="${escaparHtml(proyecto.titulo)}">
+    <div class="carrusel__viewport">
+      <div class="carrusel__pista" data-carrusel-pista>${slides}</div>
+    </div>
+    <button type="button" class="carrusel__control carrusel__control--prev" data-carrusel-prev aria-label="${ctx.i18n.carrusel_anterior}">
+      <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <button type="button" class="carrusel__control carrusel__control--next" data-carrusel-next aria-label="${ctx.i18n.carrusel_siguiente}">
+      <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <div class="carrusel__puntos" data-carrusel-puntos>${puntos}</div>
+  </div>`;
+}
+
+function renderizarDiagramaProyecto(proyecto, ctx) {
+  const ruta = proyecto.diagrama;
+  if (!ruta || !existeEnPublic(ruta)) return '';
+
+  const alt = `${ctx.i18n.diagrama_alt} — ${escaparHtml(proyecto.titulo)}`;
+
   return `
-    <div class="carrusel reveal" data-carrusel tabindex="0" aria-roledescription="carousel" aria-label="${escaparHtml(proyecto.titulo)}">
-      <div class="carrusel__viewport">
-        <div class="carrusel__pista" data-carrusel-pista>${slides}</div>
+  <section class="seccion-diagrama reveal">
+    <div class="contenedor">
+      <p class="etiqueta-seccion">${ctx.i18n.diagrama_titulo}</p>
+
+      <button type="button" class="diagrama__disparador" data-diagrama-abrir aria-haspopup="dialog">
+        <img src="${ruta}" alt="${alt}" loading="lazy">
+        <span class="diagrama__pista" aria-hidden="true">${ctx.i18n.diagrama_ampliar}</span>
+      </button>
+
+      <div class="diagrama__overlay" data-diagrama-overlay role="dialog" aria-modal="true" aria-label="${alt}" aria-hidden="true">
+        <button type="button" class="diagrama__overlay-cerrar" data-diagrama-cerrar aria-label="${ctx.i18n.menu_cerrar}">
+          <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19"/></svg>
+        </button>
+        <img src="${ruta}" alt="${alt}">
       </div>
-      <button type="button" class="carrusel__control carrusel__control--prev" data-carrusel-prev aria-label="${ctx.i18n.carrusel_anterior}">
-        <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg>
-      </button>
-      <button type="button" class="carrusel__control carrusel__control--next" data-carrusel-next aria-label="${ctx.i18n.carrusel_siguiente}">
-        <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg>
-      </button>
-      <div class="carrusel__puntos" data-carrusel-puntos>${puntos}</div>
-    </div>`;
+    </div>
+  </section>`;
 }
 
 function renderizarAcentoProyecto(proyecto) {
@@ -556,12 +584,12 @@ function generarProyectoDetalle(proyecto, ctx, indice) {
       descripcion: proyecto.descripcion[ctx.idioma],
       estado: proyecto.estado[ctx.idioma],
     },
-    portada: renderizarPortada(proyecto.titulo, proyecto.imagen, indice, true),
+    portada: renderizarHeroProyecto(proyecto, ctx),
     lista_tecnologias: tech,
     lista_enlaces: enlaces,
     nota_academica_si_existe: nota ? `<div class="dato"><dt>${ctx.i18n.nota_academica}</dt><dd>${escaparHtml(nota)}</dd></div>` : '',
-    carrusel: renderizarCarrusel(proyecto, ctx),
     acento_proyecto: renderizarAcentoProyecto(proyecto),
+    diagrama_proyecto: renderizarDiagramaProyecto(proyecto, ctx),
   });
 
   return envolverEnLayout(contenido, {
