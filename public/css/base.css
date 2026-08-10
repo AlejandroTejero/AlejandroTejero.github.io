@@ -339,3 +339,11 @@ h4 {
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+
+/* Iconos de marca (rellenos, no de trazo): GitHub, LinkedIn... */
+.icono--marca {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  stroke: none;
+}

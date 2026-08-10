@@ -27,6 +27,10 @@
   --ancho-menu-panel-tablet: 58%;
   --blur-menu: 8px;
 
+  /* Foco que sigue el cursor en el hero. Sube o baja el tamano
+     para hacer el efecto mas o menos evidente. */
+  --tam-spotlight: 480px;
+
   /* ---------- Movimiento ---------- */
   --ease-suave: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-menu: cubic-bezier(0.76, 0, 0.24, 1);
@@ -60,6 +64,15 @@
   --c-menu-fondo: #2E3440;
   --c-velo: rgba(46, 52, 64, 0.65);
   --sombra-card: 0 18px 44px -28px rgba(0, 0, 0, 0.85);
+
+  /* Paleta de categorias para "Competencias tecnicas" (familia Nord frost + aurora) */
+  --c-cat-1: #88C0D0;
+  --c-cat-2: #8FBCBB;
+  --c-cat-3: #B48EAD;
+  --c-cat-4: #A3BE8C;
+  --c-cat-5: #D08770;
+  --c-cat-6: #EBCB8B;
+  --c-cat-7: #81A1C1;
 }
 
 
@@ -85,4 +98,13 @@
   --c-menu-fondo: #EDE7D9;
   --c-velo: rgba(15, 15, 14, 0.35);
   --sombra-card: 0 18px 40px -30px rgba(31, 26, 12, 0.45);
+
+  /* Paleta de categorias para "Competencias tecnicas", version oscurecida para leerse sobre crema */
+  --c-cat-1: #2F4A6B;
+  --c-cat-2: #2E5C56;
+  --c-cat-3: #6B4874;
+  --c-cat-4: #4C6B34;
+  --c-cat-5: #92512C;
+  --c-cat-6: #8A6A16;
+  --c-cat-7: #35526E;
 }

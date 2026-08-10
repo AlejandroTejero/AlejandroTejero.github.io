@@ -439,25 +439,61 @@
    GRUPO DE SKILLS
    ============================================ */
 .skill-group {
+  --c-cat: var(--c-acento);
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--c-borde);
+  padding: 1.5rem;
+  border: 1px solid var(--c-borde);
+  border-radius: var(--radio-card);
+  background: var(--c-fondo-alt);
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--dur-rapida) var(--ease-suave), transform var(--dur-rapida) var(--ease-suave);
 }
+
+.skill-group::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--c-cat);
+}
+
+.skill-group:hover {
+  border-color: color-mix(in srgb, var(--c-cat) 55%, var(--c-borde));
+  transform: translateY(-2px);
+}
+
+.skill-group--cat-1 { --c-cat: var(--c-cat-1); }
+.skill-group--cat-2 { --c-cat: var(--c-cat-2); }
+.skill-group--cat-3 { --c-cat: var(--c-cat-3); }
+.skill-group--cat-4 { --c-cat: var(--c-cat-4); }
+.skill-group--cat-5 { --c-cat: var(--c-cat-5); }
+.skill-group--cat-6 { --c-cat: var(--c-cat-6); }
+.skill-group--cat-7 { --c-cat: var(--c-cat-7); }
 
 .skill-group__cabecera {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 0.75rem;
   flex-wrap: wrap;
 }
 
-.skill-group__indice {
-  font-family: var(--f-mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.14em;
-  color: var(--c-texto-tenue);
+.skill-group__icono-wrap {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--c-cat) 18%, transparent);
+  color: var(--c-cat);
+  flex-shrink: 0;
+}
+
+.skill-group__icono {
+  width: 18px;
+  height: 18px;
 }
 
 .skill-group__nombre {
@@ -466,20 +502,36 @@
   min-width: 0;
 }
 
-.skill-group__nivel {
-  font-family: var(--f-mono);
-  font-size: 0.5625rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 0.2rem 0.5rem;
-  border-radius: 999px;
-  border: 1px solid var(--c-borde);
-  color: var(--c-texto-tenue);
+.skill-group__barras {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
 }
 
-.skill-group__nivel--intermedio {
-  color: var(--c-acento);
-  border-color: color-mix(in srgb, var(--c-acento) 45%, transparent);
+.skill-group__barra {
+  width: 4px;
+  border-radius: 1px;
+  background: var(--c-borde-fuerte);
+}
+
+.skill-group__barra:nth-child(1) { height: 7px; }
+.skill-group__barra:nth-child(2) { height: 11px; }
+.skill-group__barra:nth-child(3) { height: 15px; }
+
+.skill-group__barra--llena {
+  background: var(--c-cat);
+}
+
+.skill-group .tags li {
+  font-family: var(--f-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.03em;
+  padding: 0.32rem 0.65rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--c-cat) 14%, transparent);
+  color: color-mix(in srgb, var(--c-cat) 78%, var(--c-texto));
+  white-space: nowrap;
 }
 
 /* ============================================

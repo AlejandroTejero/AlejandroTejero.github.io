@@ -355,6 +355,37 @@ function renderizarRepoCard(repo, ctx) {
   });
 }
 
+// Icono SVG (trazo, mismo estilo que el resto del sitio: viewBox 24x24,
+// fill="none", stroke="currentColor") por categoria de skill.
+// Se busca por el nombre en español para no depender del idioma activo.
+const ICONOS_CATEGORIA = {
+  'Lenguajes de programación': '<path d="m8 9-3 3 3 3"/><path d="m16 9 3 3-3 3"/><path d="m13 5-2 14"/>',
+  'Backend': '<rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01"/><path d="M7 17h.01"/>',
+  'Bases de datos': '<ellipse cx="12" cy="5.5" rx="8" ry="3"/><path d="M4 5.5V18a8 3 0 0 0 16 0V5.5"/><path d="M4 12a8 3 0 0 0 16 0"/>',
+  'Redes': '<path d="M4 20h16"/><path d="M6 20V14"/><path d="M12 20V9"/><path d="M18 20V4"/>',
+  'Sistemas': '<rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M8 21h8"/><path d="M12 17v4"/>',
+  'Herramientas': '<path d="M14.7 6.3a4 4 0 1 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2z"/>',
+  'Idiomas': '<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a13 13 0 0 1 0 18a13 13 0 0 1 0-18"/>',
+};
+const ICONO_CATEGORIA_DEFECTO = '<circle cx="12" cy="12" r="3"/><path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/>';
+
+// Clase de color por indice de categoria (definidas en variables.css como
+// --c-cat-1 .. --c-cat-7). Si hay mas categorias que colores, se repite el ciclo.
+const PALETA_CATEGORIA = ['cat-1', 'cat-2', 'cat-3', 'cat-4', 'cat-5', 'cat-6', 'cat-7'];
+
+// Cuantas barras (de 3) se rellenan segun el nivel declarado.
+const NIVEL_A_BARRAS = { basico: 1, intermedio: 2, avanzado: 3 };
+
+function renderizarBarrasNivel(nivelClave, nivelTexto) {
+  if (!nivelClave) return '';
+  const rellenas = NIVEL_A_BARRAS[nivelClave] || 0;
+  const barras = [1, 2, 3]
+    .map((n) => `<span class="skill-group__barra${n <= rellenas ? ' skill-group__barra--llena' : ''}"></span>`)
+    .join('');
+  const etiqueta = nivelTexto ? ` aria-label="${escaparHtml(nivelTexto)}"` : '';
+  return `<span class="skill-group__barras"${etiqueta}>${barras}</span>`;
+}
+
 function renderizarSkillGroup(categoria, ctx, indice = 0) {
   const items = categoria.items
     .map((item) => (typeof item === 'object' ? item[ctx.idioma] : item))
@@ -362,15 +393,21 @@ function renderizarSkillGroup(categoria, ctx, indice = 0) {
     .join('');
   const nivelClave = categoria.nivel_clave || '';
   const nivelTexto = categoria.nivel ? limpiar(categoria.nivel[ctx.idioma]) : '';
+  const nombreEs = categoria.nombre.es || categoria.nombre[ctx.idioma];
+  const trazos = ICONOS_CATEGORIA[nombreEs] || ICONO_CATEGORIA_DEFECTO;
+  const iconoSvg = `<svg class="icono skill-group__icono" viewBox="0 0 24 24" focusable="false">${trazos}</svg>`;
+  const colorClase = PALETA_CATEGORIA[indice % PALETA_CATEGORIA.length];
 
   return reemplazar(partials.skillGroup, {
     ...ctx,
     categoria: {
       nombre: categoria.nombre[ctx.idioma],
       nivel_clase: nivelClave,
+      color_clase: colorClase,
+      icono_svg: iconoSvg,
       indice_formateado: String(indice + 1).padStart(2, '0'),
     },
-    nivel_si_existe: nivelTexto ? `<span class="skill-group__nivel skill-group__nivel--${nivelClave}">${escaparHtml(nivelTexto)}</span>` : '',
+    nivel_si_existe: renderizarBarrasNivel(nivelClave, nivelTexto),
     lista_items: items,
   });
 }
@@ -524,7 +561,6 @@ function generarHome(ctx) {
     retrato: renderizarFotoPerfil(),
     lista_badges: renderizarBadges(site.badges, ctx),
     lista_bio_parrafos: renderizarBioParrafos(site.bio_parrafos, ctx),
-    lista_valores: site.valores.map((v, i) => renderizarValorCard(v, ctx, i)).join(''),
     lista_proyectos_carrusel: carrusel.map((p, i) => renderizarProjectCard(p, ctx, i % destacados.length)).join(''),
     lista_hitos_mini: hitosTeaser.map((h) => renderizarHitoMini(h, ctx)).join(''),
     lista_skill_groups: skills.categorias.map((c, i) => renderizarSkillGroup(c, ctx, i)).join(''),

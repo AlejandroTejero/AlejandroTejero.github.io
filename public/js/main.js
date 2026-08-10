@@ -337,3 +337,65 @@
     });
   });
 })();
+
+
+/* ============================================
+   10. HERO: IMAN EN EL NOMBRE + FOCO QUE SIGUE EL CURSOR
+   Se desactiva por completo si el usuario prefiere menos movimiento.
+   La foto del avatar no se mueve, solo el foco de fondo y las letras.
+   ============================================ */
+(function heroInteractivo() {
+  const hero = document.getElementById('hero');
+  const nombre = document.getElementById('hero-nombre');
+  const spotlight = document.getElementById('hero-spotlight');
+  if (!hero || !nombre || !spotlight) return;
+
+  const prefiereMenosMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefiereMenosMovimiento) return;
+
+  // Separa "Alejandro" en letras sueltas para poder moverlas una a una
+  const texto = nombre.textContent;
+  nombre.innerHTML = texto
+    .split('')
+    .map((letra) => `<span class="hero__letra">${letra}</span>`)
+    .join('');
+  const letras = Array.from(nombre.querySelectorAll('.hero__letra'));
+
+  const RADIO_IMAN = 70; // px: distancia a la que una letra empieza a moverse
+  const FUERZA_IMAN = 14; // px: cuanto se desplaza como maximo
+  const offsetSpotlightX = spotlight.offsetWidth / 2;
+  const offsetSpotlightY = spotlight.offsetHeight / 2;
+
+  function mover(evento) {
+    const rect = hero.getBoundingClientRect();
+    const x = evento.clientX - rect.left;
+    const y = evento.clientY - rect.top;
+
+    spotlight.style.transform = `translate(${x - offsetSpotlightX}px, ${y - offsetSpotlightY}px)`;
+
+    letras.forEach((letra) => {
+      const r = letra.getBoundingClientRect();
+      const lx = r.left + r.width / 2 - rect.left;
+      const ly = r.top + r.height / 2 - rect.top;
+      const dx = x - lx;
+      const dy = y - ly;
+      const distancia = Math.sqrt(dx * dx + dy * dy);
+
+      if (distancia < RADIO_IMAN) {
+        const fuerza = (1 - distancia / RADIO_IMAN) * FUERZA_IMAN;
+        letra.style.transform = `translate(${(-dx / distancia) * fuerza || 0}px, ${(-dy / distancia) * fuerza || 0}px)`;
+      } else {
+        letra.style.transform = 'translate(0, 0)';
+      }
+    });
+  }
+
+  hero.addEventListener('mouseenter', () => hero.classList.add('hero--spotlight-activo'));
+  hero.addEventListener('mousemove', mover);
+  hero.addEventListener('mouseleave', () => {
+    hero.classList.remove('hero--spotlight-activo');
+    letras.forEach((letra) => {
+      letra.style.transform = 'translate(0, 0)';
+    });
+  });
+})();

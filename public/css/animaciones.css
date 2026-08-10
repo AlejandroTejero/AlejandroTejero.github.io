@@ -47,6 +47,19 @@
     }
   }
 
+@keyframes parpadeo-cursor {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Letras sueltas del nombre en el hero: el JS separa "Alejandro"
+   en spans y las mueve al pasar el cursor cerca (efecto iman). */
+.hero__letra {
+  display: inline-block;
+  transition: transform 140ms ease;
+}
+
 /* ============================================
    2. REVELADO AL HACER SCROLL
    El estado oculto solo se aplica si hay JS (clase .js en <html>),
@@ -186,23 +199,25 @@
   transform: translateY(-4.2px) rotate(-45deg);
 }
 
-/* El texto Menu / Cerrar rota dentro de su ventana */
+/* El texto Menu / Cerrar rota dentro de su ventana.
+   display: grid + misma grid-area en las dos palabras hace que el
+   ancho del contenedor se calcule con la mas larga de las dos, para
+   que "Cerrar" o "Close" no se recorten por el overflow: hidden. */
 .boton-menu__texto {
   position: relative;
-  display: block;
+  display: grid;
   overflow: hidden;
   height: 1.15em;
 }
 
 .boton-menu__abrir,
 .boton-menu__cerrar {
-  display: block;
+  grid-area: 1 / 1;
+  white-space: nowrap;
   transition: transform 420ms var(--ease-menu);
 }
 
 .boton-menu__cerrar {
-  position: absolute;
-  inset: 0;
   transform: translateY(100%);
 }
 
