@@ -118,8 +118,10 @@
       <a href="{{prefijo_idioma}}/proyectos/" class="enlace-flecha">{{i18n.ver_todos_proyectos}}<span aria-hidden="true">→</span></a>
     </div>
 
-    <div class="rejilla-proyectos rejilla-proyectos--destacados">
-      {{lista_proyectos_destacados}}
+    <div class="carrusel-flotante" data-marquee>
+      <div class="carrusel-flotante__pista" data-marquee-pista>
+        {{lista_proyectos_carrusel}}
+      </div>
     </div>
 
   </div>

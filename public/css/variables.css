@@ -23,6 +23,9 @@
   --radio-card: 14px;
   --grosor-linea: 1px;
   --alto-barra: 72px;
+  --ancho-menu-panel: 42%;
+  --ancho-menu-panel-tablet: 58%;
+  --blur-menu: 8px;
 
   /* ---------- Movimiento ---------- */
   --ease-suave: cubic-bezier(0.22, 1, 0.36, 1);

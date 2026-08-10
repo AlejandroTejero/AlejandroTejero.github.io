@@ -503,6 +503,9 @@ function envolverEnLayout(contenidoHtml, meta, ctx) {
 // ============================================
 function generarHome(ctx) {
   const destacados = proyectos.filter((p) => p.destacado).slice(0, 4);
+  // Se duplica la lista para que el carrusel pueda desplazarse un 50%
+  // y encadenar sin salto visible (bucle infinito con solo CSS).
+  const carrusel = [...destacados, ...destacados];
 
   const hitosTeaser = [...timeline]
     .filter((h) => h.tipo !== 'proyecto')
@@ -522,7 +525,7 @@ function generarHome(ctx) {
     lista_badges: renderizarBadges(site.badges, ctx),
     lista_bio_parrafos: renderizarBioParrafos(site.bio_parrafos, ctx),
     lista_valores: site.valores.map((v, i) => renderizarValorCard(v, ctx, i)).join(''),
-    lista_proyectos_destacados: destacados.map((p, i) => renderizarProjectCard(p, ctx, i)).join(''),
+    lista_proyectos_carrusel: carrusel.map((p, i) => renderizarProjectCard(p, ctx, i % destacados.length)).join(''),
     lista_hitos_mini: hitosTeaser.map((h) => renderizarHitoMini(h, ctx)).join(''),
     lista_skill_groups: skills.categorias.map((c, i) => renderizarSkillGroup(c, ctx, i)).join(''),
   });

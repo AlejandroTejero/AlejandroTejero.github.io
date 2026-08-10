@@ -78,6 +78,58 @@
   .rejilla-proyectos--destacados {
     grid-template-columns: 1fr;
   }
+  .carrusel-flotante {
+    position: relative;
+    overflow: hidden;
+    margin-inline: calc(var(--lateral) * -1);
+    padding-inline: var(--lateral);
+  }
+  
+  .carrusel-flotante::before,
+  .carrusel-flotante::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: clamp(2rem, 8vw, 6rem);
+    z-index: 2;
+    pointer-events: none;
+  }
+  
+  .carrusel-flotante::before {
+    left: 0;
+    background: linear-gradient(to right, var(--c-fondo), transparent);
+  }
+  
+  .carrusel-flotante::after {
+    right: 0;
+    background: linear-gradient(to left, var(--c-fondo), transparent);
+  }
+  
+  .carrusel-flotante__pista {
+    display: flex;
+    gap: clamp(1.25rem, 2.5vw, 2rem);
+    width: max-content;
+    animation: carrusel-desplazar var(--dur-carrusel, 34s) linear infinite;
+  }
+  
+  .carrusel-flotante:hover .carrusel-flotante__pista,
+  .carrusel-flotante:focus-within .carrusel-flotante__pista {
+    animation-play-state: paused;
+  }
+  
+  .carrusel-flotante__pista .project-card {
+    flex: none;
+    width: min(340px, 82vw);
+  }
+  
+  /* Las tarjetas ya entran animadas por el carrusel: se anula el
+     fundido de scroll (.reveal) para que no empiecen invisibles. */
+  .carrusel-flotante__pista .project-card.reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 .trayectoria-mini {

@@ -186,9 +186,7 @@
    ============================================ */
 .menu__interior {
   height: 100%;
-  max-width: var(--ancho-contenedor);
-  margin-inline: auto;
-  padding: calc(var(--alto-barra) + clamp(2rem, 8vh, 5rem)) var(--lateral) clamp(2rem, 6vh, 3.5rem);
+  padding: calc(var(--alto-barra) + clamp(2rem, 8vh, 5rem)) clamp(1.5rem, 4vw, 3rem) clamp(2rem, 6vh, 3.5rem);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -661,7 +659,16 @@
     }
   }
   
+  @media (max-width: 1000px) {
+    .menu__panel {
+      width: var(--ancho-menu-panel-tablet);
+    }
+  }
+
   @media (max-width: 780px) {
+    .menu__panel {
+      width: 100%;
+    }
     .menu__enlace {
       grid-template-columns: auto 1fr;
     }
