@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { marked } = require('marked');
 
 // ============================================
 // CONFIGURACION GENERAL
@@ -152,12 +153,24 @@ function leerCacheLenguajes() {
   }
 }
 
+// Si hay un GITHUB_TOKEN disponible (GitHub Actions lo inyecta solo en cada
+// ejecucion), se usa para autenticar las peticiones a la API: el limite sin
+// autenticar es de 60/hora por IP, y con token sube a 5000/hora. En local,
+// sin token, sigue funcionando igual, solo que con el limite mas bajo.
+function cabecerasGitHub(aceptar) {
+  const cabeceras = { 'Accept': aceptar, 'User-Agent': 'portfolio-build' };
+  if (process.env.GITHUB_TOKEN) {
+    cabeceras['Authorization'] = `Bearer ${process.env.GITHUB_TOKEN}`;
+  }
+  return cabeceras;
+}
+
 async function obtenerLenguajes(nombreRepo) {
   const url = `https://api.github.com/repos/AlejandroTejero/${nombreRepo}/languages`;
 
   try {
     const respuesta = await fetch(url, {
-      headers: { 'Accept': 'application/vnd.github+json', 'User-Agent': 'portfolio-build' },
+      headers: cabecerasGitHub('application/vnd.github+json'),
     });
     if (!respuesta.ok) return null;
 
@@ -205,8 +218,98 @@ async function enriquecerRepositorios() {
 }
 
 // ============================================
-// COLORES PARA LA BARRA DE LENGUAJES
+// GITHUB API: RELLENAR README DE CADA PROYECTO
+// Mismo patron que los lenguajes: se intenta traer el README en cada
+// build; si falla (sin red, repo privado, limite de peticiones...) se usa
+// el ultimo que se guardo en cache, y si nunca hubo ninguno, se omite.
 // ============================================
+const RUTA_CACHE_README = path.join(RAIZ, 'content/readme-cache.json');
+
+function leerCacheReadme() {
+  try {
+    return JSON.parse(fs.readFileSync(RUTA_CACHE_README, 'utf-8'));
+  } catch (error) {
+    return {};
+  }
+}
+
+function propietarioYRepoDesdeUrl(urlGithub) {
+  if (!urlGithub) return null;
+  const coincidencia = urlGithub.match(/github\.com\/([^/]+)\/([^/#?]+)/i);
+  if (!coincidencia) return null;
+  return { propietario: coincidencia[1], repo: coincidencia[2].replace(/\.git$/, '') };
+}
+
+async function obtenerReadme(propietario, repo) {
+  const url = `https://api.github.com/repos/${propietario}/${repo}/readme`;
+
+  try {
+    const respuesta = await fetch(url, {
+      headers: cabecerasGitHub('application/vnd.github.raw+json'),
+    });
+    if (!respuesta.ok) return null;
+
+    const markdown = await respuesta.text();
+    if (!markdown.trim()) return null;
+    return markdown;
+  } catch (error) {
+    return null;
+  }
+}
+
+// Convierte rutas relativas de imagenes/enlaces del README (validas dentro
+// del repo) a URLs absolutas hacia GitHub, para que no salgan rotas al
+// mostrarse fuera del repo.
+function absolutizarRutasReadme(markdown, propietario, repo) {
+  const baseRaw = `https://raw.githubusercontent.com/${propietario}/${repo}/HEAD/`;
+  const baseBlob = `https://github.com/${propietario}/${repo}/blob/HEAD/`;
+
+  return markdown
+    .replace(/(!\[[^\]]*]\()(?!https?:\/\/|data:)([^)]+)(\))/g, (m, ini, ruta, fin) => `${ini}${baseRaw}${ruta.replace(/^\.?\//, '')}${fin}`)
+    .replace(/(?<!!)(\[[^\]]*]\()(?!https?:\/\/|#|mailto:)([^)]+)(\))/g, (m, ini, ruta, fin) => `${ini}${baseBlob}${ruta.replace(/^\.?\//, '')}${fin}`);
+}
+
+async function enriquecerReadmesProyectos() {
+  const cache = leerCacheReadme();
+  let huboCambios = false;
+
+  for (const proyecto of proyectos) {
+    const info = propietarioYRepoDesdeUrl(proyecto.enlaces && proyecto.enlaces.github);
+    if (!info) {
+      proyecto.readme_html = '';
+      continue;
+    }
+
+    const clave = `${info.propietario}/${info.repo}`;
+    let markdown = null;
+
+    if (CONSULTAR_GITHUB) {
+      markdown = await obtenerReadme(info.propietario, info.repo);
+    }
+
+    if (markdown) {
+      cache[clave] = markdown;
+      huboCambios = true;
+      console.log(`  ${clave}: README (GitHub)`);
+    } else {
+      markdown = cache[clave] || null;
+      console.log(`  ${clave}: README (${markdown ? 'cache' : 'sin datos'})`);
+    }
+
+    if (markdown) {
+      const absolutizado = absolutizarRutasReadme(markdown, info.propietario, info.repo);
+      proyecto.readme_html = marked.parse(absolutizado);
+    } else {
+      proyecto.readme_html = '';
+    }
+  }
+
+  if (huboCambios) {
+    fs.writeFileSync(RUTA_CACHE_README, JSON.stringify(cache, null, 2) + '\n', 'utf-8');
+  }
+}
+
+
 const COLORES_LENGUAJE = {
   Python: '#3776AB', JavaScript: '#f1e05a', TypeScript: '#3178c6',
   'C++': '#f34b7d', C: '#555555', SQL: '#e38c00', HTML: '#e34c26',
@@ -599,6 +702,19 @@ function plantillaParaProyecto(idProyecto) {
   return existeArchivo(rutaPropia) ? leerHTML(rutaPropia) : plantillas.proyectoDetalle;
 }
 
+function renderizarSeccionReadme(proyecto, ctx) {
+  if (!proyecto.readme_html) return '';
+  return `<div class="contenedor">
+    <details class="readme-proyecto reveal" open data-readme-key="readme-${proyecto.id}">
+      <summary class="readme-proyecto__resumen">
+        <span>${ctx.i18n.ver_readme}</span>
+        <span class="readme-proyecto__flecha" aria-hidden="true">↓</span>
+      </summary>
+      <div class="readme-proyecto__cuerpo markdown-body">${proyecto.readme_html}</div>
+    </details>
+  </div>`;
+}
+
 function generarProyectoDetalle(proyecto, ctx, indice) {
   const tech = proyecto.tecnologias.map((t) => `<li>${t}</li>`).join('');
 
@@ -629,6 +745,7 @@ function generarProyectoDetalle(proyecto, ctx, indice) {
     nota_academica_si_existe: nota ? `<div class="dato"><dt>${ctx.i18n.nota_academica}</dt><dd>${escaparHtml(nota)}</dd></div>` : '',
     acento_proyecto: renderizarAcentoProyecto(proyecto),
     diagrama_proyecto: renderizarDiagramaProyecto(proyecto, ctx),
+    seccion_readme_si_existe: renderizarSeccionReadme(proyecto, ctx),
   });
 
   return envolverEnLayout(contenido, {
@@ -730,6 +847,10 @@ async function build() {
 
   console.log('Consultando lenguajes en GitHub:');
   await enriquecerRepositorios();
+  console.log('');
+
+  console.log('Consultando READMEs en GitHub:');
+  await enriquecerReadmesProyectos();
   console.log('');
 
   for (const idioma of IDIOMAS) {

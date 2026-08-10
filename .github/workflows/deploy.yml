@@ -4,6 +4,11 @@ on:
   push:
     branches: ["main"]
   workflow_dispatch:
+  schedule:
+    # Cada hora en punto: vuelve a compilar el sitio (READMEs y lenguajes
+    # de los repos) aunque no haya habido push al repo del portfolio, para
+    # que un cambio en el README de un proyecto se refleje solo.
+    - cron: "0 * * * *"
 
 permissions:
   contents: read
@@ -30,6 +35,8 @@ jobs:
         run: npm install
 
       - name: Compilar el sitio
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run build
 
       - name: Configurar GitHub Pages

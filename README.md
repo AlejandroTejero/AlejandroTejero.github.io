@@ -9,8 +9,10 @@ oscuro.
 Necesitas Node 18 o superior.
 
 ```bash
-npm run build     # genera la carpeta dist/
-npm run serve     # sirve dist/ en http://localhost:3000
+rm -rf node_modules package-lock.json
+npm install
+npm run build
+npm run serve
 ```
 
 O en un solo paso:

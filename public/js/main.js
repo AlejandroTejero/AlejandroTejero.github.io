@@ -399,3 +399,33 @@
     });
   });
 })();
+
+
+/* ============================================
+   9. README DEL PROYECTO: RECORDAR SI ESTA ABIERTO O CERRADO
+   Por defecto viene abierto (ver build.js). Si el usuario lo pliega o
+   despliega, se guarda su preferencia para esa pagina de proyecto, y la
+   proxima vez que la visite se respeta.
+   ============================================ */
+(function readmeProyecto() {
+  const detalle = document.querySelector('[data-readme-key]');
+  if (!detalle) return;
+
+  const clave = 'portfolio-' + detalle.dataset.readmeKey;
+
+  try {
+    const guardado = localStorage.getItem(clave);
+    if (guardado === 'cerrado') detalle.open = false;
+    if (guardado === 'abierto') detalle.open = true;
+  } catch (error) {
+    // Si localStorage no esta disponible, se queda con el valor por defecto (abierto).
+  }
+
+  detalle.addEventListener('toggle', () => {
+    try {
+      localStorage.setItem(clave, detalle.open ? 'abierto' : 'cerrado');
+    } catch (error) {
+      // Nada que hacer si el navegador bloquea localStorage.
+    }
+  });
+})();
