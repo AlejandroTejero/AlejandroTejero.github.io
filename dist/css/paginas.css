@@ -17,20 +17,20 @@
 .sobre-mi__texto {
   display: flex;
   flex-direction: column;
-  gap: 1.15rem;
+  gap: 1rem;
   max-width: var(--ancho-lectura);
-  font-size: var(--t-cuerpo-grande);
+  font-size: 0.95rem;
+  line-height: 1.6;
   color: var(--c-texto-suave);
 }
 
 /* El primer parrafo entra mas fuerte: hace de resumen */
 .sobre-mi__texto p:first-child {
   color: var(--c-texto);
-  font-size: clamp(1.125rem, 1.8vw, 1.375rem);
-  line-height: 1.5;
-  letter-spacing: -0.015em;
+  font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+  line-height: 1.55;
+  letter-spacing: -0.01em;
 }
-
 
 /* ============================================
    HOME · LLAMADA A LA ACCION
