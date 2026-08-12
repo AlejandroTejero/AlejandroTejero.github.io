@@ -1,0 +1,8 @@
+Coloca aqui las imagenes del portfolio.
+
+- og-default.png                    -> imagen para compartir en redes (1200x630)
+
+Mientras no existan, el build muestra automaticamente un monograma
+tipografico en su lugar. Las rutas se configuran en content/site.json
+y content/proyectos.json.
+or con refi

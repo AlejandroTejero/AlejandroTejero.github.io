@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0A192F" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#EDE7D9" media="(prefers-color-scheme: light)">
+
+  <title>GameRank · Alejandro Tejero</title>
+  <meta name="description" content="Social videogame catalog and ranking with external API integration">
+
+  <link rel="canonical" href="https://alejandrotejero.github.io/proyectos/gamerank/">
+  <link rel="alternate" hreflang="es" href="https://alejandrotejero.github.io/es/proyectos/gamerank/">
+  <link rel="alternate" hreflang="en" href="https://alejandrotejero.github.io/proyectos/gamerank/">
+  <link rel="alternate" hreflang="x-default" href="https://alejandrotejero.github.io/proyectos/gamerank/">
+
+  <meta property="og:title" content="GameRank">
+  <meta property="og:description" content="Social videogame catalog and ranking with external API integration">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alejandrotejero.github.io/proyectos/gamerank/">
+  <meta property="og:image" content="https://alejandrotejero.github.io/img/proyectos/GameRank/portada.png">
+  <meta property="og:locale" content="en">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script>
+    // Se aplica el tema antes de pintar para que no haya un flash de color equivocado.
+    (function () {
+      // Marca que hay JS: sin esta clase, el contenido con .reveal se ve siempre.
+      document.documentElement.classList.add('js');
+      try {
+        var guardado = localStorage.getItem('portfolio-tema');
+        var prefiereClaro = window.matchMedia('(prefers-color-scheme: light)').matches;
+        var tema = guardado || (prefiereClaro ? 'claro' : 'oscuro');
+        document.documentElement.setAttribute('data-tema', tema);
+      } catch (e) {
+        document.documentElement.setAttribute('data-tema', 'oscuro');
+      }
+    })();
+  </script>
+</head>
+<body class="">
+
+  <a href="#main-content" class="salto-contenido">Skip to content</a>
+
+  <header class="barra" id="barra">
+  <div class="barra__interior">
+
+    <a href="/" class="barra__marca">
+      <span class="barra__marca-nombre">Alejandro Tejero</span>
+    </a>
+
+    <div class="barra__acciones">
+      <a href="/es/proyectos/gamerank/" class="barra__idioma" aria-label="Switch language">
+        <span>ES</span>
+      </a>
+
+      <button type="button" class="barra__tema" id="toggle-tema" aria-label="Switch theme">
+        <svg class="icono icono--luna" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/>
+        </svg>
+        <svg class="icono icono--sol" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="4.2"/>
+          <path d="M12 2v2.6M12 19.4V22M2 12h2.6M19.4 12H22M4.9 4.9l1.9 1.9M17.2 17.2l1.9 1.9M19.1 4.9l-1.9 1.9M6.8 17.2l-1.9 1.9"/>
+        </svg>
+      </button>
+
+      <button type="button" class="boton-menu" id="boton-menu" aria-expanded="false" aria-controls="menu-overlay">
+        <span class="boton-menu__texto">
+          <span class="boton-menu__abrir">Menu</span>
+          <span class="boton-menu__cerrar">Close</span>
+        </span>
+        <span class="boton-menu__lineas" aria-hidden="true">
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+
+  </div>
+</header>
+  <div class="menu" id="menu-overlay" aria-hidden="true" aria-label="Main navigation">
+  <div class="menu__velo" aria-hidden="true"></div>
+  <div class="menu__panel">
+    <div class="menu__interior">
+
+      <nav class="menu__nav">
+        <ul class="menu__lista">
+          <li class="menu__item" style="--i: 0">
+            <a href="/" class="menu__enlace" data-nav="home">
+              <span class="menu__indice">01</span>
+              <span class="menu__texto">
+                <span class="menu__titulo">Home</span>
+                <span class="menu__desc">Who I am and how I work</span>
+              </span>
+              <span class="menu__flecha" aria-hidden="true">→</span>
+            </a>
+          </li>
+
+          <li class="menu__item" style="--i: 1">
+            <a href="/proyectos/" class="menu__enlace" data-nav="proyectos">
+              <span class="menu__indice">02</span>
+              <span class="menu__texto">
+                <span class="menu__titulo">Projects</span>
+                <span class="menu__desc">Backend, AI and client-server systems</span>
+              </span>
+              <span class="menu__flecha" aria-hidden="true">→</span>
+            </a>
+          </li>
+
+          <li class="menu__item" style="--i: 2">
+            <a href="/trayectoria/" class="menu__enlace" data-nav="trayectoria">
+              <span class="menu__indice">03</span>
+              <span class="menu__texto">
+                <span class="menu__titulo">Journey</span>
+                <span class="menu__desc">Education, experience and talks</span>
+              </span>
+              <span class="menu__flecha" aria-hidden="true">→</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="menu__pie" style="--i: 3">
+        <div class="menu__bloque">
+          <p class="etiqueta-seccion">Where to find me</p>
+          <ul class="menu__social">
+            <li><a href="https://github.com/AlejandroTejero" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="mailto:atejerodelamorena@gmail.com">Email</a></li>
+            <li><a href="tel:+34620621384">+34 620 62 13 84</a></li>
+          </ul>
+        </div>
+
+        <a href="mailto:atejerodelamorena@gmail.com?subject=Hi Alejandro, I'm writing from your portfolio" class="btn btn--solido menu__cta">
+          Let's talk<span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <main id="main-content">
+    <style>
+    [data-tema="oscuro"] .detalle-proyecto { --c-acento: #F591AF; }
+    [data-tema="claro"] .detalle-proyecto { --c-acento: #A83467; }
+  </style>
+<article class="detalle detalle-proyecto">
+
+  <div class="contenedor">
+    <a href="/proyectos/" class="enlace-volver linea" style="--i: 0">
+      <span class="linea__interior"><span aria-hidden="true">←</span> Back to projects</span>
+    </a>
+  </div>
+
+  <header class="cabecera-pagina cabecera-pagina--detalle">
+    <div class="contenedor">
+      <h1 class="titular-pagina">
+        <span class="linea" style="--i: 1"><span class="linea__interior">GameRank</span></span>
+      </h1>
+      <p class="cabecera-pagina__intro linea" style="--i: 2"><span class="linea__interior">Social videogame catalog and ranking with external API integration</span></p>
+    </div>
+  </header>
+
+  <div class="contenedor">
+    <div class="detalle__portada reveal"><div class="carrusel" data-carrusel tabindex="0" aria-roledescription="carousel" aria-label="GameRank">
+    <div class="carrusel__viewport">
+      <div class="carrusel__pista" data-carrusel-pista>
+      <div class="carrusel__item" role="group" aria-roledescription="slide" aria-label="1 / 4">
+        <img src="/img/proyectos/GameRank/portada.png" alt="GameRank — screenshot 1" loading="eager" fetchpriority="high">
+      </div>
+      <div class="carrusel__item" role="group" aria-roledescription="slide" aria-label="2 / 4">
+        <img src="/img/proyectos/GameRank/listajuegos.png" alt="GameRank — screenshot 2" loading="lazy">
+      </div>
+      <div class="carrusel__item" role="group" aria-roledescription="slide" aria-label="3 / 4">
+        <img src="/img/proyectos/GameRank/ayuda.png" alt="GameRank — screenshot 3" loading="lazy">
+      </div>
+      <div class="carrusel__item" role="group" aria-roledescription="slide" aria-label="4 / 4">
+        <img src="/img/proyectos/GameRank/login.png" alt="GameRank — screenshot 4" loading="lazy">
+      </div></div>
+    </div>
+    <button type="button" class="carrusel__control carrusel__control--prev" data-carrusel-prev aria-label="Previous image">
+      <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <button type="button" class="carrusel__control carrusel__control--next" data-carrusel-next aria-label="Next image">
+      <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <div class="carrusel__puntos" data-carrusel-puntos><button type="button" class="carrusel__punto carrusel__punto--activo" data-indice="0" aria-label="Go to image 1"></button><button type="button" class="carrusel__punto" data-indice="1" aria-label="Go to image 2"></button><button type="button" class="carrusel__punto" data-indice="2" aria-label="Go to image 3"></button><button type="button" class="carrusel__punto" data-indice="3" aria-label="Go to image 4"></button></div>
+  </div></div>
+  </div>
+
+  <div class="contenedor">
+    <div class="detalle__cuerpo">
+
+      <div class="detalle__principal reveal">
+        <p class="etiqueta-seccion">About the project</p>
+        <p class="detalle__parrafo">Web application integrated with the RAWG API to discover, rate and compare videogames aggregated from different sources (XML + REST APIs). Includes a review system, likes/dislikes, dynamic rankings, advanced search and HTMX-powered dynamic comment loading.</p>
+
+        <div class="detalle__enlaces">
+          <a href="https://github.com/AlejandroTejero/GameRank" target="_blank" rel="noopener" class="btn btn--linea">GitHub<span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+
+      <aside class="detalle__ficha reveal" style="--reveal-delay: 90ms">
+        <dl class="datos">
+          <div class="dato"><dt>Period</dt><dd>2025</dd></div>
+          <div class="dato"><dt>Status</dt><dd>Completed</dd></div>
+          <div class="dato"><dt>Grade</dt><dd>9,9 - Matricula de Honor</dd></div>
+        </dl>
+
+        <div class="detalle__tech">
+          <p class="etiqueta-seccion">Technologies</p>
+          <ul class="tags">
+            <li>Django</li><li>HTMX</li><li>REST API</li><li>XML/JSON</li>
+          </ul>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <div class="contenedor">
+    <details class="readme-proyecto reveal" open data-readme-key="readme-gamerank">
+      <summary class="readme-proyecto__resumen">
+        <span>View repository README</span>
+        <span class="readme-proyecto__flecha" aria-hidden="true">↓</span>
+      </summary>
+      <div class="readme-proyecto__cuerpo markdown-body"><h1>GameRank</h1>
+<p><strong>GameRank</strong> es una aplicación web desarrollada con <strong>Django</strong> para explorar un catálogo de videojuegos (agregados desde varias fuentes), ver su ficha de detalle y permitir interacción de usuarios: <strong>valoraciones, comentarios, likes/dislikes y seguimiento de juegos</strong>.<br>Incluye además una vista con carga dinámica de comentarios usando <strong>HTMX</strong>.</p>
+<hr>
+<h2>Tabla de contenidos</h2>
+<ul>
+<li><a href="#video-ejecucci%C3%B3n">Video Ejecucción</a></li>
+<li><a href="#caracter%C3%ADsticas">Características</a></li>
+<li><a href="#fuentes-de-datos">Fuentes de datos</a></li>
+<li><a href="#stack-y-dependencias">Stack y dependencias</a></li>
+<li><a href="#instalaci%C3%B3n-y-ejecuci%C3%B3n">Instalación y ejecución</a></li>
+<li><a href="#uso">Uso</a></li>
+</ul>
+<hr>
+<h2>Video Ejecucción</h2>
+<ul>
+<li>Parte básica del proyecto: <a href="https://youtu.be/R6o8lVPgEIk">https://youtu.be/R6o8lVPgEIk</a></li>
+<li>Algunas mejoras: <a href="https://youtu.be/Ur3qgCoyuu8">https://youtu.be/Ur3qgCoyuu8</a></li>
+</ul>
+<h2>Características</h2>
+<ul>
+<li><strong>Portada</strong> y página principal de juegos</li>
+<li><strong>Listado</strong> de juegos ordenados por rating (media calculada)</li>
+<li><strong>Filtro por fuente</strong> (prefijos de ID: <code>LIS1</code>, <code>FTP</code>, <code>MMO</code>)</li>
+<li><strong>Página de detalle</strong> del juego (info + rating + comentarios)</li>
+<li><strong>Sistema de valoraciones (1–5)</strong>:<ul>
+<li>1 valoración por usuario y juego (actualizable)</li>
+<li>Recalcula y guarda en el modelo <code>Game</code> la <strong>media</strong> y el <strong>número de votos</strong></li>
+</ul>
+</li>
+<li><strong>Comentarios</strong> por juego</li>
+<li><strong>Likes/Dislikes</strong> por comentario con lógica “toggle”:<ul>
+<li>puedes quitar tu voto o cambiarlo (like ↔ dislike)</li>
+</ul>
+</li>
+<li><strong>Seguir / dejar de seguir</strong> juegos (relación N–N con usuarios)</li>
+<li><strong>Descarga de información del juego en JSON</strong></li>
+<li>Vista dinámica con <strong>HTMX</strong> para refrescar comentarios sin recargar toda la página</li>
+<li><strong>Página de usuario</strong> con métricas (nº de votos y media)</li>
+<li><strong>Configuración de perfil</strong>: alias + tipo/tamaño de fuente</li>
+</ul>
+<hr>
+<h2>Fuentes de datos</h2>
+<p>El catálogo se carga/actualiza desde <strong>tres fuentes</strong>:</p>
+<ul>
+<li>Un <strong>XML</strong> remoto (listado1.xml)</li>
+<li>API <strong>FreeToGame</strong></li>
+<li>API <strong>MMOBomb</strong></li>
+</ul>
+<p>Cada juego se guarda con un <code>game_id</code> único con prefijo:</p>
+<ul>
+<li><code>LIS1-&lt;id&gt;</code></li>
+<li><code>FTP-&lt;id&gt;</code></li>
+<li><code>MMO-&lt;id&gt;</code></li>
+</ul>
+<hr>
+<h2>Stack y dependencias</h2>
+<ul>
+<li><strong>Python 3</strong></li>
+<li><strong>Django 5.1.7</strong></li>
+<li><code>requests</code> (para consumir APIs/XML)</li>
+</ul>
+<p>Dependencias exactas en <code>requirements.txt</code>.</p>
+<hr>
+<h2>Instalación y ejecución</h2>
+<pre><code class="language-bash">python3 -m venv entorno
+source entorno/bin/activate
+pip install -r requirements.txt
+cd project
+python manage.py runserver
+</code></pre>
+<p>Abrir en el navegador:</p>
+<ul>
+<li><code>http://127.0.0.1:8000/</code></li>
+</ul>
+<hr>
+<h2>Uso</h2>
+<ol>
+<li>Entra en <code>/juegos</code> para ver el catálogo.</li>
+<li>Filtra por fuente si quieres (<code>LIS1</code> / <code>FTP</code> / <code>MMO</code>).</li>
+<li>Entra en un juego para ver su detalle.</li>
+<li>Si inicias sesión, puedes:<ul>
+<li><strong>valorar (1–5)</strong></li>
+<li><strong>dejar comentarios</strong></li>
+<li><strong>dar like/dislike</strong> en comentarios</li>
+<li><strong>seguir/dejar de seguir</strong> juegos</li>
+</ul>
+</li>
+<li>Descarga la ficha del juego en <strong>JSON</strong> desde el botón/enlace correspondiente.</li>
+</ol>
+</div>
+    </details>
+  </div>
+
+  
+  <section class="seccion-diagrama reveal">
+    <div class="contenedor">
+      <p class="etiqueta-seccion">Architecture</p>
+
+      <button type="button" class="diagrama__disparador" data-diagrama-abrir aria-haspopup="dialog">
+        <img src="/img/diagramas/gamerank_diagram.png" alt="Architecture diagram — GameRank" loading="lazy">
+        <span class="diagrama__pista" aria-hidden="true">Enlarge</span>
+      </button>
+
+      <div class="diagrama__overlay" data-diagrama-overlay role="dialog" aria-modal="true" aria-label="Architecture diagram — GameRank" aria-hidden="true">
+        <button type="button" class="diagrama__overlay-cerrar" data-diagrama-cerrar aria-label="Close">
+          <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19"/></svg>
+        </button>
+        <img src="/img/diagramas/gamerank_diagram.png" alt="Architecture diagram — GameRank">
+      </div>
+    </div>
+  </section>
+
+</article>
+  </main>
+
+  <footer class="pie">
+  <div class="contenedor pie__interior">
+
+    <div class="pie__bloque">
+      <p class="pie__nombre">Alejandro Tejero de la Morena</p>
+      <p class="pie__rol">Madrid, España</p>
+    </div>
+
+    <ul class="pie__social">
+      <li><a href="https://github.com/AlejandroTejero" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="mailto:atejerodelamorena@gmail.com">Email</a></li>
+    </ul>
+
+    <p class="pie__copy">© 2026 · Designed and coded in Madrid</p>
+
+  </div>
+</footer>
+
+  <div class="flotante" id="contacto-flotante">
+
+  <div class="flotante__menu" id="contacto-flotante-menu" role="menu">
+    <p class="flotante__titulo">Contact</p>
+
+    <a href="mailto:atejerodelamorena@gmail.com" class="flotante__item" role="menuitem" style="--i: 0">
+      <span class="flotante__item-etiqueta">Email</span>
+      <span class="flotante__item-valor">atejerodelamorena@gmail.com</span>
+    </a>
+
+    <a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener" class="flotante__item" role="menuitem" style="--i: 1">
+      <span class="flotante__item-etiqueta">LinkedIn</span>
+      <span class="flotante__item-valor">Alejandro Tejero</span>
+    </a>
+
+    <a href="tel:+34620621384" class="flotante__item" role="menuitem" style="--i: 2">
+      <span class="flotante__item-etiqueta">Contact</span>
+      <span class="flotante__item-valor">+34 620 62 13 84</span>
+    </a>
+  </div>
+
+  <button type="button" class="flotante__boton" id="contacto-flotante-toggle" aria-label="Open contact options" aria-expanded="false">
+    <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M4 6h16v12H4z"/>
+      <path d="M4 7l8 6 8-6"/>
+    </svg>
+  </button>
+
+</div>
+
+
+  <script src="/js/main.js" defer></script>
+</body>
+</html>

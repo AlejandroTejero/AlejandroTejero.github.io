@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0A192F" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#EDE7D9" media="(prefers-color-scheme: light)">
+
+  <title>Alejandro Tejero de la Morena · Alejandro Tejero</title>
+  <meta name="description" content="Telecommunications Engineer specialized in Telematics. Organized, consistent and passionate about software, automation and cybersecurity.">
+
+  <link rel="canonical" href="https://alejandrotejero.github.io/">
+  <link rel="alternate" hreflang="es" href="https://alejandrotejero.github.io/es/">
+  <link rel="alternate" hreflang="en" href="https://alejandrotejero.github.io/">
+  <link rel="alternate" hreflang="x-default" href="https://alejandrotejero.github.io/">
+
+  <meta property="og:title" content="Alejandro Tejero de la Morena">
+  <meta property="og:description" content="Telecommunications Engineer specialized in Telematics. Organized, consistent and passionate about software, automation and cybersecurity.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alejandrotejero.github.io/">
+  <meta property="og:image" content="https://alejandrotejero.github.io/img/og-default.png">
+  <meta property="og:locale" content="en">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script>
+    // Se aplica el tema antes de pintar para que no haya un flash de color equivocado.
+    (function () {
+      // Marca que hay JS: sin esta clase, el contenido con .reveal se ve siempre.
+      document.documentElement.classList.add('js');
+      try {
+        var guardado = localStorage.getItem('portfolio-tema');
+        var prefiereClaro = window.matchMedia('(prefers-color-scheme: light)').matches;
+        var tema = guardado || (prefiereClaro ? 'claro' : 'oscuro');
+        document.documentElement.setAttribute('data-tema', tema);
+      } catch (e) {
+        document.documentElement.setAttribute('data-tema', 'oscuro');
+      }
+    })();
+  </script>
+</head>
+<body class="es-home">
+
+  <a href="#main-content" class="salto-contenido">Skip to content</a>
+
+  <header class="barra" id="barra">
+  <div class="barra__interior">
+
+    <a href="/" class="barra__marca">
+      <span class="barra__marca-nombre">Alejandro Tejero</span>
+    </a>
+
+    <div class="barra__acciones">
+      <a href="/es/" class="barra__idioma" aria-label="Switch language">
+        <span>ES</span>
+      </a>
+
+      <button type="button" class="barra__tema" id="toggle-tema" aria-label="Switch theme">
+        <svg class="icono icono--luna" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/>
+        </svg>
+        <svg class="icono icono--sol" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="4.2"/>
+          <path d="M12 2v2.6M12 19.4V22M2 12h2.6M19.4 12H22M4.9 4.9l1.9 1.9M17.2 17.2l1.9 1.9M19.1 4.9l-1.9 1.9M6.8 17.2l-1.9 1.9"/>
+        </svg>
+      </button>
+
+      <button type="button" class="boton-menu" id="boton-menu" aria-expanded="false" aria-controls="menu-overlay">
+        <span class="boton-menu__texto">
+          <span class="boton-menu__abrir">Menu</span>
+          <span class="boton-menu__cerrar">Close</span>
+        </span>
+        <span class="boton-menu__lineas" aria-hidden="true">
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+
+  </div>
+</header>
+  <div class="menu" id="menu-overlay" aria-hidden="true" aria-label="Main navigation">
+  <div class="menu__velo" aria-hidden="true"></div>
+  <div class="menu__panel">
+    <div class="menu__interior">
+
+      <nav class="menu__nav">
+        <ul class="menu__lista">
+          <li class="menu__item" style="--i: 0">
+            <a href="/" class="menu__enlace" data-nav="home">
+              <span class="menu__indice">01</span>
+              <span class="menu__texto">
+                <span class="menu__titulo">Home</span>
+                <span class="menu__desc">Who I am and how I work</span>
+              </span>
+              <span class="menu__flecha" aria-hidden="true">→</span>
+            </a>
+          </li>
+
+          <li class="menu__item" style="--i: 1">
+            <a href="/proyectos/" class="menu__enlace" data-nav="proyectos">
+              <span class="menu__indice">02</span>
+              <span class="menu__texto">
+                <span class="menu__titulo">Projects</span>
+                <span class="menu__desc">Backend, AI and client-server systems</span>
+              </span>
+              <span class="menu__flecha" aria-hidden="true">→</span>
+            </a>
+          </li>
+
+          <li class="menu__item" style="--i: 2">
+            <a href="/trayectoria/" class="menu__enlace" data-nav="trayectoria">
+              <span class="menu__indice">03</span>
+              <span class="menu__texto">
+                <span class="menu__titulo">Journey</span>
+                <span class="menu__desc">Education, experience and talks</span>
+              </span>
+              <span class="menu__flecha" aria-hidden="true">→</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="menu__pie" style="--i: 3">
+        <div class="menu__bloque">
+          <p class="etiqueta-seccion">Where to find me</p>
+          <ul class="menu__social">
+            <li><a href="https://github.com/AlejandroTejero" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="mailto:atejerodelamorena@gmail.com">Email</a></li>
+            <li><a href="tel:+34620621384">+34 620 62 13 84</a></li>
+          </ul>
+        </div>
+
+        <a href="mailto:atejerodelamorena@gmail.com?subject=Hi Alejandro, I'm writing from your portfolio" class="btn btn--solido menu__cta">
+          Let's talk<span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <main id="main-content">
+    <section class="hero" id="hero">
+  <div class="hero__spotlight" id="hero-spotlight" aria-hidden="true"></div>
+
+  <div class="contenedor hero__grid">
+
+    <div class="hero__interior">
+
+      <p class="hero__kicker linea" style="--i: 0">
+        <span class="linea__interior">
+          <span class="hero__kicker-prompt">~/alejandro/portfolio</span><span class="hero__kicker-cursor" aria-hidden="true">_</span>
+        </span>
+      </p>
+
+      <h1 class="hero__titular">
+        <span class="linea" style="--i: 1"><span class="linea__interior">Hi, I'm</span></span>
+        <span class="linea" style="--i: 2"><span class="linea__interior"><em id="hero-nombre">Alejandro</em>.</span></span>
+      </h1>
+
+      <p class="hero__rol linea" style="--i: 3">
+        <span class="linea__interior">Telecommunications Engineer - Telematics</span>
+      </p>
+
+      <div class="hero__acciones linea" style="--i: 4">
+        <span class="linea__interior">
+          <a href="/proyectos/" class="btn btn--solido">View projects<span aria-hidden="true">→</span></a>
+          <a href="/cv/CVAlejandroT_EN.pdf" class="btn btn--linea" download>Download CV<span aria-hidden="true">↓</span></a>
+        </span>
+      </div>
+
+    </div>
+
+    <aside class="hero__aside linea" style="--i: 5">
+      <div class="linea__interior hero__aside-interior">
+        <div class="hero__aside-avatar-wrap">
+          <div class="hero__aside-avatar"><img src="/img/perfil.jpg" alt="Alejandro Tejero de la Morena"></div>
+        </div>
+
+        <p class="hero__aside-intro">Graduate in Telecommunications Engineering, specialized in Telematics. Looking for a role in areas like networking, cybersecurity, cloud or automation, to keep growing and developing professionally.</p>
+
+        <div class="hero__aside-enlaces">
+          <p class="etiqueta-seccion">Quick links</p>
+          <div class="hero__dock" role="list">
+            <a href="https://github.com/AlejandroTejero" target="_blank" rel="noopener" class="hero__dock-item" role="listitem">
+              <span class="hero__dock-icono" aria-hidden="true">
+                <svg class="icono--marca" viewBox="0 0 24 24" focusable="false"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.838 1.238 1.838 1.238 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.605-2.665-.305-5.467-1.334-5.467-5.93 0-1.31.468-2.38 1.235-3.22-.123-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23a11.5 11.5 0 0 1 3.003-.404c1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.241 2.874.118 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.807 5.62-5.48 5.92.43.372.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              </span>
+              <span class="hero__dock-etiqueta">github</span>
+            </a>
+            <a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener" class="hero__dock-item" role="listitem">
+              <span class="hero__dock-icono" aria-hidden="true">
+                <svg class="icono--marca" viewBox="0 0 24 24" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </span>
+              <span class="hero__dock-etiqueta">linkedin</span>
+            </a>
+            <a href="mailto:atejerodelamorena@gmail.com" class="hero__dock-item" role="listitem">
+              <span class="hero__dock-icono" aria-hidden="true">
+                <svg class="icono" viewBox="0 0 24 24" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+              </span>
+              <span class="hero__dock-etiqueta">email</span>
+            </a>
+            <a href="/cv/CVAlejandroT_EN.pdf" download class="hero__dock-item hero__dock-item--acento" role="listitem">
+              <span class="hero__dock-icono" aria-hidden="true">
+                <svg class="icono" viewBox="0 0 24 24" focusable="false"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+              </span>
+              <span class="hero__dock-etiqueta">cv.pdf</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <a href="#sobre-mi" class="hero__scroll" aria-label="Scroll">
+    <span class="hero__scroll-texto" aria-hidden="true">
+      <span>S</span><span>c</span><span>r</span><span>o</span><span>l</span><span>l</span>
+    </span>
+    <span class="hero__scroll-linea" aria-hidden="true"></span>
+  </a>
+</section>
+
+<section class="seccion seccion--sobre-mi" id="sobre-mi">
+  <div class="contenedor">
+
+    <div class="seccion__cabecera reveal">
+      <p class="etiqueta-seccion">About me</p>
+      <h2 class="titular-seccion">What I do and where I'm heading</h2>
+    </div>
+
+    <div class="sobre-mi">
+      <div class="sobre-mi__aside reveal">
+        <div class="retrato"><img src="/img/perfil.jpg" alt="Alejandro Tejero de la Morena"></div>
+        <ul class="badges">
+          <li class="badge">Madrid, Spain</li><li class="badge">Available to start</li><li class="badge">Graduated in 2026</li><li class="badge">Highest honours x2</li><li class="badge">Speaker at seLIA 2026</li><li class="badge">English B1, working towards B2</li>
+        </ul>
+      </div>
+
+      <div class="sobre-mi__texto reveal" style="--reveal-delay: 90ms">
+        <p>Welcome, and thanks for taking an interest in my profile and projects. I'm Alejandro Tejero, a Telecommunications Engineer specialized in Telematics from Universidad Rey Juan Carlos. Honestly, a few years ago I wouldn't have bet on getting this far, I was never the best at anything, but my effort made things go relatively well for me. When I started the degree and saw how demanding it was, I knew I had two paths ahead: really start pushing myself, knowing the sacrifices and changes that would take, or change direction. I chose the first, and today I know it was the right call. As the saying goes, those four years turned into the best five, where I truly learned that nothing worthwhile comes without effort, and that if you want to aim high, hard work alone isn't enough, you also need to handle pressure, stay organized, and never back down.</p><p>Getting through the degree often meant putting study or work ahead of plans anyone would rather be doing. That taught me something very clear: your future depends, above all, on you. The most important thing is knowing your goals, your objectives and your dreams, once you have that clear, organization and hard work follow almost on their own.</p><p>After finishing my degree, I did my internship at Robert Bosch España, where I analyzed production data, designed databases and built tracking dashboards in Power BI and SAP. It was my first real contact with a large, demanding work environment, and it's where I realized I like doing things properly, understanding why they're done a certain way, and paying attention to detail. I now follow that same approach investigating and building my own projects, and training myself in areas like networking, cybersecurity, cloud, data and AI. For me, learning doesn't end with the degree, technology never stops moving forward, and I'm a curious person besides, so continuing to learn isn't an obligation, it's something I enjoy.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="seccion seccion--skills">
+  <div class="contenedor">
+
+    <div class="seccion__cabecera reveal">
+      <p class="etiqueta-seccion">Technical skills</p>
+    </div>
+
+    <div class="rejilla-skills">
+      <div class="skill-group skill-group--cat-1 reveal">
+  <div class="skill-group__cabecera">
+    <span class="skill-group__icono-wrap" aria-hidden="true"><svg class="icono skill-group__icono" viewBox="0 0 24 24" focusable="false"><path d="m8 9-3 3 3 3"/><path d="m16 9 3 3-3 3"/><path d="m13 5-2 14"/></svg></span>
+    <h3 class="skill-group__nombre">Programming languages</h3>
+    <span class="skill-group__barras" aria-label="Intermediate"><span class="skill-group__barra skill-group__barra--llena"></span><span class="skill-group__barra skill-group__barra--llena"></span><span class="skill-group__barra"></span></span>
+  </div>
+
+  <ul class="tags">
+    <li>Python</li><li>C</li><li>C++</li><li>SQL</li><li>JavaScript</li><li>Shell scripting</li><li>Go</li><li>Pascal</li>
+  </ul>
+</div>
+<div class="skill-group skill-group--cat-2 reveal">
+  <div class="skill-group__cabecera">
+    <span class="skill-group__icono-wrap" aria-hidden="true"><svg class="icono skill-group__icono" viewBox="0 0 24 24" focusable="false"><rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01"/><path d="M7 17h.01"/></svg></span>
+    <h3 class="skill-group__nombre">Backend</h3>
+    <span class="skill-group__barras" aria-label="Intermediate"><span class="skill-group__barra skill-group__barra--llena"></span><span class="skill-group__barra skill-group__barra--llena"></span><span class="skill-group__barra"></span></span>
+  </div>
+
+  <ul class="tags">
+    <li>Django</li><li>APIs REST</li>
+  </ul>
+</div>
+<div class="skill-group skill-group--cat-3 reveal">
+  <div class="skill-group__cabecera">
+    <span class="skill-group__icono-wrap" aria-hidden="true"><svg class="icono skill-group__icono" viewBox="0 0 24 24" focusable="false"><ellipse cx="12" cy="5.5" rx="8" ry="3"/><path d="M4 5.5V18a8 3 0 0 0 16 0V5.5"/><path d="M4 12a8 3 0 0 0 16 0"/></svg></span>
+    <h3 class="skill-group__nombre">Databases</h3>
+    <span class="skill-group__barras" aria-label="Intermediate"><span class="skill-group__barra skill-group__barra--llena"></span><span class="skill-group__barra skill-group__barra--llena"></span><span class="skill-group__barra"></span></span>
+  </div>
+
+  <ul class="tags">
+    <li>PostgreSQL</li><li>MySQL</li>
+  </ul>
+</div>
+<div class="skill-group skill-group--cat-4 reveal">
+  <div class="skill-group__cabecera">
+    <span class="skill-group__icono-wrap" aria-hidden="true"><svg class="icono skill-group__icono" viewBox="0 0 24 24" focusable="false"><path d="M4 20h16"/><path d="M6 20V14"/><path d="M12 20V9"/><path d="M18 20V4"/></svg></span>
+    <h3 class="skill-group__nombre">Networking</h3>
+    <span class="skill-group__barras" aria-label="Basic"><span class="skill-group__barra skill-group__barra--llena"></span><span class="skill-group__barra"></span><span class="skill-group__barra"></span></span>
+  </div>
+
+  <ul class="tags">
+    <li>TCP/IP</li><li>IPv4/IPv6</li><li>OSPF</li><li>HTTP/HTTPS</li><li>SSH</li><li>Wireshark</li><li>NetGUI</li>
+  </ul>
+</div>
+<div class="skill-group skill-group--cat-5 reveal">
+  <div class="skill-group__cabecera">
+    <span class="skill-group__icono-wrap" aria-hidden="true"><svg class="icono skill-group__icono" viewBox="0 0 24 24" focusable="false"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></span>
+    <h3 class="skill-group__nombre">Systems</h3>
+    <span class="skill-group__barras" aria-label="Intermediate"><span class="skill-group__barra skill-group__barra--llena"></span><span class="skill-group__barra skill-group__barra--llena"></span><span class="skill-group__barra"></span></span>
+  </div>
+
+  <ul class="tags">
+    <li>Windows</li><li>Linux</li><li>Virtualizacion</li>
+  </ul>
+</div>
+<div class="skill-group skill-group--cat-6 reveal">
+  <div class="skill-group__cabecera">
+    <span class="skill-group__icono-wrap" aria-hidden="true"><svg class="icono skill-group__icono" viewBox="0 0 24 24" focusable="false"><path d="M14.7 6.3a4 4 0 1 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2z"/></svg></span>
+    <h3 class="skill-group__nombre">Tools</h3>
+    <span class="skill-group__barras" aria-label="Intermediate"><span class="skill-group__barra skill-group__barra--llena"></span><span class="skill-group__barra skill-group__barra--llena"></span><span class="skill-group__barra"></span></span>
+  </div>
+
+  <ul class="tags">
+    <li>Git</li><li>GitHub</li><li>GitLab</li><li>VSCode</li><li>PyCharm</li><li>Microsoft 365</li><li>SAP</li><li>Power BI</li>
+  </ul>
+</div>
+<div class="skill-group skill-group--cat-7 reveal">
+  <div class="skill-group__cabecera">
+    <span class="skill-group__icono-wrap" aria-hidden="true"><svg class="icono skill-group__icono" viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a13 13 0 0 1 0 18a13 13 0 0 1 0-18"/></svg></span>
+    <h3 class="skill-group__nombre">Languages</h3>
+    
+  </div>
+
+  <ul class="tags">
+    <li>Spanish (native)</li><li>English (B1, working towards B2)</li>
+  </ul>
+</div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="seccion seccion--destacados">
+  <div class="contenedor">
+
+    <div class="seccion__cabecera seccion__cabecera--fila reveal">
+      <div>
+        <p class="etiqueta-seccion">Featured projects</p>
+        <h2 class="titular-seccion">The work that best sums up how I build things</h2>
+      </div>
+      <a href="/proyectos/" class="enlace-flecha">View all projects<span aria-hidden="true">→</span></a>
+    </div>
+
+    <div class="carrusel-flotante" data-marquee>
+      <div class="carrusel-flotante__pista" data-marquee-pista>
+        <article class="project-card reveal" data-categorias="backend ia automatizacion">
+  <a href="/proyectos/webbuilder/" class="project-card__link">
+
+    <div class="project-card__portada">
+      <img src="/img/proyectos/WebBuilder/WebBuilder.png" alt="WebBuilder" loading="lazy">
+    </div>
+
+    <div class="project-card__cuerpo">
+      <div class="project-card__fila">
+        <span class="project-card__indice">01</span>
+        <span class="project-card__estado">Completed</span>
+      </div>
+
+      <h3 class="project-card__titulo">WebBuilder</h3>
+      <p class="project-card__resumen">Turns any public API into a deployable Django project using AI</p>
+
+      <ul class="tags tags--compactas">
+        <li>Django</li><li>PostgreSQL</li><li>Docker</li><li>n8n</li><li>LLMs</li><li>OAuth</li>
+      </ul>
+
+      <span class="project-card__nota">9,9 - Propuesto para Matricula de Honor</span>
+    </div>
+
+  </a>
+</article><article class="project-card reveal" data-categorias="backend web">
+  <a href="/proyectos/gamerank/" class="project-card__link">
+
+    <div class="project-card__portada">
+      <img src="/img/proyectos/GameRank/portada.png" alt="GameRank" loading="lazy">
+    </div>
+
+    <div class="project-card__cuerpo">
+      <div class="project-card__fila">
+        <span class="project-card__indice">02</span>
+        <span class="project-card__estado">Completed</span>
+      </div>
+
+      <h3 class="project-card__titulo">GameRank</h3>
+      <p class="project-card__resumen">Social videogame catalog and ranking with external API integration</p>
+
+      <ul class="tags tags--compactas">
+        <li>Django</li><li>HTMX</li><li>REST API</li><li>XML/JSON</li>
+      </ul>
+
+      <span class="project-card__nota">9,9 - Matricula de Honor</span>
+    </div>
+
+  </a>
+</article><article class="project-card reveal" data-categorias="iot backend">
+  <a href="/proyectos/invernadero/" class="project-card__link">
+
+    <div class="project-card__portada">
+      <img src="/img/proyectos/Invernadero/portada.png" alt="Invernadero IoT" loading="lazy">
+    </div>
+
+    <div class="project-card__cuerpo">
+      <div class="project-card__fila">
+        <span class="project-card__indice">03</span>
+        <span class="project-card__estado">Completed</span>
+      </div>
+
+      <h3 class="project-card__titulo">Invernadero IoT</h3>
+      <p class="project-card__resumen">Automated greenhouse simulator with sensors and actuators</p>
+
+      <ul class="tags tags--compactas">
+        <li>C++</li><li>POO</li><li>Doxygen</li>
+      </ul>
+
+      
+    </div>
+
+  </a>
+</article><article class="project-card reveal" data-categorias="backend sistemas">
+  <a href="/proyectos/tactical-battle/" class="project-card__link">
+
+    <div class="project-card__portada">
+      <img src="/img/proyectos/TacticalBattle/tacticalbattle.png" alt="Tactical Battle" loading="lazy">
+    </div>
+
+    <div class="project-card__cuerpo">
+      <div class="project-card__fila">
+        <span class="project-card__indice">04</span>
+        <span class="project-card__estado">Completed</span>
+      </div>
+
+      <h3 class="project-card__titulo">Tactical Battle</h3>
+      <p class="project-card__resumen">Turn-based tactical combat simulator, client-server</p>
+
+      <ul class="tags tags--compactas">
+        <li>Python</li><li>Sockets TCP</li><li>Cliente-Servidor</li>
+      </ul>
+
+      
+    </div>
+
+  </a>
+</article><article class="project-card reveal" data-categorias="backend ia automatizacion">
+  <a href="/proyectos/webbuilder/" class="project-card__link">
+
+    <div class="project-card__portada">
+      <img src="/img/proyectos/WebBuilder/WebBuilder.png" alt="WebBuilder" loading="lazy">
+    </div>
+
+    <div class="project-card__cuerpo">
+      <div class="project-card__fila">
+        <span class="project-card__indice">01</span>
+        <span class="project-card__estado">Completed</span>
+      </div>
+
+      <h3 class="project-card__titulo">WebBuilder</h3>
+      <p class="project-card__resumen">Turns any public API into a deployable Django project using AI</p>
+
+      <ul class="tags tags--compactas">
+        <li>Django</li><li>PostgreSQL</li><li>Docker</li><li>n8n</li><li>LLMs</li><li>OAuth</li>
+      </ul>
+
+      <span class="project-card__nota">9,9 - Propuesto para Matricula de Honor</span>
+    </div>
+
+  </a>
+</article><article class="project-card reveal" data-categorias="backend web">
+  <a href="/proyectos/gamerank/" class="project-card__link">
+
+    <div class="project-card__portada">
+      <img src="/img/proyectos/GameRank/portada.png" alt="GameRank" loading="lazy">
+    </div>
+
+    <div class="project-card__cuerpo">
+      <div class="project-card__fila">
+        <span class="project-card__indice">02</span>
+        <span class="project-card__estado">Completed</span>
+      </div>
+
+      <h3 class="project-card__titulo">GameRank</h3>
+      <p class="project-card__resumen">Social videogame catalog and ranking with external API integration</p>
+
+      <ul class="tags tags--compactas">
+        <li>Django</li><li>HTMX</li><li>REST API</li><li>XML/JSON</li>
+      </ul>
+
+      <span class="project-card__nota">9,9 - Matricula de Honor</span>
+    </div>
+
+  </a>
+</article><article class="project-card reveal" data-categorias="iot backend">
+  <a href="/proyectos/invernadero/" class="project-card__link">
+
+    <div class="project-card__portada">
+      <img src="/img/proyectos/Invernadero/portada.png" alt="Invernadero IoT" loading="lazy">
+    </div>
+
+    <div class="project-card__cuerpo">
+      <div class="project-card__fila">
+        <span class="project-card__indice">03</span>
+        <span class="project-card__estado">Completed</span>
+      </div>
+
+      <h3 class="project-card__titulo">Invernadero IoT</h3>
+      <p class="project-card__resumen">Automated greenhouse simulator with sensors and actuators</p>
+
+      <ul class="tags tags--compactas">
+        <li>C++</li><li>POO</li><li>Doxygen</li>
+      </ul>
+
+      
+    </div>
+
+  </a>
+</article><article class="project-card reveal" data-categorias="backend sistemas">
+  <a href="/proyectos/tactical-battle/" class="project-card__link">
+
+    <div class="project-card__portada">
+      <img src="/img/proyectos/TacticalBattle/tacticalbattle.png" alt="Tactical Battle" loading="lazy">
+    </div>
+
+    <div class="project-card__cuerpo">
+      <div class="project-card__fila">
+        <span class="project-card__indice">04</span>
+        <span class="project-card__estado">Completed</span>
+      </div>
+
+      <h3 class="project-card__titulo">Tactical Battle</h3>
+      <p class="project-card__resumen">Turn-based tactical combat simulator, client-server</p>
+
+      <ul class="tags tags--compactas">
+        <li>Python</li><li>Sockets TCP</li><li>Cliente-Servidor</li>
+      </ul>
+
+      
+    </div>
+
+  </a>
+</article>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="seccion seccion--trayectoria-teaser">
+  <div class="contenedor">
+
+    <div class="seccion__cabecera seccion__cabecera--fila reveal">
+      <div>
+        <p class="etiqueta-seccion">Journey</p>
+        <h2 class="titular-seccion">A quick look at how I got here</h2>
+      </div>
+      <a href="/trayectoria/" class="enlace-flecha">View full journey<span aria-hidden="true">→</span></a>
+    </div>
+
+    <div class="trayectoria-mini reveal" style="--reveal-delay: 90ms">
+      <div class="hito-mini">
+    <span class="hito-mini__punto" aria-hidden="true"></span>
+    <span class="hito-mini__anio">2021</span>
+    <span class="hito-mini__titulo">Started Telematics Engineering</span>
+  </div><div class="hito-mini">
+    <span class="hito-mini__punto" aria-hidden="true"></span>
+    <span class="hito-mini__anio">2026</span>
+    <span class="hito-mini__titulo">Engineering Internship</span>
+  </div><div class="hito-mini">
+    <span class="hito-mini__punto" aria-hidden="true"></span>
+    <span class="hito-mini__anio">2026</span>
+    <span class="hito-mini__titulo">Speaker at I Jornada seLIA</span>
+  </div><div class="hito-mini">
+    <span class="hito-mini__punto" aria-hidden="true"></span>
+    <span class="hito-mini__anio">2026</span>
+    <span class="hito-mini__titulo">Graduation</span>
+  </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="seccion seccion--cta">
+  <div class="contenedor">
+    <div class="cta-contacto reveal">
+      <div class="cta-contacto__texto">
+        <h2 class="titular-seccion">I'm open to new opportunities</h2>
+        <p>If you're looking for someone in backend, data or automation, drop me a line.</p>
+      </div>
+      <a href="mailto:atejerodelamorena@gmail.com?subject=Hi Alejandro, I'm writing from your portfolio" class="btn btn--solido btn--grande">
+        Email me<span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+  </main>
+
+  <footer class="pie">
+  <div class="contenedor pie__interior">
+
+    <div class="pie__bloque">
+      <p class="pie__nombre">Alejandro Tejero de la Morena</p>
+      <p class="pie__rol">Madrid, España</p>
+    </div>
+
+    <ul class="pie__social">
+      <li><a href="https://github.com/AlejandroTejero" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="mailto:atejerodelamorena@gmail.com">Email</a></li>
+    </ul>
+
+    <p class="pie__copy">© 2026 · Designed and coded in Madrid</p>
+
+  </div>
+</footer>
+
+  <div class="flotante" id="contacto-flotante">
+
+  <div class="flotante__menu" id="contacto-flotante-menu" role="menu">
+    <p class="flotante__titulo">Contact</p>
+
+    <a href="mailto:atejerodelamorena@gmail.com" class="flotante__item" role="menuitem" style="--i: 0">
+      <span class="flotante__item-etiqueta">Email</span>
+      <span class="flotante__item-valor">atejerodelamorena@gmail.com</span>
+    </a>
+
+    <a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener" class="flotante__item" role="menuitem" style="--i: 1">
+      <span class="flotante__item-etiqueta">LinkedIn</span>
+      <span class="flotante__item-valor">Alejandro Tejero</span>
+    </a>
+
+    <a href="tel:+34620621384" class="flotante__item" role="menuitem" style="--i: 2">
+      <span class="flotante__item-etiqueta">Contact</span>
+      <span class="flotante__item-valor">+34 620 62 13 84</span>
+    </a>
+  </div>
+
+  <button type="button" class="flotante__boton" id="contacto-flotante-toggle" aria-label="Open contact options" aria-expanded="false">
+    <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M4 6h16v12H4z"/>
+      <path d="M4 7l8 6 8-6"/>
+    </svg>
+  </button>
+
+</div>
+
+
+  <script src="/js/main.js" defer></script>
+</body>
+</html>
