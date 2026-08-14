@@ -1,20 +1,20 @@
 [
-    {
-      "id": "selia-2026",
-      "titulo": { "es": "I Jornada sobre Software Libre e IA Abierta (seLIA)", "en": "1st Conference on Free Software and Open AI (seLIA)" },
-      "fecha": "2026-07-06",
-      "lugar": "URJC campus de Fuenlabrada",
-      "rol": { "es": "Ponente", "en": "Speaker" },
-      "resumen": {
-        "es": "Presentacion de la arquitectura de WebBuilder y funcionamiento de la IA Generativa aplicada",
-        "en": "Presentation of WebBuilder's architecture and applied Generative AI functioning"
-      },
-      "enlaces": {
-        "linkedin": "https://www.linkedin.com/posts/alejandro-tejero-de-la-morena-38b97a383_softwarelibre-inteligenciaartificial-opensource-ugcPost-7482515516482478082-TSCm/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF6mWJsBEJJaWnk0k0kkIr5oLEcd8Np_e8s",
-        "cartel": "/img/seLIA/selia-cartel.png",
-        "slides": "https://webbuildertfg.my.canva.site",
-        "video": null
-      },
-      "proyecto_relacionado": "webbuilder"
-    }
-  ]
+  {
+    "id": "selia-2026",
+    "titulo": { "es": "I Jornada sobre Software Libre e IA Abierta (seLIA)", "en": "1st Conference on Free Software and Open AI (seLIA)" },
+    "fecha": "2026-07-06",
+    "lugar": "URJC campus de Fuenlabrada",
+    "rol": { "es": "Ponente", "en": "Speaker" },
+    "resumen": {
+      "es": "Al defender mi TFG, WebBuilder, los profesores me invitaron a participar en la I Jornada de Software Libre e IA Abierta (seLIA), en el campus de Fuenlabrada de la URJC. Presenté mi propuesta a la organización y la acogida fue mejor de lo que esperaba, con bastante interés en el proyecto.\n\nLa jornada reunió 38 actividades entre charlas y talleres, repartidas en varias salas a lo largo de todo el día, así que pude asistir a ponencias muy distintas entre sí: desde el despliegue de modelos de IA locales sin depender de proveedores externos, hasta debates sobre cómo regular el software libre o los riesgos de la productividad descontrolada del vibe coding.\n\nAunque ya había hecho presentaciones antes, esta fue distinta. La sentí como un reconocimiento del público a un esfuerzo que normalmente no se ve, y puso un broche perfecto a una etapa de mi vida que fue dura pero también muy bonita, de la que me quedo con muy buenos recuerdos.",
+      "en": "When I defended my thesis, WebBuilder, my professors invited me to take part in the 1st Conference on Free Software and Open AI (seLIA), on the URJC Fuenlabrada campus. I submitted my proposal to the organizers and it was received better than I expected, with a lot of interest in the project.\n\nThe conference brought together 38 talks and workshops spread across several rooms throughout the day, so I got to attend sessions on very different topics: from deploying local AI models without relying on external providers, to debates on how to regulate free software, to the risks of the unchecked productivity of vibe coding.\n\nI had given presentations before, but this one felt different. It felt like the audience recognising an effort that usually goes unseen, and it put a fitting close to a stage of my life that was hard but also beautiful, one I look back on with very good memories."
+    },
+    "enlaces": {
+      "linkedin": "https://www.linkedin.com/posts/alejandro-tejero-de-la-morena-38b97a383_softwarelibre-inteligenciaartificial-opensource-ugcPost-7482515516482478082-TSCm/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF6mWJsBEJJaWnk0k0kkIr5oLEcd8Np_e8s",
+      "cartel": "/img/seLIA/selia-cartel.png",
+      "slides": "https://webbuildertfg.my.canva.site",
+      "video": null
+    },
+    "proyecto_relacionado": "webbuilder"
+  }
+]

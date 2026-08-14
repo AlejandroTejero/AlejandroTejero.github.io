@@ -23,10 +23,9 @@
   "hero_aside_titulo": "Enlaces rapidos",
 
   "sobre_mi_titulo": "Sobre mi",
-  "sobre_mi_intro": "Que hago y hacia donde voy",
-  "valores_titulo": "Como trabajo",
+  "sobre_mi_intro": "Quién soy",
   "destacados_titulo": "Proyectos destacados",
-  "destacados_intro": "Lo que mejor resume la forma en la que construyo cosas",
+  "destacados_intro": "Los proyectos que mejor reflejan mi forma de trabajar",
   "ver_todos_proyectos": "Ver todos los proyectos",
   "descargar_cv": "Descargar CV",
   "ver_proyectos": "Ver proyectos",
@@ -34,7 +33,7 @@
   "ver_toda_trayectoria": "Ver toda la trayectoria",
 
   "proyectos_titulo": "Proyectos",
-  "proyectos_intro": "Una seleccion de proyectos academicos y personales, desde backend con IA hasta sistemas cliente-servidor",
+  "proyectos_intro": "Proyectos, investigaciones y repositorios personales y académicos",
   "filtrar_por_categoria": "Filtrar por categoria",
   "filtro_todos": "Todos",
   "otros_repositorios": "Otros repositorios",
@@ -75,10 +74,8 @@
   "contacto_titulo_flotante": "Contacto",
   "contacto_abrir": "Abrir opciones de contacto",
   "contacto_cta_titulo": "Estoy abierto a nuevas oportunidades",
-  "contacto_cta_texto": "Si buscas alguien para backend, datos o automatizacion, escribeme y lo comentamos.",
+  "contacto_cta_texto": "Escríbeme si mi perfil encaja con lo que buscas, cualquier propuesta es bienvenida.",
   "escribeme": "Escribeme",
-
-  "footer_hecho": "Disenado y programado en Madrid",
 
   "carrusel_anterior": "Imagen anterior",
   "carrusel_siguiente": "Imagen siguiente",

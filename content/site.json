@@ -2,17 +2,13 @@
   "nombre": "Alejandro Tejero de la Morena",
   "nombre_corto": "Alejandro Tejero",
   "titulo": {
-    "es": "Ingeniero de Telecomunicaciones - Telematica",
-    "en": "Telecommunications Engineer - Telematics"
+    "es": "Ingeniero de Telecomunicaciones · Telemática · En busca de trabajo",
+    "en": "Telecommunications Engineer · Telematics · Looking for work"
   },
   "ubicacion": "Madrid, España",
   "bio": {
-    "es": "Ingeniero de Telecomunicaciones especializado en Telematica. Organizado, constante y con pasion por el software, la automatizacion y la ciberseguridad.",
-    "en": "Telecommunications Engineer specialized in Telematics. Organized, consistent and passionate about software, automation and cybersecurity."
-  },
-  "hero_rol": {
-    "es": "Ingeniero Telematico - Practicas en Bosch",
-    "en": "Telematics Engineer - Intern at Bosch"
+    "es": "Alejandro Tejero — Ingeniero de Telecomunicaciones (Telemática). Proyectos personales de backend, automatización, ciberseguridad, datos e IA.",
+    "en": "Alejandro Tejero — Telecommunications Engineer (Telematics). Personal projects in backend, automation, cybersecurity, data and AI."
   },
   "hero_intro": {
     "es": "Graduado en Ingeniería de Telecomunicaciones, especializado en Telemática. En busca de un puesto en áreas como redes, ciberseguridad, cloud o automatización, para seguir creciendo y desarrollándome profesionalmente.",
@@ -32,39 +28,18 @@
   },
   "bio_parrafos": {
     "es": [
-      "Bienvenido y gracias por interesarte por mi perfil y proyectos. Soy Alejandro Tejero, ingeniero de Telecomunicaciones especializado en Telemática por la Universidad Rey Juan Carlos. Si te soy sincero, hace unos años no habría apostado a llegar hasta aquí, nunca fui el mejor en nada, pero mi esfuerzo hizo que todo se me diese relativamente bien. Cuando empecé la carrera y vi la exigencia que necesitaba tuve claro que tenía dos caminos, o comenzar a esforzarme de verdad sabiendo los sacrificios y cambios que esto conllevaba, o cambiar de rumbo. Elegí lo primero, y hoy sé que fue la decisión correcta. Como dice el refrán, estos cuatro años fueron los mejores cinco años, donde aprendí que realmente sin esfuerzo no se consigue nada, y que si quieres apuntar alto hace falta algo más que trabajar duro, hay que saber manejar la presión, tener organización, y no bajar nunca la cabeza.",
-      "Sacar adelante la carrera significó, muchas veces, priorizar el estudio o el trabajo antes que planes que a cualquiera le apetecería hacer. Eso me dejó algo muy claro: tu futuro depende, sobre todo, de ti. Lo más importante es tener claras tus metas, tus objetivos y tus sueños, a partir de ahí, la organización y el trabajo salen casi solos.",
-      "Al acabar la carrera, realicé mis prácticas en Robert Bosch España, donde analicé datos de producción, diseñé bases de datos y construí dashboards de seguimiento en Power BI y SAP, esta fue mi primera toma de contacto real con un entorno de trabajo grande y exigente, dándome cuenta de que me gusta hacer las cosas bien, entender por qué se hacen y cuidar los detalles. Ahora sigo esa misma línea investigando, construyendo mis propios proyectos y formándome en áreas como redes, ciberseguridad, cloud, datos e IA. Para mí el aprendizaje no termina con el título, la tecnología no deja de avanzar, y además soy una persona curiosa, así que seguir formándome no es una obligación, es algo que disfruto."
+      "Bienvenido y gracias por interesarte por mi perfil y proyectos. Soy Alejandro Tejero, ingeniero de Telecomunicaciones especializado en Telematica por la Universidad Rey Juan Carlos. Si te soy sincero, hace unos años no habria apostado a llegar hasta aqui, nunca fui el mejor en nada, pero mi esfuerzo hizo que todo se me diese relativamente bien. Cuando empece la carrera y vi la exigencia que necesitaba tuve claro que tenia dos caminos, o comenzar a esforzarme de verdad sabiendo los sacrificios y cambios que esto conllevaba, o cambiar de rumbo. Elegi lo primero, y hoy se que fue la decision correcta. Como dice el refran, estos cuatro años fueron los mejores cinco años, donde aprendi que realmente sin esfuerzo no se consigue nada, y que si quieres apuntar alto hace falta algo mas que trabajar duro, hay que saber manejar la presion, tener organizacion, y no bajar nunca la cabeza.",
+      "Sacar adelante la carrera significo, muchas veces, priorizar el estudio o el trabajo antes que planes que a cualquiera le apeteceria hacer. Eso me dejo algo muy claro: tu futuro depende, sobre todo, de ti. Lo mas importante es tener claras tus metas, tus objetivos y tus sueños, a partir de ahi, la organizacion y el trabajo salen casi solos.",
+      "Al acabar la carrera, realice mis practicas en Robert Bosch España, donde analice datos de produccion, diseñe bases de datos y construi dashboards de seguimiento en Power BI y SAP, esta fue mi primera toma de contacto real con un entorno de trabajo grande y exigente, dandome cuenta de que me gusta hacer las cosas bien, entender por que se hacen y cuidar los detalles. Ahora sigo esa misma linea investigando, construyendo mis propios proyectos y formandome en areas como redes, ciberseguridad, cloud, datos e IA. Para mi el aprendizaje no termina con el titulo, la tecnologia no deja de avanzar, y ademas soy una persona curiosa, asi que seguir formandome no es una obligacion, es algo que disfruto."
     ],
     "en": [
-      "Welcome, and thanks for taking an interest in my profile and projects. I'm Alejandro Tejero, a Telecommunications Engineer specialized in Telematics from Universidad Rey Juan Carlos. Honestly, a few years ago I wouldn't have bet on getting this far, I was never the best at anything, but my effort made things go relatively well for me. When I started the degree and saw how demanding it was, I knew I had two paths ahead: really start pushing myself, knowing the sacrifices and changes that would take, or change direction. I chose the first, and today I know it was the right call. As the saying goes, those four years turned into the best five, where I truly learned that nothing worthwhile comes without effort, and that if you want to aim high, hard work alone isn't enough, you also need to handle pressure, stay organized, and never back down.",
-      "Getting through the degree often meant putting study or work ahead of plans anyone would rather be doing. That taught me something very clear: your future depends, above all, on you. The most important thing is knowing your goals, your objectives and your dreams, once you have that clear, organization and hard work follow almost on their own.",
-      "After finishing my degree, I did my internship at Robert Bosch España, where I analyzed production data, designed databases and built tracking dashboards in Power BI and SAP. It was my first real contact with a large, demanding work environment, and it's where I realized I like doing things properly, understanding why they're done a certain way, and paying attention to detail. I now follow that same approach investigating and building my own projects, and training myself in areas like networking, cybersecurity, cloud, data and AI. For me, learning doesn't end with the degree, technology never stops moving forward, and I'm a curious person besides, so continuing to learn isn't an obligation, it's something I enjoy."
+      "Welcome, and thanks for taking an interest in my profile and projects. I'm Alejandro Tejero, a Telecommunications Engineer specialized in Telematics from Universidad Rey Juan Carlos. Honestly, a few years ago I wouldn't have bet on getting this far. I was never the best at anything, but my effort made things go relatively well for me. When I started the degree and saw how demanding it was, I knew I had two paths: really start pushing myself, knowing the sacrifices and changes that would take, or change direction. I chose the first, and today I know it was the right call. As the saying goes, those four years turned into the best five, and that's where I truly learned that nothing worthwhile comes without effort, and that if you want to aim high, hard work alone isn't enough - you also need to handle pressure, stay organized, and never back down.",
+      "Getting through the degree often meant putting study or work ahead of plans anyone would rather be doing. That taught me something very clear: your future depends, above all, on you. The most important thing is knowing your goals, your objectives and your dreams - once you have that clear, organization and hard work follow almost on their own.",
+      "After finishing my degree, I did my internship at Robert Bosch España, where I analyzed production data, designed databases and built tracking dashboards in Power BI and SAP. It was my first real contact with a large, demanding work environment, and it's where I realized I like doing things properly, understanding why they're done a certain way, and paying attention to detail. I now follow that same approach investigating and building my own projects, and training myself in areas like networking, cybersecurity, cloud, data and AI. For me, learning doesn't end with the degree - technology never stops moving forward, and I'm a curious person besides, so continuing to learn isn't an obligation, it's something I enjoy."
     ]
   },
   "badges": [
     { "es": "Madrid, España", "en": "Madrid, Spain" },
-    { "es": "Disponible para incorporacion", "en": "Available to start" },
-    { "es": "Graduado en 2026", "en": "Graduated in 2026" },
-    { "es": "Matricula de Honor x2", "en": "Highest honours x2" },
-    { "es": "Ponente en seLIA 2026", "en": "Speaker at seLIA 2026" },
-    { "es": "Ingles B1, preparando B2", "en": "English B1, working towards B2" }
-  ],
-  "valores": [
-    {
-      "icono": "🔍",
-      "titulo": { "es": "Atencion al detalle", "en": "Attention to detail" },
-      "descripcion": { "es": "Reviso el resultado las veces que hagan falta antes de darlo por terminado", "en": "I review the result as many times as it takes before calling it done" }
-    },
-    {
-      "icono": "📋",
-      "titulo": { "es": "Organizacion", "en": "Organization" },
-      "descripcion": { "es": "Me apoyo en la planificacion y en prioridades claras para sacar adelante varias cosas a la vez", "en": "I rely on planning and clear priorities to keep several things moving at once" }
-    },
-    {
-      "icono": "🎯",
-      "titulo": { "es": "Esfuerzo constante", "en": "Steady effort" },
-      "descripcion": { "es": "Se que ningun objetivo se consigue sin esfuerzo, asi que insisto hasta conseguir el resultado que busco", "en": "I know nothing worthwhile comes without effort, so I keep going until I get the result I'm after" }
-    }
+    { "es": "Disponible para incorporación inmediata", "en": "Available to start immediately" }
   ]
 }
