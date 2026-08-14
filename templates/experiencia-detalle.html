@@ -1,0 +1,35 @@
+<article class="detalle">
+
+    <div class="contenedor">
+      <a href="{{prefijo_idioma}}/trayectoria/" class="enlace-volver linea" style="--i: 0">
+        <span class="linea__interior"><span aria-hidden="true">←</span> {{i18n.volver_charlas}}</span>
+      </a>
+    </div>
+  
+    <header class="cabecera-pagina cabecera-pagina--detalle">
+      <div class="contenedor">
+        <p class="etiqueta-seccion linea" style="--i: 1"><span class="linea__interior">{{experiencia.empresa}}</span></p>
+        <h1 class="titular-pagina">
+          <span class="linea" style="--i: 2"><span class="linea__interior">{{experiencia.titulo}}</span></span>
+        </h1>
+      </div>
+    </header>
+  
+    <div class="contenedor">
+      <div class="detalle__cuerpo">
+  
+        <div class="detalle__principal reveal">
+          {{lista_grupos}}
+        </div>
+  
+        <aside class="detalle__ficha reveal" style="--reveal-delay: 90ms">
+          <dl class="datos">
+            <div class="dato"><dt>{{i18n.charla_rol}}</dt><dd>{{experiencia.titulo}}</dd></div>
+            {{lugar_si_existe}}
+          </dl>
+        </aside>
+  
+      </div>
+    </div>
+  
+  </article>

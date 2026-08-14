@@ -17,20 +17,20 @@
 .sobre-mi__texto {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.15rem;
   max-width: var(--ancho-lectura);
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: var(--t-cuerpo-grande);
   color: var(--c-texto-suave);
 }
 
 /* El primer parrafo entra mas fuerte: hace de resumen */
 .sobre-mi__texto p:first-child {
   color: var(--c-texto);
-  font-size: clamp(0.95rem, 1.3vw, 1.05rem);
-  line-height: 1.55;
-  letter-spacing: -0.01em;
+  font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+  line-height: 1.5;
+  letter-spacing: -0.015em;
 }
+
 
 /* ============================================
    HOME · LLAMADA A LA ACCION
@@ -95,6 +95,34 @@
   color: var(--c-texto-suave);
   max-width: var(--ancho-lectura);
   white-space: pre-line;
+}
+
+.detalle__grupo {
+  max-width: var(--ancho-lectura);
+}
+
+.detalle__grupo + .detalle__grupo {
+  margin-top: 2.25rem;
+}
+
+.detalle__grupo-titulo {
+  font-family: var(--f-display);
+  font-size: var(--t-card);
+  color: var(--c-texto);
+  margin-bottom: 0.75rem;
+}
+
+.detalle__lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding-left: 1.1rem;
+}
+
+.detalle__lista li {
+  font-size: var(--t-cuerpo-grande);
+  color: var(--c-texto-suave);
+  line-height: 1.5;
 }
 
 .detalle__enlaces {

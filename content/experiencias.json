@@ -1,0 +1,67 @@
+[
+  {
+    "id": "bosch",
+    "titulo": { "es": "Prácticas de Ingeniería", "en": "Engineering Internship" },
+    "empresa": "Robert Bosch España S.L.U.",
+    "lugar": "Madrid",
+    "fecha_inicio": "2026-05",
+    "grupos": [
+      {
+        "titulo": { "es": "Datos y bases de datos", "en": "Data and databases" },
+        "tareas": {
+          "es": [
+            "Análisis de grandes volúmenes de datos de producción para la identificación de patrones y propuestas de mejora de procesos",
+            "Diseño de tablas, relaciones, consultas y limpieza de bases de datos de producción"
+          ],
+          "en": [
+            "Analysis of large volumes of production data to identify patterns and propose process improvements",
+            "Design of tables, relationships, queries and data cleaning for production databases"
+          ]
+        }
+      },
+      {
+        "titulo": { "es": "KPIs y reporting", "en": "KPIs and reporting" },
+        "tareas": {
+          "es": [
+            "Elaboración de dashboards y reporting en Excel y Power BI para el seguimiento de KPIs de producción",
+            "Elaboración, control y seguimiento de KPIs para las líneas de producción"
+          ],
+          "en": [
+            "Creation of dashboards and reporting in Excel and Power BI to track production KPIs",
+            "Creation, control and follow-up of KPIs for production lines"
+          ]
+        }
+      },
+      {
+        "titulo": { "es": "Procesos estándar y metodología BPS", "en": "Standard processes and BPS methodology" },
+        "tareas": {
+          "es": [
+            "Gestión y creación de registros SAP como soporte a los procesos del equipo",
+            "Elaboración de hojas de trabajo estandarizado (StABs) para la realización de tareas",
+            "Aplicación de la metodología BPS (Bosch Production System)"
+          ],
+          "en": [
+            "Management and creation of SAP records to support the team's processes",
+            "Creation of standardized work sheets (StABs) for carrying out tasks",
+            "Application of the BPS methodology (Bosch Production System)"
+          ]
+        }
+      },
+      {
+        "titulo": { "es": "Automatización y líneas de producción", "en": "Automation and production lines" },
+        "tareas": {
+          "es": [
+            "Toma y análisis de tiempos de ciclo en las líneas de producción",
+            "Gestión de robots en líneas automatizadas: análisis de errores reportados, identificación de causas y propuesta de soluciones mediante el estudio de su funcionamiento y flujo de trabajo",
+            "Estudio y análisis de opciones de flujo para la automatización de nuevas líneas, evaluando eficiencia de producción, reducción de stocks y One Piece Flow"
+          ],
+          "en": [
+            "Recording and analysis of cycle times on production lines",
+            "Management of robots on automated lines: analysis of reported errors, identification of causes and proposed solutions through studying their operation and workflow",
+            "Study and analysis of flow options for automating new lines, evaluating production efficiency, stock reduction and One Piece Flow"
+          ]
+        }
+      }
+    ]
+  }
+]

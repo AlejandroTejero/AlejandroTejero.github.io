@@ -621,6 +621,19 @@
   font-size: 1.1875rem;
 }
 
+.timeline-item__enlace {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--c-borde-fuerte);
+  transition: color var(--dur-rapida) var(--ease-suave), border-color var(--dur-rapida) var(--ease-suave);
+}
+
+.timeline-item__enlace:hover,
+.timeline-item__enlace:focus-visible {
+  color: var(--c-acento);
+  border-color: var(--c-acento);
+}
+
 .timeline-item__institucion {
   font-size: 0.9375rem;
   color: var(--c-acento);

@@ -5,8 +5,8 @@
     "categorias": ["backend", "ia", "automatizacion"],
     "titulo": "WebBuilder",
     "resumen": {
-      "es": "Convierte cualquier API publica en un proyecto Django desplegable usando IA",
-      "en": "Turns any public API into a deployable Django project using AI"
+      "es": "TFG: convierte cualquier API publica en un proyecto Django desplegable con IA - 9,9, propuesto a Matricula de Honor",
+      "en": "Thesis: turns any public API into a deployable Django project with AI - 9.9, proposed for highest honors"
     },
     "descripcion": {
       "es": "Plataforma que convierte cualquier API publica (JSON/XML/CSV) en un proyecto Django completo y desplegable. Un LLM analiza el dataset, propone el esquema de datos y genera el codigo. Incluye autenticacion OAuth (Google/GitHub), editor con refinamiento asistido por IA, versionado de sitios generados y despliegue automatizado con n8n y Docker.",
@@ -31,8 +31,8 @@
     "categorias": ["backend", "web"],
     "titulo": "GameRank",
     "resumen": {
-      "es": "Catalogo y ranking social de videojuegos con integracion de APIs externas",
-      "en": "Social videogame catalog and ranking with external API integration"
+      "es": "Catalogo y ranking social de videojuegos con APIs externas - Matricula de Honor",
+      "en": "Social videogame catalog and ranking with external APIs - Highest honors"
     },
     "descripcion": {
       "es": "Aplicacion web integrada con la API de RAWG para descubrir, valorar y comparar videojuegos agregados desde distintas fuentes (XML + APIs REST). Incluye sistema de reviews, likes/dislikes, rankings dinamicos, busqueda avanzada y carga dinamica de comentarios con HTMX.",
@@ -60,15 +60,15 @@
     "categorias": ["iot", "backend"],
     "titulo": "Invernadero IoT",
     "resumen": {
-      "es": "Simulador de invernadero automatizado con sensores y actuadores",
-      "en": "Automated greenhouse simulator with sensors and actuators"
+      "es": "Simulador de invernadero automatizado con sensores y actuadores en C++, mi primer proyecto grande de la carrera",
+      "en": "Automated greenhouse simulator with sensors and actuators in C++, my first major project in the degree"
     },
     "descripcion": {
       "es": "Sistema orientado a objetos que simula un invernadero automatizado: sensores de temperatura, humedad y luz, actuadores, sistema de usuarios con login y persistencia de datos en ficheros. Interfaz por terminal, proyecto documentado con Doxygen.",
       "en": "Object-oriented system simulating an automated greenhouse: temperature, humidity and light sensors, actuators, a user login system and file-based data persistence. Terminal interface, documented with Doxygen."
     },
     "tecnologias": ["C++", "POO", "Doxygen"],
-    "periodo": "2024",
+    "periodo": "2023",
     "estado": { "es": "Finalizado", "en": "Completed" },
     "nota_academica": null,
     "imagen": "/img/proyectos/Invernadero/portada.png",
@@ -88,8 +88,8 @@
     "categorias": ["backend", "sistemas"],
     "titulo": "Tactical Battle",
     "resumen": {
-      "es": "Simulador de combate tactico por turnos, cliente-servidor",
-      "en": "Turn-based tactical combat simulator, client-server"
+      "es": "Simulador de combate tactico por turnos, cliente-servidor hecho en Python con sockets",
+      "en": "Turn-based tactical combat simulator, client-server built in Python with sockets"
     },
     "descripcion": {
       "es": "Juego de estrategia por turnos en Python con arquitectura cliente-servidor sobre sockets TCP. El servidor gestiona el lobby de emparejamiento, multiples partidas simultaneas, varios oponentes multihilo y el ranking de jugadores.",

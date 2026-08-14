@@ -108,6 +108,7 @@ const site = leerJSON('content/site.json');
 const proyectos = leerJSON('content/proyectos.json');
 const repositorios = leerJSON('content/repositorios.json');
 const charlas = leerJSON('content/charlas.json');
+const experiencias = leerJSON('content/experiencias.json');
 const skills = leerJSON('content/skills.json');
 const timeline = leerJSON('content/timeline.json');
 
@@ -123,6 +124,7 @@ const plantillas = {
   proyectoDetalle: leerHTML('templates/proyecto-detalle.html'),
   trayectoria: leerHTML('templates/trayectoria.html'),
   charlaDetalle: leerHTML('templates/charla-detalle.html'),
+  experienciaDetalle: leerHTML('templates/experiencia-detalle.html'),
 };
 
 const partials = {
@@ -528,12 +530,16 @@ function renderizarTimelineItem(hito, ctx) {
   const institucion = limpiar(hito.institucion);
   const descripcion = hito.descripcion ? limpiar(hito.descripcion[ctx.idioma]) : '';
   const etiquetaTipo = ctx.i18n[`tipo_${hito.tipo}`] || hito.tipo;
+  const tituloTexto = hito.titulo[ctx.idioma];
+  const tituloRenderizado = hito.experiencia_relacionada
+    ? `<a href="${ctx.prefijo_idioma}/trayectoria/experiencias/${hito.experiencia_relacionada}/" class="timeline-item__enlace">${escaparHtml(tituloTexto)}<span aria-hidden="true"> ↗</span></a>`
+    : escaparHtml(tituloTexto);
 
   return reemplazar(partials.timelineItem, {
     ...ctx,
     hito: {
       ...hito,
-      titulo: hito.titulo[ctx.idioma],
+      titulo: tituloRenderizado,
       tipo_etiqueta: etiquetaTipo,
     },
     institucion_si_existe: institucion ? `<p class="timeline-item__institucion">${escaparHtml(institucion)}</p>` : '',
@@ -583,7 +589,6 @@ function renderizarBadges(badges, ctx) {
 function renderizarBioParrafos(parrafos, ctx) {
   return parrafos[ctx.idioma].map((p) => `<p>${p}</p>`).join('');
 }
-
 
 // ============================================
 // NAV, MENU OVERLAY Y FOOTER
@@ -809,6 +814,33 @@ function generarCharlaDetalle(charla, ctx) {
   }, ctx);
 }
 
+function generarExperienciaDetalle(experiencia, ctx) {
+  const grupos = (experiencia.grupos || [])
+    .map((grupo) => {
+      const items = grupo.tareas[ctx.idioma].map((t) => `<li>${escaparHtml(t)}</li>`).join('');
+      return `<div class="detalle__grupo"><h3 class="detalle__grupo-titulo">${escaparHtml(grupo.titulo[ctx.idioma])}</h3><ul class="detalle__lista">${items}</ul></div>`;
+    })
+    .join('');
+
+  const lugar = limpiar(experiencia.lugar);
+
+  const contenido = reemplazar(plantillas.experienciaDetalle, {
+    ...ctx,
+    experiencia: {
+      ...experiencia,
+      titulo: experiencia.titulo[ctx.idioma],
+    },
+    lugar_si_existe: lugar ? `<div class="dato"><dt>${ctx.i18n.charla_lugar}</dt><dd>${escaparHtml(lugar)}</dd></div>` : '',
+    lista_grupos: grupos,
+  });
+
+  return envolverEnLayout(contenido, {
+    titulo: `${experiencia.titulo[ctx.idioma]} — ${experiencia.empresa}`,
+    descripcion: experiencia.empresa,
+    rutaSinIdioma: `/trayectoria/experiencias/${experiencia.id}/`,
+  }, ctx);
+}
+
 // ============================================
 // SITEMAP
 // ============================================
@@ -818,6 +850,7 @@ function generarSitemap() {
   rutas.push('/trayectoria/');
   proyectos.forEach((p) => rutas.push(`/proyectos/${p.id}/`));
   charlas.forEach((c) => rutas.push(`/trayectoria/charlas/${c.id}/`));
+  experiencias.forEach((e) => rutas.push(`/trayectoria/experiencias/${e.id}/`));
 
   const urls = IDIOMAS.flatMap((idioma) =>
     rutas.map((ruta) => `  <url><loc>${BASE_URL}${prefijoIdioma(idioma)}${ruta}</loc></url>`)
@@ -856,6 +889,10 @@ async function build() {
 
     for (const charla of charlas) {
       escribirArchivo(rutaArchivo(prefijo, `/trayectoria/charlas/${charla.id}/index.html`), generarCharlaDetalle(charla, ctx));
+    }
+
+    for (const experiencia of experiencias) {
+      escribirArchivo(rutaArchivo(prefijo, `/trayectoria/experiencias/${experiencia.id}/index.html`), generarExperienciaDetalle(experiencia, ctx));
     }
 
     console.log(`Paginas generadas para: ${idioma}`);

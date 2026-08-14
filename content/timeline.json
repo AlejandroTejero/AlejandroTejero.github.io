@@ -11,21 +11,21 @@
     "mes": "02",
     "tipo": "proyecto",
     "titulo": { "es": "Invernadero IoT", "en": "IoT Greenhouse" },
-    "descripcion": { "es": "Simulador de invernadero automatizado en C++", "en": "Automated greenhouse simulator in C++" }
+    "descripcion": { "es": "Simulador de invernadero automatizado, proyecto en C++", "en": "Automated greenhouse simulator, project in C++" }
   },
   {
     "anio": "2025",
     "mes": "05",
     "tipo": "proyecto",
     "titulo": { "es": "GameRank", "en": "GameRank" },
-    "descripcion": { "es": "Matricula de Honor - catalogo de videojuegos", "en": "Highest honors - videogame catalog" }
+    "descripcion": { "es": "Web catalogo de videojuegos con votos y comentarios - Matricula de Honor", "en": "Videogame catalog website with votes and comments - Highest honors" }
   },
   {
     "anio": "2026",
     "mes": "05",
     "tipo": "proyecto",
     "titulo": { "es": "WebBuilder (TFG)", "en": "WebBuilder (Thesis)" },
-    "descripcion": { "es": "Nota 9,9 - propuesto a Matricula de Honor", "en": "Grade 9.9 - proposed for highest honors" }
+    "descripcion": { "es": "Generacion automatica de proyectos Django con IA generativa - propuesto a Matricula de Honor", "en": "Automatic generation of Django projects with generative AI - proposed for highest honors" }
   },
   {
     "anio": "2026",
@@ -33,7 +33,8 @@
     "tipo": "experiencia",
     "titulo": { "es": "Practicas de Ingenieria", "en": "Engineering Internship" },
     "institucion": "Robert Bosch Espana S.L.U.",
-    "descripcion": { "es": "Analisis de datos, Power BI, SAP", "en": "Data analysis, Power BI, SAP" }
+    "descripcion": { "es": "Analisis de datos, automatizacion y produccion", "en": "Data analysis, automation and production" },
+    "experiencia_relacionada": "bosch"
   },
   {
     "anio": "2026",
@@ -41,7 +42,7 @@
     "tipo": "logro",
     "titulo": { "es": "Ponente en I Jornada seLIA", "en": "Speaker at I Jornada seLIA" },
     "institucion": "URJC",
-    "descripcion": { "es": "Presentacion de WebBuilder", "en": "WebBuilder presentation" }
+    "descripcion": { "es": "Ponencia sobre WebBuilder en la I Jornada de IA de la URJC", "en": "Talk about WebBuilder at URJC's 1st AI Conference" }
   },
   {
     "anio": "2026",
