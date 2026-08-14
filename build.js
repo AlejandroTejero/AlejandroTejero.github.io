@@ -137,7 +137,6 @@ const partials = {
   filtroCategorias: leerHTML('partials/filtro-categorias.html'),
   charlaCard: leerHTML('partials/charla-card.html'),
   contactoFlotante: leerHTML('partials/contacto-flotante.html'),
-  valorCard: leerHTML('partials/valor-card.html'),
 };
 
 // ============================================
@@ -585,16 +584,6 @@ function renderizarBioParrafos(parrafos, ctx) {
   return parrafos[ctx.idioma].map((p) => `<p>${p}</p>`).join('');
 }
 
-function renderizarValorCard(valor, ctx, indice = 0) {
-  return reemplazar(partials.valorCard, {
-    ...ctx,
-    valor: {
-      titulo: valor.titulo[ctx.idioma],
-      descripcion: valor.descripcion[ctx.idioma],
-      indice_formateado: String(indice + 1).padStart(2, '0'),
-    },
-  });
-}
 
 // ============================================
 // NAV, MENU OVERLAY Y FOOTER
@@ -660,7 +649,7 @@ function generarHome(ctx) {
   const contenido = reemplazar(plantillas.home, {
     ...ctx,
     site: { ...site, cv_pdf: site.cv_pdf[ctx.idioma] },
-    hero: { rol: site.hero_rol[ctx.idioma], titulo: site.titulo[ctx.idioma], intro: site.hero_intro[ctx.idioma] },
+    hero: { titulo: site.titulo[ctx.idioma], intro: site.hero_intro[ctx.idioma] },
     retrato: renderizarFotoPerfil(),
     lista_badges: renderizarBadges(site.badges, ctx),
     lista_bio_parrafos: renderizarBioParrafos(site.bio_parrafos, ctx),

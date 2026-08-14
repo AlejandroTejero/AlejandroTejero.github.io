@@ -94,6 +94,7 @@
   font-size: var(--t-cuerpo-grande);
   color: var(--c-texto-suave);
   max-width: var(--ancho-lectura);
+  white-space: pre-line;
 }
 
 .detalle__enlaces {
