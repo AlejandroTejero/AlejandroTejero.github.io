@@ -452,7 +452,7 @@ function renderizarFotoPerfil() {
 // ============================================
 // RENDERIZADO DE PIEZAS REPETIBLES (partials)
 // ============================================
-function renderizarProjectCard(proyecto, ctx, indice = 0, esHero = false) {
+function renderizarProjectCard(proyecto, ctx, indice = 0, esHero = false, esDuplicado = false) {
   const tech = proyecto.tecnologias.map((t) => `<li>${t}</li>`).join('');
   const nota = limpiar(proyecto.nota_academica);
 
@@ -464,6 +464,7 @@ function renderizarProjectCard(proyecto, ctx, indice = 0, esHero = false) {
       estado: proyecto.estado[ctx.idioma],
       categorias_espacio: proyecto.categorias.join(' '),
       indice_formateado: String(indice + 1).padStart(2, '0'),
+      clase_extra: esDuplicado ? ' project-card--duplicado' : '',
     },
     portada: renderizarPortada(proyecto.titulo, proyecto.imagen, indice, esHero),
     lista_tecnologias: tech,
@@ -686,7 +687,7 @@ function generarHome(ctx) {
     retrato: renderizarFotoPerfil(),
     lista_badges: renderizarBadges(site.badges, ctx),
     lista_bio_parrafos: renderizarBioParrafos(site.bio_parrafos, ctx),
-    lista_proyectos_carrusel: carrusel.map((p, i) => renderizarProjectCard(p, ctx, i % destacados.length)).join(''),
+    lista_proyectos_carrusel: carrusel.map((p, i) => renderizarProjectCard(p, ctx, i % destacados.length, false, i >= destacados.length)).join(''),
     lista_timeline_items: timelineOrdenado.map((h) => renderizarTimelineItem(h, ctx)).join(''),
     lista_charlas: charlasOrdenadas.map((c) => renderizarCharlaCard(c, ctx)).join(''),
   });
@@ -892,6 +893,80 @@ function generarSitemap() {
 }
 
 // ============================================
+// PAGINA 404 (bilingue, sin fondo 3D)
+// ============================================
+// GitHub Pages sirve automaticamente /404.html para cualquier ruta que no
+// exista, pero solo mira ese archivo en la raiz — no distingue idioma por
+// URL. Por eso esta pagina no usa layout.html (que asume un solo idioma)
+// y en vez de intentar adivinar el idioma del visitante, muestra las dos
+// versiones apiladas, cada una con su propio enlace de vuelta al inicio.
+function generarPagina404() {
+  return `<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0A192F" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#EDE7D9" media="(prefers-color-scheme: light)">
+  <title>404 · ${site.nombre_corto}</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script>
+    (function () {
+      try {
+        var guardado = localStorage.getItem('portfolio-tema');
+        var prefiereClaro = window.matchMedia('(prefers-color-scheme: light)').matches;
+        document.documentElement.setAttribute('data-tema', guardado || (prefiereClaro ? 'claro' : 'oscuro'));
+      } catch (e) {
+        document.documentElement.setAttribute('data-tema', 'oscuro');
+      }
+    })();
+  </script>
+</head>
+<body class="pagina-404">
+  <main class="error-404">
+    <p class="error-404__codigo">404</p>
+
+    <div class="error-404__idioma" data-idioma="es">
+      <p class="error-404__texto">Lo sentimos, esta pagina no existe o puede que se haya movido de sitio.</p>
+      <a href="/es/" class="btn btn--linea">Volver al inicio<span aria-hidden="true">→</span></a>
+    </div>
+
+    <div class="error-404__idioma" data-idioma="en">
+      <p class="error-404__texto">Sorry, this page doesn't exist, or it may have moved.</p>
+      <a href="/" class="btn btn--linea">Back to home<span aria-hidden="true">→</span></a>
+    </div>
+  </main>
+
+  <script>
+    // Detecta el idioma a partir de la URL que se pidio (aunque no exista,
+    // el navegador conserva la ruta), y si no da pista ninguna, usa el
+    // idioma del navegador. Sin JS, se quedan las dos versiones visibles.
+    (function () {
+      var ruta = window.location.pathname;
+      var idioma;
+      if (ruta.indexOf('/es') === 0) {
+        idioma = 'es';
+      } else if (ruta === '/' || ruta.indexOf('/en') === 0) {
+        idioma = 'en';
+      } else {
+        idioma = (navigator.language || '').toLowerCase().indexOf('es') === 0 ? 'es' : 'en';
+      }
+      document.querySelectorAll('.error-404__idioma').forEach(function (bloque) {
+        if (bloque.dataset.idioma !== idioma) bloque.remove();
+      });
+    })();
+  </script>
+</body>
+</html>
+`;
+}
+
+// ============================================
 // FUNCION PRINCIPAL
 // ============================================
 async function build() {
@@ -934,6 +1009,7 @@ async function build() {
 
   escribirArchivo('sitemap.xml', generarSitemap());
   escribirArchivo('robots.txt', `User-agent: *\nAllow: /\nSitemap: ${BASE_URL}/sitemap.xml\n`);
+  escribirArchivo('404.html', generarPagina404());
 
   console.log('\nBuild completado. Revisa la carpeta dist/');
 }

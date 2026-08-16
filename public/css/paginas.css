@@ -337,3 +337,46 @@
     justify-content: center;
   }
 }
+
+/* ============================================
+   PAGINA 404
+   ============================================ */
+body.pagina-404 {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-404 {
+  max-width: 30rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.error-404__codigo {
+  font-family: var(--f-mono);
+  font-size: clamp(3.5rem, 12vw, 6rem);
+  font-weight: 500;
+  color: var(--c-acento);
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+
+.error-404__idioma {
+  padding-block: 1.25rem;
+  border-top: 1px solid var(--c-borde);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.error-404__idioma:last-child {
+  border-bottom: 1px solid var(--c-borde);
+}
+
+.error-404__texto {
+  color: var(--c-texto-suave);
+  font-size: 0.9375rem;
+}

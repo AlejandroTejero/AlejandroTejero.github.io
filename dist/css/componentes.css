@@ -134,6 +134,41 @@
   animation-play-state: paused;
 }
 
+/* En movil no cabe mas de una tarjeta a la vez, y sin hover no hay
+   forma de pausar el auto-scroll — se pasa a scroll horizontal real
+   con el dedo, con snap para que cada tarjeta encaje al soltar. */
+@media (max-width: 760px) {
+  .carrusel-flotante {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    /* Oculta la barra de scroll nativa (el gesto de deslizar sigue
+       funcionando igual, solo se quita la barra visual). */
+    scrollbar-width: none;
+  }
+
+  .carrusel-flotante::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carrusel-flotante__pista {
+    animation: none;
+    width: max-content;
+  }
+
+  .carrusel-flotante__pista .project-card {
+    scroll-snap-align: center;
+  }
+
+  /* Los proyectos duplicados solo hacen falta para que el auto-scroll
+     de escritorio no se note el salto — en movil con scroll real de
+     verdad, solo estorban (se repetirian los mismos proyectos). */
+  .carrusel-flotante__pista .project-card--duplicado {
+    display: none;
+  }
+}
+
 .carrusel-flotante__pista .project-card {
   flex: none;
   width: min(340px, 82vw);

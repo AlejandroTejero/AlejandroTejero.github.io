@@ -1797,6 +1797,41 @@ h4 {
   animation-play-state: paused;
 }
 
+/* En movil no cabe mas de una tarjeta a la vez, y sin hover no hay
+   forma de pausar el auto-scroll — se pasa a scroll horizontal real
+   con el dedo, con snap para que cada tarjeta encaje al soltar. */
+@media (max-width: 760px) {
+  .carrusel-flotante {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    /* Oculta la barra de scroll nativa (el gesto de deslizar sigue
+       funcionando igual, solo se quita la barra visual). */
+    scrollbar-width: none;
+  }
+
+  .carrusel-flotante::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carrusel-flotante__pista {
+    animation: none;
+    width: max-content;
+  }
+
+  .carrusel-flotante__pista .project-card {
+    scroll-snap-align: center;
+  }
+
+  /* Los proyectos duplicados solo hacen falta para que el auto-scroll
+     de escritorio no se note el salto — en movil con scroll real de
+     verdad, solo estorban (se repetirian los mismos proyectos). */
+  .carrusel-flotante__pista .project-card--duplicado {
+    display: none;
+  }
+}
+
 .carrusel-flotante__pista .project-card {
   flex: none;
   width: min(340px, 82vw);
@@ -2861,6 +2896,7 @@ h4 {
   }
 }
 
+
 /* ===== paginas.css ===== */
 /* ============================================
    HOME · SOBRE MI
@@ -3200,6 +3236,49 @@ h4 {
   .cta-contacto .btn {
     justify-content: center;
   }
+}
+
+/* ============================================
+   PAGINA 404
+   ============================================ */
+body.pagina-404 {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-404 {
+  max-width: 30rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.error-404__codigo {
+  font-family: var(--f-mono);
+  font-size: clamp(3.5rem, 12vw, 6rem);
+  font-weight: 500;
+  color: var(--c-acento);
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+
+.error-404__idioma {
+  padding-block: 1.25rem;
+  border-top: 1px solid var(--c-borde);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.error-404__idioma:last-child {
+  border-bottom: 1px solid var(--c-borde);
+}
+
+.error-404__texto {
+  color: var(--c-texto-suave);
+  font-size: 0.9375rem;
 }
 
 
