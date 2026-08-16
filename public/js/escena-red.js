@@ -59,7 +59,7 @@
     });
     return {
       tema: tema,
-      fondo: hexANumero(leerVar('--c-fondo', tema === 'claro' ? '#EDE7D9' : '#242933')),
+      fondo: hexANumero(leerVar('--c-fondo', tema === 'claro' ? '#EDE7D9' : '#171A21')),
       acento: hexANumero(leerVar('--c-acento', tema === 'claro' ? '#2F4A6B' : '#88C0D0')),
       categorias: categorias
     };
@@ -73,7 +73,7 @@
   // texto blanco dificil de leer encima. Umbral mas alto = solo brilla
   // lo realmente intenso (pulsos), no cualquier nodo normal.
   var AJUSTES_TEMA = {
-    oscuro: { bloomFuerza: 0.3, bloomRadio: 0.4, bloomUmbral: 0.45, multNodo: 1, multPulso: 2, opacidadLinea: 0.26 },
+    oscuro: { bloomFuerza: 0.5, bloomRadio: 0.4, bloomUmbral: 0.38, multNodo: 1.4, multPulso: 2, opacidadLinea: 0.26 },
     claro: { bloomFuerza: 0.16, bloomRadio: 0.32, bloomUmbral: 0.62, multNodo: 1.1, multPulso: 1.5, opacidadLinea: 0.4 }
   };
 
@@ -136,6 +136,16 @@
     return p.categorias[idx];
   }
 
+  // Las lineas usan un color propio, mezclado hacia el acento en vez
+  // del color (a veces muy apagado) de la categoria del nodo — asi se
+  // ven claras siempre, sea cual sea la categoria, en vez de perderse
+  // contra el fondo como pasaba antes.
+  function colorParaLinea(entrada, p) {
+    var base = new THREE.Color(colorParaEntrada(entrada, p));
+    var vivo = new THREE.Color(p.acento);
+    return base.lerp(vivo, 0.55).getHex();
+  }
+
   function registrar(material, meta) {
     registroMateriales.push(Object.assign({ material: material }, meta));
     return material;
@@ -170,7 +180,7 @@
   function nuevaLinea(puntos, meta, opacidad) {
     var geo = new THREE.BufferGeometry().setFromPoints(puntos);
     var mat = registrar(new THREE.LineBasicMaterial({
-      color: colorParaEntrada(meta, paleta), transparent: true, opacity: opacidad
+      color: colorParaLinea(meta, paleta), transparent: true, opacity: opacidad
     }), Object.assign({ esLinea: true, opacidadBase: opacidad }, meta));
     var linea = new THREE.Line(geo, mat);
     lineasGrupo.add(linea);
@@ -200,7 +210,7 @@
       puntos.push(pos);
     }
     for (var j = 0; j < puntos.length - 1; j++) {
-      if (Math.random() < 0.55) nuevaLinea(trazoOrtogonal(puntos[j], puntos[j + 1]), { catIdx: j % 7 }, 0.22);
+      if (Math.random() < 0.55) nuevaLinea(trazoOrtogonal(puntos[j], puntos[j + 1]), { catIdx: j % 7 }, 0.4);
     }
   }
 
@@ -228,24 +238,24 @@
     }
     for (var j = 0; j < puntos.length - 1; j++) {
       if (Math.random() < (opciones.probLinea || 0.5)) {
-        nuevaLinea(trazoOrtogonal(puntos[j].pos, puntos[j + 1].pos), puntos[j].meta, opciones.opacidadLinea || 0.26);
+        nuevaLinea(trazoOrtogonal(puntos[j].pos, puntos[j + 1].pos), puntos[j].meta, opciones.opacidadLinea || 0.45);
       }
     }
   }
 
   function construirCapituloPortada(zBase) {
     construirRedDispersa(zBase, {
-      nMovil: 10, nEscritorio: 26, radioMin: 3, radioMax: 7.5,
-      escalaMin: 0.6, escalaVar: 1, probLinea: 0.55, opacidadLinea: 0.22,
+      nMovil: 16, nEscritorio: 26, radioMin: 3, radioMax: 7.5,
+      escalaMin: 0.6, escalaVar: 1, probLinea: 0.55, opacidadLinea: 0.4,
       colorPara: function (i) { return { catIdx: i % 7 }; }
     });
   }
 
   function construirCapituloIdentidad(zBase) {
     construirRedDispersa(zBase, {
-      nMovil: 7, nEscritorio: 14, radioMin: 0.8, radioMax: 2.5, achatado: 0.7,
+      nMovil: 14, nEscritorio: 22, radioMin: 0.8, radioMax: 3, achatado: 0.7,
       profundidad: PROFUNDIDAD_TRAMO * 0.8,
-      escalaMin: 0.7, escalaVar: 0.8, probLinea: 0.6, opacidadLinea: 0.3,
+      escalaMin: 0.7, escalaVar: 0.8, probLinea: 0.6, opacidadLinea: 0.5,
       colorPara: function () { return { catIdx: 0 }; }
     });
   }
@@ -271,23 +281,23 @@
         puntosCluster.push(pos);
       }
       for (var j = 0; j < puntosCluster.length - 1; j++) {
-        nuevaLinea(trazoOrtogonal(puntosCluster[j], puntosCluster[j + 1]), { acento: proyecto.acento }, 0.3);
+        nuevaLinea(trazoOrtogonal(puntosCluster[j], puntosCluster[j + 1]), { acento: proyecto.acento }, 0.5);
       }
     });
   }
 
   function construirCapituloTrayectoria(zBase) {
     construirRedDispersa(zBase, {
-      nMovil: 10, nEscritorio: 16, radioMin: 0.8, radioMax: 2.5,
-      escalaMin: 0.5, escalaVar: 0.5, probLinea: 0.5, opacidadLinea: 0.3,
+      nMovil: 16, nEscritorio: 24, radioMin: 1, radioMax: 4.5,
+      escalaMin: 0.5, escalaVar: 0.5, probLinea: 0.5, opacidadLinea: 0.5,
       colorPara: function (i) { return { catIdx: i % 7 }; }
     });
   }
 
   function construirCapituloContacto(zBase) {
     construirRedDispersa(zBase, {
-      nMovil: 10, nEscritorio: 18, radioMin: 3, radioMax: 8,
-      escalaMin: 0.8, escalaVar: 0.7, probLinea: 0.45, opacidadLinea: 0.28,
+      nMovil: 12, nEscritorio: 18, radioMin: 3, radioMax: 8,
+      escalaMin: 0.8, escalaVar: 0.7, probLinea: 0.45, opacidadLinea: 0.48,
       colorPara: function (i) { return { catIdx: i % 7 }; }
     });
   }
@@ -306,7 +316,7 @@
       puntos.push(pos);
     }
     for (var j = 0; j < puntos.length - 1; j++) {
-      if (Math.random() < 0.4) nuevaLinea(trazoOrtogonal(puntos[j], puntos[j + 1]), { catIdx: (idx + j) % 7 }, 0.18);
+      if (Math.random() < 0.4) nuevaLinea(trazoOrtogonal(puntos[j], puntos[j + 1]), { catIdx: (idx + j) % 7 }, 0.32);
     }
   }
 

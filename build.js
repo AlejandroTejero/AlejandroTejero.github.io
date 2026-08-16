@@ -906,7 +906,7 @@ function generarPagina404() {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0A192F" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#171A21" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#EDE7D9" media="(prefers-color-scheme: light)">
   <title>404 · ${site.nombre_corto}</title>
   <meta name="robots" content="noindex">

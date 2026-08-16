@@ -42,18 +42,17 @@
 }
 
 /* ============================================
-   MODO OSCURO  (paleta Nord)
-   fondo #2E3440 · tarjetas #3B4252 · acento #88C0D0 · texto #ECEFF4
+   MODO OSCURO  (paleta Nord, fondo oscurecido)
+   fondo #171A21 · tarjetas #262A34 · acento #88C0D0 · texto #ECEFF4
    ============================================ */
 :root,
 [data-tema="oscuro"] {
-  --c-fondo: #242933;
-  --c-fondo-alt: #272C36;
-  --c-superficie: #3B4252;
-  --c-superficie-alta: #434C5E;
+  --c-fondo: #171A21;
+  --c-fondo-alt: #1A1D25;
+  --c-superficie: #262A34;
+  --c-superficie-alta: #2E323D;
   --c-texto: #ECEFF4;
   --c-texto-suave: #D8DEE9;
-  /* --c-texto-tenue: #7C88A0; */
   --c-texto-tenue: #A8B4CB;
   --c-borde: rgba(216, 222, 233, 0.10);
   --c-borde-fuerte: rgba(216, 222, 233, 0.22);
@@ -62,8 +61,8 @@
   --c-acento-claro: #A3D4E0;
   --c-sobre-acento: #1B2733;
 
-  --c-menu-fondo: #2E3440;
-  --c-velo: rgba(46, 52, 64, 0.65);
+  --c-menu-fondo: #1A1D25;
+  --c-velo: rgba(23, 26, 33, 0.65);
   --sombra-card: 0 18px 44px -28px rgba(0, 0, 0, 0.85);
 
   /* Paleta de categorias para "Competencias tecnicas" (familia Nord frost + aurora) */
@@ -83,9 +82,17 @@
    ============================================ */
 [data-tema="claro"] {
   --c-fondo: #EDE7D9;
-  --c-fondo-alt: #E7E0CF;
-  --c-superficie: #DDD5C1;
-  --c-superficie-alta: #D3C9B0;
+  --c-fondo-alt: #E8E1D2;
+  /* Antes --c-superficie/-alta se alejaban demasiado del fondo (un beige
+     bastante mas oscuro y saturado), asi que las tarjetas se veian como
+     un color pegado encima en vez de una elevacion natural de la misma
+     superficie. Ahora el salto es mas corto (unos pocos puntos de
+     luminosidad), y la separacion visual la lleva mas el borde + la
+     sombra que el propio color. */
+  /* --c-superficie: #E3DCC9;
+  --c-superficie-alta: #DCD3BC; */ 
+  --c-superficie: #E7E1D2;
+  --c-superficie-alta: #E1DACA;
   --c-texto: #0F0F0E;
   --c-texto-suave: #514E45;
   --c-texto-tenue: #5F5A4D;
@@ -109,6 +116,7 @@
   --c-cat-6: #8A6A16;
   --c-cat-7: #35526E;
 }
+
 
 /* ===== base.css ===== */
 *,
