@@ -123,7 +123,6 @@ const plantillas = {
   home: leerHTML('templates/home.html'),
   proyectosLista: leerHTML('templates/proyectos-lista.html'),
   proyectoDetalle: leerHTML('templates/proyecto-detalle.html'),
-  trayectoria: leerHTML('templates/trayectoria.html'),
   charlaDetalle: leerHTML('templates/charla-detalle.html'),
   experienciaDetalle: leerHTML('templates/experiencia-detalle.html'),
 };
@@ -136,7 +135,6 @@ const partials = {
   repoCard: leerHTML('partials/repo-card.html'),
   skillGroup: leerHTML('partials/skill-group.html'),
   timelineItem: leerHTML('partials/timeline-item.html'),
-  hitoMini: leerHTML('partials/hito-mini.html'),
   filtroCategorias: leerHTML('partials/filtro-categorias.html'),
   charlaCard: leerHTML('partials/charla-card.html'),
   contactoFlotante: leerHTML('partials/contacto-flotante.html'),
@@ -554,16 +552,6 @@ function renderizarSkillGroup(categoria, ctx, indice = 0) {
   });
 }
 
-function renderizarHitoMini(hito, ctx) {
-  return reemplazar(partials.hitoMini, {
-    ...ctx,
-    hito: {
-      anio: hito.anio,
-      titulo: hito.titulo[ctx.idioma],
-    },
-  });
-}
-
 function renderizarTimelineItem(hito, ctx) {
   const institucion = limpiar(hito.institucion);
   const descripcion = hito.descripcion ? limpiar(hito.descripcion[ctx.idioma]) : '';
@@ -681,15 +669,15 @@ function generarHome(ctx) {
   // y encadenar sin salto visible (bucle infinito con solo CSS).
   const carrusel = [...destacados, ...destacados];
 
-  const hitosTeaser = [...timeline]
-    .filter((h) => h.tipo !== 'proyecto')
-    .sort((a, b) => {
-      const mesA = /^\d+$/.test(String(a.mes)) ? a.mes : '00';
-      const mesB = /^\d+$/.test(String(b.mes)) ? b.mes : '00';
-      return `${a.anio}${mesA}`.localeCompare(`${b.anio}${mesB}`);
-    })
-    .slice(-4);
-
+  // La trayectoria completa (timeline + charlas) vive ahora dentro del
+  // home en vez de en una pagina propia — mismo contenido y mismo orden
+  // que antes tenia /trayectoria/.
+  const timelineOrdenado = [...timeline].sort((a, b) => {
+    const mesA = /^\d+$/.test(String(a.mes)) ? a.mes : '00';
+    const mesB = /^\d+$/.test(String(b.mes)) ? b.mes : '00';
+    return `${b.anio}${mesB}`.localeCompare(`${a.anio}${mesA}`);
+  });
+  const charlasOrdenadas = [...charlas].sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
 
   const contenido = reemplazar(plantillas.home, {
     ...ctx,
@@ -699,8 +687,8 @@ function generarHome(ctx) {
     lista_badges: renderizarBadges(site.badges, ctx),
     lista_bio_parrafos: renderizarBioParrafos(site.bio_parrafos, ctx),
     lista_proyectos_carrusel: carrusel.map((p, i) => renderizarProjectCard(p, ctx, i % destacados.length)).join(''),
-    lista_hitos_mini: hitosTeaser.map((h) => renderizarHitoMini(h, ctx)).join(''),
-    lista_skill_groups: skills.categorias.map((c, i) => renderizarSkillGroup(c, ctx, i)).join(''),
+    lista_timeline_items: timelineOrdenado.map((h) => renderizarTimelineItem(h, ctx)).join(''),
+    lista_charlas: charlasOrdenadas.map((c) => renderizarCharlaCard(c, ctx)).join(''),
   });
 
   return envolverEnLayout(contenido, {
@@ -718,6 +706,7 @@ function generarProyectosLista(ctx) {
     filtro_categorias: renderizarFiltroCategorias(ctx),
     lista_todos_los_proyectos: proyectos.map((p, i) => renderizarProjectCard(p, ctx, i)).join(''),
     lista_repos_academicos: repositorios.map((r) => renderizarRepoCard(r, ctx)).join(''),
+    lista_skill_groups: skills.categorias.map((c, i) => renderizarSkillGroup(c, ctx, i)).join(''),
     total_proyectos: proyectos.length,
     total_repos: repositorios.length,
   });
@@ -790,28 +779,6 @@ function generarProyectoDetalle(proyecto, ctx, indice) {
     descripcion: proyecto.resumen[ctx.idioma],
     imagen: `${BASE_URL}${proyecto.imagen}`,
     rutaSinIdioma: `/proyectos/${proyecto.id}/`,
-  }, ctx);
-}
-
-function generarTrayectoria(ctx) {
-  const timelineOrdenado = [...timeline].sort((a, b) => {
-    const mesA = /^\d+$/.test(String(a.mes)) ? a.mes : '00';
-    const mesB = /^\d+$/.test(String(b.mes)) ? b.mes : '00';
-    return `${b.anio}${mesB}`.localeCompare(`${a.anio}${mesA}`);
-  });
-
-  const charlasOrdenadas = [...charlas].sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
-
-  const contenido = reemplazar(plantillas.trayectoria, {
-    ...ctx,
-    lista_timeline_items: timelineOrdenado.map((h) => renderizarTimelineItem(h, ctx)).join(''),
-    lista_charlas: charlasOrdenadas.map((c) => renderizarCharlaCard(c, ctx)).join(''),
-  });
-
-  return envolverEnLayout(contenido, {
-    titulo: ctx.i18n.trayectoria_titulo,
-    descripcion: ctx.i18n.trayectoria_intro,
-    rutaSinIdioma: '/trayectoria/',
   }, ctx);
 }
 
@@ -890,7 +857,6 @@ function generarExperienciaDetalle(experiencia, ctx) {
 function generarSitemap() {
   const rutas = ['/'];
   rutas.push('/proyectos/');
-  rutas.push('/trayectoria/');
   proyectos.forEach((p) => rutas.push(`/proyectos/${p.id}/`));
   charlas.forEach((c) => rutas.push(`/trayectoria/charlas/${c.id}/`));
   experiencias.forEach((e) => rutas.push(`/trayectoria/experiencias/${e.id}/`));
@@ -924,7 +890,6 @@ async function build() {
 
     escribirArchivo(rutaArchivo(prefijo, '/index.html'), generarHome(ctx));
     escribirArchivo(rutaArchivo(prefijo, '/proyectos/index.html'), generarProyectosLista(ctx));
-    escribirArchivo(rutaArchivo(prefijo, '/trayectoria/index.html'), generarTrayectoria(ctx));
 
     proyectos.forEach((proyecto, indice) => {
       escribirArchivo(rutaArchivo(prefijo, `/proyectos/${proyecto.id}/index.html`), generarProyectoDetalle(proyecto, ctx, indice));

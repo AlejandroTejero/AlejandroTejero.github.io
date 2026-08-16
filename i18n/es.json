@@ -2,11 +2,9 @@
   "nav_home": "Inicio",
   "nav_proyectos": "Proyectos",
   "nav_trayectoria": "Trayectoria",
-
-  "nav_home_desc": "Quien soy y como trabajo",
-  "nav_proyectos_desc": "Backend, IA y sistemas cliente-servidor",
+  "nav_home_desc": "Quien soy, mi trayectoria y como trabajo",
+  "nav_proyectos_desc": "Proyectos, repos y competencias tecnicas",
   "nav_trayectoria_desc": "Formacion, experiencia y charlas",
-
   "menu_abrir": "Menu",
   "menu_cerrar": "Cerrar",
   "menu_navegacion": "Navegacion principal",
@@ -17,11 +15,9 @@
   "hablemos_asunto": "Hola Alejandro, te escribo desde tu portfolio",
   "scroll": "Scroll",
   "saltar_contenido": "Saltar al contenido",
-
   "hero_saludo": "Hola, soy",
   "hero_kicker": "Portfolio",
   "hero_aside_titulo": "Enlaces rapidos",
-
   "sobre_mi_titulo": "Sobre mi",
   "sobre_mi_intro": "Quién soy",
   "destacados_titulo": "Proyectos destacados",
@@ -31,7 +27,6 @@
   "ver_proyectos": "Ver proyectos",
   "trayectoria_teaser_intro": "Un recorrido rapido por como he llegado hasta aqui",
   "ver_toda_trayectoria": "Ver toda la trayectoria",
-
   "proyectos_titulo": "Proyectos",
   "proyectos_intro": "Proyectos, investigaciones y repositorios personales y académicos",
   "filtrar_por_categoria": "Filtrar por categoria",
@@ -41,7 +36,6 @@
   "ver_en_github": "Ver en GitHub",
   "skills_titulo": "Competencias tecnicas",
   "sin_resultados": "No hay proyectos en esta categoria",
-
   "volver_proyectos": "Volver a proyectos",
   "proyecto_relacionado": "Proyecto relacionado",
   "sobre_el_proyecto": "Sobre el proyecto",
@@ -56,7 +50,6 @@
   "enlace_slides": "Slides",
   "enlace_cartel": "Cartel",
   "enlace_video": "Video",
-
   "trayectoria_titulo": "Trayectoria",
   "trayectoria_intro": "Educacion, experiencia profesional y charlas",
   "timeline_titulo": "Linea temporal",
@@ -65,23 +58,19 @@
   "charla_lugar": "Lugar",
   "charla_rol": "Rol",
   "charla_fecha": "Fecha",
-
   "tipo_educacion": "Formacion",
   "tipo_experiencia": "Experiencia",
   "tipo_proyecto": "Proyecto",
   "tipo_logro": "Logro",
-
   "contacto_titulo_flotante": "Contacto",
   "contacto_abrir": "Abrir opciones de contacto",
   "contacto_cta_titulo": "Estoy abierto a nuevas oportunidades",
   "contacto_cta_texto": "Escríbeme si mi perfil encaja con lo que buscas, cualquier propuesta es bienvenida.",
   "escribeme": "Escribeme",
-
   "carrusel_anterior": "Imagen anterior",
   "carrusel_siguiente": "Imagen siguiente",
   "carrusel_captura": "captura",
   "carrusel_ir_a": "Ir a la imagen",
-
   "diagrama_titulo": "Arquitectura",
   "diagrama_alt": "Diagrama de arquitectura",
   "diagrama_ampliar": "Ampliar"

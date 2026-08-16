@@ -2,11 +2,9 @@
   "nav_home": "Home",
   "nav_proyectos": "Projects",
   "nav_trayectoria": "Journey",
-
-  "nav_home_desc": "Who I am and how I work",
-  "nav_proyectos_desc": "Backend, AI and client-server systems",
+  "nav_home_desc": "Who I am, my journey and how I work",
+  "nav_proyectos_desc": "Projects, repos and technical skills",
   "nav_trayectoria_desc": "Education, experience and talks",
-
   "menu_abrir": "Menu",
   "menu_cerrar": "Close",
   "menu_navegacion": "Main navigation",
@@ -17,11 +15,9 @@
   "hablemos_asunto": "Hi Alejandro, I'm writing from your portfolio",
   "scroll": "Scroll",
   "saltar_contenido": "Skip to content",
-
   "hero_saludo": "Hi, I'm",
   "hero_kicker": "Portfolio",
   "hero_aside_titulo": "Quick links",
-
   "sobre_mi_titulo": "About me",
   "sobre_mi_intro": "Who I am",
   "destacados_titulo": "Featured projects",
@@ -31,7 +27,6 @@
   "ver_proyectos": "View projects",
   "trayectoria_teaser_intro": "A quick look at how I got here",
   "ver_toda_trayectoria": "View full journey",
-
   "proyectos_titulo": "Projects",
   "proyectos_intro": "Personal and academic projects, research and repositories",
   "filtrar_por_categoria": "Filter by category",
@@ -41,7 +36,6 @@
   "ver_en_github": "View on GitHub",
   "skills_titulo": "Technical skills",
   "sin_resultados": "No projects in this category",
-
   "volver_proyectos": "Back to projects",
   "proyecto_relacionado": "Related project",
   "sobre_el_proyecto": "About the project",
@@ -56,7 +50,6 @@
   "enlace_slides": "Slides",
   "enlace_cartel": "Poster",
   "enlace_video": "Video",
-
   "trayectoria_titulo": "Journey",
   "trayectoria_intro": "Education, professional experience and talks",
   "timeline_titulo": "Timeline",
@@ -65,23 +58,19 @@
   "charla_lugar": "Venue",
   "charla_rol": "Role",
   "charla_fecha": "Date",
-
   "tipo_educacion": "Education",
   "tipo_experiencia": "Experience",
   "tipo_proyecto": "Project",
   "tipo_logro": "Milestone",
-
   "contacto_titulo_flotante": "Contact",
   "contacto_abrir": "Open contact options",
   "contacto_cta_titulo": "I'm open to new opportunities",
   "contacto_cta_texto": "Feel free to reach out if my profile fits what you're looking for, any proposal is welcome.",
   "escribeme": "Email me",
-
   "carrusel_anterior": "Previous image",
   "carrusel_siguiente": "Next image",
   "carrusel_captura": "screenshot",
   "carrusel_ir_a": "Go to image",
-
   "diagrama_titulo": "Architecture",
   "diagrama_alt": "Architecture diagram",
   "diagrama_ampliar": "Enlarge"

@@ -43,6 +43,16 @@
   flex-wrap: wrap;
 }
 
+/* Subdivision dentro de una misma .seccion (p. ej. Trayectoria en el
+   home, que agrupa timeline + charlas sin ser dos secciones aparte). */
+.seccion__subcabecera {
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.seccion__subcabecera:not(:first-child) {
+  margin-top: clamp(3.5rem, 7vw, 5.5rem);
+}
+
 .seccion__nota {
   color: var(--c-texto-suave);
   max-width: var(--ancho-lectura);

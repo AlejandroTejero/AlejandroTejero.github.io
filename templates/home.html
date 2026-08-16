@@ -104,15 +104,26 @@
 </section>
 
 
-<section class="seccion seccion--skills">
+<section class="seccion seccion--trayectoria" id="trayectoria">
   <div class="contenedor">
 
     <div class="seccion__cabecera reveal">
-      <p class="etiqueta-seccion">{{i18n.skills_titulo}}</p>
+      <p class="etiqueta-seccion">{{i18n.trayectoria_titulo}}</p>
+      <h2 class="titular-seccion">{{i18n.trayectoria_intro}}</h2>
     </div>
 
-    <div class="rejilla-skills">
-      {{lista_skill_groups}}
+    <div class="seccion__subcabecera reveal">
+      <p class="etiqueta-seccion">{{i18n.timeline_titulo}}</p>
+    </div>
+    <div class="timeline">
+      {{lista_timeline_items}}
+    </div>
+
+    <div class="seccion__subcabecera reveal" style="--reveal-delay: 90ms">
+      <p class="etiqueta-seccion">{{i18n.charlas_titulo}}</p>
+    </div>
+    <div class="rejilla-charlas">
+      {{lista_charlas}}
     </div>
 
   </div>
@@ -133,24 +144,6 @@
       <div class="carrusel-flotante__pista" data-marquee-pista>
         {{lista_proyectos_carrusel}}
       </div>
-    </div>
-
-  </div>
-</section>
-
-<section class="seccion seccion--trayectoria-teaser">
-  <div class="contenedor">
-
-    <div class="seccion__cabecera seccion__cabecera--fila reveal">
-      <div>
-        <p class="etiqueta-seccion">{{i18n.trayectoria_titulo}}</p>
-        <h2 class="titular-seccion">{{i18n.trayectoria_teaser_intro}}</h2>
-      </div>
-      <a href="{{prefijo_idioma}}/trayectoria/" class="enlace-flecha">{{i18n.ver_toda_trayectoria}}<span aria-hidden="true">→</span></a>
-    </div>
-
-    <div class="trayectoria-mini reveal" style="--reveal-delay: 90ms">
-      {{lista_hitos_mini}}
     </div>
 
   </div>

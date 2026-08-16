@@ -847,6 +847,16 @@ h4 {
   flex-wrap: wrap;
 }
 
+/* Subdivision dentro de una misma .seccion (p. ej. Trayectoria en el
+   home, que agrupa timeline + charlas sin ser dos secciones aparte). */
+.seccion__subcabecera {
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.seccion__subcabecera:not(:first-child) {
+  margin-top: clamp(3.5rem, 7vw, 5.5rem);
+}
+
 .seccion__nota {
   color: var(--c-texto-suave);
   max-width: var(--ancho-lectura);
@@ -3150,13 +3160,44 @@ h4 {
 .escena-fondo__velo {
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    ellipse 62% 52% at 50% 38%,
-    transparent 0%,
-    color-mix(in srgb, var(--c-fondo) 45%, transparent) 70%,
-    color-mix(in srgb, var(--c-fondo) 88%, transparent) 100%
-  );
+  /* Doble capa: una vinieta radial que ancla el centro de lectura
+     (igual que antes, un poco mas oscura) + un degradado lineal
+     de arriba a abajo que garantiza contraste detras del texto
+     tambien en los laterales (donde antes el 3D podia quedar sin
+     tapar y el blanco perdia legibilidad sobre nodos brillantes). */
+  background:
+    radial-gradient(
+      ellipse 68% 58% at 50% 40%,
+      color-mix(in srgb, var(--c-fondo) 12%, transparent) 0%,
+      color-mix(in srgb, var(--c-fondo) 55%, transparent) 70%,
+      color-mix(in srgb, var(--c-fondo) 90%, transparent) 100%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--c-fondo) 35%, transparent) 0%,
+      transparent 22%,
+      transparent 78%,
+      color-mix(in srgb, var(--c-fondo) 40%, transparent) 100%
+    );
   transition: background-color var(--dur-rapida) linear;
+}
+
+/* Refuerzo de legibilidad para el texto que va DIRECTAMENTE encima
+   del canvas (no dentro de una tarjeta con su propio fondo): una
+   sombra suave y oscura que no se nota como "sombra" pero que
+   asegura contraste aunque en ese instante del scroll haya un nodo
+   brillante o el bloom justo detras de la letra. Solo en las
+   paginas con escena 3D; el resto del sitio no la lleva. */
+body.es-home .hero__titular,
+body.es-home .hero__rol,
+body.es-home .hero__kicker,
+body.es-home .titular-seccion,
+body.es-home .etiqueta-seccion,
+body.es-proyectos .titular-pagina,
+body.es-proyectos .etiqueta-seccion,
+body.es-proyectos .cabecera-pagina__intro {
+  text-shadow: 0 1px 1px color-mix(in srgb, var(--c-fondo) 70%, transparent),
+               0 4px 18px color-mix(in srgb, var(--c-fondo) 55%, transparent);
 }
 
 /* Body transparente SOLO en paginas con escena, para que el canvas

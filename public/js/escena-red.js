@@ -67,8 +67,13 @@
 
   var paleta = leerPaleta();
 
+  // bloomFuerza y bloomUmbral bajados respecto a la version anterior:
+  // con el fondo unificado hay mas nodos brillantes visibles a la vez
+  // en pantalla, y el resplandor se acumulaba demasiado y dejaba el
+  // texto blanco dificil de leer encima. Umbral mas alto = solo brilla
+  // lo realmente intenso (pulsos), no cualquier nodo normal.
   var AJUSTES_TEMA = {
-    oscuro: { bloomFuerza: 0.82, bloomRadio: 0.5, bloomUmbral: 0.2, multNodo: 1.6, multPulso: 2.2, opacidadLinea: 0.32 },
+    oscuro: { bloomFuerza: 0.5, bloomRadio: 0.4, bloomUmbral: 0.38, multNodo: 1.4, multPulso: 2, opacidadLinea: 0.26 },
     claro: { bloomFuerza: 0.16, bloomRadio: 0.32, bloomUmbral: 0.62, multNodo: 1.1, multPulso: 1.5, opacidadLinea: 0.4 }
   };
 
@@ -199,42 +204,50 @@
     }
   }
 
-  function construirCapituloIdentidad(zBase) {
-    var n = MOVIL ? 14 : 22;
+  // ---------- Constructor único: "red dispersa" ----------
+  // Todos los capítulos usan la misma composición base — nodos
+  // repartidos con dispersión aleatoria dentro de un anillo de
+  // radios, conectados por trazos ortogonales sueltos — así el
+  // fondo se lee siempre como UNA red continua a lo largo de
+  // todo el scroll, sin cambiar de "forma" (nada de anillos
+  // concéntricos, ejes rectos ni conos de apertura).
+  function construirRedDispersa(zBase, opciones) {
+    var n = MOVIL ? opciones.nMovil : opciones.nEscritorio;
     var puntos = [];
     for (var i = 0; i < n; i++) {
       var ang = Math.random() * Math.PI * 2;
-      var rad = 0.8 + Math.random() * 2.2;
-      var pos = new THREE.Vector3(Math.cos(ang) * rad, Math.sin(ang) * rad * 0.7, zBase - Math.random() * (PROFUNDIDAD_TRAMO * 0.8));
-      var meta = { catIdx: 0 };
-      nuevoNodo(pos, meta, 0.7 + Math.random() * 0.8);
-      puntos.push(pos);
+      var rad = opciones.radioMin + Math.random() * (opciones.radioMax - opciones.radioMin);
+      var pos = new THREE.Vector3(
+        Math.cos(ang) * rad,
+        Math.sin(ang) * rad * (opciones.achatado || 0.6),
+        zBase - Math.random() * (opciones.profundidad || PROFUNDIDAD_TRAMO)
+      );
+      var meta = opciones.colorPara ? opciones.colorPara(i) : { catIdx: i % 7 };
+      nuevoNodo(pos, meta, opciones.escalaMin + Math.random() * opciones.escalaVar);
+      puntos.push({ pos: pos, meta: meta });
     }
-    for (var j = 0; j < puntos.length; j++) {
-      var otro = puntos[(j + 1) % puntos.length];
-      nuevaLinea(trazoOrtogonal(puntos[j], otro), { catIdx: 0 }, 0.3);
+    for (var j = 0; j < puntos.length - 1; j++) {
+      if (Math.random() < (opciones.probLinea || 0.5)) {
+        nuevaLinea(trazoOrtogonal(puntos[j].pos, puntos[j + 1].pos), puntos[j].meta, opciones.opacidadLinea || 0.26);
+      }
     }
   }
 
-  function construirCapituloCompetencias(zBase) {
-    var anillos = 7; // una por categoria real de skills.json
-    for (var a = 0; a < anillos; a++) {
-      var radio = 1.6 + a * 0.75;
-      var nEnAnillo = MOVIL ? 5 : 8;
-      var puntosAnillo = [];
-      for (var i = 0; i < nEnAnillo; i++) {
-        var ang = (i / nEnAnillo) * Math.PI * 2 + a * 0.3;
-        var z = zBase - (a / anillos) * PROFUNDIDAD_TRAMO - Math.random() * 1.2;
-        var pos = new THREE.Vector3(Math.cos(ang) * radio, Math.sin(ang) * radio * 0.5, z);
-        var meta = { catIdx: a };
-        nuevoNodo(pos, meta, 0.55 + Math.random() * 0.5);
-        puntosAnillo.push(pos);
-      }
-      for (var k = 0; k < puntosAnillo.length; k++) {
-        var siguiente = puntosAnillo[(k + 1) % puntosAnillo.length];
-        nuevaLinea([puntosAnillo[k], siguiente], { catIdx: a }, 0.26);
-      }
-    }
+  function construirCapituloPortada(zBase) {
+    construirRedDispersa(zBase, {
+      nMovil: 16, nEscritorio: 26, radioMin: 3, radioMax: 7.5,
+      escalaMin: 0.6, escalaVar: 1, probLinea: 0.55, opacidadLinea: 0.22,
+      colorPara: function (i) { return { catIdx: i % 7 }; }
+    });
+  }
+
+  function construirCapituloIdentidad(zBase) {
+    construirRedDispersa(zBase, {
+      nMovil: 14, nEscritorio: 22, radioMin: 0.8, radioMax: 3, achatado: 0.7,
+      profundidad: PROFUNDIDAD_TRAMO * 0.8,
+      escalaMin: 0.7, escalaVar: 0.8, probLinea: 0.6, opacidadLinea: 0.3,
+      colorPara: function () { return { catIdx: 0 }; }
+    });
   }
 
   function construirCapituloProyectos(zBase) {
@@ -264,38 +277,19 @@
   }
 
   function construirCapituloTrayectoria(zBase) {
-    var n = MOVIL ? 16 : 24;
-    var puntosLineaTiempo = [];
-    for (var i = 0; i < n; i++) {
-      var t = i / (n - 1);
-      var pos = new THREE.Vector3(
-        (Math.random() - 0.5) * 0.6,
-        (Math.random() - 0.5) * 0.5,
-        zBase - t * PROFUNDIDAD_TRAMO
-      );
-      var meta = { catIdx: Math.floor(t * 6) };
-      nuevoNodo(pos, meta, 0.5 + Math.random() * 0.4);
-      puntosLineaTiempo.push(pos);
-    }
-    // el propio eje, como una traza continua — la "línea de tiempo" real
-    nuevaLinea(puntosLineaTiempo, { catIdx: 0 }, 0.45);
+    construirRedDispersa(zBase, {
+      nMovil: 16, nEscritorio: 24, radioMin: 1, radioMax: 4.5,
+      escalaMin: 0.5, escalaVar: 0.5, probLinea: 0.5, opacidadLinea: 0.3,
+      colorPara: function (i) { return { catIdx: i % 7 }; }
+    });
   }
 
   function construirCapituloContacto(zBase) {
-    var n = MOVIL ? 12 : 18;
-    var puntos = [];
-    for (var i = 0; i < n; i++) {
-      var t = i / n;
-      var ang = t * Math.PI * 2;
-      var rad = 4 + t * 5; // la apertura crece: la señal sale del sistema
-      var pos = new THREE.Vector3(Math.cos(ang) * rad, Math.sin(ang) * rad * 0.5, zBase - t * PROFUNDIDAD_TRAMO);
-      var meta = { catIdx: i % 7 };
-      nuevoNodo(pos, meta, 0.8 + Math.random() * 0.7);
-      puntos.push(pos);
-    }
-    for (var j = 0; j < puntos.length - 1; j++) {
-      nuevaLinea([puntos[j], puntos[j + 1]], { catIdx: j % 7 }, 0.28);
-    }
+    construirRedDispersa(zBase, {
+      nMovil: 12, nEscritorio: 18, radioMin: 3, radioMax: 8,
+      escalaMin: 0.8, escalaVar: 0.7, probLinea: 0.45, opacidadLinea: 0.28,
+      colorPara: function (i) { return { catIdx: i % 7 }; }
+    });
   }
 
   function construirCapituloAmbiental(zBase, idx) {
@@ -316,11 +310,14 @@
     }
   }
 
-  var CAPITULOS_HOME = ['portada', 'identidad', 'competencias', 'proyectos', 'trayectoria', 'contacto'];
+  // "sobre mí" y "trayectoria" comparten capítulo: en el home nuevo
+  // van seguidos como una sola sección larga (identidad + timeline),
+  // así que usan la misma composición de red para no cortar la
+  // continuidad visual del fondo entre ambas.
+  var CAPITULOS_HOME = ['portada', 'identidad', 'trayectoria', 'proyectos', 'contacto'];
   var CONSTRUCTORES = {
     portada: construirCapituloPortada,
     identidad: construirCapituloIdentidad,
-    competencias: construirCapituloCompetencias,
     proyectos: construirCapituloProyectos,
     trayectoria: construirCapituloTrayectoria,
     contacto: construirCapituloContacto
