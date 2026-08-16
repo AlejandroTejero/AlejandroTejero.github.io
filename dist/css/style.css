@@ -256,8 +256,10 @@ h4 {
   transition: transform var(--dur-rapida) var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .btn:hover span {
   transform: translateX(3px);
+}
 }
 
 .btn--grande {
@@ -282,12 +284,16 @@ h4 {
   transition: transform 420ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .btn--solido:hover {
   color: var(--c-fondo);
 }
+}
 
+@media (hover: hover) and (pointer: fine) {
 .btn--solido:hover::before {
   transform: translateY(0);
+}
 }
 
 .btn--linea {
@@ -305,13 +311,17 @@ h4 {
   transition: transform 420ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .btn--linea:hover {
   color: var(--c-sobre-acento);
   border-color: var(--c-acento);
 }
+}
 
+@media (hover: hover) and (pointer: fine) {
 .btn--linea:hover::before {
   transform: translateY(0);
+}
 }
 
 /* Enlace con flecha y subrayado que se dibuja */
@@ -340,16 +350,20 @@ h4 {
   transition: transform 380ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .enlace-flecha:hover::after {
   transform: scaleX(1);
+}
 }
 
 .enlace-flecha span {
   transition: transform var(--dur-rapida) var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .enlace-flecha:hover span {
   transform: translateX(4px);
+}
 }
 
 .enlace-volver {
@@ -364,8 +378,10 @@ h4 {
   transition: color var(--dur-rapida) var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .enlace-volver:hover {
   color: var(--c-acento);
+}
 }
 
 /* ---------- Etiquetas / tags ---------- */
@@ -658,8 +674,10 @@ h4 {
 .boton-menu__lineas span:first-child { top: 0; }
 .boton-menu__lineas span:last-child { bottom: 0; width: 70%; }
 
+@media (hover: hover) and (pointer: fine) {
 .boton-menu:hover .boton-menu__lineas span:last-child {
   width: 100%;
+}
 }
 
 .menu-abierto .boton-menu__lineas span:first-child {
@@ -678,6 +696,7 @@ h4 {
 .boton-menu__texto {
   position: relative;
   display: grid;
+  align-items: center;
   overflow: hidden;
   height: 1.15em;
 }
@@ -685,6 +704,11 @@ h4 {
 .boton-menu__abrir,
 .boton-menu__cerrar {
   grid-area: 1 / 1;
+  /* line-height propio: sin esto hereda el 1.65 del body, que hace
+     la caja de linea del texto mas alta que el contenedor de
+     1.15em — con overflow:hidden eso recortaba un pelin la parte
+     de arriba de las letras (se notaba en la M y la U de "MENU"). */
+  line-height: 1;
   white-space: nowrap;
   transition: transform 420ms var(--ease-menu);
 }
@@ -943,8 +967,10 @@ h4 {
   transition: transform 380ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .barra__marca:hover::after {
   transform: scaleX(1);
+}
 }
 
 .barra__acciones {
@@ -969,10 +995,12 @@ h4 {
   transition: color var(--dur-rapida), border-color var(--dur-rapida), background-color var(--dur-rapida);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .barra__idioma:hover,
 .barra__tema:hover {
   color: var(--c-texto);
   border-color: var(--c-borde-fuerte);
+}
 }
 
 /* Solo se ve el icono que corresponde al tema activo */
@@ -999,8 +1027,10 @@ h4 {
   transition: background-color var(--dur-rapida), opacity var(--dur-rapida);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .boton-menu:hover {
   opacity: 0.88;
+}
 }
 
 /* ============================================
@@ -1050,8 +1080,10 @@ h4 {
   z-index: -1;
 }
 
+@media (hover: hover) and (pointer: fine) {
 .menu__enlace:hover::before {
   transform: scaleX(1);
+}
 }
 
 .menu__indice {
@@ -1079,8 +1111,10 @@ h4 {
   transition: color var(--dur-rapida) var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .menu__enlace:hover .menu__titulo {
   color: var(--c-acento);
+}
 }
 
 .menu__desc {
@@ -1096,9 +1130,11 @@ h4 {
   transition: opacity 380ms var(--ease-suave), transform 380ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .menu__enlace:hover .menu__flecha {
   opacity: 1;
   transform: translateX(0);
+}
 }
 
 /* Marca la pagina en la que ya estas */
@@ -1152,12 +1188,16 @@ h4 {
   transition: transform 340ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .menu__social a:hover {
   color: var(--c-texto);
 }
+}
 
+@media (hover: hover) and (pointer: fine) {
 .menu__social a:hover::after {
   transform: scaleX(1);
+}
 }
 
 /* ============================================
@@ -1353,10 +1393,12 @@ h4 {
   height: 18px;
 }
 
+@media (hover: hover) and (pointer: fine) {
 .hero__dock-item:hover .hero__dock-icono {
   background: var(--c-acento);
   color: var(--c-sobre-acento);
   transform: translateY(-3px);
+}
 }
 
 .hero__dock-etiqueta {
@@ -1366,8 +1408,10 @@ h4 {
   transition: color var(--dur-rapida) var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .hero__dock-item:hover .hero__dock-etiqueta {
   color: var(--c-texto);
+}
 }
 
 .hero__dock-item--acento .hero__dock-icono {
@@ -1414,8 +1458,10 @@ h4 {
   transition: color var(--dur-rapida);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .hero__scroll:hover {
   color: var(--c-acento);
+}
 }
 
 .hero__scroll-texto {
@@ -1502,8 +1548,10 @@ h4 {
   transition: color var(--dur-rapida);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .pie__social a:hover {
   color: var(--c-acento);
+}
 }
 
 .pie__copy {
@@ -1543,8 +1591,10 @@ h4 {
   transition: transform 320ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .flotante__boton:hover {
   transform: translateY(-2px) scale(1.04);
+}
 }
 
 .flotante__menu {
@@ -1577,8 +1627,10 @@ h4 {
   transition: background-color var(--dur-rapida);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .flotante__item:hover {
   background: var(--c-superficie-alta);
+}
 }
 
 .flotante__item-etiqueta {
@@ -1792,9 +1844,11 @@ h4 {
   animation: carrusel-desplazar var(--dur-carrusel, 34s) linear infinite;
 }
 
+@media (hover: hover) and (pointer: fine) {
 .carrusel-flotante:hover .carrusel-flotante__pista,
 .carrusel-flotante:focus-within .carrusel-flotante__pista {
   animation-play-state: paused;
+}
 }
 
 /* En movil no cabe mas de una tarjeta a la vez, y sin hover no hay
@@ -1977,10 +2031,12 @@ h4 {
     background-color 420ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .project-card:hover {
   border-color: var(--c-borde-fuerte);
   transform: translateY(-4px);
   background: var(--c-superficie);
+}
 }
 
 .project-card__link {
@@ -2004,8 +2060,10 @@ h4 {
   transition: transform 720ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .project-card:hover .project-card__portada img {
   transform: scale(1.04);
+}
 }
 
 .project-card__cuerpo {
@@ -2043,8 +2101,10 @@ h4 {
   transition: color var(--dur-rapida) var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .project-card:hover .project-card__titulo {
   color: var(--c-acento);
+}
 }
 
 .project-card__resumen {
@@ -2121,9 +2181,11 @@ h4 {
   transition: border-color var(--dur-rapida) var(--ease-suave), color var(--dur-rapida) var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .project-card--hero__boton:hover {
   border-color: var(--c-acento);
   color: var(--c-acento);
+}
 }
 
 /* ============================================
@@ -2138,8 +2200,10 @@ h4 {
   transition: background-color 420ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .valor-card:hover {
   background: var(--c-superficie);
+}
 }
 
 .valor-card__indice {
@@ -2173,9 +2237,11 @@ h4 {
   transition: border-color 420ms var(--ease-suave), transform 420ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .repo-card:hover {
   border-color: var(--c-acento);
   transform: translateY(-3px);
+}
 }
 
 .repo-card__cabecera {
@@ -2244,8 +2310,10 @@ h4 {
   transition: transform var(--dur-rapida) var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .repo-card__enlace:hover span {
   transform: translate(2px, -2px);
+}
 }
 
 /* ============================================
@@ -2273,9 +2341,11 @@ h4 {
   background: var(--c-cat);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .skill-group:hover {
   border-color: color-mix(in srgb, var(--c-cat) 55%, var(--c-borde));
   transform: translateY(-2px);
+}
 }
 
 .skill-group--cat-1 { --c-cat: var(--c-cat-1); }
@@ -2432,10 +2502,12 @@ h4 {
   transition: color var(--dur-rapida) var(--ease-suave), border-color var(--dur-rapida) var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .timeline-item__enlace:hover,
 .timeline-item__enlace:focus-visible {
   color: var(--c-acento);
   border-color: var(--c-acento);
+}
 }
 
 .timeline-item__institucion {
@@ -2458,10 +2530,12 @@ h4 {
   transition: border-color 420ms var(--ease-suave), background-color 420ms var(--ease-suave), transform 420ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .charla-card:hover {
   border-color: var(--c-borde-fuerte);
   background: var(--c-fondo-alt);
   transform: translateY(-3px);
+}
 }
 
 .charla-card__link {
@@ -2485,8 +2559,10 @@ h4 {
   transition: color var(--dur-rapida) var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .charla-card:hover .charla-card__titulo {
   color: var(--c-acento);
+}
 }
 
 .charla-card__rol,
@@ -2513,9 +2589,11 @@ h4 {
   transition: opacity 380ms var(--ease-suave), transform 380ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .charla-card:hover .charla-card__flecha {
   opacity: 1;
   transform: translateX(0);
+}
 }
 
 /* ============================================
@@ -2644,10 +2722,12 @@ h4 {
   transition: background-color var(--dur-rapida) var(--ease-suave), border-color var(--dur-rapida) var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .carrusel__control:hover {
   background: var(--c-acento);
   color: var(--c-sobre-acento);
   border-color: var(--c-acento);
+}
 }
 
 .carrusel__control--prev { left: 1rem; }
@@ -2737,12 +2817,15 @@ h4 {
     color: var(--c-texto);
     transition: background-color var(--dur-rapida) var(--ease-suave), border-color var(--dur-rapida) var(--ease-suave);
   }
+
+@media (hover: hover) and (pointer: fine) {
   
   .carrusel__control:hover {
     background: var(--c-acento);
     color: var(--c-sobre-acento);
     border-color: var(--c-acento);
   }
+}
   
   .carrusel__control--prev { left: 1rem; }
   .carrusel__control--next { right: 1rem; }
@@ -2828,9 +2911,11 @@ h4 {
   transition: opacity var(--dur-rapida) var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .diagrama__disparador:hover .diagrama__pista,
 .diagrama__disparador:focus-visible .diagrama__pista {
   opacity: 1;
+}
 }
 
 .diagrama__overlay {
@@ -2882,10 +2967,12 @@ h4 {
   color: var(--c-texto);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .diagrama__overlay-cerrar:hover {
   background: var(--c-acento);
   color: var(--c-sobre-acento);
   border-color: var(--c-acento);
+}
 }
 
 @media (max-width: 620px) {

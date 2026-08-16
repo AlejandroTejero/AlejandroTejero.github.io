@@ -131,8 +131,10 @@
   transition: transform 380ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .barra__marca:hover::after {
   transform: scaleX(1);
+}
 }
 
 .barra__acciones {
@@ -157,10 +159,12 @@
   transition: color var(--dur-rapida), border-color var(--dur-rapida), background-color var(--dur-rapida);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .barra__idioma:hover,
 .barra__tema:hover {
   color: var(--c-texto);
   border-color: var(--c-borde-fuerte);
+}
 }
 
 /* Solo se ve el icono que corresponde al tema activo */
@@ -187,8 +191,10 @@
   transition: background-color var(--dur-rapida), opacity var(--dur-rapida);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .boton-menu:hover {
   opacity: 0.88;
+}
 }
 
 /* ============================================
@@ -238,8 +244,10 @@
   z-index: -1;
 }
 
+@media (hover: hover) and (pointer: fine) {
 .menu__enlace:hover::before {
   transform: scaleX(1);
+}
 }
 
 .menu__indice {
@@ -267,8 +275,10 @@
   transition: color var(--dur-rapida) var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .menu__enlace:hover .menu__titulo {
   color: var(--c-acento);
+}
 }
 
 .menu__desc {
@@ -284,9 +294,11 @@
   transition: opacity 380ms var(--ease-suave), transform 380ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .menu__enlace:hover .menu__flecha {
   opacity: 1;
   transform: translateX(0);
+}
 }
 
 /* Marca la pagina en la que ya estas */
@@ -340,12 +352,16 @@
   transition: transform 340ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .menu__social a:hover {
   color: var(--c-texto);
 }
+}
 
+@media (hover: hover) and (pointer: fine) {
 .menu__social a:hover::after {
   transform: scaleX(1);
+}
 }
 
 /* ============================================
@@ -541,10 +557,12 @@
   height: 18px;
 }
 
+@media (hover: hover) and (pointer: fine) {
 .hero__dock-item:hover .hero__dock-icono {
   background: var(--c-acento);
   color: var(--c-sobre-acento);
   transform: translateY(-3px);
+}
 }
 
 .hero__dock-etiqueta {
@@ -554,8 +572,10 @@
   transition: color var(--dur-rapida) var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .hero__dock-item:hover .hero__dock-etiqueta {
   color: var(--c-texto);
+}
 }
 
 .hero__dock-item--acento .hero__dock-icono {
@@ -602,8 +622,10 @@
   transition: color var(--dur-rapida);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .hero__scroll:hover {
   color: var(--c-acento);
+}
 }
 
 .hero__scroll-texto {
@@ -690,8 +712,10 @@
   transition: color var(--dur-rapida);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .pie__social a:hover {
   color: var(--c-acento);
+}
 }
 
 .pie__copy {
@@ -731,8 +755,10 @@
   transition: transform 320ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .flotante__boton:hover {
   transform: translateY(-2px) scale(1.04);
+}
 }
 
 .flotante__menu {
@@ -765,8 +791,10 @@
   transition: background-color var(--dur-rapida);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .flotante__item:hover {
   background: var(--c-superficie-alta);
+}
 }
 
 .flotante__item-etiqueta {

@@ -129,9 +129,11 @@
   animation: carrusel-desplazar var(--dur-carrusel, 34s) linear infinite;
 }
 
+@media (hover: hover) and (pointer: fine) {
 .carrusel-flotante:hover .carrusel-flotante__pista,
 .carrusel-flotante:focus-within .carrusel-flotante__pista {
   animation-play-state: paused;
+}
 }
 
 /* En movil no cabe mas de una tarjeta a la vez, y sin hover no hay
@@ -314,10 +316,12 @@
     background-color 420ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .project-card:hover {
   border-color: var(--c-borde-fuerte);
   transform: translateY(-4px);
   background: var(--c-superficie);
+}
 }
 
 .project-card__link {
@@ -341,8 +345,10 @@
   transition: transform 720ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .project-card:hover .project-card__portada img {
   transform: scale(1.04);
+}
 }
 
 .project-card__cuerpo {
@@ -380,8 +386,10 @@
   transition: color var(--dur-rapida) var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .project-card:hover .project-card__titulo {
   color: var(--c-acento);
+}
 }
 
 .project-card__resumen {
@@ -458,9 +466,11 @@
   transition: border-color var(--dur-rapida) var(--ease-suave), color var(--dur-rapida) var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .project-card--hero__boton:hover {
   border-color: var(--c-acento);
   color: var(--c-acento);
+}
 }
 
 /* ============================================
@@ -475,8 +485,10 @@
   transition: background-color 420ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .valor-card:hover {
   background: var(--c-superficie);
+}
 }
 
 .valor-card__indice {
@@ -510,9 +522,11 @@
   transition: border-color 420ms var(--ease-suave), transform 420ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .repo-card:hover {
   border-color: var(--c-acento);
   transform: translateY(-3px);
+}
 }
 
 .repo-card__cabecera {
@@ -581,8 +595,10 @@
   transition: transform var(--dur-rapida) var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .repo-card__enlace:hover span {
   transform: translate(2px, -2px);
+}
 }
 
 /* ============================================
@@ -610,9 +626,11 @@
   background: var(--c-cat);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .skill-group:hover {
   border-color: color-mix(in srgb, var(--c-cat) 55%, var(--c-borde));
   transform: translateY(-2px);
+}
 }
 
 .skill-group--cat-1 { --c-cat: var(--c-cat-1); }
@@ -769,10 +787,12 @@
   transition: color var(--dur-rapida) var(--ease-suave), border-color var(--dur-rapida) var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .timeline-item__enlace:hover,
 .timeline-item__enlace:focus-visible {
   color: var(--c-acento);
   border-color: var(--c-acento);
+}
 }
 
 .timeline-item__institucion {
@@ -795,10 +815,12 @@
   transition: border-color 420ms var(--ease-suave), background-color 420ms var(--ease-suave), transform 420ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .charla-card:hover {
   border-color: var(--c-borde-fuerte);
   background: var(--c-fondo-alt);
   transform: translateY(-3px);
+}
 }
 
 .charla-card__link {
@@ -822,8 +844,10 @@
   transition: color var(--dur-rapida) var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .charla-card:hover .charla-card__titulo {
   color: var(--c-acento);
+}
 }
 
 .charla-card__rol,
@@ -850,9 +874,11 @@
   transition: opacity 380ms var(--ease-suave), transform 380ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .charla-card:hover .charla-card__flecha {
   opacity: 1;
   transform: translateX(0);
+}
 }
 
 /* ============================================
@@ -981,10 +1007,12 @@
   transition: background-color var(--dur-rapida) var(--ease-suave), border-color var(--dur-rapida) var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .carrusel__control:hover {
   background: var(--c-acento);
   color: var(--c-sobre-acento);
   border-color: var(--c-acento);
+}
 }
 
 .carrusel__control--prev { left: 1rem; }
@@ -1074,12 +1102,15 @@
     color: var(--c-texto);
     transition: background-color var(--dur-rapida) var(--ease-suave), border-color var(--dur-rapida) var(--ease-suave);
   }
+
+@media (hover: hover) and (pointer: fine) {
   
   .carrusel__control:hover {
     background: var(--c-acento);
     color: var(--c-sobre-acento);
     border-color: var(--c-acento);
   }
+}
   
   .carrusel__control--prev { left: 1rem; }
   .carrusel__control--next { right: 1rem; }
@@ -1165,9 +1196,11 @@
   transition: opacity var(--dur-rapida) var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .diagrama__disparador:hover .diagrama__pista,
 .diagrama__disparador:focus-visible .diagrama__pista {
   opacity: 1;
+}
 }
 
 .diagrama__overlay {
@@ -1219,10 +1252,12 @@
   color: var(--c-texto);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .diagrama__overlay-cerrar:hover {
   background: var(--c-acento);
   color: var(--c-sobre-acento);
   border-color: var(--c-acento);
+}
 }
 
 @media (max-width: 620px) {

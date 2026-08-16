@@ -143,8 +143,10 @@ h4 {
   transition: transform var(--dur-rapida) var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .btn:hover span {
   transform: translateX(3px);
+}
 }
 
 .btn--grande {
@@ -169,12 +171,16 @@ h4 {
   transition: transform 420ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .btn--solido:hover {
   color: var(--c-fondo);
 }
+}
 
+@media (hover: hover) and (pointer: fine) {
 .btn--solido:hover::before {
   transform: translateY(0);
+}
 }
 
 .btn--linea {
@@ -192,13 +198,17 @@ h4 {
   transition: transform 420ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .btn--linea:hover {
   color: var(--c-sobre-acento);
   border-color: var(--c-acento);
 }
+}
 
+@media (hover: hover) and (pointer: fine) {
 .btn--linea:hover::before {
   transform: translateY(0);
+}
 }
 
 /* Enlace con flecha y subrayado que se dibuja */
@@ -227,16 +237,20 @@ h4 {
   transition: transform 380ms var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .enlace-flecha:hover::after {
   transform: scaleX(1);
+}
 }
 
 .enlace-flecha span {
   transition: transform var(--dur-rapida) var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .enlace-flecha:hover span {
   transform: translateX(4px);
+}
 }
 
 .enlace-volver {
@@ -251,8 +265,10 @@ h4 {
   transition: color var(--dur-rapida) var(--ease-suave);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .enlace-volver:hover {
   color: var(--c-acento);
+}
 }
 
 /* ---------- Etiquetas / tags ---------- */

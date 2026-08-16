@@ -186,8 +186,10 @@
 .boton-menu__lineas span:first-child { top: 0; }
 .boton-menu__lineas span:last-child { bottom: 0; width: 70%; }
 
+@media (hover: hover) and (pointer: fine) {
 .boton-menu:hover .boton-menu__lineas span:last-child {
   width: 100%;
+}
 }
 
 .menu-abierto .boton-menu__lineas span:first-child {
@@ -206,6 +208,7 @@
 .boton-menu__texto {
   position: relative;
   display: grid;
+  align-items: center;
   overflow: hidden;
   height: 1.15em;
 }
@@ -213,6 +216,11 @@
 .boton-menu__abrir,
 .boton-menu__cerrar {
   grid-area: 1 / 1;
+  /* line-height propio: sin esto hereda el 1.65 del body, que hace
+     la caja de linea del texto mas alta que el contenedor de
+     1.15em — con overflow:hidden eso recortaba un pelin la parte
+     de arriba de las letras (se notaba en la M y la U de "MENU"). */
+  line-height: 1;
   white-space: nowrap;
   transition: transform 420ms var(--ease-menu);
 }
