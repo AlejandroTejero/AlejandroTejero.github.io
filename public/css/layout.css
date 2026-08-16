@@ -113,7 +113,7 @@
   font-family: var(--f-display);
   font-size: 1.0625rem;
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.01em;
   position: relative;
   padding-bottom: 2px;
 }
@@ -263,7 +263,7 @@
   font-size: var(--t-menu);
   font-weight: 800;
   line-height: 1;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.015em;
   transition: color var(--dur-rapida) var(--ease-suave);
 }
 
@@ -650,6 +650,10 @@
    PIE
    ============================================ */
 .pie {
+  /* position:relative es necesario para que quede POR ENCIMA del
+     canvas de fondo (position:fixed) en Home y Proyectos — sin esto,
+     el navegador lo pintaba detras del 3D y quedaba invisible. */
+  position: relative;
   border-top: 1px solid var(--c-borde);
   padding-block: clamp(2.5rem, 6vh, 4rem);
   margin-top: var(--hueco-seccion);
@@ -667,7 +671,7 @@
   font-family: var(--f-display);
   font-size: 1.0625rem;
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.01em;
 }
 
 .pie__rol {

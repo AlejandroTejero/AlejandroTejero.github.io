@@ -2,6 +2,7 @@
   {
     "id": "webbuilder",
     "destacado": true,
+    "protagonista": true,
     "categorias": ["backend", "ia", "automatizacion"],
     "titulo": "WebBuilder",
     "resumen": {

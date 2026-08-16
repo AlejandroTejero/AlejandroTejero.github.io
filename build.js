@@ -132,10 +132,10 @@ const partials = {
   menuOverlay: leerHTML('partials/menu-overlay.html'),
   footer: leerHTML('partials/footer.html'),
   projectCard: leerHTML('partials/project-card.html'),
+  projectCardHero: leerHTML('partials/project-card-hero.html'),
   repoCard: leerHTML('partials/repo-card.html'),
   skillGroup: leerHTML('partials/skill-group.html'),
   timelineItem: leerHTML('partials/timeline-item.html'),
-  filtroCategorias: leerHTML('partials/filtro-categorias.html'),
   charlaCard: leerHTML('partials/charla-card.html'),
   contactoFlotante: leerHTML('partials/contacto-flotante.html'),
   escenaFondo: leerHTML('partials/escena-fondo.html'),
@@ -452,11 +452,11 @@ function renderizarFotoPerfil() {
 // ============================================
 // RENDERIZADO DE PIEZAS REPETIBLES (partials)
 // ============================================
-function renderizarProjectCard(proyecto, ctx, indice = 0) {
+function renderizarProjectCard(proyecto, ctx, indice = 0, esHero = false) {
   const tech = proyecto.tecnologias.map((t) => `<li>${t}</li>`).join('');
   const nota = limpiar(proyecto.nota_academica);
 
-  return reemplazar(partials.projectCard, {
+  return reemplazar(esHero ? partials.projectCardHero : partials.projectCard, {
     ...ctx,
     proyecto: {
       ...proyecto,
@@ -465,9 +465,10 @@ function renderizarProjectCard(proyecto, ctx, indice = 0) {
       categorias_espacio: proyecto.categorias.join(' '),
       indice_formateado: String(indice + 1).padStart(2, '0'),
     },
-    portada: renderizarPortada(proyecto.titulo, proyecto.imagen, indice),
+    portada: renderizarPortada(proyecto.titulo, proyecto.imagen, indice, esHero),
     lista_tecnologias: tech,
     nota_academica_si_existe: nota ? `<span class="project-card__nota">${escaparHtml(nota)}</span>` : '',
+    lista_enlaces_hero: esHero ? renderizarEnlacesProyecto(proyecto, ctx, 'project-card--hero__boton') : '',
   });
 }
 
@@ -482,12 +483,13 @@ function renderizarRepoCard(repo, ctx) {
     .join('');
 
   const descripcion = limpiar(repo.descripcion[ctx.idioma]);
+  const asignatura = limpiar(repo.asignatura[ctx.idioma]);
 
   return reemplazar(partials.repoCard, {
     ...ctx,
     repo: {
       ...repo,
-      asignatura: repo.asignatura[ctx.idioma],
+      asignatura,
     },
     descripcion_si_existe: descripcion ? `<p class="repo-card__descripcion">${escaparHtml(descripcion)}</p>` : '',
     barra_si_existe: barra ? `<div class="repo-card__barra">${barra}</div>` : '',
@@ -513,18 +515,18 @@ const ICONO_CATEGORIA_DEFECTO = '<circle cx="12" cy="12" r="3"/><path d="M12 3v3
 // --c-cat-1 .. --c-cat-7). Si hay mas categorias que colores, se repite el ciclo.
 const PALETA_CATEGORIA = ['cat-1', 'cat-2', 'cat-3', 'cat-4', 'cat-5', 'cat-6', 'cat-7'];
 
-// Cuantas barras (de 3) se rellenan segun el nivel declarado.
-const NIVEL_A_BARRAS = { basico: 1, intermedio: 2, avanzado: 3 };
-
-function renderizarBarrasNivel(nivelClave, nivelTexto) {
-  if (!nivelClave) return '';
-  const rellenas = NIVEL_A_BARRAS[nivelClave] || 0;
-  const barras = [1, 2, 3]
-    .map((n) => `<span class="skill-group__barra${n <= rellenas ? ' skill-group__barra--llena' : ''}"></span>`)
-    .join('');
-  const etiqueta = nivelTexto ? ` aria-label="${escaparHtml(nivelTexto)}"` : '';
-  return `<span class="skill-group__barras"${etiqueta}>${barras}</span>`;
+// Badge de nivel tipo "pill" (sustituye a las barras de antes).
+function renderizarBadgeNivel(nivelClave, nivelTexto) {
+  if (!nivelClave || !nivelTexto) return '';
+  return `<span class="skill-group__nivel skill-group__nivel--${nivelClave}">${escaparHtml(nivelTexto)}</span>`;
 }
+
+// Rejilla tipo "bento": las categorias con mas tecnologias ocupan mas
+// ancho (2 columnas de 3), en vez de que todas midan lo mismo. El
+// umbral de 6 items es el que separa "categoria grande" de "pequena"
+// con el contenido real de skills.json; si el contenido cambia mucho,
+// se puede ajustar aqui sin tocar la plantilla.
+const UMBRAL_CATEGORIA_ANCHA = 6;
 
 function renderizarSkillGroup(categoria, ctx, indice = 0) {
   const items = categoria.items
@@ -537,6 +539,7 @@ function renderizarSkillGroup(categoria, ctx, indice = 0) {
   const trazos = ICONOS_CATEGORIA[nombreEs] || ICONO_CATEGORIA_DEFECTO;
   const iconoSvg = `<svg class="icono skill-group__icono" viewBox="0 0 24 24" focusable="false">${trazos}</svg>`;
   const colorClase = PALETA_CATEGORIA[indice % PALETA_CATEGORIA.length];
+  const totalItems = categoria.items.length;
 
   return reemplazar(partials.skillGroup, {
     ...ctx,
@@ -546,8 +549,10 @@ function renderizarSkillGroup(categoria, ctx, indice = 0) {
       color_clase: colorClase,
       icono_svg: iconoSvg,
       indice_formateado: String(indice + 1).padStart(2, '0'),
+      total_items: totalItems,
+      ancho_columnas: totalItems >= UMBRAL_CATEGORIA_ANCHA ? 2 : 1,
     },
-    nivel_si_existe: renderizarBarrasNivel(nivelClave, nivelTexto),
+    nivel_si_existe: renderizarBadgeNivel(nivelClave, nivelTexto),
     lista_items: items,
   });
 }
@@ -595,15 +600,6 @@ function renderizarCharlaCard(charla, ctx) {
   });
 }
 
-function renderizarFiltroCategorias(ctx) {
-  const categoriasUnicas = [...new Set(proyectos.flatMap((p) => p.categorias))];
-  const botones = categoriasUnicas
-    .map((cat) => `<button class="filtro__btn" data-filtro="${cat}">${cat}</button>`)
-    .join('');
-
-  return reemplazar(partials.filtroCategorias, { ...ctx, lista_botones_categoria: botones });
-}
-
 function renderizarContactoFlotante(ctx) {
   return reemplazar(partials.contactoFlotante, { ...ctx });
 }
@@ -634,7 +630,11 @@ function renderizarMenuOverlay(ctx) {
 }
 
 function renderizarFooter(ctx) {
-  return reemplazar(partials.footer, { ...ctx, anio_actual: new Date().getFullYear() });
+  return reemplazar(partials.footer, {
+    ...ctx,
+    site: { ...ctx.site, cv_pdf: ctx.site.cv_pdf[ctx.idioma] },
+    anio_actual: new Date().getFullYear(),
+  });
 }
 
 // ============================================
@@ -701,10 +701,18 @@ function generarHome(ctx) {
 }
 
 function generarProyectosLista(ctx) {
+  // El proyecto "protagonista" (marcado con protagonista:true en
+  // proyectos.json) sale como tarjeta grande a todo el ancho, arriba del
+  // todo; el resto se queda en la rejilla normal. Si nadie lo marca, se usa
+  // el primero de la lista como respaldo.
+  const indiceProtagonista = Math.max(0, proyectos.findIndex((p) => p.protagonista));
+  const protagonista = proyectos[indiceProtagonista];
+  const resto = proyectos.filter((_, i) => i !== indiceProtagonista);
+
   const contenido = reemplazar(plantillas.proyectosLista, {
     ...ctx,
-    filtro_categorias: renderizarFiltroCategorias(ctx),
-    lista_todos_los_proyectos: proyectos.map((p, i) => renderizarProjectCard(p, ctx, i)).join(''),
+    proyecto_protagonista: renderizarProjectCard(protagonista, ctx, indiceProtagonista, true),
+    lista_todos_los_proyectos: resto.map((p, i) => renderizarProjectCard(p, ctx, i === indiceProtagonista ? i + 1 : i)).join(''),
     lista_repos_academicos: repositorios.map((r) => renderizarRepoCard(r, ctx)).join(''),
     lista_skill_groups: skills.categorias.map((c, i) => renderizarSkillGroup(c, ctx, i)).join(''),
     total_proyectos: proyectos.length,
@@ -741,9 +749,11 @@ function renderizarSeccionReadme(proyecto, ctx) {
   </div>`;
 }
 
-function generarProyectoDetalle(proyecto, ctx, indice) {
-  const tech = proyecto.tecnologias.map((t) => `<li>${t}</li>`).join('');
-
+// Genera los botones de enlaces de un proyecto (github, landing, memoria...)
+// mas la charla relacionada si existe una en charlas.json que apunte a
+// este proyecto (charla.proyecto_relacionado === proyecto.id). Se reutiliza
+// tanto en el detalle de proyecto como en la tarjeta destacada de la lista.
+function renderizarEnlacesProyecto(proyecto, ctx, claseBtn = 'btn btn--linea') {
   const etiquetasEnlace = {
     github: 'GitHub', landing: ctx.i18n.enlace_landing,
     memoria: ctx.i18n.enlace_memoria, slides: ctx.i18n.enlace_slides,
@@ -752,8 +762,21 @@ function generarProyectoDetalle(proyecto, ctx, indice) {
 
   const enlaces = Object.entries(proyecto.enlaces || {})
     .filter(([, url]) => limpiar(url))
-    .map(([tipo, url]) => `<a href="${url}" target="_blank" rel="noopener" class="btn btn--linea">${etiquetasEnlace[tipo] || tipo}<span aria-hidden="true">↗</span></a>`)
+    .map(([tipo, url]) => `<a href="${url}" target="_blank" rel="noopener" class="${claseBtn}">${etiquetasEnlace[tipo] || tipo}<span aria-hidden="true">↗</span></a>`)
     .join('');
+
+  const charlaRelacionada = charlas.find((c) => c.proyecto_relacionado === proyecto.id);
+  const enlaceCharla = charlaRelacionada
+    ? `<a href="${ctx.prefijo_idioma}/trayectoria/charlas/${charlaRelacionada.id}/" class="${claseBtn}">${ctx.i18n.enlace_charla}<span aria-hidden="true">↗</span></a>`
+    : '';
+
+  return enlaces + enlaceCharla;
+}
+
+function generarProyectoDetalle(proyecto, ctx, indice) {
+  const tech = proyecto.tecnologias.map((t) => `<li>${t}</li>`).join('');
+
+  const enlaces = renderizarEnlacesProyecto(proyecto, ctx);
 
   const nota = limpiar(proyecto.nota_academica);
 

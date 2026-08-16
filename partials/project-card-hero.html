@@ -1,0 +1,29 @@
+<article class="project-card project-card--hero reveal" data-categorias="{{proyecto.categorias_espacio}}">
+
+  <a href="{{prefijo_idioma}}/proyectos/{{proyecto.id}}/" class="project-card__portada project-card--hero__portada">
+    {{portada}}
+  </a>
+
+  <div class="project-card__cuerpo">
+    <div class="project-card__fila">
+      <span class="project-card__indice">{{proyecto.indice_formateado}}</span>
+      <span class="project-card__estado">{{proyecto.estado}}</span>
+    </div>
+
+    <a href="{{prefijo_idioma}}/proyectos/{{proyecto.id}}/" class="project-card--hero__enlace-titulo">
+      <h3 class="project-card__titulo">{{proyecto.titulo}}</h3>
+    </a>
+    <p class="project-card__resumen">{{proyecto.resumen}}</p>
+
+    <ul class="tags tags--compactas">
+      {{lista_tecnologias}}
+    </ul>
+
+    {{nota_academica_si_existe}}
+
+    <div class="project-card--hero__botones">
+      {{lista_enlaces_hero}}
+    </div>
+  </div>
+
+</article>

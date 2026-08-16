@@ -73,7 +73,7 @@
   // texto blanco dificil de leer encima. Umbral mas alto = solo brilla
   // lo realmente intenso (pulsos), no cualquier nodo normal.
   var AJUSTES_TEMA = {
-    oscuro: { bloomFuerza: 0.5, bloomRadio: 0.4, bloomUmbral: 0.38, multNodo: 1.4, multPulso: 2, opacidadLinea: 0.26 },
+    oscuro: { bloomFuerza: 0.3, bloomRadio: 0.4, bloomUmbral: 0.45, multNodo: 1, multPulso: 2, opacidadLinea: 0.26 },
     claro: { bloomFuerza: 0.16, bloomRadio: 0.32, bloomUmbral: 0.62, multNodo: 1.1, multPulso: 1.5, opacidadLinea: 0.4 }
   };
 
@@ -235,7 +235,7 @@
 
   function construirCapituloPortada(zBase) {
     construirRedDispersa(zBase, {
-      nMovil: 16, nEscritorio: 26, radioMin: 3, radioMax: 7.5,
+      nMovil: 10, nEscritorio: 26, radioMin: 3, radioMax: 7.5,
       escalaMin: 0.6, escalaVar: 1, probLinea: 0.55, opacidadLinea: 0.22,
       colorPara: function (i) { return { catIdx: i % 7 }; }
     });
@@ -243,7 +243,7 @@
 
   function construirCapituloIdentidad(zBase) {
     construirRedDispersa(zBase, {
-      nMovil: 14, nEscritorio: 22, radioMin: 0.8, radioMax: 3, achatado: 0.7,
+      nMovil: 7, nEscritorio: 14, radioMin: 0.8, radioMax: 2.5, achatado: 0.7,
       profundidad: PROFUNDIDAD_TRAMO * 0.8,
       escalaMin: 0.7, escalaVar: 0.8, probLinea: 0.6, opacidadLinea: 0.3,
       colorPara: function () { return { catIdx: 0 }; }
@@ -278,7 +278,7 @@
 
   function construirCapituloTrayectoria(zBase) {
     construirRedDispersa(zBase, {
-      nMovil: 16, nEscritorio: 24, radioMin: 1, radioMax: 4.5,
+      nMovil: 10, nEscritorio: 16, radioMin: 0.8, radioMax: 2.5,
       escalaMin: 0.5, escalaVar: 0.5, probLinea: 0.5, opacidadLinea: 0.3,
       colorPara: function (i) { return { catIdx: i % 7 }; }
     });
@@ -286,7 +286,7 @@
 
   function construirCapituloContacto(zBase) {
     construirRedDispersa(zBase, {
-      nMovil: 12, nEscritorio: 18, radioMin: 3, radioMax: 8,
+      nMovil: 10, nEscritorio: 18, radioMin: 3, radioMax: 8,
       escalaMin: 0.8, escalaVar: 0.7, probLinea: 0.45, opacidadLinea: 0.28,
       colorPara: function (i) { return { catIdx: i % 7 }; }
     });

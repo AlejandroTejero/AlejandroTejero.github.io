@@ -155,7 +155,7 @@
     <div class="contadores linea" style="--i: 3">
       <span class="linea__interior">
         <span class="contadores__item"><span class="contadores__cifra">4</span><span class="contadores__etiqueta">Projects</span></span>
-        <span class="contadores__item"><span class="contadores__cifra">7</span><span class="contadores__etiqueta">Other repositories</span></span>
+        <span class="contadores__item"><span class="contadores__cifra">9</span><span class="contadores__etiqueta">Other repositories</span></span>
       </span>
     </div>
   </div>
@@ -163,38 +163,39 @@
 
 <section class="seccion seccion--primera">
   <div class="contenedor">
-    <div class="filtro reveal" role="group" aria-label="Filter by category">
-  <button type="button" class="filtro__btn filtro__btn--activo" data-filtro="todos">All</button>
-  <button class="filtro__btn" data-filtro="backend">backend</button><button class="filtro__btn" data-filtro="ia">ia</button><button class="filtro__btn" data-filtro="automatizacion">automatizacion</button><button class="filtro__btn" data-filtro="web">web</button><button class="filtro__btn" data-filtro="iot">iot</button><button class="filtro__btn" data-filtro="sistemas">sistemas</button>
-</div>
+    <article class="project-card project-card--hero reveal" data-categorias="backend ia automatizacion">
+
+  <a href="/proyectos/webbuilder/" class="project-card__portada project-card--hero__portada">
+    <img src="/img/proyectos/WebBuilder/WebBuilder.png" alt="WebBuilder" loading="eager" fetchpriority="high">
+  </a>
+
+  <div class="project-card__cuerpo">
+    <div class="project-card__fila">
+      <span class="project-card__indice">01</span>
+      <span class="project-card__estado">Completed</span>
+    </div>
+
+    <a href="/proyectos/webbuilder/" class="project-card--hero__enlace-titulo">
+      <h3 class="project-card__titulo">WebBuilder</h3>
+    </a>
+    <p class="project-card__resumen">Thesis: turns any public API into a deployable Django project with AI - 9.9, proposed for highest honors</p>
+
+    <ul class="tags tags--compactas">
+      <li>Django</li><li>PostgreSQL</li><li>Docker</li><li>n8n</li><li>LLMs</li><li>OAuth</li>
+    </ul>
+
+    <span class="project-card__nota">9,9 - Propuesto para Matricula de Honor</span>
+
+    <div class="project-card--hero__botones">
+      <a href="https://github.com/AlejandroTejero/WebBuilder-TFG" target="_blank" rel="noopener" class="project-card--hero__boton">GitHub<span aria-hidden="true">↗</span></a><a href="https://alejandrotejero.github.io/WebBuilder-landing/" target="_blank" rel="noopener" class="project-card--hero__boton">Landing<span aria-hidden="true">↗</span></a><a href="https://github.com/AlejandroTejero/MemoriaTFG-WebBuilder" target="_blank" rel="noopener" class="project-card--hero__boton">Thesis<span aria-hidden="true">↗</span></a><a href="/trayectoria/charlas/selia-2026/" class="project-card--hero__boton">Talk<span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+
+</article>
 
 
     <div class="rejilla-proyectos" id="rejilla-proyectos">
-      <article class="project-card reveal" data-categorias="backend ia automatizacion">
-  <a href="/proyectos/webbuilder/" class="project-card__link">
-
-    <div class="project-card__portada">
-      <img src="/img/proyectos/WebBuilder/WebBuilder.png" alt="WebBuilder" loading="lazy">
-    </div>
-
-    <div class="project-card__cuerpo">
-      <div class="project-card__fila">
-        <span class="project-card__indice">01</span>
-        <span class="project-card__estado">Completed</span>
-      </div>
-
-      <h3 class="project-card__titulo">WebBuilder</h3>
-      <p class="project-card__resumen">Thesis: turns any public API into a deployable Django project with AI - 9.9, proposed for highest honors</p>
-
-      <ul class="tags tags--compactas">
-        <li>Django</li><li>PostgreSQL</li><li>Docker</li><li>n8n</li><li>LLMs</li><li>OAuth</li>
-      </ul>
-
-      <span class="project-card__nota">9,9 - Propuesto para Matricula de Honor</span>
-    </div>
-
-  </a>
-</article><article class="project-card reveal" data-categorias="backend web">
+      <article class="project-card reveal" data-categorias="backend web">
   <a href="/proyectos/gamerank/" class="project-card__link">
 
     <div class="project-card__portada">
@@ -227,7 +228,7 @@
 
     <div class="project-card__cuerpo">
       <div class="project-card__fila">
-        <span class="project-card__indice">03</span>
+        <span class="project-card__indice">02</span>
         <span class="project-card__estado">Completed</span>
       </div>
 
@@ -251,7 +252,7 @@
 
     <div class="project-card__cuerpo">
       <div class="project-card__fila">
-        <span class="project-card__indice">04</span>
+        <span class="project-card__indice">03</span>
         <span class="project-card__estado">Completed</span>
       </div>
 
@@ -268,8 +269,6 @@
   </a>
 </article>
     </div>
-
-    <p class="sin-resultados" id="sin-resultados" hidden>No projects in this category</p>
   </div>
 </section>
 
@@ -400,6 +399,40 @@
     View on GitHub<span aria-hidden="true">↗</span>
   </a>
 </article>
+<article class="repo-card reveal">
+  <div class="repo-card__cabecera">
+    <h3 class="repo-card__nombre">BasesDatos</h3>
+    <span class="repo-card__asignatura"></span>
+  </div>
+
+  
+  <div class="repo-card__barra"><span style="width:91%; background:#3776AB" title="Python 91%"></span><span style="width:9%; background:#336790" title="PLpgSQL 9%"></span></div>
+
+  <ul class="repo-card__lenguajes">
+    <li>Python</li><li>PLpgSQL</li>
+  </ul>
+
+  <a href="https://github.com/AlejandroTejero/BasesDatos" target="_blank" rel="noopener" class="repo-card__enlace">
+    View on GitHub<span aria-hidden="true">↗</span>
+  </a>
+</article>
+<article class="repo-card reveal">
+  <div class="repo-card__cabecera">
+    <h3 class="repo-card__nombre">SistemasDistribuidos</h3>
+    <span class="repo-card__asignatura"></span>
+  </div>
+
+  
+  <div class="repo-card__barra"><span style="width:100%; background:#00ADD8" title="Go 100%"></span></div>
+
+  <ul class="repo-card__lenguajes">
+    <li>Go</li>
+  </ul>
+
+  <a href="https://github.com/AlejandroTejero/SistemasDistribuidos" target="_blank" rel="noopener" class="repo-card__enlace">
+    View on GitHub<span aria-hidden="true">↗</span>
+  </a>
+</article>
 
     </div>
   </div>
@@ -412,78 +445,85 @@
     </div>
 
     <div class="rejilla-skills">
-      <div class="skill-group skill-group--cat-1 reveal">
+      <div class="skill-group skill-group--cat-1 reveal" style="grid-column: span 2">
   <div class="skill-group__cabecera">
     <span class="skill-group__icono-wrap" aria-hidden="true"><svg class="icono skill-group__icono" viewBox="0 0 24 24" focusable="false"><path d="m8 9-3 3 3 3"/><path d="m16 9 3 3-3 3"/><path d="m13 5-2 14"/></svg></span>
     <h3 class="skill-group__nombre">Programming languages</h3>
-    <span class="skill-group__barras" aria-label="Intermediate"><span class="skill-group__barra skill-group__barra--llena"></span><span class="skill-group__barra skill-group__barra--llena"></span><span class="skill-group__barra"></span></span>
   </div>
+
+  <span class="skill-group__nivel skill-group__nivel--intermedio">Intermediate</span>
 
   <ul class="tags">
     <li>Python</li><li>C</li><li>C++</li><li>SQL</li><li>JavaScript</li><li>Shell scripting</li><li>Go</li><li>Pascal</li>
   </ul>
 </div>
-<div class="skill-group skill-group--cat-2 reveal">
+<div class="skill-group skill-group--cat-2 reveal" style="grid-column: span 1">
   <div class="skill-group__cabecera">
     <span class="skill-group__icono-wrap" aria-hidden="true"><svg class="icono skill-group__icono" viewBox="0 0 24 24" focusable="false"><rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01"/><path d="M7 17h.01"/></svg></span>
     <h3 class="skill-group__nombre">Backend</h3>
-    <span class="skill-group__barras" aria-label="Intermediate"><span class="skill-group__barra skill-group__barra--llena"></span><span class="skill-group__barra skill-group__barra--llena"></span><span class="skill-group__barra"></span></span>
   </div>
+
+  <span class="skill-group__nivel skill-group__nivel--intermedio">Intermediate</span>
 
   <ul class="tags">
     <li>Django</li><li>APIs REST</li>
   </ul>
 </div>
-<div class="skill-group skill-group--cat-3 reveal">
+<div class="skill-group skill-group--cat-3 reveal" style="grid-column: span 1">
   <div class="skill-group__cabecera">
     <span class="skill-group__icono-wrap" aria-hidden="true"><svg class="icono skill-group__icono" viewBox="0 0 24 24" focusable="false"><ellipse cx="12" cy="5.5" rx="8" ry="3"/><path d="M4 5.5V18a8 3 0 0 0 16 0V5.5"/><path d="M4 12a8 3 0 0 0 16 0"/></svg></span>
     <h3 class="skill-group__nombre">Databases</h3>
-    <span class="skill-group__barras" aria-label="Intermediate"><span class="skill-group__barra skill-group__barra--llena"></span><span class="skill-group__barra skill-group__barra--llena"></span><span class="skill-group__barra"></span></span>
   </div>
+
+  <span class="skill-group__nivel skill-group__nivel--intermedio">Intermediate</span>
 
   <ul class="tags">
     <li>PostgreSQL</li><li>MySQL</li>
   </ul>
 </div>
-<div class="skill-group skill-group--cat-4 reveal">
+<div class="skill-group skill-group--cat-4 reveal" style="grid-column: span 2">
   <div class="skill-group__cabecera">
     <span class="skill-group__icono-wrap" aria-hidden="true"><svg class="icono skill-group__icono" viewBox="0 0 24 24" focusable="false"><path d="M4 20h16"/><path d="M6 20V14"/><path d="M12 20V9"/><path d="M18 20V4"/></svg></span>
     <h3 class="skill-group__nombre">Networking</h3>
-    <span class="skill-group__barras" aria-label="Basic"><span class="skill-group__barra skill-group__barra--llena"></span><span class="skill-group__barra"></span><span class="skill-group__barra"></span></span>
   </div>
+
+  <span class="skill-group__nivel skill-group__nivel--basico">Basic</span>
 
   <ul class="tags">
     <li>TCP/IP</li><li>IPv4/IPv6</li><li>OSPF</li><li>HTTP/HTTPS</li><li>SSH</li><li>Wireshark</li><li>NetGUI</li>
   </ul>
 </div>
-<div class="skill-group skill-group--cat-5 reveal">
+<div class="skill-group skill-group--cat-5 reveal" style="grid-column: span 1">
   <div class="skill-group__cabecera">
     <span class="skill-group__icono-wrap" aria-hidden="true"><svg class="icono skill-group__icono" viewBox="0 0 24 24" focusable="false"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></span>
     <h3 class="skill-group__nombre">Systems</h3>
-    <span class="skill-group__barras" aria-label="Intermediate"><span class="skill-group__barra skill-group__barra--llena"></span><span class="skill-group__barra skill-group__barra--llena"></span><span class="skill-group__barra"></span></span>
   </div>
+
+  <span class="skill-group__nivel skill-group__nivel--intermedio">Intermediate</span>
 
   <ul class="tags">
     <li>Windows</li><li>Linux</li><li>Virtualizacion</li>
   </ul>
 </div>
-<div class="skill-group skill-group--cat-6 reveal">
+<div class="skill-group skill-group--cat-6 reveal" style="grid-column: span 2">
   <div class="skill-group__cabecera">
     <span class="skill-group__icono-wrap" aria-hidden="true"><svg class="icono skill-group__icono" viewBox="0 0 24 24" focusable="false"><path d="M14.7 6.3a4 4 0 1 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2z"/></svg></span>
     <h3 class="skill-group__nombre">Tools</h3>
-    <span class="skill-group__barras" aria-label="Intermediate"><span class="skill-group__barra skill-group__barra--llena"></span><span class="skill-group__barra skill-group__barra--llena"></span><span class="skill-group__barra"></span></span>
   </div>
+
+  <span class="skill-group__nivel skill-group__nivel--intermedio">Intermediate</span>
 
   <ul class="tags">
     <li>Git</li><li>GitHub</li><li>GitLab</li><li>VSCode</li><li>PyCharm</li><li>Microsoft 365</li><li>SAP</li><li>Power BI</li>
   </ul>
 </div>
-<div class="skill-group skill-group--cat-7 reveal">
+<div class="skill-group skill-group--cat-7 reveal" style="grid-column: span 1">
   <div class="skill-group__cabecera">
     <span class="skill-group__icono-wrap" aria-hidden="true"><svg class="icono skill-group__icono" viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a13 13 0 0 1 0 18a13 13 0 0 1 0-18"/></svg></span>
     <h3 class="skill-group__nombre">Languages</h3>
-    
   </div>
+
+  
 
   <ul class="tags">
     <li>Spanish (native)</li><li>English (B1, working towards B2)</li>
@@ -507,6 +547,7 @@
       <li><a href="https://github.com/AlejandroTejero" target="_blank" rel="noopener">GitHub</a></li>
       <li><a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener">LinkedIn</a></li>
       <li><a href="mailto:atejerodelamorena@gmail.com">Email</a></li>
+      <li><a href="/cv/CVAlejandroT_EN.pdf" download>Download CV</a></li>
     </ul>
 
     <p class="pie__copy">© 2026</p>

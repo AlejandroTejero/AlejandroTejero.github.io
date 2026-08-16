@@ -185,40 +185,6 @@
 
 
 /* ============================================
-   6. FILTRO DE CATEGORIAS EN PROYECTOS
-   ============================================ */
-(function filtroCategorias() {
-  const botones = document.querySelectorAll('.filtro__btn');
-  const cards = document.querySelectorAll('#rejilla-proyectos .project-card');
-  const aviso = document.getElementById('sin-resultados');
-  if (!botones.length || !cards.length) return;
-
-  botones.forEach((boton) => {
-    boton.addEventListener('click', () => {
-      const filtro = boton.dataset.filtro;
-      let visibles = 0;
-
-      botones.forEach((b) => b.classList.remove('filtro__btn--activo'));
-      boton.classList.add('filtro__btn--activo');
-
-      cards.forEach((card) => {
-        const categorias = (card.dataset.categorias || '').split(' ');
-        const mostrar = filtro === 'todos' || categorias.includes(filtro);
-
-        card.hidden = !mostrar;
-        if (mostrar) {
-          visibles++;
-          card.classList.add('is-visible');
-        }
-      });
-
-      if (aviso) aviso.hidden = visibles > 0;
-    });
-  });
-})();
-
-
-/* ============================================
    7. CONTACTO FLOTANTE
    ============================================ */
 (function contactoFlotante() {

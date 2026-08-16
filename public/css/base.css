@@ -11,6 +11,14 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  /* Color de fondo real del <html>, no solo del body: en Home y
+     Proyectos el body se pone transparent a proposito para que se
+     vea el canvas de fondo detras. Sin esto, mientras el script de
+     Three.js todavia esta cargando (recarga completa de pagina,
+     un par de segundos), se veia el blanco por defecto del
+     navegador con la vineta encima. Con esto, el color correcto ya
+     esta puesto desde el primer frame, sin esperar a JS. */
+  background: var(--c-fondo);
 }
 
 body {
@@ -74,7 +82,7 @@ h4 {
   font-family: var(--f-display);
   font-weight: 700;
   line-height: 1.02;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.012em;
   text-wrap: balance;
 }
 
