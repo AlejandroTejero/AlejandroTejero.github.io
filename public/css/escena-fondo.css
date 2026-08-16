@@ -1,0 +1,67 @@
+/* ============================================
+   FONDO ANIMADO (Three.js) — red de señal
+   Solo se activa en las páginas que llevan la clase
+   correspondiente en <body> (Home y Proyectos), inyectada
+   desde build.js. En el resto de páginas este fichero no
+   tiene ningún efecto visible: el body sigue con su fondo
+   solido de siempre.
+   ============================================ */
+
+.escena-fondo {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.escena-fondo canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Viñeta suave que ancla el centro de lectura y funde los bordes
+   del canvas con el fondo real de la pagina — mismo truco que
+   usan las paginas "cinematicas" para que el 3D no compita con
+   el texto en los laterales. */
+.escena-fondo__velo {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 62% 52% at 50% 38%,
+    transparent 0%,
+    color-mix(in srgb, var(--c-fondo) 45%, transparent) 70%,
+    color-mix(in srgb, var(--c-fondo) 88%, transparent) 100%
+  );
+  transition: background-color var(--dur-rapida) linear;
+}
+
+/* Body transparente SOLO en paginas con escena, para que el canvas
+   fijo (detras, z-index 0) se vea a traves de las secciones, que ya
+   no tienen fondo propio. El resto de paginas no llevan esta clase
+   y siguen exactamente igual que hasta ahora. */
+body.es-home,
+body.es-proyectos {
+  background: transparent;
+}
+
+/* Salvaguarda: si JS no llega a arrancar (fallo de red al cargar
+   Three.js, navegador sin WebGL...), el body ya tiene su color de
+   fondo real puesto por el propio navegador antes de pintar, asi
+   que nunca se ve una pantalla en blanco — simplemente no aparece
+   el canvas y el fondo solido reaparece. */
+html.sin-webgl body.es-home,
+html.sin-webgl body.es-proyectos {
+  background: var(--c-fondo);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .escena-fondo canvas {
+    /* La escena se congela en JS; aqui solo evitamos cualquier
+       transicion residual del velo al cambiar de tema. */
+    transition: none;
+  }
+}

@@ -51,6 +51,7 @@ function concatenarCSS() {
     'layout.css',
     'componentes.css',
     'paginas.css',
+    'escena-fondo.css',
   ];
 
   const contenido = orden
@@ -139,7 +140,44 @@ const partials = {
   filtroCategorias: leerHTML('partials/filtro-categorias.html'),
   charlaCard: leerHTML('partials/charla-card.html'),
   contactoFlotante: leerHTML('partials/contacto-flotante.html'),
+  escenaFondo: leerHTML('partials/escena-fondo.html'),
 };
+
+// ============================================
+// FONDO ANIMADO (Three.js): solo se inyecta en las paginas que
+// lo piden explicitamente (Home y Proyectos). El resto de paginas
+// no cargan ni un byte de Three.js.
+// Los colores de los clusters "proyecto" se generan aqui mismo a
+// partir de content/proyectos.json — la escena nunca duplica datos
+// a mano, siempre lee el acento real de cada proyecto.
+// ============================================
+function datosProyectosParaEscena() {
+  return proyectos
+    .filter((p) => p.destacado)
+    .map((p) => ({ id: p.id, acento: p.acento || null }))
+    .filter((p) => p.acento);
+}
+
+function renderizarFondoEscena(ctx) {
+  return reemplazar(partials.escenaFondo, ctx);
+}
+
+function renderizarScriptEscena(tipoEscena) {
+  const datos = JSON.stringify(datosProyectosParaEscena());
+  return `
+  <script>
+    window.__ESCENA_TIPO__ = '${tipoEscena}';
+    window.__ESCENA_PROYECTOS__ = ${datos};
+  </script>
+  <script src="/js/vendor/three/three.min.js" defer></script>
+  <script src="/js/vendor/three/shaders/CopyShader.js" defer></script>
+  <script src="/js/vendor/three/shaders/LuminosityHighPassShader.js" defer></script>
+  <script src="/js/vendor/three/postprocessing/EffectComposer.js" defer></script>
+  <script src="/js/vendor/three/postprocessing/RenderPass.js" defer></script>
+  <script src="/js/vendor/three/postprocessing/ShaderPass.js" defer></script>
+  <script src="/js/vendor/three/postprocessing/UnrealBloomPass.js" defer></script>
+  <script src="/js/escena-red.js" defer></script>`;
+}
 
 // ============================================
 // GITHUB API: RELLENAR LENGUAJES DE REPOSITORIOS
@@ -629,6 +667,8 @@ function envolverEnLayout(contenidoHtml, meta, ctx) {
     url_alternativa_en: `${BASE_URL}${prefijoIdioma('en')}${meta.rutaSinIdioma}`,
     og_imagen: meta.imagen || `${BASE_URL}/img/og-default.png`,
     clase_body: meta.claseBody || '',
+    fondo_escena: meta.tipoEscena ? renderizarFondoEscena(ctx) : '',
+    script_escena: meta.tipoEscena ? renderizarScriptEscena(meta.tipoEscena) : '',
   });
 }
 
@@ -668,6 +708,7 @@ function generarHome(ctx) {
     descripcion: site.bio[ctx.idioma],
     rutaSinIdioma: '/',
     claseBody: 'es-home',
+    tipoEscena: 'narrativo',
   }, ctx);
 }
 
@@ -685,6 +726,8 @@ function generarProyectosLista(ctx) {
     titulo: ctx.i18n.proyectos_titulo,
     descripcion: ctx.i18n.proyectos_intro,
     rutaSinIdioma: '/proyectos/',
+    claseBody: 'es-proyectos',
+    tipoEscena: 'ambiental',
   }, ctx);
 }
 

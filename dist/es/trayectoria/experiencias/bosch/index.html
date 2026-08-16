@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0A192F" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#EDE7D9" media="(prefers-color-scheme: light)">
+
+  <title>Prácticas de Ingeniería — Robert Bosch España S.L.U. · Alejandro Tejero</title>
+  <meta name="description" content="Robert Bosch España S.L.U.">
+
+  <link rel="canonical" href="https://alejandrotejero.github.io/es/trayectoria/experiencias/bosch/">
+  <link rel="alternate" hreflang="es" href="https://alejandrotejero.github.io/es/trayectoria/experiencias/bosch/">
+  <link rel="alternate" hreflang="en" href="https://alejandrotejero.github.io/trayectoria/experiencias/bosch/">
+  <link rel="alternate" hreflang="x-default" href="https://alejandrotejero.github.io/trayectoria/experiencias/bosch/">
+
+  <meta property="og:title" content="Prácticas de Ingeniería — Robert Bosch España S.L.U.">
+  <meta property="og:description" content="Robert Bosch España S.L.U.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alejandrotejero.github.io/es/trayectoria/experiencias/bosch/">
+  <meta property="og:image" content="https://alejandrotejero.github.io/img/og-default.png">
+  <meta property="og:locale" content="es">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script>
+    // Se aplica el tema antes de pintar para que no haya un flash de color equivocado.
+    (function () {
+      // Marca que hay JS: sin esta clase, el contenido con .reveal se ve siempre.
+      document.documentElement.classList.add('js');
+      try {
+        var guardado = localStorage.getItem('portfolio-tema');
+        var prefiereClaro = window.matchMedia('(prefers-color-scheme: light)').matches;
+        var tema = guardado || (prefiereClaro ? 'claro' : 'oscuro');
+        document.documentElement.setAttribute('data-tema', tema);
+      } catch (e) {
+        document.documentElement.setAttribute('data-tema', 'oscuro');
+      }
+    })();
+  </script>
+</head>
+<body class="">
+
+  
+
+  <a href="#main-content" class="salto-contenido">Saltar al contenido</a>
+
+  <header class="barra" id="barra">
+  <div class="barra__interior">
+
+    <a href="/es/" class="barra__marca">
+      <span class="barra__marca-nombre">Alejandro Tejero</span>
+    </a>
+
+    <div class="barra__acciones">
+      <a href="/trayectoria/experiencias/bosch/" class="barra__idioma" aria-label="Cambiar idioma">
+        <span>EN</span>
+      </a>
+
+      <button type="button" class="barra__tema" id="toggle-tema" aria-label="Cambiar tema">
+        <svg class="icono icono--luna" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/>
+        </svg>
+        <svg class="icono icono--sol" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="4.2"/>
+          <path d="M12 2v2.6M12 19.4V22M2 12h2.6M19.4 12H22M4.9 4.9l1.9 1.9M17.2 17.2l1.9 1.9M19.1 4.9l-1.9 1.9M6.8 17.2l-1.9 1.9"/>
+        </svg>
+      </button>
+
+      <button type="button" class="boton-menu" id="boton-menu" aria-expanded="false" aria-controls="menu-overlay">
+        <span class="boton-menu__texto">
+          <span class="boton-menu__abrir">Menu</span>
+          <span class="boton-menu__cerrar">Cerrar</span>
+        </span>
+        <span class="boton-menu__lineas" aria-hidden="true">
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+
+  </div>
+</header>
+  <div class="menu" id="menu-overlay" aria-hidden="true" aria-label="Navegacion principal">
+  <div class="menu__velo" aria-hidden="true"></div>
+  <div class="menu__panel">
+    <div class="menu__interior">
+
+      <nav class="menu__nav">
+        <ul class="menu__lista">
+          <li class="menu__item" style="--i: 0">
+            <a href="/es/" class="menu__enlace" data-nav="home">
+              <span class="menu__indice">01</span>
+              <span class="menu__texto">
+                <span class="menu__titulo">Inicio</span>
+                <span class="menu__desc">Quien soy y como trabajo</span>
+              </span>
+              <span class="menu__flecha" aria-hidden="true">→</span>
+            </a>
+          </li>
+
+          <li class="menu__item" style="--i: 1">
+            <a href="/es/proyectos/" class="menu__enlace" data-nav="proyectos">
+              <span class="menu__indice">02</span>
+              <span class="menu__texto">
+                <span class="menu__titulo">Proyectos</span>
+                <span class="menu__desc">Backend, IA y sistemas cliente-servidor</span>
+              </span>
+              <span class="menu__flecha" aria-hidden="true">→</span>
+            </a>
+          </li>
+
+          <li class="menu__item" style="--i: 2">
+            <a href="/es/trayectoria/" class="menu__enlace" data-nav="trayectoria">
+              <span class="menu__indice">03</span>
+              <span class="menu__texto">
+                <span class="menu__titulo">Trayectoria</span>
+                <span class="menu__desc">Formacion, experiencia y charlas</span>
+              </span>
+              <span class="menu__flecha" aria-hidden="true">→</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="menu__pie" style="--i: 3">
+        <div class="menu__bloque">
+          <p class="etiqueta-seccion">Donde encontrarme</p>
+          <ul class="menu__social">
+            <li><a href="https://github.com/AlejandroTejero" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="mailto:atejerodelamorena@gmail.com">Email</a></li>
+            <li><a href="tel:+34620621384">+34 620 62 13 84</a></li>
+          </ul>
+        </div>
+
+        <a href="mailto:atejerodelamorena@gmail.com?subject=Hola Alejandro, te escribo desde tu portfolio" class="btn btn--solido menu__cta">
+          Hablemos<span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <main id="main-content">
+    <article class="detalle">
+
+    <div class="contenedor">
+      <a href="/es/trayectoria/" class="enlace-volver linea" style="--i: 0">
+        <span class="linea__interior"><span aria-hidden="true">←</span> Volver a trayectoria</span>
+      </a>
+    </div>
+  
+    <header class="cabecera-pagina cabecera-pagina--detalle">
+      <div class="contenedor">
+        <p class="etiqueta-seccion linea" style="--i: 1"><span class="linea__interior">Robert Bosch España S.L.U.</span></p>
+        <h1 class="titular-pagina">
+          <span class="linea" style="--i: 2"><span class="linea__interior">Prácticas de Ingeniería</span></span>
+        </h1>
+      </div>
+    </header>
+  
+    <div class="contenedor">
+      <div class="detalle__cuerpo">
+  
+        <div class="detalle__principal reveal">
+          <div class="detalle__grupo"><h3 class="detalle__grupo-titulo">Datos y bases de datos</h3><ul class="detalle__lista"><li>Análisis de grandes volúmenes de datos de producción para la identificación de patrones y propuestas de mejora de procesos</li><li>Diseño de tablas, relaciones, consultas y limpieza de bases de datos de producción</li></ul></div><div class="detalle__grupo"><h3 class="detalle__grupo-titulo">KPIs y reporting</h3><ul class="detalle__lista"><li>Elaboración de dashboards y reporting en Excel y Power BI para el seguimiento de KPIs de producción</li><li>Elaboración, control y seguimiento de KPIs para las líneas de producción</li></ul></div><div class="detalle__grupo"><h3 class="detalle__grupo-titulo">Procesos estándar y metodología BPS</h3><ul class="detalle__lista"><li>Gestión y creación de registros SAP como soporte a los procesos del equipo</li><li>Elaboración de hojas de trabajo estandarizado (StABs) para la realización de tareas</li><li>Aplicación de la metodología BPS (Bosch Production System)</li></ul></div><div class="detalle__grupo"><h3 class="detalle__grupo-titulo">Automatización y líneas de producción</h3><ul class="detalle__lista"><li>Toma y análisis de tiempos de ciclo en las líneas de producción</li><li>Gestión de robots en líneas automatizadas: análisis de errores reportados, identificación de causas y propuesta de soluciones mediante el estudio de su funcionamiento y flujo de trabajo</li><li>Estudio y análisis de opciones de flujo para la automatización de nuevas líneas, evaluando eficiencia de producción, reducción de stocks y One Piece Flow</li></ul></div>
+        </div>
+  
+        <aside class="detalle__ficha reveal" style="--reveal-delay: 90ms">
+          <dl class="datos">
+            <div class="dato"><dt>Rol</dt><dd>Prácticas de Ingeniería</dd></div>
+            <div class="dato"><dt>Lugar</dt><dd>Madrid</dd></div>
+          </dl>
+        </aside>
+  
+      </div>
+    </div>
+  
+  </article>
+  </main>
+
+  <footer class="pie">
+  <div class="contenedor pie__interior">
+
+    <div class="pie__bloque">
+      <p class="pie__nombre">Alejandro Tejero de la Morena</p>
+      <p class="pie__rol">Madrid, España</p>
+    </div>
+
+    <ul class="pie__social">
+      <li><a href="https://github.com/AlejandroTejero" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="mailto:atejerodelamorena@gmail.com">Email</a></li>
+    </ul>
+
+    <p class="pie__copy">© 2026</p>
+
+  </div>
+</footer>
+  <div class="flotante" id="contacto-flotante">
+
+  <div class="flotante__menu" id="contacto-flotante-menu" role="menu">
+    <p class="flotante__titulo">Contacto</p>
+
+    <a href="mailto:atejerodelamorena@gmail.com" class="flotante__item" role="menuitem" style="--i: 0">
+      <span class="flotante__item-etiqueta">Email</span>
+      <span class="flotante__item-valor">atejerodelamorena@gmail.com</span>
+    </a>
+
+    <a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener" class="flotante__item" role="menuitem" style="--i: 1">
+      <span class="flotante__item-etiqueta">LinkedIn</span>
+      <span class="flotante__item-valor">Alejandro Tejero</span>
+    </a>
+
+    <a href="tel:+34620621384" class="flotante__item" role="menuitem" style="--i: 2">
+      <span class="flotante__item-etiqueta">Contacto</span>
+      <span class="flotante__item-valor">+34 620 62 13 84</span>
+    </a>
+  </div>
+
+  <button type="button" class="flotante__boton" id="contacto-flotante-toggle" aria-label="Abrir opciones de contacto" aria-expanded="false">
+    <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M4 6h16v12H4z"/>
+      <path d="M4 7l8 6 8-6"/>
+    </svg>
+  </button>
+
+</div>
+
+
+  <script src="/js/main.js" defer></script>
+  
+</body>
+</html>

@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0A192F" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#EDE7D9" media="(prefers-color-scheme: light)">
+
+  <title>WebBuilder · Alejandro Tejero</title>
+  <meta name="description" content="TFG: convierte cualquier API publica en un proyecto Django desplegable con IA - 9,9, propuesto a Matricula de Honor">
+
+  <link rel="canonical" href="https://alejandrotejero.github.io/es/proyectos/webbuilder/">
+  <link rel="alternate" hreflang="es" href="https://alejandrotejero.github.io/es/proyectos/webbuilder/">
+  <link rel="alternate" hreflang="en" href="https://alejandrotejero.github.io/proyectos/webbuilder/">
+  <link rel="alternate" hreflang="x-default" href="https://alejandrotejero.github.io/proyectos/webbuilder/">
+
+  <meta property="og:title" content="WebBuilder">
+  <meta property="og:description" content="TFG: convierte cualquier API publica en un proyecto Django desplegable con IA - 9,9, propuesto a Matricula de Honor">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alejandrotejero.github.io/es/proyectos/webbuilder/">
+  <meta property="og:image" content="https://alejandrotejero.github.io/img/proyectos/WebBuilder/WebBuilder.png">
+  <meta property="og:locale" content="es">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script>
+    // Se aplica el tema antes de pintar para que no haya un flash de color equivocado.
+    (function () {
+      // Marca que hay JS: sin esta clase, el contenido con .reveal se ve siempre.
+      document.documentElement.classList.add('js');
+      try {
+        var guardado = localStorage.getItem('portfolio-tema');
+        var prefiereClaro = window.matchMedia('(prefers-color-scheme: light)').matches;
+        var tema = guardado || (prefiereClaro ? 'claro' : 'oscuro');
+        document.documentElement.setAttribute('data-tema', tema);
+      } catch (e) {
+        document.documentElement.setAttribute('data-tema', 'oscuro');
+      }
+    })();
+  </script>
+</head>
+<body class="">
+
+  
+
+  <a href="#main-content" class="salto-contenido">Saltar al contenido</a>
+
+  <header class="barra" id="barra">
+  <div class="barra__interior">
+
+    <a href="/es/" class="barra__marca">
+      <span class="barra__marca-nombre">Alejandro Tejero</span>
+    </a>
+
+    <div class="barra__acciones">
+      <a href="/proyectos/webbuilder/" class="barra__idioma" aria-label="Cambiar idioma">
+        <span>EN</span>
+      </a>
+
+      <button type="button" class="barra__tema" id="toggle-tema" aria-label="Cambiar tema">
+        <svg class="icono icono--luna" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/>
+        </svg>
+        <svg class="icono icono--sol" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="4.2"/>
+          <path d="M12 2v2.6M12 19.4V22M2 12h2.6M19.4 12H22M4.9 4.9l1.9 1.9M17.2 17.2l1.9 1.9M19.1 4.9l-1.9 1.9M6.8 17.2l-1.9 1.9"/>
+        </svg>
+      </button>
+
+      <button type="button" class="boton-menu" id="boton-menu" aria-expanded="false" aria-controls="menu-overlay">
+        <span class="boton-menu__texto">
+          <span class="boton-menu__abrir">Menu</span>
+          <span class="boton-menu__cerrar">Cerrar</span>
+        </span>
+        <span class="boton-menu__lineas" aria-hidden="true">
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+
+  </div>
+</header>
+  <div class="menu" id="menu-overlay" aria-hidden="true" aria-label="Navegacion principal">
+  <div class="menu__velo" aria-hidden="true"></div>
+  <div class="menu__panel">
+    <div class="menu__interior">
+
+      <nav class="menu__nav">
+        <ul class="menu__lista">
+          <li class="menu__item" style="--i: 0">
+            <a href="/es/" class="menu__enlace" data-nav="home">
+              <span class="menu__indice">01</span>
+              <span class="menu__texto">
+                <span class="menu__titulo">Inicio</span>
+                <span class="menu__desc">Quien soy y como trabajo</span>
+              </span>
+              <span class="menu__flecha" aria-hidden="true">→</span>
+            </a>
+          </li>
+
+          <li class="menu__item" style="--i: 1">
+            <a href="/es/proyectos/" class="menu__enlace" data-nav="proyectos">
+              <span class="menu__indice">02</span>
+              <span class="menu__texto">
+                <span class="menu__titulo">Proyectos</span>
+                <span class="menu__desc">Backend, IA y sistemas cliente-servidor</span>
+              </span>
+              <span class="menu__flecha" aria-hidden="true">→</span>
+            </a>
+          </li>
+
+          <li class="menu__item" style="--i: 2">
+            <a href="/es/trayectoria/" class="menu__enlace" data-nav="trayectoria">
+              <span class="menu__indice">03</span>
+              <span class="menu__texto">
+                <span class="menu__titulo">Trayectoria</span>
+                <span class="menu__desc">Formacion, experiencia y charlas</span>
+              </span>
+              <span class="menu__flecha" aria-hidden="true">→</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="menu__pie" style="--i: 3">
+        <div class="menu__bloque">
+          <p class="etiqueta-seccion">Donde encontrarme</p>
+          <ul class="menu__social">
+            <li><a href="https://github.com/AlejandroTejero" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="mailto:atejerodelamorena@gmail.com">Email</a></li>
+            <li><a href="tel:+34620621384">+34 620 62 13 84</a></li>
+          </ul>
+        </div>
+
+        <a href="mailto:atejerodelamorena@gmail.com?subject=Hola Alejandro, te escribo desde tu portfolio" class="btn btn--solido menu__cta">
+          Hablemos<span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <main id="main-content">
+    <style>
+    [data-tema="oscuro"] .detalle-proyecto { --c-acento: #B79CED; }
+    [data-tema="claro"] .detalle-proyecto { --c-acento: #5B3FA0; }
+  </style>
+<article class="detalle detalle-proyecto">
+
+  <div class="contenedor">
+    <a href="/es/proyectos/" class="enlace-volver linea" style="--i: 0">
+      <span class="linea__interior"><span aria-hidden="true">←</span> Volver a proyectos</span>
+    </a>
+  </div>
+
+  <header class="cabecera-pagina cabecera-pagina--detalle">
+    <div class="contenedor">
+      <h1 class="titular-pagina">
+        <span class="linea" style="--i: 1"><span class="linea__interior">WebBuilder</span></span>
+      </h1>
+      <p class="cabecera-pagina__intro linea" style="--i: 2"><span class="linea__interior">TFG: convierte cualquier API publica en un proyecto Django desplegable con IA - 9,9, propuesto a Matricula de Honor</span></p>
+    </div>
+  </header>
+
+  <div class="contenedor">
+    <div class="detalle__portada reveal"><img src="/img/proyectos/WebBuilder/WebBuilder.png" alt="WebBuilder" loading="eager" fetchpriority="high"></div>
+  </div>
+
+  <div class="contenedor">
+    <div class="detalle__cuerpo">
+
+      <div class="detalle__principal reveal">
+        <p class="etiqueta-seccion">Sobre el proyecto</p>
+        <p class="detalle__parrafo">Plataforma que convierte cualquier API publica (JSON/XML/CSV) en un proyecto Django completo y desplegable. Un LLM analiza el dataset, propone el esquema de datos y genera el codigo. Incluye autenticacion OAuth (Google/GitHub), editor con refinamiento asistido por IA, versionado de sitios generados y despliegue automatizado con n8n y Docker.</p>
+
+        <div class="detalle__enlaces">
+          <a href="https://github.com/AlejandroTejero/WebBuilder-TFG" target="_blank" rel="noopener" class="btn btn--linea">GitHub<span aria-hidden="true">↗</span></a><a href="https://alejandrotejero.github.io/WebBuilder-landing/" target="_blank" rel="noopener" class="btn btn--linea">Landing<span aria-hidden="true">↗</span></a><a href="https://github.com/AlejandroTejero/MemoriaTFG-WebBuilder" target="_blank" rel="noopener" class="btn btn--linea">Memoria<span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+
+      <aside class="detalle__ficha reveal" style="--reveal-delay: 90ms">
+        <dl class="datos">
+          <div class="dato"><dt>Periodo</dt><dd>2025 - 2026</dd></div>
+          <div class="dato"><dt>Estado</dt><dd>Finalizado</dd></div>
+          <div class="dato"><dt>Nota academica</dt><dd>9,9 - Propuesto para Matricula de Honor</dd></div>
+        </dl>
+
+        <div class="detalle__tech">
+          <p class="etiqueta-seccion">Tecnologias</p>
+          <ul class="tags">
+            <li>Django</li><li>PostgreSQL</li><li>Docker</li><li>n8n</li><li>LLMs</li><li>OAuth</li>
+          </ul>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <div class="contenedor">
+    <details class="readme-proyecto reveal" open data-readme-key="readme-webbuilder">
+      <summary class="readme-proyecto__resumen">
+        <span>Ver README del repositorio</span>
+        <span class="readme-proyecto__flecha" aria-hidden="true">↓</span>
+      </summary>
+      <div class="readme-proyecto__cuerpo markdown-body"><div align="center">
+
+<h1>WebBuilder</h1>
+<p><strong>Convierte cualquier API pública en un sitio web Django completo, listo para desplegar — usando IA generativa.</strong></p>
+<p>Trabajo de Fin de Grado · Ingeniería Telemática · Escuela de Ingeniería de Fuenlabrada · Universidad Rey Juan Carlos</p>
+<p><a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white" alt="Python"></a>
+<a href="https://www.djangoproject.com/"><img src="https://img.shields.io/badge/Django-5.1-092E20?logo=django&logoColor=white" alt="Django"></a>
+<a href="https://www.docker.com/"><img src="https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white" alt="Docker"></a>
+<a href="https://n8n.io/"><img src="https://img.shields.io/badge/n8n-Automation-EA4B71?logo=n8n&logoColor=white" alt="n8n"></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg" alt="License: CC0-1.0"></a></p>
+<p><a href="http://178.104.248.235.nip.io">Demo en vivo</a> · <a href="https://alejandrotejero.github.io/WebBuilder-landing/">Landing page</a> · <a href="https://alejandrotejero.github.io/WebBuilder-landing/static/docs/memoria.pdf">Memoria del TFG</a></p>
+</div>
+
+<hr>
+<h2>Índice</h2>
+<ul>
+<li><a href="#-qu%C3%A9-es-webbuilder">¿Qué es WebBuilder?</a></li>
+<li><a href="#-flujo-de-uso">Flujo de uso</a></li>
+<li><a href="#-caracter%C3%ADsticas">Características</a></li>
+<li><a href="#-el-papel-de-la-ia">El papel de la IA</a></li>
+<li><a href="#-arquitectura">Arquitectura</a></li>
+<li><a href="#-automatizaciones-n8n">Automatizaciones (n8n)</a></li>
+<li><a href="#-ejemplos-generados">Ejemplos generados</a></li>
+<li><a href="#-stack-tecnol%C3%B3gico">Stack tecnológico</a></li>
+<li><a href="#-puesta-en-marcha">Puesta en marcha</a></li>
+<li><a href="#-configuraci%C3%B3n-env">Configuración (.env)</a></li>
+<li><a href="#-despliegue-en-producci%C3%B3n">Despliegue en producción</a></li>
+<li><a href="#-licencia">Licencia</a></li>
+</ul>
+<hr>
+<h2>¿Qué es WebBuilder?</h2>
+<p>Crear un sitio web a partir de los datos de una API es un proceso repetitivo que sigue siempre el mismo patrón:</p>
+<pre><code>API → Datos → Modelos → Vistas → Templates → Deploy
+</code></pre>
+<p><strong>WebBuilder automatiza todo ese pipeline.</strong> Le das la URL de una API pública (JSON, XML o CSV), una IA generativa analiza el dataset, propone un esquema de datos y un tipo de sitio adecuado (catálogo, blog, dashboard, portfolio...), y genera un <strong>proyecto Django completo y funcional</strong>: modelos, vistas, URLs, templates con Tailwind CSS, comando de carga de datos, <code>Dockerfile</code>... todo listo para revisar, editar y desplegar con un clic.</p>
+<pre><code>URL → IA → Código → Deploy
+</code></pre>
+<hr>
+<h2>Flujo de uso</h2>
+<table>
+<thead>
+<tr>
+<th>Paso</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>1. URL</strong></td>
+<td>El usuario introduce la URL de una API pública</td>
+</tr>
+<tr>
+<td><strong>2. Parseo</strong></td>
+<td>WebBuilder descarga y parsea el contenido (JSON / XML / CSV) de forma segura</td>
+</tr>
+<tr>
+<td><strong>3. Plan IA</strong></td>
+<td>Un LLM analiza el dataset y propone un esquema (tipo de sitio + campos relevantes), que el usuario puede revisar, editar o regenerar con un prompt personalizado</td>
+</tr>
+<tr>
+<td><strong>4. Código</strong></td>
+<td>Se genera el proyecto Django completo: modelos, vistas, templates, comando <code>load_data</code>, Dockerfile...</td>
+</tr>
+<tr>
+<td><strong>5. Deploy</strong></td>
+<td>El proyecto se construye y se levanta en un contenedor Docker, accesible mediante una URL pública</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Características</h2>
+<ul>
+<li><strong>Autenticación completa</strong>: registro, login y login social (Google / GitHub vía <code>django-allauth</code>), con notificaciones por correo automatizadas</li>
+<li><strong>Asistente de generación guiado</strong> en 4 pasos, con revisión y edición del plan propuesto por la IA</li>
+<li><strong>Generador de proyectos Django</strong>: modelos, vistas, URLs, templates con Tailwind CSS y comando <code>load_data</code> para poblar la base de datos desde la API original</li>
+<li><strong>Editor de código integrado</strong>: visualiza y edita cualquier fichero del proyecto generado, con <strong>refinamiento asistido por IA</strong> archivo a archivo</li>
+<li><strong>Versionado de sitios</strong>: cada cambio se guarda como una nueva versión, con opción de restaurar o descargar versiones anteriores</li>
+<li><strong>Descarga en ZIP</strong> del proyecto generado en cualquier momento</li>
+<li><strong>Despliegue automatizado</strong> del sitio generado mediante n8n + Docker, con preview en vivo y URL pública</li>
+<li><strong>Multi-LLM</strong>: compatible con cualquier proveedor que implemente el formato OpenAI <code>/chat/completions</code> (Groq, OpenRouter, OpenAI...), seleccionable por el usuario</li>
+<li><strong>Panel de métricas</strong>: actividad, uso por modelo LLM, tasas de éxito/reintento, generaciones, alertas del sistema...</li>
+<li><strong>Historial de análisis y sitios</strong> por usuario, con estado, fecha y resultados</li>
+<li><strong>Internacionalización</strong>: interfaz disponible en español e inglés</li>
+<li><strong>Mantenimiento automático</strong>: <em>health checks</em> diarios y apagado automático de contenedores inactivos</li>
+</ul>
+<hr>
+<h2>El papel de la IA</h2>
+<p>El LLM es el núcleo del sistema y participa en dos fases críticas:</p>
+<h3>1. Análisis del dataset</h3>
+<p>El modelo recibe los datos parseados y:</p>
+<ul>
+<li>Identifica el tipo de contenido (productos, personajes, eventos, criptoactivos...)</li>
+<li>Determina qué campos son relevantes y cuáles son ruido</li>
+<li>Propone un tipo de sitio adecuado (catálogo, dashboard, blog, portfolio...)</li>
+<li>Normaliza y etiqueta los campos con nombres legibles</li>
+<li>Devuelve un plan estructurado y editable</li>
+</ul>
+<h3>2. Generación del código</h3>
+<p>Una vez aprobado el plan, el modelo genera el proyecto Django completo siguiendo prompts diseñados con:</p>
+<ul>
+<li>Instrucciones detalladas sobre la estructura esperada de cada fichero</li>
+<li>Restricciones de estilo y buenas prácticas (Tailwind, patrones Django)</li>
+<li>Contexto del dataset para generar código semánticamente correcto</li>
+<li>Ejemplos de referencia (<em>few-shot</em>) por tipo de sitio</li>
+<li>Un <strong>comprobador de consistencia</strong> que valida y corrige el código generado antes de entregarlo</li>
+</ul>
+<hr>
+<h2>Arquitectura</h2>
+<pre><code>┌─────────────┐      ┌──────────────┐      ┌───────────────────┐
+│   Django    │◄────►│     LLMs     │      │    n8n + Docker    │
+│  (backend)  │      │ (IA generativa)│     │  (automatización)  │
+│             │      │              │      │                    │
+│ ORM         │      │ Motor        │      │ Workflows          │
+│ Vistas      │      │ OpenAI       │      │ Deploy             │
+│ Templates   │      │ OpenRouter   │      │ Notificaciones     │
+│             │      │ Groq         │      │                    │
+└──────┬──────┘      └──────────────┘      └─────────┬──────────┘
+       │                                              │
+       └──────────────── volumen compartido ─────────┘
+                     (ZIPs del proyecto generado)
+</code></pre>
+<p>La aplicación principal (Django + PostgreSQL) corre detrás de Nginx, y se comunica con una instancia de <strong>n8n</strong> (con acceso al socket de Docker del host) a través de webhooks para desplegar los sitios generados, gestionar notificaciones y tareas de mantenimiento.</p>
+<hr>
+<h2>Automatizaciones (n8n)</h2>
+<table>
+<thead>
+<tr>
+<th>Workflow</th>
+<th>Disparador</th>
+<th>Acción</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Register</strong></td>
+<td>Alta de usuario</td>
+<td>Envía email de bienvenida</td>
+</tr>
+<tr>
+<td><strong>Login</strong></td>
+<td>Inicio de sesión</td>
+<td>Envía email de confirmación de acceso</td>
+</tr>
+<tr>
+<td><strong>Deploy</strong></td>
+<td>Sitio generado y aceptado</td>
+<td>Construye y arranca el contenedor Docker del proyecto generado</td>
+</tr>
+<tr>
+<td><strong>Generation done</strong></td>
+<td>Generación de código finalizada</td>
+<td>Notifica al usuario que su sitio está listo</td>
+</tr>
+<tr>
+<td><strong>Health check</strong></td>
+<td>Cron diario</td>
+<td>Genera un informe del estado de los contenedores desplegados</td>
+</tr>
+<tr>
+<td><strong>Auto-shutdown</strong></td>
+<td>Cron periódico</td>
+<td>Apaga automáticamente los contenedores inactivos</td>
+</tr>
+</tbody></table>
+<p>Los workflows exportados se encuentran en <a href="https://github.com/AlejandroTejero/WebBuilder-TFG/blob/HEAD/WorkFlows"><code>/WorkFlows</code></a>.</p>
+<hr>
+<h2>Ejemplos generados</h2>
+<p>WebBuilder ha sido probado generando sitios completos a partir de APIs públicas reales:</p>
+<table>
+<thead>
+<tr>
+<th>Proyecto</th>
+<th>API origen</th>
+<th>Tipo de sitio</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Personajes de Rick y Morty</strong></td>
+<td><a href="https://rickandmortyapi.com/api/character">rickandmortyapi.com</a></td>
+<td>Catálogo</td>
+</tr>
+<tr>
+<td><strong>Criptoactivos</strong></td>
+<td><a href="https://api.coinlore.net/api/tickers/">api.coinlore.net</a></td>
+<td>Dashboard</td>
+</tr>
+<tr>
+<td><strong>Cocktails Bar</strong></td>
+<td><a href="https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail">thecocktaildb.com</a></td>
+<td>Catálogo</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>🎥 Puedes ver el proceso completo en el <a href="https://alejandrotejero.github.io/WebBuilder-landing/">vídeo de demostración</a> de la landing page.</p>
+</blockquote>
+<hr>
+<h2>Stack tecnológico</h2>
+<table>
+<thead>
+<tr>
+<th>Categoría</th>
+<th>Tecnología</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Backend</td>
+<td>Python 3, Django 5.1</td>
+</tr>
+<tr>
+<td>Base de datos</td>
+<td>PostgreSQL</td>
+</tr>
+<tr>
+<td>Servidor</td>
+<td>Gunicorn + Nginx</td>
+</tr>
+<tr>
+<td>IA / LLM</td>
+<td>Groq, OpenRouter (formato OpenAI <code>/chat/completions</code>)</td>
+</tr>
+<tr>
+<td>Automatización</td>
+<td>n8n + Docker</td>
+</tr>
+<tr>
+<td>Autenticación</td>
+<td>django-allauth (Google, GitHub)</td>
+</tr>
+<tr>
+<td>Frontend</td>
+<td>HTML, Tailwind CSS</td>
+</tr>
+<tr>
+<td>Parsing de datos</td>
+<td><code>requests</code>, <code>xmltodict</code>, <code>defusedxml</code></td>
+</tr>
+<tr>
+<td>Seguridad</td>
+<td><code>django-encrypted-model-fields</code> (cifrado de claves API de usuario)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Puesta en marcha</h2>
+<h3>Requisitos</h3>
+<ul>
+<li>Python 3.12+</li>
+<li>Docker y Docker Compose</li>
+<li>Una clave de API de un proveedor LLM compatible (Groq, OpenRouter...)</li>
+</ul>
+<h3>Instalación local</h3>
+<pre><code class="language-bash">git clone https://github.com/alejandrotejero/WebBuilder.git
+cd WebBuilder/project
+
+# Copia y rellena las variables de entorno
+cp .env.example .env
+
+# Levanta toda la plataforma (Django + PostgreSQL + n8n + Nginx)
+docker compose up --build
+</code></pre>
+<p>La aplicación quedará disponible en <code>http://localhost</code>.</p>
+<hr>
+<h2>Configuración (.env)</h2>
+<p>Las variables principales que necesitas configurar en tu <code>.env</code>:</p>
+<pre><code class="language-env"># Django
+SECRET_KEY=...
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1
+
+# Base de datos
+DB_NAME=webbuilder_db
+DB_USER=webbuilder_user
+DB_PASSWORD=...
+
+# Proveedor LLM (formato OpenAI /chat/completions)
+LLM_BASE_URL=https://api.groq.com/openai/v1
+LLM_API_KEY=...
+LLM_MODEL=meta-llama/llama-4-scout-17b-16e-instruct
+
+# n8n
+N8N_DEPLOY_WEBHOOK=http://n8n:5678/webhook/webbuilder-deploy
+N8N_WEBHOOK_REGISTRO=http://n8n:5678/webhook/WebBuilder-Register
+N8N_WEBHOOK_LOGIN=http://n8n:5678/webhook/WebBuilder-Login
+N8N_WEBHOOK_GENERATION_DONE=http://n8n:5678/webhook/webbuilder-generation-done
+
+# Cifrado de claves API de usuario
+FIELD_ENCRYPTION_KEY=...
+
+# OAuth (opcional)
+GOOGLE_CLIENT_ID=...
+GOOGLE_CLIENT_SECRET=...
+GITHUB_CLIENT_ID=...
+GITHUB_CLIENT_SECRET=...
+</code></pre>
+<p>Solo es necesario cambiar <code>LLM_BASE_URL</code>, <code>LLM_API_KEY</code> y <code>LLM_MODEL</code> para usar otro proveedor compatible con la API de OpenAI.</p>
+<hr>
+<h2>Despliegue en producción</h2>
+<p>WebBuilder está pensado para desplegarse en un VPS mediante <code>docker-compose.yml</code>, que orquesta:</p>
+<ul>
+<li><strong><code>db</code></strong> — PostgreSQL</li>
+<li><strong><code>web</code></strong> — Django servido con Gunicorn</li>
+<li><strong><code>n8n</code></strong> — automatizaciones y deploy de los sitios generados (con acceso al Docker del host)</li>
+<li><strong><code>nginx</code></strong> — proxy inverso y servido de estáticos</li>
+</ul>
+<p>Una demo activa está disponible en <strong><a href="http://178.104.248.235.nip.io">http://178.104.248.235.nip.io</a></strong>.</p>
+<hr>
+<h2>Licencia</h2>
+<p>Este proyecto está publicado bajo licencia <a href="https://github.com/AlejandroTejero/WebBuilder-TFG/blob/HEAD/LICENSE">CC0 1.0 Universal</a>.</p>
+<hr>
+<div align="center">
+
+<p>Desarrollado por <strong>Alejandro Tejero de la Morena</strong> · Tutor: David Moreno Lumbreras
+Trabajo de Fin de Grado 2025/2026 · Universidad Rey Juan Carlos</p>
+</div></div>
+    </details>
+  </div>
+
+  
+  <section class="seccion-diagrama reveal">
+    <div class="contenedor">
+      <p class="etiqueta-seccion">Arquitectura</p>
+
+      <button type="button" class="diagrama__disparador" data-diagrama-abrir aria-haspopup="dialog">
+        <img src="/img/diagramas/webbuilder_diagram.png" alt="Diagrama de arquitectura — WebBuilder" loading="lazy">
+        <span class="diagrama__pista" aria-hidden="true">Ampliar</span>
+      </button>
+
+      <div class="diagrama__overlay" data-diagrama-overlay role="dialog" aria-modal="true" aria-label="Diagrama de arquitectura — WebBuilder" aria-hidden="true">
+        <button type="button" class="diagrama__overlay-cerrar" data-diagrama-cerrar aria-label="Cerrar">
+          <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19"/></svg>
+        </button>
+        <img src="/img/diagramas/webbuilder_diagram.png" alt="Diagrama de arquitectura — WebBuilder">
+      </div>
+    </div>
+  </section>
+
+</article>
+  </main>
+
+  <footer class="pie">
+  <div class="contenedor pie__interior">
+
+    <div class="pie__bloque">
+      <p class="pie__nombre">Alejandro Tejero de la Morena</p>
+      <p class="pie__rol">Madrid, España</p>
+    </div>
+
+    <ul class="pie__social">
+      <li><a href="https://github.com/AlejandroTejero" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="mailto:atejerodelamorena@gmail.com">Email</a></li>
+    </ul>
+
+    <p class="pie__copy">© 2026</p>
+
+  </div>
+</footer>
+  <div class="flotante" id="contacto-flotante">
+
+  <div class="flotante__menu" id="contacto-flotante-menu" role="menu">
+    <p class="flotante__titulo">Contacto</p>
+
+    <a href="mailto:atejerodelamorena@gmail.com" class="flotante__item" role="menuitem" style="--i: 0">
+      <span class="flotante__item-etiqueta">Email</span>
+      <span class="flotante__item-valor">atejerodelamorena@gmail.com</span>
+    </a>
+
+    <a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener" class="flotante__item" role="menuitem" style="--i: 1">
+      <span class="flotante__item-etiqueta">LinkedIn</span>
+      <span class="flotante__item-valor">Alejandro Tejero</span>
+    </a>
+
+    <a href="tel:+34620621384" class="flotante__item" role="menuitem" style="--i: 2">
+      <span class="flotante__item-etiqueta">Contacto</span>
+      <span class="flotante__item-valor">+34 620 62 13 84</span>
+    </a>
+  </div>
+
+  <button type="button" class="flotante__boton" id="contacto-flotante-toggle" aria-label="Abrir opciones de contacto" aria-expanded="false">
+    <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M4 6h16v12H4z"/>
+      <path d="M4 7l8 6 8-6"/>
+    </svg>
+  </button>
+
+</div>
+
+
+  <script src="/js/main.js" defer></script>
+  
+</body>
+</html>
