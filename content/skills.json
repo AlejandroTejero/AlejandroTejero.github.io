@@ -21,7 +21,7 @@
     {
       "nombre": { "es": "Redes", "en": "Networking" },
       "nivel_clave": "basico",
-      "nivel": { "es": "Basico", "en": "Basic" },
+      "nivel": { "es": "Básico", "en": "Basic" },
       "items": ["TCP/IP", "IPv4/IPv6", "OSPF", "HTTP/HTTPS", "SSH", "Wireshark", "NetGUI"]
     },
     {
@@ -41,8 +41,8 @@
       "nivel_clave": null,
       "nivel": null,
       "items": [
-        { "es": "Espanol (nativo)", "en": "Spanish (native)" },
-        { "es": "Ingles (B1, preparando B2)", "en": "English (B1, working towards B2)" }
+        { "es": "Español (nativo)", "en": "Spanish (native)" },
+        { "es": "Inglés (B1, preparando B2)", "en": "English (B1, working towards B2)" }
       ]
     }
   ]
