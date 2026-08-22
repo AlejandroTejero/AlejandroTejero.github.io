@@ -55,23 +55,27 @@
    REJILLAS
    ============================================ */
 .rejilla-proyectos {
-  display: grid;
-  /* Con el proyecto protagonista fuera (va en su propia tarjeta grande
-     encima), aqui siempre quedan los demas — ahora mismo 3, perfecto
-     para 3 columnas fijas. Si el numero de proyectos cambia, se puede
-     volver a auto-fill sin tocar nada mas. */
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* Flexbox en vez de grid a proposito: con grid, si la ultima fila no
+     se completa (4, 5, 7 proyectos...) queda un hueco vacio a la
+     derecha o hay que ir cambiando el numero de columnas a mano cada
+     vez. Con flex-wrap + justify-content:center, las tarjetas caen de
+     3 en 3 y la fila sobrante (1 o 2 tarjetas) se centra sola, sin
+     tocar nada mas cuando cambie el numero de proyectos. */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: clamp(1.25rem, 2.5vw, 2rem);
 }
 
-@media (max-width: 900px) {
-  .rejilla-proyectos {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+.rejilla-proyectos > .project-card {
+  flex: 1 1 300px;
+  max-width: 380px;
 }
+
 @media (max-width: 560px) {
-  .rejilla-proyectos {
-    grid-template-columns: 1fr;
+  .rejilla-proyectos > .project-card {
+    max-width: none;
+    flex-basis: 100%;
   }
 }
 

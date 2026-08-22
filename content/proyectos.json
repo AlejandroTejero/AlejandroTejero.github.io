@@ -106,5 +106,28 @@
     },
     "acento": { "oscuro": "#F2A65A", "claro": "#8C4413" },
     "diagrama": "/img/diagramas/tacticalbattle_diagram.png"
+  },
+  {
+    "id": "repo-analyzer",
+    "destacado": false,
+    "categorias": ["backend", "datos"],
+    "titulo": "Repo Analyzer",
+    "resumen": {
+      "es": "Herramienta de analítica de repositorios de software en Python: actividad, dependencias y bus factor, con visualización en Altair y notebook Marimo",
+      "en": "Python analytics tool for software repositories: activity, dependencies and bus factor, with Altair visualizations and a Marimo notebook"
+    },
+    "descripcion": {
+      "es": "Extrae el historial de commits y dependencias de repositorios de GitHub (vía PyGithub) hacia una base de datos PostgreSQL, y calcula métricas de salud del proyecto: actividad a lo largo del tiempo, bus factor (concentración de conocimiento por autor) y estado de las dependencias. Los resultados se exploran en un notebook reactivo de Marimo con visualizaciones en Altair.",
+      "en": "Extracts commit history and dependencies from GitHub repositories (via PyGithub) into a PostgreSQL database, and computes project health metrics: activity over time, bus factor (author knowledge concentration) and dependency status. Results are explored in a reactive Marimo notebook with Altair visualizations."
+    },
+    "tecnologias": ["Python", "Altair", "Marimo", "Pandas", "PostgreSQL", "SQLAlchemy", "PyGithub"],
+    "periodo": "2026",
+    "estado": { "es": "Finalizado", "en": "Completed" },
+    "nota_academica": null,
+    "imagen": "/img/proyectos/RepoAnalyzer/portada.png",
+    "enlaces": {
+      "github": "https://github.com/AlejandroTejero/RepoAnalyzer"
+    },
+    "acento": { "oscuro": "#7EA6E0", "claro": "#2E5CA8" }
   }
 ]

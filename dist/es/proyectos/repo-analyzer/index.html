@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171A21" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#EDE7D9" media="(prefers-color-scheme: light)">
+
+  <title>Repo Analyzer · Alejandro Tejero</title>
+  <meta name="description" content="Herramienta de analítica de repositorios de software en Python: actividad, dependencias y bus factor, con visualización en Altair y notebook Marimo">
+
+  <link rel="canonical" href="https://alejandrotejero.github.io/es/proyectos/repo-analyzer/">
+  <link rel="alternate" hreflang="es" href="https://alejandrotejero.github.io/es/proyectos/repo-analyzer/">
+  <link rel="alternate" hreflang="en" href="https://alejandrotejero.github.io/proyectos/repo-analyzer/">
+  <link rel="alternate" hreflang="x-default" href="https://alejandrotejero.github.io/proyectos/repo-analyzer/">
+
+  <meta property="og:title" content="Repo Analyzer">
+  <meta property="og:description" content="Herramienta de analítica de repositorios de software en Python: actividad, dependencias y bus factor, con visualización en Altair y notebook Marimo">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alejandrotejero.github.io/es/proyectos/repo-analyzer/">
+  <meta property="og:image" content="https://alejandrotejero.github.io/img/proyectos/RepoAnalyzer/portada.png">
+  <meta property="og:locale" content="es">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script>
+    // Se aplica el tema antes de pintar para que no haya un flash de color equivocado.
+    (function () {
+      // Marca que hay JS: sin esta clase, el contenido con .reveal se ve siempre.
+      document.documentElement.classList.add('js');
+      try {
+        var guardado = localStorage.getItem('portfolio-tema');
+        var prefiereClaro = window.matchMedia('(prefers-color-scheme: light)').matches;
+        var tema = guardado || (prefiereClaro ? 'claro' : 'oscuro');
+        document.documentElement.setAttribute('data-tema', tema);
+      } catch (e) {
+        document.documentElement.setAttribute('data-tema', 'oscuro');
+      }
+    })();
+  </script>
+</head>
+<body class="">
+
+  
+
+  <a href="#main-content" class="salto-contenido">Saltar al contenido</a>
+
+  <header class="barra" id="barra">
+  <div class="barra__interior">
+
+    <a href="/es/" class="barra__marca">
+      <span class="barra__marca-nombre">Alejandro Tejero</span>
+    </a>
+
+    <div class="barra__acciones">
+      <a href="/proyectos/repo-analyzer/" class="barra__idioma" aria-label="Cambiar idioma">
+        <span>EN</span>
+      </a>
+
+      <button type="button" class="barra__tema" id="toggle-tema" aria-label="Cambiar tema">
+        <svg class="icono icono--luna" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/>
+        </svg>
+        <svg class="icono icono--sol" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="4.2"/>
+          <path d="M12 2v2.6M12 19.4V22M2 12h2.6M19.4 12H22M4.9 4.9l1.9 1.9M17.2 17.2l1.9 1.9M19.1 4.9l-1.9 1.9M6.8 17.2l-1.9 1.9"/>
+        </svg>
+      </button>
+
+      <button type="button" class="boton-menu" id="boton-menu" aria-expanded="false" aria-controls="menu-overlay">
+        <span class="boton-menu__texto">
+          <span class="boton-menu__abrir">Menu</span>
+          <span class="boton-menu__cerrar">Cerrar</span>
+        </span>
+        <span class="boton-menu__lineas" aria-hidden="true">
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+
+  </div>
+</header>
+  <div class="menu" id="menu-overlay" aria-hidden="true" aria-label="Navegacion principal">
+  <div class="menu__velo" aria-hidden="true"></div>
+  <div class="menu__panel">
+    <div class="menu__interior">
+
+      <nav class="menu__nav">
+        <ul class="menu__lista">
+          <li class="menu__item" style="--i: 0">
+            <a href="/es/" class="menu__enlace" data-nav="home">
+              <span class="menu__indice">01</span>
+              <span class="menu__texto">
+                <span class="menu__titulo">Inicio</span>
+                <span class="menu__desc">Quien soy, mi trayectoria y como trabajo</span>
+              </span>
+              <span class="menu__flecha" aria-hidden="true">→</span>
+            </a>
+          </li>
+
+          <li class="menu__item" style="--i: 1">
+            <a href="/es/proyectos/" class="menu__enlace" data-nav="proyectos">
+              <span class="menu__indice">02</span>
+              <span class="menu__texto">
+                <span class="menu__titulo">Proyectos</span>
+                <span class="menu__desc">Proyectos, repos y competencias tecnicas</span>
+              </span>
+              <span class="menu__flecha" aria-hidden="true">→</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="menu__pie" style="--i: 3">
+        <div class="menu__bloque">
+          <p class="etiqueta-seccion">Donde encontrarme</p>
+          <ul class="menu__social">
+            <li><a href="https://github.com/AlejandroTejero" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="mailto:atejerodelamorena@gmail.com">Email</a></li>
+            <li><a href="tel:+34620621384">+34 620 62 13 84</a></li>
+          </ul>
+        </div>
+
+        <a href="mailto:atejerodelamorena@gmail.com?subject=Hola Alejandro, te escribo desde tu portfolio" class="btn btn--solido menu__cta">
+          Hablemos<span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <main id="main-content">
+    <style>
+    [data-tema="oscuro"] .detalle-proyecto { --c-acento: #7EA6E0; }
+    [data-tema="claro"] .detalle-proyecto { --c-acento: #2E5CA8; }
+  </style>
+<article class="detalle detalle-proyecto">
+
+  <div class="contenedor">
+    <a href="/es/proyectos/" class="enlace-volver linea" style="--i: 0">
+      <span class="linea__interior"><span aria-hidden="true">←</span> Volver a proyectos</span>
+    </a>
+  </div>
+
+  <header class="cabecera-pagina cabecera-pagina--detalle">
+    <div class="contenedor">
+      <h1 class="titular-pagina">
+        <span class="linea" style="--i: 1"><span class="linea__interior">Repo Analyzer</span></span>
+      </h1>
+      <p class="cabecera-pagina__intro linea" style="--i: 2"><span class="linea__interior">Herramienta de analítica de repositorios de software en Python: actividad, dependencias y bus factor, con visualización en Altair y notebook Marimo</span></p>
+    </div>
+  </header>
+
+  <div class="contenedor">
+    <div class="detalle__portada reveal"><img src="/img/proyectos/RepoAnalyzer/portada.png" alt="Repo Analyzer" loading="eager" fetchpriority="high"></div>
+  </div>
+
+  <div class="contenedor">
+    <div class="detalle__cuerpo">
+
+      <div class="detalle__principal reveal">
+        <p class="etiqueta-seccion">Sobre el proyecto</p>
+        <p class="detalle__parrafo">Extrae el historial de commits y dependencias de repositorios de GitHub (vía PyGithub) hacia una base de datos PostgreSQL, y calcula métricas de salud del proyecto: actividad a lo largo del tiempo, bus factor (concentración de conocimiento por autor) y estado de las dependencias. Los resultados se exploran en un notebook reactivo de Marimo con visualizaciones en Altair.</p>
+
+        <div class="detalle__enlaces">
+          <a href="https://github.com/AlejandroTejero/RepoAnalyzer" target="_blank" rel="noopener" class="btn btn--linea">GitHub<span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+
+      <aside class="detalle__ficha reveal" style="--reveal-delay: 90ms">
+        <dl class="datos">
+          <div class="dato"><dt>Periodo</dt><dd>2026</dd></div>
+          <div class="dato"><dt>Estado</dt><dd>Finalizado</dd></div>
+          
+        </dl>
+
+        <div class="detalle__tech">
+          <p class="etiqueta-seccion">Tecnologias</p>
+          <ul class="tags">
+            <li>Python</li><li>Altair</li><li>Marimo</li><li>Pandas</li><li>PostgreSQL</li><li>SQLAlchemy</li><li>PyGithub</li>
+          </ul>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <div class="contenedor">
+    <details class="readme-proyecto reveal" open data-readme-key="readme-repo-analyzer">
+      <summary class="readme-proyecto__resumen">
+        <span>Ver README del repositorio</span>
+        <span class="readme-proyecto__flecha" aria-hidden="true">↓</span>
+      </summary>
+      <div class="readme-proyecto__cuerpo markdown-body"><h1>Repo Analyzer</h1>
+<p>Herramienta de analítica de repositorios de software: analiza actividad, dependencias y bus factor de <strong>cualquier repositorio de GitHub</strong>, con visualización interactiva en Altair y Marimo.</p>
+<h2>Qué hace</h2>
+<ul>
+<li><strong>Actividad</strong>: extrae el histórico de commits de un repositorio y calcula commits por semana y número de autores activos en el tiempo.</li>
+<li><strong>Dependencias</strong>: lee el <code>requirements.txt</code> del repositorio y compara cada dependencia contra la última versión disponible en PyPI, clasificando el desfase (major/minor/patch).</li>
+<li><strong>Bus factor</strong>: calcula qué porcentaje de los commits aporta cada autor y el número mínimo de personas de las que depende más del 50% del conocimiento del proyecto, además de su evolución mensual.</li>
+</ul>
+<p>Todo se explora de forma interactiva en un notebook Marimo con un selector de repositorio, ya que la base de datos puede acumular varios proyectos analizados a la vez.</p>
+<h2>Stack técnico</h2>
+<ul>
+<li><strong>Python</strong> — lenguaje base de todo el proyecto</li>
+<li><strong>PyGithub</strong> — extracción de datos desde la API de GitHub (commits, contenido de ficheros)</li>
+<li><strong>PostgreSQL</strong> + <strong>SQLAlchemy</strong> — almacenamiento persistente de commits, autores, repos y dependencias</li>
+<li><strong>Pandas</strong> — procesamiento y cálculo de métricas</li>
+<li><strong>Altair</strong> — visualización declarativa de los resultados</li>
+<li><strong>Marimo</strong> — notebook reactivo para la exploración interactiva de los datos</li>
+<li><strong>PyPI API</strong> — consulta de versiones y fechas de publicación de dependencias</li>
+</ul>
+<h2>Arquitectura</h2>
+<pre><code>GitHub API / PyPI API
+        │
+        ▼
+   extractor/          ← extrae commits y dependencias
+        │
+        ▼
+   database/            ← PostgreSQL, vía SQLAlchemy (modelos: Repo, Author, Commit, Dependency)
+        │
+        ▼
+   metrics/              ← calcula actividad, frescura de dependencias y bus factor con Pandas
+        │
+        ▼
+   notebook/analysis.py  ← Marimo + Altair, selector de repositorio, todo reactivo
+</code></pre>
+<h2>Cómo se usa</h2>
+<p><strong>1. Clona el repositorio e instala dependencias</strong></p>
+<pre><code class="language-bash">git clone https://github.com/AlejandroTejero/RepoAnalyzer.git
+cd RepoAnalyzer
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+</code></pre>
+<p><strong>2. Configura las variables de entorno</strong></p>
+<p>Copia <code>.env.example</code> a <code>.env</code> y rellena:</p>
+<pre><code>GITHUB_TOKEN=tu_token_de_github
+DATABASE_URL=postgresql://usuario:password@localhost:5432/repo_analyzer
+</code></pre>
+<p><strong>3. Crea las tablas en PostgreSQL</strong></p>
+<pre><code class="language-bash">python3 -c &quot;from database.db import init_db; init_db()&quot;
+</code></pre>
+<p><strong>4. Extrae datos de un repositorio (cualquiera)</strong></p>
+<pre><code class="language-bash">python3 -m extractor.github_extractor &lt;owner&gt; &lt;repo&gt;
+python3 -m extractor.dependency_extractor &lt;owner&gt; &lt;repo&gt;
+</code></pre>
+<p>Ejemplo:</p>
+<pre><code class="language-bash">python3 -m extractor.github_extractor encode httpx
+python3 -m extractor.dependency_extractor encode httpx
+</code></pre>
+<p><strong>5. Abre el notebook interactivo</strong></p>
+<pre><code class="language-bash">marimo edit notebook/analysis.py
+</code></pre>
+<p>Abre la URL que se muestre en la terminal, y selecciona el repositorio a analizar desde el desplegable.</p>
+</div>
+    </details>
+  </div>
+
+  
+
+</article>
+  </main>
+
+  <footer class="pie">
+  <div class="contenedor pie__interior">
+
+    <div class="pie__bloque">
+      <p class="pie__nombre">Alejandro Tejero de la Morena</p>
+      <p class="pie__rol">Madrid, España</p>
+    </div>
+
+    <ul class="pie__social">
+      <li><a href="https://github.com/AlejandroTejero" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="mailto:atejerodelamorena@gmail.com">Email</a></li>
+      <li><a href="/cv/CVAlejandroT.pdf" download>Descargar CV</a></li>
+    </ul>
+
+    <p class="pie__copy">© 2026</p>
+
+  </div>
+</footer>
+  <div class="flotante" id="contacto-flotante">
+
+  <div class="flotante__menu" id="contacto-flotante-menu" role="menu">
+    <p class="flotante__titulo">Contacto</p>
+
+    <a href="mailto:atejerodelamorena@gmail.com" class="flotante__item" role="menuitem" style="--i: 0">
+      <span class="flotante__item-etiqueta">Email</span>
+      <span class="flotante__item-valor">atejerodelamorena@gmail.com</span>
+    </a>
+
+    <a href="https://www.linkedin.com/in/alejandro-tejero-de-la-morena-38b97a383/" target="_blank" rel="noopener" class="flotante__item" role="menuitem" style="--i: 1">
+      <span class="flotante__item-etiqueta">LinkedIn</span>
+      <span class="flotante__item-valor">Alejandro Tejero</span>
+    </a>
+
+    <a href="tel:+34620621384" class="flotante__item" role="menuitem" style="--i: 2">
+      <span class="flotante__item-etiqueta">Contacto</span>
+      <span class="flotante__item-valor">+34 620 62 13 84</span>
+    </a>
+  </div>
+
+  <button type="button" class="flotante__boton" id="contacto-flotante-toggle" aria-label="Abrir opciones de contacto" aria-expanded="false">
+    <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M4 6h16v12H4z"/>
+      <path d="M4 7l8 6 8-6"/>
+    </svg>
+  </button>
+
+</div>
+
+
+  <script src="/js/main.js" defer></script>
+  
+</body>
+</html>
