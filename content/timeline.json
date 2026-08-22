@@ -3,7 +3,7 @@
     "anio": "2021",
     "mes": "09",
     "tipo": "educacion",
-    "titulo": { "es": "Inicio Ingenieria Telematica", "en": "Started Telematics Engineering" },
+    "titulo": { "es": "Inicio Ingeniería Telemática", "en": "Started Telematics Engineering" },
     "institucion": "Universidad Rey Juan Carlos"
   },
   {
@@ -18,22 +18,22 @@
     "mes": "05",
     "tipo": "proyecto",
     "titulo": { "es": "GameRank", "en": "GameRank" },
-    "descripcion": { "es": "Web catalogo de videojuegos con votos y comentarios - Matricula de Honor", "en": "Videogame catalog website with votes and comments - Highest honors" }
+    "descripcion": { "es": "Web catálogo de videojuegos con votos y comentarios - Matrícula de Honor", "en": "Videogame catalog website with votes and comments - Highest honors" }
   },
   {
     "anio": "2026",
     "mes": "05",
     "tipo": "proyecto",
     "titulo": { "es": "WebBuilder (TFG)", "en": "WebBuilder (Thesis)" },
-    "descripcion": { "es": "Generacion automatica de proyectos Django con IA generativa - propuesto a Matricula de Honor", "en": "Automatic generation of Django projects with generative AI - proposed for highest honors" }
+    "descripcion": { "es": "Generación automática de proyectos Django con IA generativa - propuesto a Matrícula de Honor", "en": "Automatic generation of Django projects with generative AI - proposed for highest honors" }
   },
   {
     "anio": "2026",
     "mes": "05",
     "tipo": "experiencia",
-    "titulo": { "es": "Practicas de Ingenieria", "en": "Engineering Internship" },
-    "institucion": "Robert Bosch Espana S.L.U.",
-    "descripcion": { "es": "Analisis de datos, automatizacion y produccion", "en": "Data analysis, automation and production" },
+    "titulo": { "es": "Prácticas de Ingeniería", "en": "Engineering Internship" },
+    "institucion": "Robert Bosch España S.L.U.",
+    "descripcion": { "es": "Análisis de datos, automatización y producción", "en": "Data analysis, automation and production" },
     "experiencia_relacionada": "bosch"
   },
   {
@@ -48,7 +48,7 @@
     "anio": "2026",
     "mes": "08",
     "tipo": "educacion",
-    "titulo": { "es": "Graduacion", "en": "Graduation" },
+    "titulo": { "es": "Graduación", "en": "Graduation" },
     "institucion": "Universidad Rey Juan Carlos"
   }
 ]

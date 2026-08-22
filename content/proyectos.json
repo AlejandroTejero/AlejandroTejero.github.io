@@ -6,7 +6,7 @@
     "categorias": ["backend", "ia", "automatizacion"],
     "titulo": "WebBuilder",
     "resumen": {
-      "es": "TFG: convierte cualquier API publica en un proyecto Django desplegable con IA - 9,9, propuesto a Matricula de Honor",
+      "es": "TFG: convierte cualquier API pública en un proyecto Django desplegable con IA - 9,9, propuesto a Matrícula de Honor",
       "en": "Thesis: turns any public API into a deployable Django project with AI - 9.9, proposed for highest honors"
     },
     "descripcion": {
@@ -16,7 +16,7 @@
     "tecnologias": ["Django", "PostgreSQL", "Docker", "n8n", "LLMs", "OAuth"],
     "periodo": "2025 - 2026",
     "estado": { "es": "Finalizado", "en": "Completed" },
-    "nota_academica": "9,9 - Propuesto para Matricula de Honor",
+    "nota_academica": "9,9 - Propuesto para Matrícula de Honor",
     "imagen": "/img/proyectos/WebBuilder/WebBuilder.png",
     "enlaces": {
       "github": "https://github.com/AlejandroTejero/WebBuilder-TFG",
@@ -32,7 +32,7 @@
     "categorias": ["backend", "web"],
     "titulo": "GameRank",
     "resumen": {
-      "es": "Catalogo y ranking social de videojuegos con APIs externas - Matricula de Honor",
+      "es": "Catálogo y ranking social de videojuegos con APIs externas - Matrícula de Honor",
       "en": "Social videogame catalog and ranking with external APIs - Highest honors"
     },
     "descripcion": {
@@ -42,7 +42,7 @@
     "tecnologias": ["Django", "HTMX", "REST API", "XML/JSON"],
     "periodo": "2025",
     "estado": { "es": "Finalizado", "en": "Completed" },
-    "nota_academica": "9,9 - Matricula de Honor",
+    "nota_academica": "9,9 - Matrícula de Honor",
     "imagen": "/img/proyectos/GameRank/portada.png",
     "galeria": [
       "/img/proyectos/GameRank/listajuegos.png",
@@ -89,7 +89,7 @@
     "categorias": ["backend", "sistemas"],
     "titulo": "Tactical Battle",
     "resumen": {
-      "es": "Simulador de combate tactico por turnos, cliente-servidor hecho en Python con sockets",
+      "es": "Simulador de combate táctico por turnos, cliente-servidor hecho en Python con sockets",
       "en": "Turn-based tactical combat simulator, client-server built in Python with sockets"
     },
     "descripcion": {
