@@ -422,6 +422,16 @@ h4 {
   opacity: 0.6;
 }
 
+/* En la rejilla de proyectos, algunas tarjetas tienen mas tecnologias
+   que otras (p. ej. Repo Analyzer) y la lista ocupa una linea de mas,
+   dejando esa tarjeta mas alta que sus vecinas. En vez de recortar
+   tecnologias, se reserva el mismo alto (2 lineas) en todas — la que
+   tiene menos simplemente deja un hueco vacio, pero todas quedan
+   igual de altas. */
+.rejilla-proyectos .project-card .tags--compactas {
+  min-height: 3.75rem;
+}
+
 /* ---------- Fichas de datos ---------- */
 .datos {
   display: grid;
